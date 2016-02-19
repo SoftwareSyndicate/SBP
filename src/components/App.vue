@@ -2,12 +2,14 @@
   <navbar></navbar>
   <login-modal></login-modal>
   <!-- main view -->
-  <router-view
-      class="view"
-      keep-alive
-      transition
-      transition-mode="out-in">
-  </router-view>
+  <div class="container">
+    <router-view
+        class="view"
+        keep-alive
+        transition
+        transition-mode="out-in">
+    </router-view>
+  </div>
 </template>
 
 <script>

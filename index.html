@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>RMS</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" href="static/logo.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
@@ -14,4 +15,13 @@
     <div id="app"></div>
     <script src="static/build.js"></script>
   </body>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // Load the Visualization API and the corechart package.
+   google.charts.load('current', {'packages':['corechart']});
+   google.charts.setOnLoadCallback(onGoogleChartsLoaded);
+   function onGoogleChartsLoaded(){
+
+   };
+  </script>
 </html>

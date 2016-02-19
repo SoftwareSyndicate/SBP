@@ -1,12 +1,12 @@
 <template>
-  <div class="login-page">
-    LOGIN PAGE
+  <div class="gym-page">
+    Gym PAGE
   </div>
 </template>
 
 <script>
  export default {
-   name: 'LoginPage',
+   name: 'GymPage',
 
    components: {
 
