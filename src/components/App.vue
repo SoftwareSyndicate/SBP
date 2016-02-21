@@ -2,7 +2,7 @@
   <navbar></navbar>
   <login-modal></login-modal>
   <!-- main view -->
-  <div class="container">
+  <div id="wrapper">
     <router-view
         class="view"
         keep-alive
@@ -26,6 +26,20 @@
 </script>
 
 
-<style>
+<style lang="stylus">
+ #wrapper
+   background-color $bg
+   position relative
+   width 85%
+   min-height 80px
+   margin 0 auto
 
+ .view
+   position absolute
+   width: 100%
+   background-color $bg
+   transition opacity .2s ease
+   box-sizing border-box
+   &.v-enter, &.v-leave
+     opacity 0
 </style>

@@ -1,10 +1,5 @@
-<template>
-  <ul class="wall-list collection z-depth-1">
-    <li class="collection-item wall-list-item header-item">
-      <p>Grade</p>
-      <p>Name</p>
-      <p>Last Set</p>
-    </li>
+<template id="wall-list-template">
+  <ul class="collection z-depth-1">
     <wall-list-item v-for="wall in walls" :wall="wall"></wall-list-item>
   </ul>
 </template>
@@ -21,19 +16,16 @@
      return {
        walls: [
          {
-           id: "34314531",
            name: "FS1",
            averageGrade: "orange5",
            lastSet: new Date()
          },
          {
-           id: "54667447",
            name: "Roof",
            averageGrade: "blue4",
            lastSet: new Date()
          },
          {
-           id: "87416563",
            name: "East Wall",
            averageGrade: "red3",
            lastSet: new Date()
@@ -48,15 +40,7 @@
 </script>
 
 <style lang="sass">
- .wall-list {
-   .header-item {
-     p {
-       margin: 0px;
-     }
-
-     &:hover {
-       background-color: #fff;
-     }
-   }
+ #wall-list-temalpate {
+   
  }
 </style>

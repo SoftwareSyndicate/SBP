@@ -2,7 +2,7 @@
   <div class="navbar-fixed">
     <div class="nav-wrapper">
       <nav class="blue">
-        <a href="#!" class="brand-logo center">RMS</a>
+        <a href="#!" class="brand-logo center">R.M.S</a>
         <ul class="right hide-on-med-and-down">
           <li><a class="waves-effect waves-light" href="#!/gym">Gym</a></li>
           <li><a class="waves-effect waves-light" href="#!/walls">Walls</a></li>
@@ -25,12 +25,6 @@
 <script>
  export default {
    name: 'Navbar',
-   data(){
-     return {
-       childComments: [],
-       open: true
-     }
-   },
    created(){
      (function($){
        $(function(){
