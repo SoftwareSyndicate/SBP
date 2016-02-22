@@ -1,13 +1,11 @@
 <template>
-  <li class="collection-item route-list-item waves-effect">
-    <img :src="'/static/images/grades/' + route.averageGrade + '.png'" alt="" class="averageGrade">
-    <h5 class="name">{{route.name}}</h5>
+  <li class="collection-item route-list-item waves-effect" v-link="{name: 'route', params: {routeId: route.id}}">
+    <img :src="'/static/images/grades/' + route.grade + '.png'" alt="" class="grade">
     <div class="rating">
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      <a href="#!" class="secondary-content" v-for="n in 5 - route.rating"><i class="material-icons empty">grade</i></a>
+      <a href="#!" class="secondary-content" v-for="n in route.rating"><i class="material-icons">grade</i></a>
     </div>
+    <h5 class="name">{{route.sends}}</h5>
   </li>
 </template>
 
@@ -16,7 +14,7 @@
    name: 'RouteListItem',
    props: ['route'],
    created(){
-     console.log("routeListItem.created()");
+     
    },
    methods: {
 
@@ -34,9 +32,15 @@
      background-color: #fafafa;
    }
 
-   .averageGrade {
+   .grade {
      width: 3em;
      height: 3em;
+   }
+
+   .rating {
+     i.empty {
+       color: #e0e0e0;
+     }
    }
  }
 

@@ -1,5 +1,5 @@
 <template>
-  <navbar></navbar>
+  <navbar :header="header"></navbar>
   <login-modal></login-modal>
   <!-- main view -->
   <div id="wrapper">
@@ -17,11 +17,20 @@
  import LoginModal from './loginModal/loginModal.vue'
  export default {
    name: 'LoginPage',
-
+   data: function(){
+     return {
+       header: "R.M.S"
+     }
+   },
    components: {
      Navbar,
      LoginModal
    },
+   events: {
+     'update-navbar-header': function(newHeader){
+       this.header = newHeader;
+     }
+   }
  };
 </script>
 

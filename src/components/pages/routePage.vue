@@ -1,12 +1,12 @@
 <template>
-  <div class="wall-page">
-    Wall Page
+  <div class="route-page">
+    Route Page
   </div>
 </template>
 
 <script>
  export default {
-   name: 'WallPage',
+   name: 'Route Page',
 
    components: {
 

@@ -1,16 +1,16 @@
 <template>
   <div class="walls-page">
-    <wall-list></wall-list>
+    <route-list></route-list>
   </div>
 </template>
 
 <script>
- import WallList from '../wallList/wallList.vue'
+ import RouteList from '../routeList/routeList.vue'
  export default {
-   name: 'WallsPage',
+   name: 'RoutePage',
 
    components: {
-     WallList
+     RouteList
    },
  };
 </script>

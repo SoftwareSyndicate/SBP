@@ -1,34 +1,45 @@
-<template id="wall-list-template">
-  <ul class="collection z-depth-1">
-    <wall-list-item v-for="wall in walls" :wall="wall"></wall-list-item>
+<template>
+  <ul class="collection with-header z-depth-1 route-list">
+    <li class="collection-header route-list-item header-item">
+      <p>Grade</p>
+      <p>Rating</p>
+      <p>Sends</p>
+    </li>
+    <route-list-item v-for="route in routes" :route="route"></route-list-item>
   </ul>
 </template>
 
 <script>
- import WallListItem from './wallListItem.vue'
+ import RouteListItem from './routeListItem.vue'
  export default {
    components: {
-     WallListItem
+     RouteListItem
    },
 
-   name: 'WallList',
+   name: 'RouteList',
    data(){
      return {
-       walls: [
+       routes: [
          {
-           name: "FS1",
-           averageGrade: "orange5",
-           lastSet: new Date()
+           grade: "orange5",
+           set: new Date(),
+           sends: 53,
+           rating: 3,
+           id: 536165
          },
          {
-           name: "Roof",
-           averageGrade: "blue4",
-           lastSet: new Date()
+           grade: "blue4",
+           set: new Date(),
+           sends: 34,
+           rating: 4,
+           id: 5365314
          },
          {
-           name: "East Wall",
-           averageGrade: "red3",
-           lastSet: new Date()
+           grade: "red3",
+           set: new Date(),
+           sends: 77,
+           rating: 5,
+           id: 56578
          }
        ],
      }
@@ -40,7 +51,15 @@
 </script>
 
 <style lang="sass">
- #wall-list-temalpate {
-   
+ .route-list {
+   .header-item {
+     p {
+       margin: 0px;
+     }
+
+     &:hover {
+       background-color: #fff;
+     }
+   }
  }
 </style>
