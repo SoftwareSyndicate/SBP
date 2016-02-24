@@ -14,7 +14,7 @@
    name: 'RouteListItem',
    props: ['route'],
    created(){
-     
+
    },
    methods: {
 
