@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import Parse from './services/ParseService.js';
 import Vue from 'vue'
 import Router from 'vue-router'
 import App from './components/App.vue'

@@ -5,12 +5,13 @@
       <p>Name</p>
       <p>Last Set</p>
     </li>
-    <wall-list-item v-for="wall in walls" :wall="wall"></wall-list-item>
+    <wall-list-item v-for="wall in walls" track-by="$index" :wall="wall"></wall-list-item>
   </ul>
 </template>
 
 <script>
  import WallListItem from './wallListItem.vue'
+ import WallModel from '../../models/WallModel.js';
  export default {
    components: {
      WallListItem
@@ -19,30 +20,14 @@
    name: 'WallList',
    data(){
      return {
-       walls: [
-         {
-           id: "34314531",
-           name: "FS1",
-           averageGrade: "orange5",
-           lastSet: new Date()
-         },
-         {
-           id: "54667447",
-           name: "Roof",
-           averageGrade: "blue4",
-           lastSet: new Date()
-         },
-         {
-           id: "87416563",
-           name: "East Wall",
-           averageGrade: "red3",
-           lastSet: new Date()
-         }
-       ],
+       walls: []
      }
    },
    created(){
-
+     WallModel.getWalls().then(results => {
+       this.walls = results;
+       console.log(this.walls);
+     });
    },
  }
 </script>

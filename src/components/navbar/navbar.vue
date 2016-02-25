@@ -27,7 +27,6 @@
    name: 'Navbar',
    props: ['header'],
    created(){
-     console.log("listening");
      (function($){
        $(function(){
          $('.button-collapse').sideNav({

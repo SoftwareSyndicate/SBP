@@ -39,7 +39,6 @@
    created(){
      (function($){
        $(function(){
-         console.log("loginModal.created()");
          //$('#loginModal').openModal();
        });
      })(jQuery);
