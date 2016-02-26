@@ -6,24 +6,12 @@ class ParseService {
     this.Wall = Parse.Object.extend("Wall");
     this.Route = Parse.Object.extend("Route");
     this.Hold = Parse.Object.extend("Hold");
-  }
-
-  deParse(results){
-    var deParsedResults = [];
-    results.forEach(result => {
-      deParsedResults.push(result.attributes);
-      if(result.attributes.routes){
-        var deParsedRoutes = []
-        result.attributes.routes.forEach(route => {
-          deParsedRoutes.push(route.attributes);
-        });
-        result.attributes.routes = deParsedRoutes;
-      }
-      result.attributes.id = result.id;
-      deParsedResults.push(result.attributes);
-    });
-
-    return deParsedResults;
+    this.gymId = "4WChpaHxDE"
+    this.SBP = {
+      __type: "Pointer",
+      className: "Gym",
+      objectId: this.gymId
+    };
   }
 
   /** User **/
@@ -44,9 +32,8 @@ class ParseService {
   getWalls(){
     var query = new Parse.Query(this.Wall);
     query.include("routes");
-    return query.find().then(results => {
-      return this.deParse(results);
-    });
+    query.equalTo("gym", this.SBP);
+    return query.find();
   }
 
 

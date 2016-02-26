@@ -1,7 +1,7 @@
 <template>
   <li class="collection-item wall-list-item waves-effect" v-link="{name: 'wall', params: {wallId: wall.id}}">
-    <img :src="'/static/images/grades/blue' + wall.averageGrade + '.png'" alt="" class="averageGrade">
-    <h5 class="name">{{wall.name}}</h5>
+    <img :src="'/static/images/grades/' + wall.gradeImage + '.png'" alt="" class="averageGrade">
+    <h5 class="name">{{wall.attributes.name}}</h5>
     <p class="lastSet">{{wall.lastSet}}</p>
   </li>
 </template>
@@ -13,15 +13,12 @@
    props: ['wall'],
    created(){
      this.wall.averageGrade = WallModel.calculateAverageWallGrade(this.wall);
-     if(this.wall.lastSet && (typeof this.wall.lastSet.getMonth === "function")){
-       console.log(this.wall.lastSet);
-       var parsedDate = this.wall.lastSet.getMonth() + "/" +this.wall.lastSet.getDate() + "/" + this.wall.lastSet.getFullYear();
-       this.wall.lastSet = parsedDate;
-     }
+     this.wall.lastSet = WallModel.getLastSetDate(this.wall.attributes.lastSet);
+     this.wall.gradeImage = WallModel.getGradeImage(this.wall.averageGrade);
    },
    methods: {
 
-   }
+   },
  }
 </script>
 
@@ -38,6 +35,19 @@
    .averageGrade {
      width: 3em;
      height: 3em;
+
+   }
+
+   .name {
+     font-size: 1.1em;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     padding: 0 .5em 0 .5em;
+   }
+
+   .lastSet {
+     font-size: .9em;
    }
  }
 
