@@ -26,7 +26,6 @@
    created(){
      WallModel.getWalls().then(results => {
        this.walls = results;
-       console.log(this.walls);
      });
    },
  }

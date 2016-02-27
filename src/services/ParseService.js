@@ -38,10 +38,37 @@ class ParseService {
 
   getWallById(id){
     var query = new Parse.Query(this.Wall);
+    query.include('routes');
     return query.get(id);
   }
 
 
+  /** Routes **/
+  getRoutes(){
+    var query = new Parse.Query(this.Route);
+    query.equalTo("gym", this.SBP);
+    query.equalTo("takenDown", null);
+    query.limit(1000);
+    return query.find();
+  }
+
+  getRoutesByWallId(wallId){
+    var wall = {
+      __type: "Pointer",
+      className: "Wall",
+      objectId: wallId
+    };
+    var query = new Parse.Query(this.Route);
+    query.equalTo("gym", this.SBP);
+    query.equalTo("wall", wall);
+    query.limit(1000);
+    return query.find();
+  }
+
+  getRouteById(id){
+    var query = new Parse.Query(this.Route);
+    return query.get(id);
+  }
 
 
 

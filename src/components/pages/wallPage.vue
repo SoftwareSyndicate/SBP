@@ -1,52 +1,41 @@
 <template>
   <div class="wall-page">
-    <div id="walldist"></div>
+    <wall-dist :wall="wall"  v-if="!!wall"></wall-dist>
+    {{wall.attributes.name}}
   </div>
 </template>
 <script>
+ import WallModel from '../../models/WallModel.js';
+ import WallDist from '../wallDist/wallDist.vue';
  export default {
    name: 'WallPage',
-   created(){
-     this.$dispatch('update-navbar-header', "FS1");
-     if(google && google.visualization){
-       this.drawChart();
-     } else {
-       window.googleChartsCallbacks = [];
-       window.googleChartsCallbacks.push(function(){
-         this.drawChart();
-       }.bind(this));
+   data(){
+     return {
+       wall: null
      }
    },
+   created(){
+     this.$dispatch('update-navbar-header', "FS1");
+     this.getWall();
+   },
    components: {
-
+     WallDist
    },
 
    methods: {
-     drawChart(){
-       var data = new google.visualization.DataTable();
-       data.addColumn('string', 'Topping');
-       data.addColumn('number', 'Slices');
-       data.addRows([
-         ['Mushrooms', 3],
-         ['Onions', 1],
-         ['Olives', 1],
-         ['Zucchini', 1],
-         ['Pepperoni', 2]
-       ]);
+     getWall(){
+       var wallId = window.location.href.split("/")[window.location.href.split("/").length - 1];
+       WallModel.getWallById(wallId).then(results => {
+         console.log(results);
+         //TODO emit event to navbar to update header
+         this.wall = results;
+       });
+     },
 
-       // Set chart options
-       var options = {'title':'How Much Pizza I Ate Last Night',
-                      'width':400,
-                      'height':300};
-
-       // Instantiate and draw our chart, passing in some options.
-       var chart = new google.visualization.PieChart(document.getElementById('walldist'));
-       chart.draw(data, options);
-     }
    }
  };
 </script>
 
-<style>
+<style lang="sass">
 
 </style>

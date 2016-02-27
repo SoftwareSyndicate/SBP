@@ -65,7 +65,7 @@ class WallModel {
   }
 
   getWallById(id){
-    return ParseService.getWalls().then(function(results){
+    return ParseService.getWallById(id).then(function(results){
       this.walls = results;
       return results;
     }.bind(this));
