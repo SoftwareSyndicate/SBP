@@ -7,6 +7,8 @@
 <script>
  import WallModel from '../../models/WallModel.js';
  import WallDist from '../wallDist/wallDist.vue';
+import notifications from '../../services/NotificationService';
+
  export default {
    name: 'WallPage',
    data(){
@@ -17,6 +19,8 @@
    created(){
      this.$dispatch('update-navbar-header', "FS1");
      this.getWall();
+     console.log('wall page created');
+     notifications.notify('update-navbar-header', 'FS1');
    },
    components: {
      WallDist

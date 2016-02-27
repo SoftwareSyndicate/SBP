@@ -26,11 +26,11 @@
      Navbar,
      LoginModal
    },
-   events: {
-     'update-navbar-header': function(newHeader){
-       this.header = newHeader;
-     }
-   }
+  //  events: {
+  //    'update-navbar-header': function(newHeader){
+  //      this.header = newHeader;
+  //    }
+  //  }
  };
 </script>
 
