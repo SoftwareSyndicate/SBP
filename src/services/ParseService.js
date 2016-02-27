@@ -49,6 +49,7 @@ class ParseService {
     query.equalTo("gym", this.SBP);
     query.equalTo("takenDown", null);
     query.limit(1000);
+    query.include("wall");
     return query.find();
   }
 
@@ -62,11 +63,13 @@ class ParseService {
     query.equalTo("gym", this.SBP);
     query.equalTo("wall", wall);
     query.limit(1000);
+    query.include("wall");
     return query.find();
   }
 
   getRouteById(id){
     var query = new Parse.Query(this.Route);
+    query.include("wall");
     return query.get(id);
   }
 

@@ -1,52 +1,42 @@
 <template>
   <ul class="collection with-header z-depth-1 route-list">
     <li class="collection-header route-list-item header-item">
-      <p>Grade</p>
-      <p>Rating</p>
+      <p class="grade-header" @click.stop="changeOrder('attributes.grade')" v-if="displayKeys.indexOf('grade') > -1">Grade</p>
+      <p class="wall-header" @click.stop="changeOrder('attributes.wall.attributes.name')" v-if="displayKeys.indexOf('wall') > -1">Wall</p>
+      <p class="rating-header" @click.stop="changeOrder('attributes.rating')" v-if="displayKeys.indexOf('rating') > -1">Rating</p>
       <p>Sends</p>
     </li>
-    <route-list-item v-for="route in routes" :route="route"></route-list-item>
+    <route-list-item v-for="route in routes | orderBy order reverse" track-by="$index" :route="route" :index="$index" :display-keys="displayKeys"></route-list-item>
   </ul>
 </template>
 
 <script>
  import RouteListItem from './routeListItem.vue'
  export default {
-   components: {
-     RouteListItem
-   },
-
    name: 'RouteList',
+   props: ['routes', 'displayKeys'],
    data(){
      return {
-       routes: [
-         {
-           grade: "orange5",
-           set: new Date(),
-           sends: 53,
-           rating: 3,
-           id: 536165
-         },
-         {
-           grade: "blue4",
-           set: new Date(),
-           sends: 34,
-           rating: 4,
-           id: 5365314
-         },
-         {
-           grade: "red3",
-           set: new Date(),
-           sends: 77,
-           rating: 5,
-           id: 56578
-         }
-       ],
+       order: "attributes.grade",
+       reverse: -1
      }
+   },
+   components: {
+     RouteListItem
    },
    created(){
 
    },
+
+   methods: {
+     changeOrder(order){
+       console.log("changing order");
+       console.log(order);
+       this.order = order;
+       this.reverse = this.reverse * -1;
+     }
+   }
+
  }
 </script>
 
@@ -55,6 +45,7 @@
    .header-item {
      p {
        margin: 0px;
+       cursor: pointer;
      }
 
      &:hover {
