@@ -36,6 +36,11 @@ class ParseService {
     return query.find();
   }
 
+  getWallById(id){
+    var query = new Parse.Query(this.Wall);
+    return query.get(id);
+  }
+
 
 
 

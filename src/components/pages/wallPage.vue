@@ -1,6 +1,5 @@
 <template>
   <div class="wall-page">
-    Wall Page
     <div id="walldist"></div>
   </div>
 </template>
@@ -10,7 +9,7 @@
    created(){
      this.$dispatch('update-navbar-header', "FS1");
      if(google && google.visualization){
-       this.draw();
+       this.drawChart();
      } else {
        window.googleChartsCallbacks = [];
        window.googleChartsCallbacks.push(function(){

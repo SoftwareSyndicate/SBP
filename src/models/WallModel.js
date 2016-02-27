@@ -63,6 +63,13 @@ class WallModel {
       return results;
     }.bind(this));
   }
+
+  getWallById(id){
+    return ParseService.getWalls().then(function(results){
+      this.walls = results;
+      return results;
+    }.bind(this));
+  }
 }
 
 export default new WallModel();
