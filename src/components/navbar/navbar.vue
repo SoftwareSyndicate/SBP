@@ -52,5 +52,11 @@
      background-image: url("/static/images/sbp_navbar.png");
      background-size: cover;
    }
+
+   @media (max-width: 990px){
+     li {
+       padding: 0px !important;
+     }
+   }
  }
 </style>

@@ -14,7 +14,9 @@
     <script type="text/javascript">
      google.charts.load('current', {'packages':['corechart']});
      google.charts.setOnLoadCallback(function(){
-       window.googleChartsCallbacks[0]();
+       if(window.googleChartsCallbacks){
+         window.googleChartsCallbacks.forEach(cb => cb());
+       }
      });
     </script>
   </head>
