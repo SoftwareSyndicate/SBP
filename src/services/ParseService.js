@@ -70,6 +70,8 @@ class ParseService {
   getRouteById(id){
     var query = new Parse.Query(this.Route);
     query.include("wall");
+    query.equalTo("gym", this.SBP);
+    query.limit(1000);
     return query.get(id);
   }
 

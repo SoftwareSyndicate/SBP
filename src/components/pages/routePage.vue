@@ -1,51 +1,46 @@
 <template>
   <div class="route-page">
-    <div class="route-image-container">
-      <img :src="'/static/images/grades/' + route.grade + '.png'" alt="" class="grade">
+    <div class="grade-image-container">
+      <img :src="'/static/images/grades/' + route.attributes.gradeImage + '.png'" alt="" class="grade">
     </div>
 
   </div>
 </template>
 
 <script>
+ import RouteModel from '../../models/RouteModel.js';
  export default {
    name: 'Route Page',
    data(){
      return {
-       route: {
-         grade: "orange5",
-         set: new Date(),
-         sends: 53,
-         rating: 3,
-         id: 536165
-       }
+       route: {}
      }
+   },
+
+   created(){
+     var routeId = window.location.href.split("/")[window.location.href.split("/").length - 1];
+     RouteModel.getRouteById(routeId).then(results => {
+       this.route = results;
+     });
    },
 
    components: {
 
-   },
+   }
  };
 </script>
 
-<style>
- .gym-page {
-
-   .stamp-container {
+<style lang="sass">
+ .route-page {
+   .grade-image-container {
+     padding: 16px;
      display: flex;
-     margin-top: 2em;
-     margin-bottom: 4em;
+     justify-content: center;
 
-     img.sbpStamp {
-       margin: auto;
-       width: 15em;
-       height: 16.5em;
+     img {
+       height: 10em;
+       width: 10em;
      }
-   }
-
-   .routes-sent {
-     font-weight: lighter;
-     text-align: center;
    }
  }
 

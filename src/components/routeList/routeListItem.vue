@@ -2,11 +2,12 @@
   <li class="collection-item route-list-item waves-effect" v-link="{name: 'route', params: {routeId: route.id}}" :click="onClick()">
     <img :src="'/static/images/grades/' + route.attributes.gradeImage + '.png'" alt="" class="grade" v-if="displayKeys.indexOf('grade') > -1">
     <p class="wall" v-if="displayKeys.indexOf('wall') > -1">{{route.attributes.wall.attributes.name}}</p>
-    <div class="rating">
+    <div class="rating" v-if="displayKeys.indexOf('rating') > -1">
       <a href="#!" class="secondary-content" v-for="n in 5 - route.rating"><i class="material-icons empty">grade</i></a>
       <a href="#!" class="secondary-content" v-for="n in route.rating"><i class="material-icons">grade</i></a>
     </div>
-    <h5 class="name">{{route.sends}}</h5>
+    <!-- <h5 class="name" v-if="displayKeys.indexOf('sends') > -1">{{route.attributes.sends}}</h5> -->
+    <h5 class="name" v-if="displayKeys.indexOf('sends') > -1">{{555 - index}}</h5>
   </li>
 </template>
 
@@ -21,7 +22,7 @@
      onClick(){
        //console.log(this.route);
      }
-   }
+   },
  }
 </script>
 

@@ -23,7 +23,7 @@
    created(){
      RouteModel.getRoutes().then(results => {
        this.routes = results;
-       console.log(results);
+       console.log(results)
      });
    },
 

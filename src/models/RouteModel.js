@@ -69,6 +69,8 @@ class RouteModel {
 
   getRouteById(id){
     return ParseService.getRouteById(id).then(function(results){
+      results.attributes.grade = parseInt(results.attributes.grade);
+      results.attributes.gradeImage = this.getGradeImage(results);
       this.route = results;
       return results;
     }.bind(this));
