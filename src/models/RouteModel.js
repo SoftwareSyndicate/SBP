@@ -56,6 +56,8 @@ class RouteModel {
         route.attributes.grade = parseInt(route.attributes.grade);
         route.attributes.gradeImage = this.getGradeImage(route);
 
+        //TODO remove this dummy data
+        route.attributes.rating = Math.floor(Math.random() * (5 - 0 + 1)) + 0;
         //TODO remove this hack - some routes have a null wall in parse
         if(!route.attributes.wall){
           route.attributes.wall = {};
@@ -71,6 +73,8 @@ class RouteModel {
     return ParseService.getRouteById(id).then(function(results){
       results.attributes.grade = parseInt(results.attributes.grade);
       results.attributes.gradeImage = this.getGradeImage(results);
+      results.attributes.rating = Math.floor(Math.random() * (5 - 0 + 1)) + 0;
+      console.log(results.attributes.rating);
       this.route = results;
       return results;
     }.bind(this));

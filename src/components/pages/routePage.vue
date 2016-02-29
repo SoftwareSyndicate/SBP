@@ -4,11 +4,16 @@
       <img :src="'/static/images/grades/' + route.attributes.gradeImage + '.png'" alt="" class="grade">
     </div>
 
+    <div class="route-rating-container">
+      <route-rating :route="route"></route-rating>
+    </div>
+
   </div>
 </template>
 
 <script>
- import RouteModel from '../../models/RouteModel.js';
+ import RouteModel from '../../models/RouteModel.js'
+ import RouteRating from '../../components/routeRating/routeRating.vue'
  import notifications from '../../services/NotificationService.js'
  export default {
    name: 'Route Page',
@@ -33,7 +38,7 @@
    },
 
    components: {
-
+     RouteRating
    }
  };
 </script>
@@ -41,14 +46,19 @@
 <style lang="sass">
  .route-page {
    .grade-image-container {
+     margin-bottom: 3em;
      padding: 16px;
      display: flex;
      justify-content: center;
-
      img {
        height: 10em;
        width: 10em;
      }
+   }
+
+   .route-rating-container {
+     display: flex;
+     justify-content: center;
    }
  }
 
