@@ -9,13 +9,14 @@
    props: ['wall'],
    created(){
      if(google && google.visualization){
-       this.drawChart();
+       //this.drawChart();
      } else {
        if(!window.googleChartsCallbacks){
          window.googleChartsCallbacks = [];
        }
        window.googleChartsCallbacks.push(function(){
-         this.drawChart();
+         //TODO this
+         //this.drawChart();
        }.bind(this));
      }
    },

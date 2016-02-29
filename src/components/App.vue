@@ -2,6 +2,7 @@
   <navbar :header="header"></navbar>
   <login-modal></login-modal>
   <!-- main view -->
+  <overlay></overlay>
   <div id="wrapper">
     <router-view
         class="view"
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+ import Overlay from './overlay/overlay.vue'
  import Navbar from './navbar/navbar.vue'
  import LoginModal from './loginModal/loginModal.vue'
  export default {
@@ -23,7 +25,8 @@
    },
    components: {
      Navbar,
-     LoginModal
+     LoginModal,
+     Overlay
    },
   //  events: {
   //    'update-navbar-header': function(newHeader){

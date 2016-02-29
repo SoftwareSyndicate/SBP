@@ -1,5 +1,3 @@
-
-
 class NotificationService {
   constructor() {
     this.listeners = {};

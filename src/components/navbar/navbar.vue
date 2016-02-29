@@ -14,7 +14,7 @@
           <li><a class="waves-effect waves-light" href="#!/gym">Gym</a></li>
           <li><a href="#!/walls">Walls</a></li>
           <li><a href="#!/routes">Routes</a></li>
-          <li v-on:click="openLoginModal"><a href="#loginModal">Login</a></li>
+          <li v-on:click="openLoginModal"><a>Login</a></li>
         </ul>
         <a data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       </nav>
@@ -35,27 +35,21 @@
             menuWidth: 280,
             closeOnClick: true
           }
-        );
-      });
-    })(jQuery);
-    notifications.listenFor('update-navbar-header', this.onUpdateNavbar, this);
-    //  this.$on('update-navbar-header', this.onUpdateNavbar);
-  },
-  methods: {
-    openLoginModal: function(event){
-      $('#loginModal').openModal();
+          );
+        });
+      })(jQuery);
+      notifications.listenFor('Navbar.setHeader', this.setHeader, this);
     },
-    onUpdateNavbar: function(){
-      console.log('on update:',arguments);
-    }
-  },
-  events: {
-    'update-navbar-header': function(){
-      console.log(arguments);
-    }
+    methods: {
+      openLoginModal: function(event){
+        $('#loginModal').openModal();
+      },
+      setHeader(event, newHeader){
+        this.header = newHeader;
+      }
+    },
   }
-  }
-  </script>
+</script>
 
   <style lang="sass">
   nav {

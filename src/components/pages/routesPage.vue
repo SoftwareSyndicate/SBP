@@ -7,6 +7,7 @@
 <script>
  import RouteModel from '../../models/RouteModel.js';
  import RouteList from '../routeList/routeList.vue'
+ import notifications from '../../services/NotificationService.js'
  export default {
    name: 'RoutePage',
    components: {
@@ -21,11 +22,16 @@
    },
 
    created(){
+     notifications.notify('Navbar.setHeader', "Routes");
      RouteModel.getRoutes().then(results => {
        this.routes = results;
-       console.log(results)
+       notifications.notify('Overlay.setVisible', false);
      });
    },
+
+   beforeDestroy(){
+     notifications.notify('Overlay.setVisible', true);
+   }
 
  };
 </script>

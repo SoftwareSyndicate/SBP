@@ -16,6 +16,7 @@
 </template>
 
 <script>
+ import notifications from '../../services/NotificationService';
  export default {
    name: 'GymPage',
    data(){
@@ -28,10 +29,15 @@
      setInterval(function(){
        this.routesSent++;
      }.bind(this), 1000);
+     notifications.notify('Overlay.setVisible', false);
    },
    components: {
 
    },
+
+   beforeDestroy(){
+     notifications.notify('Overlay.setVisible', true);
+   }
  };
 </script>
 
