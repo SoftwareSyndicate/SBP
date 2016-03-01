@@ -1,4 +1,4 @@
-import Parse from './services/ParseService.js';
+import Parse from './services/ParseService.js'
 import Vue from 'vue'
 import Router from 'vue-router'
 import App from './components/App.vue'
@@ -7,7 +7,6 @@ import WallsPage from './components/pages/wallsPage.vue'
 import WallPage from './components/pages/wallPage.vue'
 import RoutesPage from './components/pages/routesPage.vue'
 import RoutePage from './components/pages/routePage.vue'
-import notifications from './services/NotificationService.js'
 
 // install router
 Vue.use(Router);

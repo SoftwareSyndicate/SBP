@@ -16,7 +16,7 @@
  import RouteRating from '../../components/routeRating/routeRating.vue'
  import notifications from '../../services/NotificationService.js'
  export default {
-   name: 'Route Page',
+   name: 'RoutePage',
    data(){
      return {
        route: {}
