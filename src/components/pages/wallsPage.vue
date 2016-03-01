@@ -1,12 +1,13 @@
 <template>
   <div class="walls-page">
-    <wall-list></wall-list>
+    <wall-list :walls="walls" v-if="walls.length > 0"></wall-list>
   </div>
 </template>
 
 <script>
  import WallList from '../wallList/wallList.vue'
  import notifications from '../../services/NotificationService.js'
+ import WallModel from '../../models/WallModel.js'
  export default {
    name: 'WallsPage',
 
@@ -14,9 +15,18 @@
      WallList
    },
 
+   data(){
+     return {
+       walls: []
+     }
+   },
    created(){
      notifications.notify('Navbar.setHeader', "Walls");
-     notifications.notify('Overlay.setVisible', false);
+     WallModel.getWalls().then(results => {
+       this.walls = results;
+       console.log(results);
+       notifications.notify('Overlay.setVisible', false);
+     });
    },
 
    beforeDestroy(){

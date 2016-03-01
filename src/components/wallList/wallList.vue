@@ -11,22 +11,15 @@
 
 <script>
  import WallListItem from './wallListItem.vue'
- import WallModel from '../../models/WallModel.js';
  export default {
    components: {
      WallListItem
    },
 
    name: 'WallList',
-   data(){
-     return {
-       walls: []
-     }
-   },
+   props: ['walls'],
    created(){
-     WallModel.getWalls().then(results => {
-       this.walls = results;
-     });
+     
    },
  }
 </script>
