@@ -19,7 +19,7 @@
    name: 'WallList',
    props: ['walls'],
    created(){
-     
+
    },
  }
 </script>

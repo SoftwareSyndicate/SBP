@@ -35,7 +35,7 @@
  .overlay-container {
    width: 100vw;
    height: 100vh;
-   padding-top: 25vh;
+   padding-top: 20vh;
    margin: 0 auto;
  }
 

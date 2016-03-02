@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar-fixed">
+  <div class="navbar-fixed" id="navbar">
     <div class="nav-wrapper">
       <nav class="blue">
         <a href="#!" class="brand-logo center">{{header}}</a>
@@ -28,16 +28,12 @@
   export default {
     name: 'Navbar',
     props: ['header'],
-    created(){
-      (function($){
-        $(function(){
-          $('.button-collapse').sideNav({
-            menuWidth: 280,
-            closeOnClick: true
-          }
-          );
-        });
-      })(jQuery);
+    el: '#navbar',
+    ready(){
+      $('.button-collapse').sideNav({
+        menuWidth: 280,
+        closeOnClick: true
+      });
       notifications.listenFor('Navbar.setHeader', this.setHeader, this);
     },
     methods: {
@@ -57,6 +53,13 @@
       height: 10em;
       background-image: url("/static/images/sbp_navbar.png");
       background-size: cover;
+    }
+
+    .brand-logo {
+      max-width: 65vw;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     @media (max-width: 990px){

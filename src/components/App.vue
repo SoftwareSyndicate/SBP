@@ -1,6 +1,8 @@
 <template>
   <navbar :header="header"></navbar>
   <login-modal></login-modal>
+  <sign-up-modal></sign-up-modal>
+
   <!-- main view -->
   <overlay></overlay>
   <div id="wrapper">
@@ -16,6 +18,8 @@
  import Overlay from './overlay/overlay.vue'
  import Navbar from './navbar/navbar.vue'
  import LoginModal from './loginModal/loginModal.vue'
+ import SignUpModal from './signUpModal/signUpModal.vue'
+
  export default {
    name: 'LoginPage',
    data: function(){
@@ -26,6 +30,7 @@
    components: {
      Navbar,
      LoginModal,
+     SignUpModal,
      Overlay
    },
   //  events: {

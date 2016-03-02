@@ -16,14 +16,7 @@ class ParseService {
 
   /** User **/
   login(username, password){
-    return Parse.User.logIn(username, password, {
-      success: function(user) {
-        return user;
-      },
-      error: function(user, error) {
-        return error;
-      }
-    });
+    return Parse.User.logIn(username, password);
   }
 
   /** Gym **/

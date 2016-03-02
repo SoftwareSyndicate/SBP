@@ -79,6 +79,10 @@ class RouteModel {
       return results;
     }.bind(this));
   }
+
+  rateRoute(route){
+    
+  }
 }
 
 export default new RouteModel();
