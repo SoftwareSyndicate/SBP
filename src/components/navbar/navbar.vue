@@ -12,11 +12,12 @@
         </ul>
         <ul id="slide-out" class="side-nav">
           <div class="nav-brand"></div>
-          <li><a class="waves-effect waves-light" href="#!/gym">Gym</a></li>
-          <li><a href="#!/walls">Walls</a></li>
-          <li><a href="#!/routes">Routes</a></li>
-          <li @click="openLoginModal" v-show="!currentUser"><a>Login</a></li>
-          <li v-show="currentUser"><a @click="logout" class="waves-effect waves-light">Logout</a></li>
+          <li><a class="waves-effect waves-light" href="#!/gym"><i class="medium material-icons">language</i>Gym</a></li>
+          <li><a class="waves-effect waves-light" href="#!/walls"><i class="medium material-icons">view_module</i>Walls</a></li>
+          <li><a class="waves-effect waves-light" href="#!/routes"><i class="medium material-icons">view_list</i>Routes</a></li>
+          <li v-show="currentUser"><a class="waves-effect waves-light" href="#!/stats"><i class="medium material-icons">equalizer</i>My Stats</a></li>
+          <li @click="openLoginModal" v-show="!currentUser"><a class="waves-effect waves-light"><i class="medium material-icons">person_pin</i>Login</a></li>
+          <li v-show="currentUser"><a class="waves-effect waves-light" @click="logout" class="waves-effect waves-light"><i class="medium material-icons">settings_power</i>Logout</a></li>
         </ul>
         <a data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       </nav>
@@ -88,6 +89,18 @@
    @media (max-width: 990px){
      li {
        padding: 0px !important;
+
+       a {
+
+       }
+       i {
+         margin-bottom: 2px;
+         margin-right: 10px;
+         vertical-align: inherit;
+         display: inline-block !important;
+         line-height: 2rem !important;
+         height: 2rem !important;
+       }
      }
    }
  }
