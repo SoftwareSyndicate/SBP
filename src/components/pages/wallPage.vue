@@ -16,7 +16,6 @@
      }
    },
    created(){
-     this.$dispatch('update-navbar-header', "FS1");
      this.getWall();
    },
    components: {

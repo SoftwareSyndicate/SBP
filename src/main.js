@@ -7,6 +7,7 @@ import WallsPage from './components/pages/wallsPage.vue'
 import WallPage from './components/pages/wallPage.vue'
 import RoutesPage from './components/pages/routesPage.vue'
 import RoutePage from './components/pages/routePage.vue'
+import UserPage from './components/pages/userPage.vue'
 
 // install router
 Vue.use(Router);
@@ -39,7 +40,13 @@ router.map({
   '/routes/:routeId': {
     name: 'route',
     component: RoutePage
+  },
+  //User
+  '/stats': {
+    name: 'stats',
+    component: UserPage
   }
+
 });
 
 router.beforeEach(function () {

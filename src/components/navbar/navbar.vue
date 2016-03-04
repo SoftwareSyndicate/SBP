@@ -84,6 +84,7 @@
      overflow: hidden;
      white-space: nowrap;
      text-overflow: ellipsis;
+     font-weight: 100;
    }
 
    @media (max-width: 990px){
