@@ -53,7 +53,6 @@ class WallModel {
       default:
         gradeImage = "black8";
     }
-
     return gradeImage;
   }
 
@@ -66,9 +65,58 @@ class WallModel {
 
   getWallById(id){
     return ParseService.getWallById(id).then(function(results){
-      this.walls = results;
+      this.wall = results;
+      this.wall.attributes.routes.forEach(route => {
+        route.attributes.gradeImage = this.getGradeImage(route);
+      });
       return results;
     }.bind(this));
+  }
+
+  getGradeImage(route){
+    var gradeImage;
+    switch(parseInt(route.attributes.grade)){
+      case 0:
+        gradeImage = "gray0";
+        break;
+      case 1:
+        gradeImage = "yellow1";
+        break;
+      case 2:
+        gradeImage = "green2";
+        break;
+      case 3:
+        gradeImage = "red3";
+        break;
+      case 4:
+        gradeImage = "blue4";
+        break;
+      case 5:
+        gradeImage = "orange5";
+        break;
+      case 6:
+        gradeImage = "purple6";
+        break;
+      case 7:
+        gradeImage = "purple7";
+        break;
+      case 8:
+        gradeImage = "black8";
+        break;
+      case 9:
+        gradeImage = "black9";
+        break;
+      case 10:
+        gradeImage = "black10";
+        break;
+      case 11:
+        gradeImage = "black11";
+        break;
+      default:
+        gradeImage = "black11";
+        break;
+    }
+    return gradeImage;
   }
 }
 

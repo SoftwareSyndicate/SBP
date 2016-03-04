@@ -1,5 +1,5 @@
 <template>
-  <div class="walls-page">
+  <div class="routes-page">
     <route-list :routes="routes" :display-keys="routeKeys"></route-list>
   </div>
 </template>
