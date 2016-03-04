@@ -67,13 +67,13 @@ class WallModel {
     return ParseService.getWallById(id).then(function(results){
       this.wall = results;
       this.wall.attributes.routes.forEach(route => {
-        route.attributes.gradeImage = this.getGradeImage(route);
+        route.attributes.gradeImage = this.getRouteGradeImage(route);
       });
       return results;
     }.bind(this));
   }
 
-  getGradeImage(route){
+  getRouteGradeImage(route){
     var gradeImage;
     switch(parseInt(route.attributes.grade)){
       case 0:
