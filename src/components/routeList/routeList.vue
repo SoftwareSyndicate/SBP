@@ -5,6 +5,7 @@
       <p class="wall-header" @click.stop="changeOrder('attributes.wall.attributes.name')" v-if="displayKeys.indexOf('wall') > -1">Wall</p>
       <p class="rating-header" @click.stop="changeOrder('attributes.rating')" v-if="displayKeys.indexOf('rating') > -1">Rating</p>
       <p @click.stop="changeOrder('attributes.sends')" v-if="displayKeys.indexOf('sends') > -1">Sends</p>
+      <p @click.stop="changeOrder('attributes.sent')" v-if="displayKeys.indexOf('sent') > -1">Sent</p>
     </li>
     <route-list-item v-for="route in routes | orderBy order reverse" track-by="$index" :route="route" :index="$index" :display-keys="displayKeys"></route-list-item>
   </ul>
