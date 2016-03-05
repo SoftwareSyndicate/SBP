@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-fixed" id="navbar">
     <div class="nav-wrapper">
-      <nav class="blue">
+      <nav class="">
         <a href="#!" class="brand-logo center">{{header}}</a>
         <ul class="right hide-on-med-and-down">
           <li><a class="waves-effect waves-light" href="#!/gym">Gym</a></li>
@@ -72,35 +72,40 @@
 </script>
 
 <style lang="sass">
- nav {
-   .nav-brand {
-     height: 10em;
-     background-image: url("/static/images/sbp_navbar.png");
-     background-size: cover;
-   }
+ #navbar {
 
-   .brand-logo {
-     max-width: 65vw;
-     overflow: hidden;
-     white-space: nowrap;
-     text-overflow: ellipsis;
-     font-weight: 100;
-   }
+   nav {
+     background-image: url("/static/images/noise.png"), -webkit-radial-gradient(top center, rgb(247, 180, 30), #F13724 750px) !important;
 
-   @media (max-width: 990px){
-     li {
-       padding: 0px !important;
+     .nav-brand {
+       height: 10em;
+       background-image: url("/static/images/sbp_navbar.png");
+       background-size: cover;
+     }
 
-       a {
+     .brand-logo {
+       max-width: 65vw;
+       overflow: hidden;
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       font-weight: 100;
+     }
 
-       }
-       i {
-         margin-bottom: 2px;
-         margin-right: 10px;
-         vertical-align: inherit;
-         display: inline-block !important;
-         line-height: 2rem !important;
-         height: 2rem !important;
+     @media (max-width: 990px){
+       li {
+         padding: 0px !important;
+
+         a {
+
+         }
+         i {
+           margin-bottom: 2px;
+           margin-right: 10px;
+           vertical-align: inherit;
+           display: inline-block !important;
+           line-height: 2rem !important;
+           height: 2rem !important;
+         }
        }
      }
    }
