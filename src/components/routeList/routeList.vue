@@ -1,5 +1,6 @@
 <template>
   <ul class="collection with-header z-depth-1 route-list">
+    <!-- HEADER -->
     <li class="collection-header route-list-item header-item">
       <p class="grade-header" @click.stop="changeOrder('attributes.grade')" v-if="displayKeys.indexOf('grade') > -1">Grade</p>
       <p class="wall-header" @click.stop="changeOrder('attributes.wall.attributes.name')" v-if="displayKeys.indexOf('wall') > -1">Wall</p>
@@ -7,6 +8,7 @@
       <p @click.stop="changeOrder('attributes.sends')" v-if="displayKeys.indexOf('sends') > -1">Sends</p>
       <p @click.stop="changeOrder('attributes.sent')" v-if="displayKeys.indexOf('sent') > -1">Sent</p>
     </li>
+
     <route-list-item v-for="route in routes | orderBy order reverse" track-by="$index" :route="route" :index="$index" :display-keys="displayKeys"></route-list-item>
   </ul>
 </template>

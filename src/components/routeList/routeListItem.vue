@@ -8,13 +8,19 @@
     </div>
     <!-- <h5 class="name" v-if="displayKeys.indexOf('sends') > -1">{{route.attributes.sends}}</h5> -->
     <h5 class="name" v-if="displayKeys.indexOf('sends') > -1">{{555 - index}}</h5>
+    <sent-switch :route="route" v-if="displayKeys.indexOf('sent') > -1"></sent-switch>
+    <!-- <p class="wall" v-if="displayKeys.indexOf('sent') > -1">{{route.attributes.sent}}5</p> -->
   </li>
 </template>
 
 <script>
+ import SentSwitch from '../sentSwitch/sentSwitch.vue'
  export default {
    name: 'RouteListItem',
    props: ['route', 'index', 'displayKeys'],
+   components: {
+     SentSwitch
+   },
    created(){
 
    },

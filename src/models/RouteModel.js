@@ -81,6 +81,10 @@ class RouteModel {
   }
 
   rateRoute(route){
+
+  }
+
+  sentRoute(route, user){
     
   }
 }

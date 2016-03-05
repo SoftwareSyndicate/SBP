@@ -42,7 +42,7 @@
        infoTabVisible: false,
        wall: null,
        routes: [],
-       routeKeys: ['grade', 'wall', 'sends']
+       routeKeys: ['grade', 'sends', 'sent']
      }
    },
    created(){
