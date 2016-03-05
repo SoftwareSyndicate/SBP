@@ -5,7 +5,7 @@
     </div>
 
     <h4 class="routes-sent">
-      Routes sent this Month:
+      Routes sent this Month
     </h4>
 
     <h3 class="routes-sent">
@@ -30,7 +30,7 @@
        this.routesSent++;
      }.bind(this), 1000);
      notifications.notify('Overlay.setVisible', false);
-     notifications.notify('Navbar.setHeader', "SBP");
+     notifications.notify('Navbar.setHeader', "S.B.P");
      notifications.notify('Navbar.setActiveTab', "gym");
    },
    components: {

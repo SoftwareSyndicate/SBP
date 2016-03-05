@@ -1,16 +1,16 @@
 <template>
-  <div id="wall-dist"></div>
+  <div id="route-dist"></div>
 </template>
 
 <script>
- import WallModel from '../../models/WallModel.js';
+ import RouteModel from '../../models/RouteModel.js';
  export default {
-   name: 'WallDist',
-   props: ['wall'],
+   name: 'RouteDist',
+   props: ['routes'],
    created(){
    },
-
    ready(){
+     console.log("ROTUSE: ", this.routes);
      if(google && google.visualization){
        this.drawChart();
      } else {
@@ -42,7 +42,7 @@
                       'height':300};
 
        // Instantiate and draw our chart, passing in some options.
-       var chart = new google.visualization.PieChart(document.getElementById('wall-dist'));
+       var chart = new google.visualization.PieChart(document.getElementById('route-dist'));
        chart.draw(data, options);
      }
    }
@@ -50,7 +50,7 @@
 </script>
 
 <style lang="sass">
- #wall-dist {
+ #route-dist {
 
  }
 </style>

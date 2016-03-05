@@ -11,7 +11,7 @@
 
       <!-- Distro Tab -->
       <div id="tab-distro" class="col s12">
-        <wall-dist :wall="wall"  v-if="!!wall"></wall-dist>
+        <route-dist :routes="routes"  v-if="!!wall"></route-dist>
       </div>
 
       <!-- Routes Tab -->
@@ -28,10 +28,10 @@
 </template>
 <script>
  import WallModel from '../../models/WallModel.js';
- import WallDist from '../wallDist/wallDist.vue';
- import notifications from '../../services/NotificationService';
  import RouteModel from '../../models/RouteModel.js';
  import RouteList from '../routeList/routeList.vue'
+ import RouteDist from '../routeDist/routeDist.vue'
+ import Notifications from '../../services/NotificationService';
 
  export default {
    name: 'WallPage',
@@ -53,7 +53,7 @@
      $("#wrapper").css("width", "100%");
    },
    components: {
-     WallDist,
+     RouteDist,
      RouteList
    },
 
@@ -64,8 +64,8 @@
          this.wall = results;
          console.log(results);
          this.routes = results.attributes.routes;
-         notifications.notify('Navbar.setHeader', this.wall.attributes.name);
-         notifications.notify('Overlay.setVisible', false);
+         Notifications.notify('Navbar.setHeader', this.wall.attributes.name);
+         Notifications.notify('Overlay.setVisible', false);
        });
      },
      changeTab(tab){
@@ -87,7 +87,7 @@
    },
 
    beforeDestroy(){
-     notifications.notify('Overlay.setVisible', true);
+     Notifications.notify('Overlay.setVisible', true);
    }
 
  };

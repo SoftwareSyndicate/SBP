@@ -58,6 +58,8 @@
          this.hasError = true;
          if(error.code === 202){
            this.errorMessage = "Email " + this.email + " has already been taken";
+         } else {
+           this.errorMessage = error.message;
          }
          notifications.notify("Overlay.setVisible", false);
        });
