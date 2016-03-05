@@ -23,6 +23,7 @@
 
    created(){
      notifications.notify('Navbar.setHeader', "Routes");
+     notifications.notify('Navbar.setActiveTab', "routes");
      RouteModel.getRoutes().then(results => {
        this.routes = results;
        notifications.notify('Overlay.setVisible', false);

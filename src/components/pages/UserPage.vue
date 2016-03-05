@@ -36,6 +36,9 @@
        routeKeys: ['grade', 'wall', 'sends']
      }
    },
+   created(){
+     notifications.notify('Navbar.setActiveTab', "user");
+   },
    ready(){
      notifications.notify('Navbar.setHeader', "Stats");
      $('ul.tabs').tabs();

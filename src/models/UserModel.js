@@ -24,6 +24,14 @@ class UserModel {
     Parse.User.logOut();
     notifications.notify("User.logout");
   }
+
+  signUp(email, password){
+    return ParseService.signUp(email, password).then(results => {
+      this.currentUser = results;
+      notifications.notify("User.login");
+      return results;
+    });
+  }
 }
 
 export default new UserModel()

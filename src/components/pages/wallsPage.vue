@@ -22,6 +22,7 @@
    },
    created(){
      notifications.notify('Navbar.setHeader', "Walls");
+     notifications.notify('Navbar.setActiveTab', "walls");
      WallModel.getWalls().then(results => {
        this.walls = results;
        console.log(results);

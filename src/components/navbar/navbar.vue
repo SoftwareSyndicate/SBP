@@ -12,10 +12,10 @@
         </ul>
         <ul id="slide-out" class="side-nav">
           <div class="nav-brand"></div>
-          <li><a class="waves-effect waves-light" href="#!/gym"><i class="medium material-icons">language</i>Gym</a></li>
-          <li><a class="waves-effect waves-light" href="#!/walls"><i class="medium material-icons">view_module</i>Walls</a></li>
-          <li><a class="waves-effect waves-light" href="#!/routes"><i class="medium material-icons">view_list</i>Routes</a></li>
-          <li v-show="currentUser"><a class="waves-effect waves-light" href="#!/stats"><i class="medium material-icons">equalizer</i>My Stats</a></li>
+          <li v-bind:class="{'active': activeTab === 'gym'}"><a class="waves-effect waves-light" href="#!/gym"><i class="medium material-icons">language</i>Gym</a></li>
+          <li v-bind:class="{'active': activeTab === 'walls'}"><a class="waves-effect waves-light" href="#!/walls"><i class="medium material-icons">view_module</i>Walls</a></li>
+          <li v-bind:class="{'active': activeTab === 'routes'}"><a class="waves-effect waves-light" href="#!/routes"><i class="medium material-icons">view_list</i>Routes</a></li>
+          <li v-show="currentUser" v-bind:class="{'active': activeTab === 'user'}"><a class="waves-effect waves-light" href="#!/stats"><i class="medium material-icons">equalizer</i>My Stats</a></li>
           <li @click="openLoginModal" v-show="!currentUser"><a class="waves-effect waves-light"><i class="medium material-icons">person_pin</i>Login</a></li>
           <li v-show="currentUser"><a class="waves-effect waves-light" @click="logout" class="waves-effect waves-light"><i class="medium material-icons">settings_power</i>Logout</a></li>
         </ul>
@@ -35,7 +35,8 @@
 
    data(){
      return {
-       currentUser: {}
+       currentUser: {},
+       activeTab: ""
      }
    },
 
@@ -47,6 +48,7 @@
 
      this.currentUser = UserModel.currentUser;
      notifications.listenFor('Navbar.setHeader', this.setHeader, this);
+     notifications.listenFor('Navbar.setActiveTab', this.setActiveTab, this);
      notifications.listenFor('User.login', this.onUserLogin, this);
      notifications.listenFor('User.logout', this.onUserLogout, this);
    },
@@ -63,6 +65,9 @@
      },
      setHeader(event, newHeader){
        this.header = newHeader;
+     },
+     setActiveTab(event, tab){
+       this.activeTab = tab;
      },
      logout(){
        UserModel.logout();

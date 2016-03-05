@@ -30,6 +30,8 @@
        this.routesSent++;
      }.bind(this), 1000);
      notifications.notify('Overlay.setVisible', false);
+     notifications.notify('Navbar.setHeader', "SBP");
+     notifications.notify('Navbar.setActiveTab', "gym");
    },
    components: {
 

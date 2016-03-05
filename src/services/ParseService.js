@@ -15,8 +15,12 @@ class ParseService {
   }
 
   /** User **/
-  login(username, password){
-    return Parse.User.logIn(username, password);
+  login(email, password){
+    return Parse.User.logIn(email, password);
+  }
+
+  signUp(email, password){
+    return Parse.User.signUp(email, password);
   }
 
   /** Gym **/
