@@ -25,7 +25,6 @@
      notifications.notify('Navbar.setActiveTab', "walls");
      WallModel.getWalls().then(results => {
        this.walls = results;
-       console.log(results);
        notifications.notify('Overlay.setVisible', false);
      });
    },

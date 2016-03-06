@@ -1,11 +1,11 @@
 <template>
   <ul class="wall-list collection z-depth-1">
     <li class="collection-item wall-list-item header-item">
-      <p>Grade</p>
-      <p>Name</p>
-      <p>Last Set</p>
+      <p @click.stop="changeOrder('averageGrade')">Grade</p>
+      <p @click.stop="changeOrder('attributes.name')">Name</p>
+      <p @click.stop="changeOrder('attributes.lastSet')">Last Set</p>
     </li>
-    <wall-list-item v-for="wall in walls" track-by="$index" :wall="wall"></wall-list-item>
+    <wall-list-item v-for="wall in walls | orderBy order reverse" track-by="$index" :wall="wall"></wall-list-item>
   </ul>
 </template>
 
@@ -15,12 +15,24 @@
    components: {
      WallListItem
    },
-
    name: 'WallList',
    props: ['walls'],
+   data(){
+     return {
+       order: "attributes.lastSet",
+       reverse: -1
+     }
+   },
    created(){
 
    },
+   methods: {
+     changeOrder(order){
+       console.log(this.walls);
+       this.order = order;
+       this.reverse = this.reverse * -1;
+     }
+   }
  }
 </script>
 
@@ -29,6 +41,11 @@
    .header-item {
      p {
        margin: 0px;
+       cursor: pointer;
+
+       &:hover {
+         color: blue;
+       }
      }
 
      &:hover {

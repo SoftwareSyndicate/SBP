@@ -68,6 +68,7 @@ class WallModel {
       this.wall = results;
       this.wall.attributes.routes.forEach(route => {
         route.attributes.gradeImage = this.getRouteGradeImage(route);
+        route.attributes.roundedGrade = Math.round(route.attributes.grade);
       });
       return results;
     }.bind(this));

@@ -80,7 +80,7 @@
  #navbar {
 
    nav {
-     background-image: url("/static/images/noise.png"), -webkit-radial-gradient(top center, rgb(247, 180, 30), #F13724 750px) !important;
+     background-image: url("/static/images/noise.png"), -webkit-radial-gradient(top center, rgb(247, 180, 30), #FF0000 750px) !important;
 
      .nav-brand {
        height: 10em;

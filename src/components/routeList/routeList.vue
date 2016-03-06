@@ -33,13 +33,10 @@
 
    methods: {
      changeOrder(order){
-       console.log("changing order");
-       console.log(order);
        this.order = order;
        this.reverse = this.reverse * -1;
      }
    }
-
  }
 </script>
 
@@ -49,6 +46,10 @@
      p {
        margin: 0px;
        cursor: pointer;
+       
+       &:hover {
+         color: blue;
+       }
      }
 
      &:hover {

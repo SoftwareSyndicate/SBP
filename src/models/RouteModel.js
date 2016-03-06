@@ -6,7 +6,7 @@ class RouteModel {
 
   getGradeImage(route){
     var gradeImage;
-    switch(parseInt(route.attributes.grade)){
+    switch(Math.round(parseInt(route.attributes.grade))){
       case 0:
         gradeImage = "gray0";
         break;
@@ -55,6 +55,7 @@ class RouteModel {
       results.forEach(route => {
         route.attributes.grade = parseInt(route.attributes.grade);
         route.attributes.gradeImage = this.getGradeImage(route);
+        route.attributes.roundedGrade = Math.round(route.attributes.grade);
 
         //TODO remove this dummy data
         route.attributes.rating = Math.floor(Math.random() * (5 - 0 + 1)) + 0;
