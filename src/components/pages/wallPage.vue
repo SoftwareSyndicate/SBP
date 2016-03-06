@@ -11,7 +11,10 @@
 
       <!-- Distro Tab -->
       <div id="tab-distro" class="col s12">
-        <route-dist :routes="routes"  v-if="!!wall"></route-dist>
+        <!-- <route-dist :routes="routes"  v-if="!!wall"></route-dist> -->
+        <div id="route-pie-chart-container">
+          <route-pie-chart :routes="routes"  v-if="!!wall"></route-pie-chart>
+        </div>
       </div>
 
       <!-- Routes Tab -->
@@ -27,11 +30,12 @@
   </div>
 </template>
 <script>
- import WallModel from '../../models/WallModel.js';
- import RouteModel from '../../models/RouteModel.js';
+ import WallModel from '../../models/WallModel.js'
+ import RouteModel from '../../models/RouteModel.js'
  import RouteList from '../routeList/routeList.vue'
  import RouteDist from '../routeDist/routeDist.vue'
- import Notifications from '../../services/NotificationService';
+ import RoutePieChart from '../routePieChart/routePieChart.vue'
+ import Notifications from '../../services/NotificationService'
 
  export default {
    name: 'WallPage',
@@ -54,7 +58,8 @@
    },
    components: {
      RouteDist,
-     RouteList
+     RouteList,
+     RoutePieChart
    },
 
    methods: {
@@ -102,6 +107,10 @@
    .content-wrapper {
      width: 85%;
      margin-left: 7.5%;
+   }
+
+   #route-pie-chart-container {
+     height: 40vh;
    }
  }
 </style>

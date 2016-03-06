@@ -1,6 +1,5 @@
 <template>
   <div id="route-dist"></div>
-  <div id="donut-chart"></div>
 </template>
 
 <script>
@@ -22,14 +21,12 @@
    ready(){
      if(google && google.visualization){
        this.drawChart(this.routeData);
-       this.drawDonutChart(this.routes);
      } else {
        if(!window.googleChartsCallbacks){
          window.googleChartsCallbacks = [];
        }
        window.googleChartsCallbacks.push(function(){
          this.drawChart(this.routeData);
-         this.drawDonutChart(this.routes);
        }.bind(this));
      }
    },
@@ -80,30 +77,6 @@
 
        var chart = new google.charts.Bar(document.getElementById("route-dist"));
        chart.draw(data, google.charts.Bar.convertOptions(options));
-     },
-
-     drawDonutChart(routes){
-       console.log(routes);
-       var slices = {};
-       var data = google.visualization.arrayToDataTable([
-         ['Task', 'Hours per Day'],
-         ['Work',     11],
-         ['Eat',      2],
-         ['Commute',  2],
-         ['Watch TV', 2],
-         ['Sleep',    7],
-       ]);
-
-       var options = {
-         legend: 'none',
-         pieSliceText: 'none',
-         pieHole: 0.4,
-         slices: slices
-       };
-
-       var chart = new google.visualization.PieChart(document.getElementById('donut-chart'));
-       chart.draw(data, options);
-
      },
 
      getTotals(routes){
