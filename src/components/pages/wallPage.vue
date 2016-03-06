@@ -2,9 +2,18 @@
   <div class="wall-page">
 
     <ul class="tabs z-depth-1">
-      <li class="tab col s3" v-bind:class="{'z-depth-1': !distroTabVisible}" @click="changeTab('distro')"><a href="#tab-distro" class="#active">Distro</a></li>
-      <li class="tab col s3" v-bind:class="{'z-depth-1': !routesTabVisible}" @click="changeTab('distro')"><a href="#tab-routes">Routes</a></li>
-      <li class="tab col s3" v-bind:class="{'z-depth-1': !infoTabVisible}" @click="changeTab('info')"><a href="#tab-info">Info</a></li>
+      <!-- <li class="tab col s3" v-bind:class="{'z-depth-1': false}" @click="changeTab('distro')"> -->
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': distroTabVisible}" @click="changeTab('distro')">
+        <a href="#tab-distro" class="">Distro</a>
+      </li>
+      <!-- <li class="tab col s3" v-bind:class="{'z-depth-1': false}" @click="changeTab('routes')"> -->
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': routesTabVisible}" @click="changeTab('routes')">
+        <a href="#tab-routes" class="">Routes</a>
+      </li>
+      <!-- <li class="tab col s3" v-bind:class="{'z-depth-1': false}" @click="changeTab('info')"> -->
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': infoTabVisible}" @click="changeTab('info')">
+        <a href="#tab-info" class="active">Info</a>
+      </li>
     </ul>
 
     <div class="content-wrapper">
@@ -78,15 +87,15 @@
        if(tab === "info"){
          this.infoTabVisible = true;
          this.distroTabVisible = false;
-         this.routeTabVisible = false;
+         this.routesTabVisible = false;
        } else if(tab === "distro"){
          this.infoTabVisible = false;
          this.distroTabVisible = true;
-         this.routeTabVisible = false;
-       } else if(tab === "sent"){
+         this.routesTabVisible = false;
+       } else if(tab === "routes"){
          this.infoTabVisible = false;
          this.distroTabVisible = false;
-         this.sentTabVisible = true;
+         this.routesTabVisible = true;
        }
      },
    },
@@ -99,18 +108,28 @@
 </script>
 
 <style lang="sass">
- .wall-page {
-   .tabs {
-     margin-bottom: 1em;
-   }
+  .wall-page {
+    .tabs {
+      margin-bottom: 1em;
 
-   .content-wrapper {
-     width: 85%;
-     margin-left: 7.5%;
-   }
+      li.tab {
+        position: relative;
+        float: none;
 
-   #route-pie-chart-container {
-     height: 40vh;
-   }
- }
+        &.active {
+          box-shadow: none;
+        }
+      }
+    }
+    //0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+
+    .content-wrapper {
+      width: 85%;
+      margin-left: 7.5%;
+    }
+
+	#route-pie-chart-container {
+   	  height: 40vh;
+   	}
+  }
 </style>
