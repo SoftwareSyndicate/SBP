@@ -12,7 +12,7 @@
       </li>
       <!-- <li class="tab col s3" v-bind:class="{'z-depth-1': false}" @click="changeTab('info')"> -->
       <li class="tab col s3 z-depth-1" v-bind:class="{'active': infoTabVisible}" @click="changeTab('info')">
-        <a href="#tab-info" class="active">Info</a>
+        <a href="#tab-info" class="">Info</a>
       </li>
     </ul>
 
@@ -60,10 +60,10 @@
    },
    created(){
      this.getWall();
+     $("#wrapper").css("width", "100%");
    },
    ready(){
      $('ul.tabs').tabs();
-     $("#wrapper").css("width", "100%");
    },
    components: {
      RouteDist,
@@ -102,6 +102,7 @@
 
    beforeDestroy(){
      Notifications.notify('Overlay.setVisible', true);
+     $("#wrapper").css("width", "85%");
    }
 
  };

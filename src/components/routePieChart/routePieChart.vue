@@ -37,8 +37,6 @@
          routeData[route.attributes.color].total++;
        });
 
-       console.log(routeData);
-
        //Create Rows for chart
        var rows = [];
        rows.push(['color', 'total']);
@@ -48,8 +46,6 @@
          row.push(routeData[color].total);
          rows.push(row);
        }
-       console.log("rows: ", rows);
-
 
        var slices = {};
        var i = 0;
@@ -62,7 +58,6 @@
            i++;
          }
        });
-       console.log("slices: ", slices);
 
        var data = google.visualization.arrayToDataTable(rows);
 
