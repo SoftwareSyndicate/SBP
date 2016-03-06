@@ -46,7 +46,6 @@
      p {
        margin: 0px;
        cursor: pointer;
-       
        &:hover {
          color: blue;
        }
