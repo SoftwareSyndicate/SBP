@@ -21,13 +21,13 @@
      }
    },
    created(){
-
+     console.log(this.route);
    },
 
    methods: {
      flipSwitch(){
        if(this.route.attributes.sent){
-         RouteModel.sendRoute(route, UserModel.currentUser).then(results => {
+         RouteModel.sendRoute(this.route, UserModel.currentUser).then(results => {
            console.log(results);
          });
        }
