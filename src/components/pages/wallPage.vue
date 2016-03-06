@@ -111,6 +111,8 @@
   .wall-page {
     .tabs {
       margin-bottom: 1em;
+      position: fixed;
+      z-index: 2;
 
       li.tab {
         position: relative;
@@ -126,6 +128,7 @@
     .content-wrapper {
       width: 85%;
       margin-left: 7.5%;
+      margin-top: 60px;
     }
 
 	#route-pie-chart-container {
