@@ -20,7 +20,9 @@
 
       <!-- Distro Tab -->
       <div id="tab-distro" class="col s12">
-        <!-- <route-dist :routes="routes"  v-if="!!wall"></route-dist> -->
+        <div id="route-dist-container">
+          <route-dist :routes="routes"  v-if="!!wall"></route-dist>
+        </div>
         <div id="route-pie-chart-container">
           <route-pie-chart :routes="routes"  v-if="!!wall"></route-pie-chart>
         </div>
@@ -103,6 +105,7 @@
    beforeDestroy(){
      Notifications.notify('Overlay.setVisible', true);
      $("#wrapper").css("width", "85%");
+     window.scrollTo(0, 0);
    }
 
  };
@@ -132,8 +135,12 @@
       margin-top: 60px;
     }
 
-	#route-pie-chart-container {
-   	  height: 40vh;
-   	}
+    #route-dist-container {
+
+    }
+
+    #route-pie-chart-container {
+      height: 40vh;
+    }
   }
 </style>

@@ -33,79 +33,6 @@
 
    methods: {
      drawChart(routeData){
-       /* var data = new google.visualization.DataTable();
-          for(var column in routeData){
-          console.log(column);
-
-          };
-          data.addColumn("string", "1");
-          data.addColumn("number", "1");
-          data.addColumn("number", "2");
-          data.addColumn("number", "3");
-          data.addColumn("number", "4");
-          data.addColumn("number", "5");
-
-          data.addRows([
-	  ["23/10",14,1,3,0,1],
-          ["24/10",10,1,0,2,2],
-          ["25/10",3,1,0,0,2]
-          ]);
-        */
-
-       var rows = [];
-       for(var column in routeData){
-         console.log(column);
-         console.log(routeData[column]);
-         var row = []
-         row.push(column)
-       };
-
-       var data = google.visualization.arrayToDataTable([
-         ['Average Grade', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
-          'Western', 'Literature', { role: 'annotation'}],
-         ['2010', 10, 24, 20, 32, 18, 5, ''],
-         ['2020', 16, 22, 23, 30, 16, 9, ''],
-         ['2030', 28, 19, 29, 30, 12, 13, '']
-       ]);
-
-
-       var options = {
-	 legend: {position: "none"},
-	 isStacked: true
-       };
-
-
-       var chart = new google.charts.Bar(document.getElementById("route-dist"));
-       chart.draw(data, google.charts.Bar.convertOptions(options));
-     },
-
-     getTotals(routes){
-       var grades = {};
-       $.each(routes, function(index,route){
-         var gradeName = 'v'+route.get('grade');
-         // get the grade array
-         var gradeObject = grades[gradeName];
-         if(!gradeObject){
-           gradeObject = {};
-           grades[gradeName] = gradeObject;
-         }
-
-         var colorName = route.get('color');
-         // get the color array
-         var colorArray = gradeObject[colorName];
-         if(!colorArray){
-           colorArray = [];
-           gradeObject[colorName] = colorArray;
-         }
-
-         colorArray.push(route);
-       }.bind(this));
-       this.grades = grades;
-       //this.gradesArray = grades;
-       console.log(grades);
-       return grades;
-     },
-     drawChart1(){
        var series = [];
        var data = new google.visualization.DataTable();
 
@@ -160,8 +87,6 @@
        var options;
        options = {
          isStacked:true,
-         width:900,
-         height:500,
          // colors:colors,
          backgroundColor:'transparent',
          // series:series,
@@ -171,14 +96,8 @@
          legend:{
            position: 'none'
          },
-         chartArea:{
-           left:"10%",
-           top:"5%",
-           width:'90%',
-           height:'90%'
-         },
          bar:{
-           groupWidth:'45%'
+           groupWidth:'65%'
          },
          vAxis:{
            gridlines:{
@@ -190,10 +109,35 @@
        // Instantiate and draw our chart, passing in some options.
        this.chart1 = new google.visualization.ColumnChart(document.getElementById('route-dist'));
        this.chart1.draw(data, options);
-       // material chart (sorta broke)
-       // this.chart1 = new google.charts.Bar(this.chart1Div.get(0));
-       // google.charts.Bar.convertOptions(options)
-       // this.chart1.draw(data, options);
+     },
+
+     getTotals(routes){
+       var grades = {};
+       $.each(routes, function(index,route){
+         var gradeName = 'v'+route.get('grade');
+         // get the grade array
+         var gradeObject = grades[gradeName];
+         if(!gradeObject){
+           gradeObject = {};
+           grades[gradeName] = gradeObject;
+         }
+
+         var colorName = route.get('color');
+         // get the color array
+         var colorArray = gradeObject[colorName];
+         if(!colorArray){
+           colorArray = [];
+           gradeObject[colorName] = colorArray;
+         }
+
+         colorArray.push(route);
+       }.bind(this));
+       this.grades = grades;
+       //this.gradesArray = grades;
+       console.log("grades: ", grades);
+       return grades;
+     },
+     drawChart1(){
      }
    },
  }

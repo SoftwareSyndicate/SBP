@@ -58,6 +58,7 @@
 
    beforeDestroy(){
      notifications.notify('Overlay.setVisible', true);
+     window.scrollTo(0, 0);
    },
 
  };
