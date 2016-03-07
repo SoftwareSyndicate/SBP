@@ -14,9 +14,7 @@
      }
    },
    created(){
-     console.log(this.routes);
      this.routeData = this.getTotals(this.routes);
-     console.log(this.routeData);
    },
    ready(){
      if(google && google.visualization){
@@ -47,8 +45,6 @@
          data.addColumn({type: 'string', role: 'style'});
        }.bind(this));
 
-
-
        // add the rows
        var row;
        var routes;
@@ -70,14 +66,10 @@
 
            // add the data for the color style column
            row.push('color:'+color+';');
-
          }.bind(this));
-
-
 
          data.addRow(row);
        }.bind(this));
-
 
        var colors = this.colorsArray.map(function(color){
          return color.toLowerCase();
@@ -107,8 +99,8 @@
        };
 
        // Instantiate and draw our chart, passing in some options.
-       this.chart1 = new google.visualization.ColumnChart(document.getElementById('route-dist'));
-       this.chart1.draw(data, options);
+       this.chart = new google.visualization.ColumnChart(document.getElementById('route-dist'));
+       this.chart.draw(data, options);
      },
 
      getTotals(routes){
