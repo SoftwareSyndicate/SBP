@@ -99,7 +99,7 @@
          this.distroTabVisible = false;
          this.routesTabVisible = true;
        }
-     },
+     }
    },
 
    beforeDestroy(){
