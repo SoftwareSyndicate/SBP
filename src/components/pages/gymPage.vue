@@ -30,16 +30,18 @@
 
       <!-- Distro Tab -->
       <div id="tab-distro" class="col s12">
-        <div id="route-dist-container">
-          <route-dist :routes="routes"  v-if="routes.length > 0"></route-dist>
+        <div id="route-dist-container" v-if="routes.length > 0">
+          <route-dist :routes="routes"></route-dist>
         </div>
-        <div id="route-pie-chart-container">
-          <route-pie-chart :routes="routes"  v-if="routes.length > 0"></route-pie-chart>
+        <div id="route-pie-chart-container" v-if="routes.length > 0">
+          <route-pie-chart :routes="routes"></route-pie-chart>
         </div>
       </div>
 
-      <!-- Routes Tab -->
-      <div id="tab-routes" class="col s12">
+      <!-- Users Tab -->
+      <div id="tab-users" class="col s12">
+        Some kind of Member Leaderboards here?
+        Healthy competition
         <route-list :routes="routes" :display-keys="routeKeys"></route-list>
       </div>
 
@@ -65,20 +67,17 @@
        routes: [],
      }
    },
-   ready(){
-     $('ul.tabs').tabs();
-   },
    created(){
-     $("#wrapper").css("width", "100%");
      setInterval(function(){
        this.routesSent++;
      }.bind(this), 1000);
      Notifications.notify('Navbar.setHeader', "S.B.P");
      Notifications.notify('Navbar.setActiveTab', "gym");
-     RouteModel.getRoutes().then(results => {
-       this.routes = results;
-       Notifications.notify('Overlay.setVisible', false);
-     });
+     Notifications.notify('Overlay.setVisible', false);
+   },
+   ready(){
+     $('ul.tabs').tabs();
+     $("#wrapper").css("width", "100%");
    },
    components: {
      RouteDist,
@@ -86,8 +85,14 @@
    },
    methods: {
      changeTab(tab){
-       console.log("change tab", tab);
        if(tab === "distro"){
+         if(this.routes.length === 0){
+           Notifications.notify('Overlay.setVisible', true);
+           RouteModel.getRoutes().then(results => {
+             this.routes = results;
+             Notifications.notify('Overlay.setVisible', false);
+           });
+         }
          this.distroTabVisible = true;
          this.gymTabVisible = false;
          this.usersTabVisible = false;
@@ -158,7 +163,6 @@
    #route-pie-chart-container {
      height: 40vh;
    }
-
  }
 
 </style>
