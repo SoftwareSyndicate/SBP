@@ -53,7 +53,9 @@
        var header = results.attributes.wall.attributes.name + "  v" + results.attributes.grade;
        notifications.notify('Navbar.setHeader', header);
        notifications.notify('Overlay.setVisible', false);
-     });
+     }, function(error){
+       notifications.notify('Overlay.setVisible', false);
+     }.bind(this));
    },
 
    beforeDestroy(){

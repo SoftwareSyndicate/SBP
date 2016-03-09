@@ -73,7 +73,6 @@
        var wallId = window.location.href.split("/")[window.location.href.split("/").length - 1];
        WallModel.getWallById(wallId).then(results => {
          this.wall = results;
-         console.log(results);
          this.routes = results.attributes.routes;
          Notifications.notify('Navbar.setHeader', this.wall.attributes.name);
          Notifications.notify('Overlay.setVisible', false);
@@ -121,7 +120,7 @@
         }
       }
     }
-    
+
     .content-wrapper {
       width: 85%;
       margin-left: 7.5%;
