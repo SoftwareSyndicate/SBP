@@ -4,10 +4,10 @@
       <div class="name-container">
         <h5 class="name">{{wall.attributes.name}}</h5>
       </div>
-      <p class="set-date">Today</p> 
+      <p class="set-date">Today</p>
     </div>
     <div class="right">
-      <div class="color" v-for="color in colors"></div>
+      <div class="color" v-for="color in colors" v-bind:style="{'background-color': color.color, 'width': color.percent}">&nbsp</div>
     </div>
   </li>
 </template>
@@ -19,7 +19,8 @@
    props: ['wall'],
    data(){
      return {
-       colors: []
+       colors: [],
+       height: 0
      }
    },
    created(){
@@ -44,14 +45,24 @@
 
        var mostFrequentColor;
        var most = 0;
+       var totalColors = 0;
        for(var color in colorData){
          if(colorData[color] > most){
            most = colorData[color];
            mostFrequentColor = color;
          }
+         totalColors++;
        }
-       console.log(mostFrequentColor);
-       console.log(most);
+       this.height = 100 / totalColors;
+       var percentMultiplier = 100 / most;
+       for(var color in colorData){
+         var colorObj = {
+           percent: (percentMultiplier * colorData[color]) + "%",
+           color: color,
+         }
+         this.colors.push(colorObj);
+       }
+       console.log(this.colors);
      }
    },
  }
@@ -93,7 +104,9 @@
      height: 100%;
 
      .color {
-       background-color: blue;
+       height: 8px;
+       line-height: 8px;
+       margin-left: auto;
      }
    }
 
