@@ -1,11 +1,6 @@
 <template>
   <ul class="wall-list collection z-depth-1">
-    <li class="collection-item wall-list-item header-item">
-      <p @click.stop="changeOrder('averageGrade')">Grade</p>
-      <p @click.stop="changeOrder('attributes.name')">Name</p>
-      <p @click.stop="changeOrder('attributes.lastSet')">Last Set</p>
-    </li>
-    <wall-list-item v-for="wall in walls | orderBy order reverse" track-by="$index" :wall="wall"></wall-list-item>
+    <wall-list-item v-for="wall in walls | orderBy 'attributes.lastSet' -1" track-by="$index" :wall="wall"></wall-list-item>
   </ul>
 </template>
 
@@ -38,19 +33,6 @@
 
 <style lang="sass">
  .wall-list {
-   .header-item {
-     p {
-       margin: 0px;
-       cursor: pointer;
-
-       &:hover {
-         color: blue;
-       }
-     }
-
-     &:hover {
-       background-color: #fff;
-     }
-   }
+   margin: 0px;
  }
 </style>

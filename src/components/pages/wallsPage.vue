@@ -21,6 +21,7 @@
      }
    },
    created(){
+     $("#wrapper").css("width", "100%");
      notifications.notify('Navbar.setHeader', "Walls");
      notifications.notify('Navbar.setActiveTab', "walls");
      WallModel.getWalls().then(results => {
@@ -32,6 +33,7 @@
    beforeDestroy(){
      notifications.notify('Overlay.setVisible', true);
      window.scrollTo(0, 0);
+     $("#wrapper").css("width", "85%");
    }
 
  };
