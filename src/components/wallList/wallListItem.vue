@@ -75,13 +75,14 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   height: 100px;
+   height: 90px;
 
    .left {
      width: 75%;
+     margin-right: 15px;
 
      .name-container {
-       border-bottom: 1px dotted rgba(0, 0, 0, .15);
+       border-bottom: 2px dotted #A2A2A2;
        .name {
          font-size: 2.5em;
          white-space: nowrap;
@@ -95,7 +96,7 @@
 
      .set-date {
        font-size: .9em;
-       margin: 0px;
+       margin: 5px 0 0;
        color: #ff5722;
        padding-left: .2em !important;
      }
