@@ -43,6 +43,17 @@
          colorData[route.attributes.color]++;
        });
 
+       var colorMappings = {
+         gray: "#8a8a8a",
+         yellow: "#FDCA48",
+         green: "#32B469",
+         red: "#EE3E3F",
+         blue: "#237FBD",
+         orange: "#F06243",
+         purple: "#9013FE",
+         black: "#14192D"
+       }
+
        var mostFrequentColor;
        var most = 0;
        var totalColors = 0;
@@ -58,7 +69,7 @@
        for(var color in colorData){
          var colorObj = {
            percent: (percentMultiplier * colorData[color]) + "%",
-           color: color,
+           color: colorMappings[color],
          }
          this.colors.push(colorObj);
        }
