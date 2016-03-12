@@ -75,6 +75,7 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
+   height: 100px;
 
    .left {
      width: 75%;
@@ -103,11 +104,13 @@
    .right {
      width: 25%;
      height: 100%;
+     display: flex;
+     flex-direction: column;
 
      .color {
-       height: 8px;
-       line-height: 8px;
        margin-left: auto;
+       height: 5px;
+       flex: 1 1 auto;
      }
    }
 
