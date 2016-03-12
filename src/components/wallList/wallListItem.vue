@@ -81,16 +81,19 @@
 
 <style lang="sass">
  .wall-list-item {
-   padding: .2em !important;
+   padding: 0 0 0 5px !important;
+   border-bottom: 10px solid #E5E5E5 !important;
    display: flex;
    justify-content: space-between;
    align-items: center;
+   height: 90px;
 
    .left {
      width: 75%;
+     margin-right: 15px;
 
      .name-container {
-       border-bottom: 1px dotted rgba(0, 0, 0, .15);
+       border-bottom: 2px dotted #A2A2A2;
        .name {
          font-size: 2.5em;
          white-space: nowrap;
@@ -104,7 +107,7 @@
 
      .set-date {
        font-size: .9em;
-       margin: 0px;
+       margin: 5px 0 0;
        color: #ff5722;
        padding-left: .2em !important;
      }
@@ -113,11 +116,13 @@
    .right {
      width: 25%;
      height: 100%;
+     display: flex;
+     flex-direction: column;
 
      .color {
-       height: 8px;
-       line-height: 8px;
        margin-left: auto;
+       height: 5px;
+       flex: 1 1 auto;
      }
    }
 
