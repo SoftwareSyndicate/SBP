@@ -70,7 +70,8 @@
 
 <style lang="sass">
  .wall-list-item {
-   padding: .2em !important;
+   padding: 0 0 0 5px !important;
+   border-bottom: 10px solid #E5E5E5 !important;
    display: flex;
    justify-content: space-between;
    align-items: center;
