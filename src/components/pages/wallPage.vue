@@ -7,8 +7,8 @@
       <li class="tab col s3 z-depth-1" v-bind:class="{'active': routesTabVisible}" @click="changeTab('routes')">
         <a href="#tab-routes" class="">Routes</a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': infoTabVisible}" @click="changeTab('info')">
-        <a href="#tab-info" class="">Info</a>
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': mapTabVisible}" @click="changeTab('map')">
+        <a href="#tab-map" class="">Map</a>
       </li>
     </ul>
 
@@ -29,8 +29,8 @@
       </div>
 
       <!-- Info Tab -->
-      <div id="tab-info" class="col s12">
-        Info
+      <div id="tab-map" class="col s12">
+        <img v-bind:src="wall.attributes.image.url()" id="wall-image">
       </div>
     </div>
   </div>
@@ -133,6 +133,11 @@
 
     #route-pie-chart-container {
       height: 40vh;
+    }
+
+    #wall-image {
+      width: 100%;
+      height: 100%;
     }
   }
 </style>
