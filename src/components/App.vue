@@ -42,20 +42,38 @@
 </script>
 
 
-<style lang="stylus">
- #wrapper
-   background-color $bg
-   position relative
-   width 85%
-   min-height 80px
-   margin 0 auto
+<style lang="sass">
+ @import '../styles/cordova.scss';
+ $body-background-color: white;
+ html {
+   height: 100%;
+   background-color: $body-background-color;
+ }
+ body {
+   height: 100%;
+   background-color: $body-background-color;
+ }
+ #wrapper {
+   position: relative;
+   width: 85%;
+   height: 100%;
+   margin: 0 auto;
+ }
+ .view {
+   position: absolute;
+   width: 100%;
+   background-color: white;
+   transition: opacity .2s ease;
+   box-sizing: border-box;
+   &.v-enter, &.v-leave {
+     opacity: 0;
+   }
+ }
+ p {
+   margin: 0 !important;
+ }
+ h1, h2, h3, h4, h5, h6 {
+   margin: 0 !important;
+ }
 
- .view
-   position absolute
-   width: 100%
-   background-color $bg
-   transition opacity .2s ease
-   box-sizing border-box
-   &.v-enter, &.v-leave
-     opacity 0
 </style>
