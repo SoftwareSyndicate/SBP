@@ -1,5 +1,6 @@
 import Vue from 'vue'
 
+var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 var dateFormat = {
   day: "numeric",
   month: "numeric",
@@ -17,7 +18,7 @@ Vue.filter('dateSet', function(lastSet){
   }
 
   if(lastSet > oneWeekAgo){
-    return lastSet.toDateString().split(" ")[0];
+    return days[lastSet.getDay()];
   } else {
     return lastSet.toLocaleDateString("en-US", dateFormat);
   }
