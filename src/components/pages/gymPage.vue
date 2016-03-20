@@ -7,8 +7,8 @@
       <li class="tab col s3 z-depth-1" v-bind:class="{'active': distroTabVisible}" @click="changeTab('distro')">
         <a href="#tab-distro" class="">Distro</a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': usersTabVisible}" @click="changeTab('users')">
-        <a href="#tab-users" class="">Users</a>
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': infoTabVisible}" @click="changeTab('info')">
+        <a href="#tab-info" class="">Info</a>
       </li>
     </ul>
 
@@ -38,11 +38,10 @@
         </div>
       </div>
 
-      <!-- Users Tab -->
-      <div id="tab-users" class="col s12">
-        Some kind of Member Leaderboards here?
-        Healthy competition
-        <route-list :routes="routes" :display-keys="routeKeys"></route-list>
+      <!-- Info Tab -->
+      <div id="tab-info" class="col s12">
+        Gym info here
+
       </div>
 
     </div>
@@ -55,14 +54,14 @@
  import RouteModel from '../../models/RouteModel.js'
  import RouteDist from '../routeDist/routeDist.vue'
  import RoutePieChart from '../routePieChart/routePieChart.vue'
- import Notifications from '../../services/NotificationService';
- export default {
+ import BaseComponent from '../base/baseComponent.vue'
+ var GymPage = BaseComponent.extend({
    name: 'GymPage',
    data(){
      return {
        routesSent: 546,
        gymTabVisible: true,
-       userTabVisible: false,
+       infoTabVisible: false,
        distroTabVisible: false,
        routes: [],
      }
@@ -71,9 +70,9 @@
      setInterval(function(){
        this.routesSent++;
      }.bind(this), 1000);
-     Notifications.notify('Navbar.setHeader', "S.B.P");
-     Notifications.notify('Navbar.setActiveTab', "gym");
-     Notifications.notify('Overlay.setVisible', false);
+     this.notifications.notify('Navbar.setHeader', "S.B.P");
+     this.notifications.notify('Navbar.setActiveTab', "gym");
+     this.hideLoadingAnimation();
    },
    ready(){
      $('ul.tabs').tabs();
@@ -87,33 +86,35 @@
      changeTab(tab){
        if(tab === "distro"){
          if(this.routes.length === 0){
-           Notifications.notify('Overlay.setVisible', true);
+           this.showLoadingAnimation();
            RouteModel.getRoutes().then(results => {
              this.routes = results;
-             Notifications.notify('Overlay.setVisible', false);
+             this.hideLoadingAnimation();
            });
          }
          this.distroTabVisible = true;
          this.gymTabVisible = false;
-         this.usersTabVisible = false;
+         this.infoTabVisible = false;
        } else if(tab === "gym"){
          this.distroTabVisible = false;
          this.gymTabVisible = true;
-         this.usersTabVisible = false;
-       } else if(tab === "users"){
+         this.infoTabVisible = false;
+       } else if(tab === "info"){
          this.distroTabVisible = false;
          this.gymTabVisible = false;
-         this.usersTabVisible = true;
+         this.infoTabVisible = true;
        }
      }
    },
 
    beforeDestroy(){
-     Notifications.notify('Overlay.setVisible', true);
+     this.showLoadingAnimation();
      window.scrollTo(0, 0);
      $("#wrapper").css("width", "85%");
    }
- };
+ });
+
+ export default GymPage
 </script>
 
 <style lang="sass">

@@ -1,5 +1,6 @@
 import Parse from './services/ParseService.js'
 import Vue from 'vue'
+import filters from './filters/filters.js'
 import Router from 'vue-router'
 import App from './components/App.vue'
 import GymPage from './components/pages/gymPage.vue'

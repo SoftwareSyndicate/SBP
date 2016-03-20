@@ -20,7 +20,6 @@ class NotificationService {
 
   notify(eventName){
     var group = this.listeners[eventName];
-    console.log(eventName);
     if(group){
       group.forEach((l)=>{
         if('binder' in l){

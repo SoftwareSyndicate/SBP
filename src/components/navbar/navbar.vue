@@ -7,17 +7,17 @@
           <li><a class="waves-effect waves-light" href="#!/gym">Gym</a></li>
           <li><a class="waves-effect waves-light" href="#!/walls">Walls</a></li>
           <li><a class="waves-effect waves-light" href="#!/routes">Routes</a></li>
-          <li v-show="!currentUser" @click="openLoginModal"><a class="waves-effect waves-light" href="#loginModal">Login</a></li>
-          <li v-show="currentUser"><a @click="logout" class="waves-effect waves-light">Logout</a></li>
+          <!-- <li v-show="!currentUser" @click="openLoginModal"><a class="waves-effect waves-light" href="#loginModal">Login</a></li>
+               <li v-show="currentUser"><a @click="logout" class="waves-effect waves-light">Logout</a></li> -->
         </ul>
         <ul id="slide-out" class="side-nav">
           <div class="nav-brand"></div>
           <li v-bind:class="{'active': activeTab === 'gym'}"><a class="waves-effect waves-light" href="#!/gym"><i class="medium material-icons">language</i>Gym</a></li>
           <li v-bind:class="{'active': activeTab === 'walls'}"><a class="waves-effect waves-light" href="#!/walls"><i class="medium material-icons">view_module</i>Walls</a></li>
           <li v-bind:class="{'active': activeTab === 'routes'}"><a class="waves-effect waves-light" href="#!/routes"><i class="medium material-icons">view_list</i>Routes</a></li>
-          <li v-show="currentUser" v-bind:class="{'active': activeTab === 'user'}"><a class="waves-effect waves-light" href="#!/stats"><i class="medium material-icons">equalizer</i>My Stats</a></li>
-          <li @click="openLoginModal" v-show="!currentUser"><a class="waves-effect waves-light"><i class="medium material-icons">person_pin</i>Login</a></li>
-          <li v-show="currentUser"><a class="waves-effect waves-light" @click="logout" class="waves-effect waves-light"><i class="medium material-icons">settings_power</i>Logout</a></li>
+          <!-- <li v-show="currentUser" v-bind:class="{'active': activeTab === 'user'}"><a class="waves-effect waves-light" href="#!/stats"><i class="medium material-icons">equalizer</i>My Stats</a></li>
+               <li @click="openLoginModal" v-show="!currentUser"><a class="waves-effect waves-light"><i class="medium material-icons">person_pin</i>Login</a></li>
+               <li v-show="currentUser"><a class="waves-effect waves-light" @click="logout" class="waves-effect waves-light"><i class="medium material-icons">settings_power</i>Logout</a></li> -->
         </ul>
         <a data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       </nav>
@@ -26,9 +26,9 @@
 </template>
 
 <script>
- import notifications from '../../services/NotificationService'
  import UserModel from '../../models/UserModel.js'
- export default {
+ import BaseComponent from '../base/baseComponent.vue'
+ var Navbar = BaseComponent.extend({
    name: 'Navbar',
    props: ['header'],
    el: '#navbar',
@@ -47,10 +47,10 @@
      });
 
      this.currentUser = UserModel.currentUser;
-     notifications.listenFor('Navbar.setHeader', this.setHeader, this);
-     notifications.listenFor('Navbar.setActiveTab', this.setActiveTab, this);
-     notifications.listenFor('User.login', this.onUserLogin, this);
-     notifications.listenFor('User.logout', this.onUserLogout, this);
+     this.notifications.listenFor('Navbar.setHeader', this.setHeader, this);
+     this.notifications.listenFor('Navbar.setActiveTab', this.setActiveTab, this);
+     this.notifications.listenFor('User.login', this.onUserLogin, this);
+     this.notifications.listenFor('User.logout', this.onUserLogout, this);
    },
 
    methods: {
@@ -73,7 +73,9 @@
        UserModel.logout();
      }
    },
- }
+ });
+
+ export default Navbar;
 </script>
 
 <style lang="sass">

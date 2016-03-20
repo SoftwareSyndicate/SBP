@@ -4,7 +4,7 @@
       <div class="name-container">
         <h5 class="name">{{wall.attributes.name}}</h5>
       </div>
-      <p class="set-date">Today</p>
+      <p class="set-date" v-text="wall.attributes.lastSet | dateSet"></p>
     </div>
     <div class="right">
       <div class="color" v-for="color in colors" v-bind:style="{'background-color': color.color, 'width': color.percent}">&nbsp</div>
@@ -73,7 +73,6 @@
          }
          this.colors.push(colorObj);
        }
-       console.log(this.colors);
      }
    },
  }
