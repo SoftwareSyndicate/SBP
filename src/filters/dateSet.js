@@ -22,6 +22,4 @@ Vue.filter('dateSet', function(lastSet){
   } else {
     return lastSet.toLocaleDateString("en-US", dateFormat);
   }
-
-  return "fuck"
 })

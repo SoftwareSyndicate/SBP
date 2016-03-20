@@ -19,13 +19,20 @@
           <img src="/static/images/sbpStamp.png" class="sbpStamp">
         </div>
 
-        <h4 class="routes-sent">
-          Routes sent this Month
-        </h4>
 
-        <h3 class="routes-sent">
-          {{routesSent}}
-        </h3>
+        <div class="routes-sent">
+          <h5>
+            Fresh Boulders every
+          </h5>
+          <br>
+          <h5 v-bind:class="{'current-day': highlightTuesday}">
+            Tuesday
+          </h5>
+          <h5 v-bind:class="{'current-day': highlightThursday}">
+            Thursday
+          </h5>
+        </div>
+
       </div>
 
       <!-- Distro Tab -->
@@ -40,9 +47,30 @@
 
       <!-- Info Tab -->
       <div id="tab-info" class="col s12">
-        Gym info here
 
-      </div>
+        <div class="panel-container">
+          <div class="card-panel blue">
+            <h6>Location</h6>
+            <div class="col s12 hour-container">
+              <span>Seattle Bouldering Project<br>
+                900 Poplar Pl S
+                Seattle, WA 98144
+              </span>
+            </div>
+          </div>
+
+          <div class="panel-container">
+            <div class="card-panel blue">
+              <h6>Hours</h6>
+              <div class="col s12 hour-container">
+                <span>Mon - Fri:</span><span class="time"> 6:00am – 11:00pm</span>
+              </div>
+              <div class="col s12 hour-container">
+                <span>Sat - Sun:</span><span class="time"> 9:00am – 10:00pm</span>
+              </div>
+            </div>
+
+        </div>
 
     </div>
 
@@ -63,13 +91,18 @@
        gymTabVisible: true,
        infoTabVisible: false,
        distroTabVisible: false,
+       highlightTuesday: false,
+       highlightThursday: false,
        routes: [],
      }
    },
    created(){
-     setInterval(function(){
-       this.routesSent++;
-     }.bind(this), 1000);
+     var now = new Date();
+     if(now.toDateString().split(" ")[0] === "Tue"){
+       this.highlightTuesday = true;
+     } else if (now.toDateString().split(" ")[0] === "Thu"){
+       this.highlightThursday = true;
+     }
      this.notifications.notify('Navbar.setHeader', "S.B.P");
      this.notifications.notify('Navbar.setActiveTab', "gym");
      this.hideLoadingAnimation();
@@ -153,8 +186,15 @@
    }
 
    .routes-sent {
-     font-weight: lighter;
      text-align: center;
+     h5 {
+       font-weight: lighter;
+       display: inline-block;
+
+       &.current-day {
+         color: #FF0000;
+       }
+     }
    }
 
    #route-dist-container {
@@ -163,6 +203,38 @@
 
    #route-pie-chart-container {
      height: 40vh;
+   }
+
+   .panel-container {
+     display: flex;
+     flex-grow: 1;
+     flex-direction: column;
+     .card-panel {
+       flex-grow: 1;
+       display: flex;
+       flex-direction: column;
+     }
+     h6 {
+       display: flex;
+       flex-grow: 1;
+       color: white;
+       font-size: 1.2em;
+       font-weight: 100;
+       text-decoration: underline;
+     }
+
+     span {
+       font-weight: 100;
+       color: white;
+       align-items: center;
+       &.time {
+         margin-left: auto;
+       }
+     }
+
+     .hour-container {
+       display: flex;
+     }
    }
  }
 
