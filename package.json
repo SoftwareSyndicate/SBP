@@ -17,6 +17,7 @@
     "copy-webpack-plugin": "^1.1.1",
     "cross-env": "^1.0.5",
     "css-loader": "^0.21.0",
+    "file-loader": "^0.8.5",
     "node-sass": "^3.4.2",
     "sass-loader": "^3.1.2",
     "stylus-loader": "^1.4.0",
@@ -25,6 +26,7 @@
     "vue-loader": "^8.0.0",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.13",
+    "webpack-cordova-plugin": "^0.1.6",
     "webpack-dev-server": "^1.12.0"
   },
   "dependencies": {

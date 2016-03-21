@@ -1,7 +1,7 @@
 <template>
   <div class="route-page">
     <div class="grade-image-container" v-if="route.attributes">
-      <img :src="'/static/images/grades/' + route.attributes.gradeImage + '.png'" alt="" class="grade">
+      <img :src="'/images/grades/' + route.attributes.gradeImage + '.png'" alt="" class="grade">
     </div>
 
     <div class="route-rating-container">

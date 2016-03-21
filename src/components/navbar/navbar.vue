@@ -86,7 +86,7 @@
 
      .nav-brand {
        height: 10em;
-       background-image: url("/static/images/sbp_navbar.png");
+       background-image: url("/images/sbp_navbar.png");
        background-size: cover;
      }
 

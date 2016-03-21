@@ -1,10 +1,16 @@
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var CordovaPlugin = require('webpack-cordova-plugin');
+
+var PATH = './static';
+if (process.env.NODE_ENV === 'production') {
+  PATH = './dist';
+}
 
 module.exports = {
   entry: './src/main.js',
   output: {
-    path: './static',
+    path: PATH,
     publicPath: '/',
     filename: 'build.js'
   },
@@ -44,7 +50,7 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new CopyWebpackPlugin([
-      { from: 'images', to: 'images'}
+      {from: 'images', to: 'images'}
     ]),
     new webpack.optimize.OccurenceOrderPlugin()
   ]

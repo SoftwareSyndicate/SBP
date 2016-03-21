@@ -16,7 +16,7 @@
       <!-- Gym Tab -->
       <div id="tab-gym" class="col s12">
         <div class="stamp-container">
-          <img src="../../images/sbp_stamp.png" class="sbpStamp">
+          <img src="/images/sbp_stamp.png" class="sbpStamp">
         </div>
 
 
