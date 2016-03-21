@@ -174,13 +174,14 @@
 
    .stamp-container {
      display: flex;
-     margin-top: 2em;
+     margin-top: 4em;
+     padding-top: 4em;
      margin-bottom: 4em;
 
      img.sbpStamp {
-       margin: auto;
-       width: 15em;
-       height: 16.5em;
+       margin-left: auto;
+       margin-right: auto;
+       height: 13em;
      }
    }
 
