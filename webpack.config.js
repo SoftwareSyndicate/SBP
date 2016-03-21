@@ -1,10 +1,11 @@
-var webpack = require('webpack')
+var webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: './static',
-    publicPath: '/static/',
+    publicPath: '/',
     filename: 'build.js'
   },
   module: {
@@ -42,6 +43,9 @@ if (process.env.NODE_ENV === 'production') {
         warnings: false
       }
     }),
+    new CopyWebpackPlugin([
+      { from: 'images', to: 'images'}
+    ]),
     new webpack.optimize.OccurenceOrderPlugin()
   ]
 } else {
