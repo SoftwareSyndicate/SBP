@@ -27,6 +27,9 @@
        header: "R.M.S"
      }
    },
+   ready(){
+     $('#splash-screen').fadeOut(800);
+   },
    components: {
      Navbar,
      LoginModal,
@@ -68,6 +71,14 @@
    &.v-enter, &.v-leave {
      opacity: 0;
    }
+ }
+
+ #splash-screen {
+   position: absolute;
+   background-color: white;
+   width: 100vw;
+   height: 100vh;
+   z-index: 99999999;
  }
  p {
    margin: 0 !important;

@@ -8,6 +8,14 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" href="static/logo.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <style>
+     #sbp-stamp {
+       width: 70%;
+       height: auto;
+       margin-left: 15%;
+       margin-top: 35%;
+     }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="http://parse.com/downloads/javascript/parse-1.2.19.min.js"></script>
@@ -22,6 +30,9 @@
     </script>
   </head>
   <body>
+    <div id="splash-screen">
+      <img src="./images/sbp_stamp.png" id="sbp-stamp"">
+    </div>
     <div id="app" class="app"></div>
     <script type="text/javascript" src="cordova.js"></script>
     <script src="build.js"></script>
