@@ -1,5 +1,7 @@
 <template>
-  <div id="route-dist"></div>
+  <div id="route-dist">
+    <svg id="route-dist-chart-svg"></svg>
+  </div>
 </template>
 
 <script>
@@ -9,127 +11,101 @@
    props: ['routes'],
    data(){
      return {
+       chartData: [],
        colorsArray:['Gray','Yellow','Green','Red','Blue','Orange','Purple','Black'],
-       gradesArray:['v0','v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12']
+       gradesArray:['v0','v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12'],
+       colorMappings: {
+         gray: "#8a8a8a",
+         yellow: "#FDCA48",
+         green: "#32B469",
+         red: "#EE3E3F",
+         blue: "#237FBD",
+         orange: "#F06243",
+         purple: "#9013FE",
+         black: "#14192D"
+       }
      }
    },
    created(){
-     this.routeData = this.getTotals(this.routes);
+     this.chartData = this.getTotals(this.routes);
    },
    ready(){
-     if(google && google.visualization){
-       this.drawChart(this.routeData);
-     } else {
-       if(!window.googleChartsCallbacks){
-         window.googleChartsCallbacks = [];
-       }
-       window.googleChartsCallbacks.push(function(){
-         this.drawChart(this.routeData);
-       }.bind(this));
-     }
+     this.drawChart(this.chartData);
    },
 
    methods: {
-     drawChart(routeData){
-       var series = [];
-       var data = new google.visualization.DataTable();
-
-       // first column is grade
-       data.addColumn('string', 'Grade');
-
-       // add the color columns
-       $.each(this.colorsArray, function(index, color){
-         data.addColumn('number', color);
-         // set up ideal tooltip
-         // add the color style column
-         data.addColumn({type: 'string', role: 'style'});
-       }.bind(this));
-
-       // add the rows
-       var row;
-       var routes;
-       $.each(this.gradesArray, function(index, grade){
-         row = [];
-         row.push(grade);
-         $.each(this.colorsArray, function(i, color){
-           routes = this.grades[grade];
-
-           if(routes){
-             routes = this.grades[grade][color.toLowerCase()];
-           }
-
-           if(routes){
-             row.push(routes.length);
-           } else {
-             row.push(0);
-           }
-
-           // add the data for the color style column
-           row.push('color:'+color+';');
-         }.bind(this));
-
-         data.addRow(row);
-       }.bind(this));
-
-       var colors = this.colorsArray.map(function(color){
-         return color.toLowerCase();
-       });
-
-       // Set chart options
-       var options;
-       options = {
-         isStacked:true,
-         // colors:colors,
-         backgroundColor:'transparent',
-         // series:series,
-         animation:{
-           startup:true
-         },
-         legend:{
-           position: 'none'
-         },
-         bar:{
-           groupWidth:'65%'
-         },
-         vAxis:{
-           gridlines:{
-             count:-1
-           }
-         }
+     drawChart(chartData){
+       function exampleData() {
+         return stream_layers(3,10+Math.random()*100,.1).map(function(data, i) {
+           return {
+             key: 'Stream #' + i,
+             values: data,
+           };
+         });
        };
 
-       // Instantiate and draw our chart, passing in some options.
-       this.chart = new google.visualization.ColumnChart(document.getElementById('route-dist'));
-       this.chart.draw(data, options);
+       console.log(exampleData());
+       console.log(chartData);
+       nv.addGraph(function() {
+         var chart = nv.models.multiBarChart()
+                       .reduceXTicks(false)   //If 'false', every single x-axis tick label will be rendered.
+           .stacked(true)
+                       .rotateLabels(0)      //Angle to rotate x-axis labels.
+
+                       .showControls(false)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
+                       .groupSpacing(0.3)    //Distance between each group of bars.
+           ;
+
+         chart.xAxis
+              .tickFormat(d3.format(',1f'));
+
+         chart.yAxis
+              .tickFormat(d3.format(',1f'));
+
+         d3.select('#route-dist-chart-svg')
+           .datum(this.chartData)//exampleData())
+           .call(chart);
+
+         nv.utils.windowResize(chart.update);
+
+         return chart;
+       }.bind(this));
      },
 
      getTotals(routes){
-       var grades = {};
+       var chartData = [];
        $.each(routes, function(index,route){
-         var gradeName = 'v'+route.get('grade');
-         // get the grade array
-         var gradeObject = grades[gradeName];
-         if(!gradeObject){
-           gradeObject = {};
-           grades[gradeName] = gradeObject;
-         }
+         var colorFound = false;
+         chartData.forEach(colorObj => {
+           if(colorObj["key"] === route.attributes.color){
+             colorFound = true;
+             colorObj.values.forEach(value => {
+               if(value.x === route.attributes.grade){
+                 value.y++;
+               }
+             });
+           }
+         });
 
-         var colorName = route.get('color');
-         // get the color array
-         var colorArray = gradeObject[colorName];
-         if(!colorArray){
-           colorArray = [];
-           gradeObject[colorName] = colorArray;
+         if(!colorFound){
+           var values = [];
+           for(var i = 0; i < 12; i++){
+             var value = {};
+             value.x = i;
+             value.y = 0;
+             values.push(value);
+           }
+           var colorObj = {
+             color: this.colorMappings[route.attributes.color],
+             key: route.attributes.color,
+             values: values,
+           }
+           chartData.push(colorObj);
          }
-
-         colorArray.push(route);
        }.bind(this));
-       this.grades = grades;
-       //this.gradesArray = grades;
-       console.log("grades: ", grades);
-       return grades;
-     },
-     drawChart1(){
+
+       console.log(chartData);
+       return chartData;
      }
    },
  }
@@ -137,6 +113,15 @@
 
 <style lang="sass">
  #route-dist {
+   display: flex;
+   flex-grow: 1;
+   height: 35vh;
 
+   #chart-svg {
+     display: flex;
+     flex-grow: 1;
+     height: 100%;
+     width: 100%;
+   }
  }
 </style>

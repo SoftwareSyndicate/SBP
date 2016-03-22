@@ -53,7 +53,7 @@ require('file?name=[name].[ext]!../index.html'); // copy the index.html file
  */
 
 
-
+import d3 from 'd3'
 import Parse from './services/ParseService.js'
 import Vue from 'vue'
 import filters from './filters/filters.js'
@@ -65,7 +65,10 @@ import WallPage from './components/pages/wallPage.vue'
 import RoutesPage from './components/pages/routesPage.vue'
 import RoutePage from './components/pages/routePage.vue'
 import UserPage from './components/pages/userPage.vue'
+import nvd3 from './libs/nvd3.js'
+import stream_layers from './libs/streamLayers.js'
 
+console.log(stream_layers);
 // install router
 Vue.use(Router);
 
