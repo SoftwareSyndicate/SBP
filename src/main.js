@@ -68,7 +68,17 @@ import UserPage from './components/pages/userPage.vue'
 import nvd3 from './libs/nvd3.js'
 import stream_layers from './libs/streamLayers.js'
 
-console.log(stream_layers);
+window.colorMappings = {
+  gray: "#8a8a8a",
+  yellow: "#FDCA48",
+  green: "#32B469",
+  red: "#EE3E3F",
+  blue: "#237FBD",
+  orange: "#F06243",
+  purple: "#9013FE",
+  black: "#14192D"
+}
+
 // install router
 Vue.use(Router);
 

@@ -13,17 +13,7 @@
      return {
        chartData: [],
        colorsArray:['Gray','Yellow','Green','Red','Blue','Orange','Purple','Black'],
-       gradesArray:['v0','v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12'],
-       colorMappings: {
-         gray: "#8a8a8a",
-         yellow: "#FDCA48",
-         green: "#32B469",
-         red: "#EE3E3F",
-         blue: "#237FBD",
-         orange: "#F06243",
-         purple: "#9013FE",
-         black: "#14192D"
-       }
+       gradesArray:['v0','v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12']
      }
    },
    created(){
@@ -35,22 +25,12 @@
 
    methods: {
      drawChart(chartData){
-       function exampleData() {
-         return stream_layers(3,10+Math.random()*100,.1).map(function(data, i) {
-           return {
-             key: 'Stream #' + i,
-             values: data,
-           };
-         });
-       };
-
-       console.log(exampleData());
-       console.log(chartData);
        nv.addGraph(function() {
          var chart = nv.models.multiBarChart()
                        .reduceXTicks(false)   //If 'false', every single x-axis tick label will be rendered.
            .stacked(true)
                        .rotateLabels(0)      //Angle to rotate x-axis labels.
+                       .showLegend(false)
 
                        .showControls(false)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
                        .groupSpacing(0.3)    //Distance between each group of bars.
@@ -63,7 +43,7 @@
               .tickFormat(d3.format(',1f'));
 
          d3.select('#route-dist-chart-svg')
-           .datum(this.chartData)//exampleData())
+           .datum(this.chartData)
            .call(chart);
 
          nv.utils.windowResize(chart.update);
@@ -96,15 +76,13 @@
              values.push(value);
            }
            var colorObj = {
-             color: this.colorMappings[route.attributes.color],
+             color: window.colorMappings[route.attributes.color],
              key: route.attributes.color,
              values: values,
            }
            chartData.push(colorObj);
          }
        }.bind(this));
-
-       console.log(chartData);
        return chartData;
      }
    },

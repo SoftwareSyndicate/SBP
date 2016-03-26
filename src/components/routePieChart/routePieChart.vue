@@ -1,5 +1,7 @@
 <template>
-  <div id="route-pie-chart"></div>
+  <div id="route-pie-chart">
+    <svg id="route-pie-chart-svg"></svg>
+  </div>
 </template>
 
 <script>
@@ -14,16 +16,7 @@
      }
    },
    ready(){
-     if(google && google.visualization){
-       this.drawChart(this.routes);
-     } else {
-       if(!window.googleChartsCallbacks){
-         window.googleChartsCallbacks = [];
-       }
-       window.googleChartsCallbacks.push(function(){
-         this.drawChart(this.routes);
-       }.bind(this));
-     }
+     this.drawChart(this.routes);
    },
 
    methods: {
@@ -39,37 +32,35 @@
 
        //Create Rows for chart
        var rows = [];
-       rows.push(['color', 'total']);
        for(var color in routeData){
-         var row = [];
-         row.push(color);
-         row.push(routeData[color].total);
+         var row = {
+           color: window.colorMappings[color],
+           label: color,
+           value: routeData[color].total
+         };
          rows.push(row);
        }
 
-       var slices = {};
-       var i = 0;
-       rows.forEach(row => {
-         if(row[0] !== "color"){
-           var slice = {
-             "color": row[0]
-           };
-           slices[i] = slice;
-           i++;
-         }
+       nv.addGraph(function() {
+         var chart = nv.models.pieChart()
+                       .x(function(d) { return d.label })
+                       .y(function(d) { return d.value })
+                       .showLegend(false)
+                       .valueFormat(d3.format("f"))
+                       .showLabels(false)
+                       .labelThreshold(1)
+                       .labelType("percent") 
+                       .donut(true)
+                       .donutRatio(0.5)
+           ;
+
+         d3.select("#route-pie-chart svg")
+           .datum(rows)
+           .transition().duration(350)
+           .call(chart);
+
+         return chart;
        });
-
-       var data = google.visualization.arrayToDataTable(rows);
-
-       var options = {
-         legend: 'none',
-         pieSliceText: 'none',
-         pieHole: 0.5,
-         slices: slices
-       };
-
-       var chart = new google.visualization.PieChart(document.getElementById('route-pie-chart'));
-       chart.draw(data, options);
      }
    }
  }
@@ -77,6 +68,13 @@
 
 <style lang="sass">
  #route-pie-chart {
+   display: flex;
+   flex-grow: 1;
    height: 100%;
+
+   svg {
+     flex-grow: 1;
+     height: 100%;
+   }
  }
 </style>

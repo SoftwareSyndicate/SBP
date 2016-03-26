@@ -1,6 +1,9 @@
 <template>
   <li class="collection-item route-list-item waves-effect" v-link="{name: 'route', params: {routeId: route.id}}" :click="onClick()">
-    <img :src="'../../../images/grades/' + route.attributes.gradeImage + '.png'" alt="" class="grade" v-if="displayKeys.indexOf('grade') > -1">
+    <img src="../../../images/black9.png" class="grade" v-if="displayKeys.indexOf('grade') > -1">
+    <img :src="../../../images/{{route.attributes.gradeImage}}.png" class="grade" v-if="displayKeys.indexOf('grade') > -1">
+    <img :src="'../../../images/' + route.attributes.gradeImage + '.png'" alt="" class="grade" v-if="displayKeys.indexOf('grade') > -1">
+    <img v-bind:src="'../../../images/' + route.attributes.gradeImage + '.png'" alt="" class="grade" v-if="displayKeys.indexOf('grade') > -1">
     <p class="wall" v-if="displayKeys.indexOf('wall') > -1">{{route.attributes.wall.attributes.name}}</p>
     <div class="rating" v-if="displayKeys.indexOf('rating') > -1">
       <a href="#!" class="secondary-content" v-for="n in 5 - route.rating"><i class="material-icons empty">grade</i></a>
