@@ -82,8 +82,7 @@
  #navbar {
 
    nav {
-     background-image: url("../../../images/noise.png"), -webkit-radial-gradient(top center, rgb(247, 180, 30), #FF0000 750px) !important;
-
+     background-color: #ff6d00;
      .nav-brand {
        height: 10em;
        background-image: url("../../../images/sbp_navbar.png");

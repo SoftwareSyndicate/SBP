@@ -4,6 +4,7 @@
       <div class="name-container">
         <h5 class="name">{{wall.attributes.name}}</h5>
       </div>
+      <span class="spacer"></span>
       <p class="set-date" v-text="wall.attributes.lastSet | dateSet"></p>
     </div>
     <div class="right">
@@ -69,28 +70,38 @@
 
 <style lang="sass">
  .wall-list-item {
-   padding: 0 0 0 5px !important;
+   padding: 0 0 0 10px !important;
    //border-bottom: 2px solid #E5E5E5 !important;
    display: flex;
-   justify-content: space-between;
-   align-items: center;
-   height: 90px;
 
    .left {
+     display: flex;
+     flex-grow: 1;
+     flex-direction: column;
+     flex-basis: 75%;
+     padding-right: 15px;
      width: 75%;
-     margin-right: 15px;
 
      .name-container {
-       border-bottom: 2px dotted #A2A2A2;
+       padding-top: 1.5em;
+       padding-bottom: 1em;
+
        .name {
-         font-size: 2.5em;
+         font-size: 2em;
          white-space: nowrap;
          overflow: hidden;
          text-overflow: ellipsis;
          text-transform: uppercase;
          font-weight: 100;
          margin: 0;
+         color: rgba(0, 0, 0, .5);
        }
+     }
+
+     .spacer {
+       padding-bottom: .8em;
+       border-top: 2px solid rgba(0, 0, 0, .1);
+       width: 10%;
      }
 
      .set-date {
@@ -102,15 +113,16 @@
    }
 
    .right {
-     width: 25%;
-     height: 100%;
      display: flex;
+     flex-grow: 1;
+     flex-basis: 25%;
      flex-direction: column;
+     width: 25%;
 
      .color {
+       display: flex;
+       height: 15px;
        margin-left: auto;
-       height: 5px;
-       flex: 1 1 auto;
      }
    }
 

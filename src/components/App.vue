@@ -47,7 +47,7 @@
 
 <style lang="sass">
  @import '../styles/cordova.scss';
- $body-background-color: white;
+ $body-background-color: #f5f6fa;
  html {
    height: 100%;
    background-color: $body-background-color;
@@ -65,7 +65,7 @@
  .view {
    position: absolute;
    width: 100%;
-   background-color: white;
+   background-color: $body-background-color;
    transition: opacity .2s ease;
    box-sizing: border-box;
    &.v-enter, &.v-leave {

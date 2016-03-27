@@ -1,5 +1,5 @@
 <template>
-  <ul class="wall-list collection z-depth-1">
+  <ul class="wall-list collection">
     <wall-list-item v-for="wall in walls | orderBy 'attributes.lastSet' -1" track-by="$index" :wall="wall"></wall-list-item>
   </ul>
 </template>
@@ -34,5 +34,11 @@
 <style lang="sass">
  .wall-list {
    margin: 0px;
+   border: none !important;
+   box-shadow: none !important;
+
+   .wall-list-item {
+     margin-bottom: 1em;
+   }
  }
 </style>

@@ -39,6 +39,9 @@
  };
 </script>
 
-<style>
+<style lang="sass">
+ .walls-page {
+   padding: 16px;
 
+ }
 </style>
