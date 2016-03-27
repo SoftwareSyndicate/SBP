@@ -43,17 +43,6 @@
          colorData[route.attributes.color]++;
        });
 
-       var colorMappings = {
-         gray: "#8a8a8a",
-         yellow: "#FDCA48",
-         green: "#32B469",
-         red: "#EE3E3F",
-         blue: "#237FBD",
-         orange: "#F06243",
-         purple: "#9013FE",
-         black: "#14192D"
-       }
-
        var mostFrequentColor;
        var most = 0;
        var totalColors = 0;
@@ -69,7 +58,7 @@
        for(var color in colorData){
          var colorObj = {
            percent: (percentMultiplier * colorData[color]) + "%",
-           color: colorMappings[color],
+           color: window.colorMappings[color],
          }
          this.colors.push(colorObj);
        }
@@ -81,7 +70,7 @@
 <style lang="sass">
  .wall-list-item {
    padding: 0 0 0 5px !important;
-   border-bottom: 10px solid #E5E5E5 !important;
+   //border-bottom: 2px solid #E5E5E5 !important;
    display: flex;
    justify-content: space-between;
    align-items: center;

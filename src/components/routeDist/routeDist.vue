@@ -27,20 +27,22 @@
      drawChart(chartData){
        nv.addGraph(function() {
          var chart = nv.models.multiBarChart()
-                       .reduceXTicks(false)   //If 'false', every single x-axis tick label will be rendered.
-           .stacked(true)
-                       .rotateLabels(0)      //Angle to rotate x-axis labels.
+                       .showYAxis(false)        //Show the y-axis
+                       .showXAxis(false)        //Show the x-axis
+                       .reduceXTicks(false)
+                       .stacked(true)
+                       .rotateLabels(0)
                        .showLegend(false)
-
-                       .showControls(false)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
+                       .showControls(false)
                        .groupSpacing(0.3)    //Distance between each group of bars.
            ;
 
-         chart.xAxis
-              .tickFormat(d3.format(',1f'));
+         chart.tooltip.contentGenerator(function(data){
+           return "<div style='color: white; background-color: rgba(0, 0, 0, .6); padding-left: 1em; padding-top: .5em; padding-right: 1em; padding-bottom: .5em;'><h6 style='font-size: 1.1em;'>" + data.data.size + "</h6><h6>" + data.data.key + " v" + data.data.x +  "</h6></div>";
+         });
 
-         chart.yAxis
-              .tickFormat(d3.format(',1f'));
+         chart.xAxis.tickFormat(d3.format(',1f'));
+         chart.yAxis.tickFormat(d3.format(',1f'));
 
          d3.select('#route-dist-chart-svg')
            .datum(this.chartData)
@@ -53,6 +55,7 @@
      },
 
      getTotals(routes){
+       console.log(routes);
        var chartData = [];
        $.each(routes, function(index,route){
          var colorFound = false;
@@ -93,13 +96,16 @@
  #route-dist {
    display: flex;
    flex-grow: 1;
-   height: 35vh;
+   height: 100%;
 
-   #chart-svg {
-     display: flex;
+   #route-dist-chart-svg {
      flex-grow: 1;
      height: 100%;
-     width: 100%;
+   }
+
+   .route-dist-tooltip {
+     color: white;
+     background-color: black;
    }
  }
 </style>

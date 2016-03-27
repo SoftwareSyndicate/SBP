@@ -69,14 +69,14 @@ import nvd3 from './libs/nvd3.js'
 import stream_layers from './libs/streamLayers.js'
 
 window.colorMappings = {
-  gray: "#8a8a8a",
-  yellow: "#FDCA48",
-  green: "#32B469",
-  red: "#EE3E3F",
-  blue: "#237FBD",
-  orange: "#F06243",
-  purple: "#9013FE",
-  black: "#14192D"
+  gray: "#95a5a6",
+  yellow: "#ffeb3b",
+  green: "#4caf50",
+  red: "#f44336",
+  blue: "#2196f3",
+  orange: "#ff9800",
+  purple: "#9c27b0",
+  black: "#212121"
 }
 
 // install router

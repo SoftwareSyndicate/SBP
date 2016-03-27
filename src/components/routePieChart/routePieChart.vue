@@ -54,6 +54,11 @@
                        .donutRatio(0.5)
            ;
 
+         chart.tooltip.contentGenerator(function(data){
+           return  "<div style='color: white; background-color: rgba(0, 0, 0, .6); padding-left: 1em; padding-top: .5em; padding-right: 1em; padding-bottom: .5em;'><h6 style='font-size: 1.1em;'>" + data.data.value + " " + data.data.label + "</h6></div>";
+         });
+
+
          d3.select("#route-pie-chart svg")
            .datum(rows)
            .transition().duration(350)

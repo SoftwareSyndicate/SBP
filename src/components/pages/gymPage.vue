@@ -167,8 +167,8 @@
    }
 
    .content-wrapper {
-     width: 85%;
-     margin-left: 7.5%;
+     width: 100%;
+     //margin-left: 7.5%;
      margin-top: 60px;
    }
 
@@ -198,7 +198,8 @@
    }
 
    #route-dist-container {
-
+     display: flex;
+     height: 40vh;
    }
 
    #route-pie-chart-container {
