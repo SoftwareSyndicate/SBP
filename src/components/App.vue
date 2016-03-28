@@ -28,7 +28,7 @@
      }
    },
    ready(){
-     $('#splash-screen').fadeOut(800);
+   
    },
    components: {
      Navbar,

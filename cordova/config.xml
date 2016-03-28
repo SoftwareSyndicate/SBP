@@ -17,14 +17,14 @@
   <allow-intent href="mailto:*" />
   <allow-intent href="geo:*" />
   <platform name="android">
-    <splash src="www/images/sbp_splash.png" density="land-hdpi"/>
-    <splash src="www/images/sbp_splash.png" density="land-ldpi"/>
-    <splash src="www/images/sbp_splash.png" density="land-mdpi"/>
-    <splash src="www/images/sbp_splash.png" density="land-xhdpi"/>
-    <splash src="www/images/sbp_splash.png" density="port-hdpi"/>
-    <splash src="www/images/sbp_splash.png" density="port-ldpi"/>
-    <splash src="www/images/sbp_splash.png" density="port-mdpi"/>
-    <splash src="www/images/sbp_splash.png" density="port-xhdpi"/>
+    <splash src="www/images/sbp_splash_screen.png" density="land-hdpi"/>
+    <splash src="www/images/sbp_splash_screen.png" density="land-ldpi"/>
+    <splash src="www/images/sbp_splash_screen.png" density="land-mdpi"/>
+    <splash src="www/images/sbp_splash_screen.png" density="land-xhdpi"/>
+    <splash src="www/images/sbp_splash_screen.png" density="port-hdpi"/>
+    <splash src="www/images/sbp_splash_screen.png" density="port-ldpi"/>
+    <splash src="www/images/sbp_splash_screen.png" density="port-mdpi"/>
+    <splash src="www/images/sbp_splash_screen.png" density="port-xhdpi"/>
     <icon src="www/images/sbp_stamp.png" density="ldpi" />
     <icon src="www/images/sbp_stamp.png" density="mdpi" />
     <icon src="www/images/sbp_stamp.png" density="hdpi" />
@@ -37,5 +37,5 @@
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
   </platform>
-  <preference name="SplashScreenDelay" value="3000" />
+  <preference name="SplashScreenDelay" value="5500" />
 </widget>
