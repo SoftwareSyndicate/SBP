@@ -2,13 +2,22 @@
   <div class="gym-page">
     <ul class="tabs z-depth-1">
       <li class="tab col s3 z-depth-1" v-bind:class="{'active': gymTabVisible}" @click="changeTab('gym')">
-        <a href="#tab-gym" class="">Gym</a>
+        <p class="tab-name">Walls</p>
+        <a href="#tab-gym" class="">
+          <i class="material-icons">dns</i>
+        </a>
       </li>
       <li class="tab col s3 z-depth-1" v-bind:class="{'active': distroTabVisible}" @click="changeTab('distro')">
-        <a href="#tab-distro" class="">Distro</a>
+        <p class="tab-name">Layout</p>
+        <a href="#tab-distro" class="">
+          <i class="material-icons">equalizer</i>
+        </a>
       </li>
       <li class="tab col s3 z-depth-1" v-bind:class="{'active': infoTabVisible}" @click="changeTab('info')">
-        <a href="#tab-info" class="">Info</a>
+        <p class="tab-name">News</p>
+        <a href="#tab-info" class="">
+          <i class="material-icons">web</i>
+        </a>
       </li>
     </ul>
 
@@ -160,8 +169,29 @@
        position: relative;
        float: none;
 
+       .tab-name {
+         position: absolute;
+         width: 100%;
+         top: 25%;
+         font-size: .6em;
+         text-align: center;
+         font-weight: bold;
+         color: rgba(0, 0, 0, .3);
+       }
+
+       i {
+         color: rgba(0, 0, 0, .3);
+       }
+
        &.active {
          box-shadow: none;
+
+         .tab-name {
+           color: black
+         }
+         i {
+           color: black;
+         }
        }
      }
    }
