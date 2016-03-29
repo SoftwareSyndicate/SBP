@@ -36,10 +36,10 @@
 
       <!-- Distro Tab -->
       <div id="tab-distro" class="col s12">
-        <div id="route-dist-container" v-if="routes.length > 0">
+        <div id="route-dist-container" v-if="routes.length > 0" class="z-depth-1">
           <route-dist :routes="routes"></route-dist>
         </div>
-        <div id="route-pie-chart-container" v-if="routes.length > 0">
+        <div id="route-pie-chart-container" v-if="routes.length > 0" class="z-depth-1">
           <route-pie-chart :routes="routes"></route-pie-chart>
         </div>
       </div>
@@ -102,7 +102,7 @@
      } else if (now.toDateString().split(" ")[0] === "Thu"){
        this.highlightThursday = true;
      }
-     this.notifications.notify('Navbar.setHeader', "S.B.P");
+     this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
      this.notifications.notify('Navbar.setActiveTab', "gym");
      this.hideLoadingAnimation();
    },
@@ -152,10 +152,10 @@
 <style lang="sass">
  .gym-page {
    .tabs {
-     margin-bottom: 1em;
+     height: 50px;
      position: fixed;
      z-index: 2;
-
+     top: calc(100vh - 50px);
      li.tab {
        position: relative;
        float: none;
@@ -169,7 +169,7 @@
    .content-wrapper {
      width: 100%;
      //margin-left: 7.5%;
-     margin-top: 60px;
+     //margin-top: 60px;
    }
 
    .stamp-container {
@@ -200,10 +200,16 @@
    #route-dist-container {
      display: flex;
      height: 40vh;
+     background-color: white;
+     margin: 16px;
    }
 
    #route-pie-chart-container {
+     display: flex;
      height: 40vh;
+     background-color: white;
+     margin-left: 16px;
+     margin-right: 16px;
    }
 
    .panel-container {

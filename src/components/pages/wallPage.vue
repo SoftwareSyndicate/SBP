@@ -80,7 +80,7 @@
          this.wall = results;
          this.routes = results.attributes.routes;
          //Notifications.notify('Navbar.setHeader', this.wall.attributes.name);
-         Notifications.notify('Navbar.setHeader', "Walls");
+         //Notifications.notify('Navbar.setHeader', "Walls");
          Notifications.notify('Overlay.setVisible', false);
        });
      },

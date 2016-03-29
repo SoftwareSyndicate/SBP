@@ -3,5 +3,5 @@ node_modules/
 static/build.js
 npm-debug.log
 dist/
-
-cordova/platforms/android/assets
+cordova/platforms/
+cordova/plugins/

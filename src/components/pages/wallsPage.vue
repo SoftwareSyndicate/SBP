@@ -22,7 +22,7 @@
    },
    created(){
      $("#wrapper").css("width", "100%");
-     notifications.notify('Navbar.setHeader', "Walls");
+     //notifications.notify('Navbar.setHeader', "Walls");
      notifications.notify('Navbar.setActiveTab', "walls");
      WallModel.getWalls().then(results => {
        this.walls = results;

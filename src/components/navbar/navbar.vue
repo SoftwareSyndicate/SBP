@@ -19,7 +19,8 @@
                <li @click="openLoginModal" v-show="!currentUser"><a class="waves-effect waves-light"><i class="medium material-icons">person_pin</i>Login</a></li>
                <li v-show="currentUser"><a class="waves-effect waves-light" @click="logout" class="waves-effect waves-light"><i class="medium material-icons">settings_power</i>Logout</a></li> -->
         </ul>
-        <a data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        <a data-activates="slide-out" class="button-collapse"><i class="material-icons side-nav-icon">menu</i></a>
+        <i class="material-icons alerts-icon">notifications</i>
       </nav>
     </div>
   </div>
@@ -32,11 +33,11 @@
    name: 'Navbar',
    props: ['header'],
    el: '#navbar',
-
    data(){
      return {
        currentUser: {},
-       activeTab: ""
+       activeTab: "",
+       header: "Seattle Bouldering Project"
      }
    },
 
@@ -83,6 +84,7 @@
 
    nav {
      background-color: #ff6d00;
+     border-bottom: 2px solid rgba(220, 94, 0, .8);
      .nav-brand {
        height: 10em;
        background-image: url("../../../images/sbp_navbar.png");
@@ -94,7 +96,10 @@
        overflow: hidden;
        white-space: nowrap;
        text-overflow: ellipsis;
-       font-weight: 100;
+       font-weight: 300;
+       text-transform: uppercase;
+       font-size: .85em;
+       letter-spacing: .1em;
      }
 
      @media (max-width: 990px){
@@ -114,6 +119,22 @@
          }
        }
      }
+   }
+
+   .side-nav-icon {
+     font-size: 1.8em;
+     padding-left: .5em;
+     padding-right: .8em;
+     color: rgba(255, 255, 255, .95);
+   }
+
+   .alerts-icon {
+     cursor: pointer;
+     float: right;
+     font-size: 1.4em;
+     padding-left: .5em;
+     padding-right: .8em;
+     color: rgba(255, 255, 255, .95);
    }
  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <navbar :header="header"></navbar>
+  <navbar></navbar>
   <login-modal></login-modal>
   <sign-up-modal></sign-up-modal>
 
@@ -22,13 +22,8 @@
 
  export default {
    name: 'LoginPage',
-   data: function(){
-     return {
-       header: "R.M.S"
-     }
-   },
    ready(){
-   
+
    },
    components: {
      Navbar,
