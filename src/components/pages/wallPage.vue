@@ -4,12 +4,20 @@
       <wall-list-item :wall="wall"></wall-list-item>
     </div>
 
-    <div id="route-pie-chart-container">
-      <route-pie-chart :routes="routes"  v-if="!!wall"></route-pie-chart>
-    </div>
+    <div class="content-container">
+      <div class="nav-tabs">
+        <p>Routes</p>
+        <p>Distrobution</p>
+        <p>Routes</p>
+      </div>
 
-    <div id="route-dist-container">
-      <route-dist :routes="routes"  v-if="!!wall"></route-dist>
+      <div id="route-pie-chart-container">
+        <route-pie-chart :routes="routes"  v-if="!!wall"></route-pie-chart>
+      </div>
+
+      <div id="route-dist-container">
+        <route-dist :routes="routes"  v-if="!!wall"></route-dist>
+      </div>
     </div>
 
       <!-- Routes Tab -->
@@ -59,10 +67,11 @@
        this.showLoadingAnimation();
        var wallId = this.$route.params.wallId;
        WallModel.getWallById(wallId).then(results => {
+         Notifications.notify('Navbar.setHeader', results.attributes.name);
          results.attributes.name = "Wall Last Set";
          this.wall = results;
          this.routes = results.attributes.routes;
-         Notifications.notify('Navbar.setHeader', this.wall.attributes.name);
+
          this.hideLoadingAnimation();
        });
      }
@@ -86,6 +95,7 @@
      display: flex;
      flex-grow: 1;
      flex-basis: 100%;
+     margin-bottom: 2em;
 
      li {
        &:hover {
@@ -117,18 +127,38 @@
      }
    }
 
-   #route-dist-container {
-     height: 40vh;
-   }
+   .content-container {
+     display: flex;
+     flex-wrap: wrap;
+     flex-grow: 1;
+     margin: 16px;
 
-   #route-pie-chart-container {
-     margin-top: 2em;
-     height: 40vh;
-   }
+     .nav-tabs {
+       display: flex;
+       flex-grow: 1;
+       margin: auto;
+     }
+     #route-dist-container {
+       flex-grow: 1;
+       display: flex;
+       height: 40vh;
+       margin: auto;
+       flex-basis: 100%;
+     }
 
-   #wall-image {
-     width: 100%;
-     height: 100%;
+     #route-pie-chart-container {
+       display: flex;
+       flex-grow: 1;
+       margin: auto;
+       margin-bottom: 2em;
+       height: 40vh;
+       flex-basis: 100%;
+     }
+
+     #wall-image {
+       width: 100%;
+       height: 100%;
+     }
    }
  }
 </style>
