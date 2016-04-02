@@ -2,9 +2,9 @@ import Vue from 'vue'
 
 var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 var dateFormat = {
+  weekday: "long",
   day: "numeric",
-  month: "numeric",
-  year: "2-digit"
+  month: "long",
 }
 
 Vue.filter('dateSet', function(lastSet){

@@ -1,6 +1,8 @@
 <template>
   <div class="wall-page">
-    <wall-list-item :wall="wall" v-if="!!wall"></wall-list-item>
+    <div class="wall-header-container" v-if="!!wall">
+      <wall-list-item :wall="wall"></wall-list-item>
+    </div>
 
     <div id="route-pie-chart-container">
       <route-pie-chart :routes="routes"  v-if="!!wall"></route-pie-chart>
@@ -57,26 +59,12 @@
        this.showLoadingAnimation();
        var wallId = this.$route.params.wallId;
        WallModel.getWallById(wallId).then(results => {
+         results.attributes.name = "Wall Last Set";
          this.wall = results;
          this.routes = results.attributes.routes;
          Notifications.notify('Navbar.setHeader', this.wall.attributes.name);
          this.hideLoadingAnimation();
        });
-     },
-     changeTab(tab){
-       if(tab === "info"){
-         this.infoTabVisible = true;
-         this.distroTabVisible = false;
-         this.routesTabVisible = false;
-       } else if(tab === "distro"){
-         this.infoTabVisible = false;
-         this.distroTabVisible = true;
-         this.routesTabVisible = false;
-       } else if(tab === "routes"){
-         this.infoTabVisible = false;
-         this.distroTabVisible = false;
-         this.routesTabVisible = true;
-       }
      }
    },
 
@@ -91,18 +79,41 @@
 
 <style lang="sass">
  .wall-page {
-   .tabs {
-     margin-bottom: 1em;
-     position: fixed;
-     z-index: 2;
+   display: flex;
+   flex-wrap: wrap;
 
-     li.tab {
-       position: relative;
-       float: none;
+   .wall-header-container {
+     display: flex;
+     flex-grow: 1;
+     flex-basis: 100%;
 
-       &.active {
-         box-shadow: none;
+     li {
+       &:hover {
+         cursor: auto !important;
+         background-color: white !important;
        }
+     }
+
+     .color {
+       height: 10px !important;
+     }
+
+     .name-container {
+       padding-bottom: .5em;
+     }
+
+     h5 {
+       font-size: .95em !important;
+       text-transform: none !important;
+       font-weight: 500 !important;
+       color: rgba(0, 0, 0, .3) !important;
+     }
+     .right {
+       flex-basis: 30%;
+     }
+
+     .spacer {
+       display: none;
      }
    }
 

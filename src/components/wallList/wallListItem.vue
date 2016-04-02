@@ -74,6 +74,7 @@
    //border-bottom: 2px solid #E5E5E5 !important;
    display: flex;
    background-color: white;
+   flex-grow: 1;
 
    .left {
      display: flex;
