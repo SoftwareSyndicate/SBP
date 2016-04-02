@@ -30,12 +30,7 @@
      LoginModal,
      SignUpModal,
      Overlay
-   },
-  //  events: {
-  //    'update-navbar-header': function(newHeader){
-  //      this.header = newHeader;
-  //    }
-  //  }
+   }
  };
 </script>
 
@@ -53,7 +48,6 @@
  }
  #wrapper {
    position: relative;
-   width: 85%;
    height: 100%;
    margin: 0 auto;
  }

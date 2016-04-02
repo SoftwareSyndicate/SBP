@@ -1,149 +1,65 @@
 <template>
   <div class="gym-page">
     <ul class="tabs z-depth-1">
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': gymTabVisible}" @click="changeTab('gym')">
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': wallsTabVisible}" @click="changeTab('walls')" v-link="{name: 'walls'}">
         <p class="tab-name">Walls</p>
-        <a href="#tab-gym" class="">
+        <a href="#tab-walls" class="">
           <i class="material-icons">dns</i>
         </a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': distroTabVisible}" @click="changeTab('distro')">
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': layoutTabVisible}" @click="changeTab('layout')" v-link="{name: 'layout'}">
         <p class="tab-name">Layout</p>
-        <a href="#tab-distro" class="">
+        <a href="#tab-layout" class="">
           <i class="material-icons">equalizer</i>
         </a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': infoTabVisible}" @click="changeTab('info')">
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': newsTabVisible}" @click="changeTab('news')">
         <p class="tab-name">News</p>
-        <a href="#tab-info" class="">
+        <a href="#tab-news" class="">
           <i class="material-icons">web</i>
         </a>
       </li>
     </ul>
 
     <div class="content-wrapper">
-      <!-- Gym Tab -->
-      <div id="tab-gym" class="col s12">
-        <div class="stamp-container">
-          <img src="../../../images/sbp_stamp.png" class="sbpStamp">
-        </div>
-
-        <div class="routes-sent">
-          <h5>
-            Fresh Boulders every
-          </h5>
-          <br>
-          <h5 v-bind:class="{'current-day': highlightTuesday}">
-            Tuesday
-          </h5>
-          <h5 v-bind:class="{'current-day': highlightThursday}">
-            Thursday
-          </h5>
-        </div>
-
-      </div>
-
-      <!-- Distro Tab -->
-      <div id="tab-distro" class="col s12">
-        <div id="route-dist-container" v-if="routes.length > 0" class="z-depth-1">
-          <route-dist :routes="routes"></route-dist>
-        </div>
-        <div id="route-pie-chart-container" v-if="routes.length > 0" class="z-depth-1">
-          <route-pie-chart :routes="routes"></route-pie-chart>
-        </div>
-      </div>
-
-      <!-- Info Tab -->
-      <div id="tab-info" class="col s12">
-
-        <div class="panel-container">
-          <div class="card-panel blue">
-            <h6>Location</h6>
-            <div class="col s12 hour-container">
-              <span>Seattle Bouldering Project<br>
-                900 Poplar Pl S
-                Seattle, WA 98144
-              </span>
-            </div>
-          </div>
-
-          <div class="panel-container">
-            <div class="card-panel blue">
-              <h6>Hours</h6>
-              <div class="col s12 hour-container">
-                <span>Mon - Fri:</span><span class="time"> 6:00am – 11:00pm</span>
-              </div>
-              <div class="col s12 hour-container">
-                <span>Sat - Sun:</span><span class="time"> 9:00am – 10:00pm</span>
-              </div>
-            </div>
-
-        </div>
-
+      <router-view></router-view>
     </div>
-
-
   </div>
 </template>
 
 <script>
- import RouteModel from '../../models/RouteModel.js'
- import RouteDist from '../routeDist/routeDist.vue'
- import RoutePieChart from '../routePieChart/routePieChart.vue'
  import BaseComponent from '../base/baseComponent.vue'
  var GymPage = BaseComponent.extend({
    name: 'GymPage',
    data(){
      return {
-       routesSent: 546,
-       gymTabVisible: true,
+       wallsTabVisible: true,
        infoTabVisible: false,
-       distroTabVisible: false,
-       highlightTuesday: false,
-       highlightThursday: false,
-       routes: [],
+       layoutTabVisible: false
      }
    },
    created(){
-     var now = new Date();
-     if(now.toDateString().split(" ")[0] === "Tue"){
-       this.highlightTuesday = true;
-     } else if (now.toDateString().split(" ")[0] === "Thu"){
-       this.highlightThursday = true;
-     }
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
      this.notifications.notify('Navbar.setActiveTab', "gym");
-     this.hideLoadingAnimation();
+     this.changeTab(this.$route.name);
    },
    ready(){
      $('ul.tabs').tabs();
-     $("#wrapper").css("width", "100%");
-   },
-   components: {
-     RouteDist,
-     RoutePieChart
    },
    methods: {
      changeTab(tab){
-       if(tab === "distro"){
-         if(this.routes.length === 0){
-           this.showLoadingAnimation();
-           RouteModel.getRoutes().then(results => {
-             this.routes = results;
-             this.hideLoadingAnimation();
-           });
-         }
-         this.distroTabVisible = true;
-         this.gymTabVisible = false;
-         this.infoTabVisible = false;
-       } else if(tab === "gym"){
-         this.distroTabVisible = false;
-         this.gymTabVisible = true;
-         this.infoTabVisible = false;
-       } else if(tab === "info"){
-         this.distroTabVisible = false;
-         this.gymTabVisible = false;
-         this.infoTabVisible = true;
+       if(tab === "layout"){
+         this.layoutTabVisible = true;
+         this.wallsTabVisible = false;
+         this.newsTabVisible = false;
+       } else if(tab === "walls"){
+         this.layoutTabVisible = false;
+         this.wallsTabVisible = true;
+         this.newsTabVisible = false;
+       } else if(tab === "news"){
+         this.layoutTabVisible = false;
+         this.wallsTabVisible = false;
+         this.newsTabVisible = true;
        }
      }
    },
@@ -151,7 +67,6 @@
    beforeDestroy(){
      this.showLoadingAnimation();
      window.scrollTo(0, 0);
-     $("#wrapper").css("width", "85%");
    }
  });
 
@@ -198,8 +113,6 @@
 
    .content-wrapper {
      width: 100%;
-     //margin-left: 7.5%;
-     //margin-top: 60px;
    }
 
    .stamp-container {
@@ -225,6 +138,11 @@
          color: #FF0000;
        }
      }
+   }
+
+   .wall-list-container {
+     padding: 16px;
+     padding-bottom: 50px;
    }
 
    #route-dist-container {

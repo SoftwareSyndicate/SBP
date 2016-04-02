@@ -60,6 +60,7 @@ import filters from './filters/filters.js'
 import Router from 'vue-router'
 import App from './components/App.vue'
 import GymPage from './components/pages/gymPage.vue'
+import GymLayoutPage from './components/pages/gymLayoutPage.vue'
 import WallsPage from './components/pages/wallsPage.vue'
 import WallPage from './components/pages/wallPage.vue'
 import RoutesPage from './components/pages/routesPage.vue'
@@ -89,34 +90,26 @@ router.map({
   //Gym
   '/gym': {
     name: 'gym',
-    component: GymPage
-  },
-  //Wall List
-  '/walls': {
-    name: 'wallList',
-    component: WallsPage
-  },
-  //Wall
-  '/walls/:wallId': {
-    name: 'wall',
-    component: WallPage
-  },
-  //Routes
-  '/routes': {
-    name: 'routes',
-    component: RoutesPage
-  },
-  //Route
-  '/routes/:routeId': {
-    name: 'route',
-    component: RoutePage
-  },
-  //User
-  '/stats': {
-    name: 'stats',
-    component: UserPage
+    component: GymPage,
+    subRoutes: {
+      '/': {
+        name: 'walls',
+        component: WallsPage
+      },
+      '/walls': {
+        name: 'walls',
+        component: WallsPage
+      },
+      '/walls/:wallId': {
+        name: 'wall',
+        component: WallPage
+      },
+      '/layout': {
+        name: 'layout',
+        component: GymLayoutPage
+      }
+    }
   }
-
 });
 
 router.beforeEach(function () {

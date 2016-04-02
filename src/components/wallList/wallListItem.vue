@@ -73,6 +73,7 @@
    padding: 0 0 0 10px !important;
    //border-bottom: 2px solid #E5E5E5 !important;
    display: flex;
+   background-color: white;
 
    .left {
      display: flex;
