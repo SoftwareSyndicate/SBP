@@ -42,6 +42,7 @@
 
 <style lang="sass">
  .route-list {
+   flex-grow: 1;
    .header-item {
      p {
        margin: 0px;

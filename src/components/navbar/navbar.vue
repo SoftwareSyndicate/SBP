@@ -19,8 +19,9 @@
                <li @click="openLoginModal" v-show="!currentUser"><a class="waves-effect waves-light"><i class="medium material-icons">person_pin</i>Login</a></li>
                <li v-show="currentUser"><a class="waves-effect waves-light" @click="logout" class="waves-effect waves-light"><i class="medium material-icons">settings_power</i>Logout</a></li> -->
         </ul>
-        <a data-activates="slide-out" class="button-collapse"><i class="material-icons side-nav-icon">menu</i></a>
-        <i class="material-icons alerts-icon">notifications</i>
+        <a v-if="!navigateBack" data-activates="slide-out" class="button-collapse"><i class="material-icons side-nav-icon">menu</i></a>
+        <a v-if="navigateBack" lass="" href="javascript:history.go(-1)" ><i class="material-icons side-nav-icon">keyboard_backspace</i></a>
+        <!-- <i class="material-icons alerts-icon">notifications</i> -->
       </nav>
     </div>
   </div>
@@ -35,6 +36,7 @@
    el: '#navbar',
    data(){
      return {
+       navigateBack: false,
        currentUser: {},
        activeTab: "",
        header: "Seattle Bouldering Project"
@@ -50,6 +52,7 @@
      this.currentUser = UserModel.currentUser;
      this.notifications.listenFor('Navbar.setHeader', this.setHeader, this);
      this.notifications.listenFor('Navbar.setActiveTab', this.setActiveTab, this);
+     this.notifications.listenFor('Navbar.setNavigateBack', this.setNavigateBack, this);
      this.notifications.listenFor('User.login', this.onUserLogin, this);
      this.notifications.listenFor('User.logout', this.onUserLogout, this);
    },
@@ -58,16 +61,19 @@
      openLoginModal(event){
        $('#loginModal').openModal();
      },
-     onUserLogin(event){
+     onUserLogin(e){
        this.currentUser = UserModel.currentUser;
      },
-     onUserLogout(event){
+     onUserLogout(e){
        this.currentUser = null;
      },
-     setHeader(event, newHeader){
+     setHeader(e, newHeader){
        this.header = newHeader;
      },
-     setActiveTab(event, tab){
+     setNavigateBack(e, navigateBack){
+       this.navigateBack = navigateBack;
+     },
+     setActiveTab(e, tab){
        this.activeTab = tab;
      },
      logout(){

@@ -1,5 +1,5 @@
 <template>
-  <li class="collection-item route-list-item waves-effect" v-link="{name: 'route', params: {routeId: route.id}}" :click="onClick()">
+  <li class="collection-item route-list-item waves-effect">
     <img :src="'../../../images/' + route.attributes.gradeImage + '.png'" alt="" class="grade" v-if="displayKeys.indexOf('grade') > -1">
 
     <p class="wall" v-if="displayKeys.indexOf('wall') > -1">{{route.attributes.wall.attributes.name}}</p>
