@@ -8,15 +8,21 @@
       <div class="nav-tabs">
         <p v-bind:class="{'active': routesActive}" @click.stop="changeTab('routes')">Routes</p>
         <p v-bind:class="{'active': distroActive}" @click.stop="changeTab('distro')">Distrobution</p>
-        <p @click.stop="showWallImage()">View Wall</p>
+        <p @click.stop="showWallImage()"><i class="material-icons">photo</i>View Wall</p>
       </div>
 
       <div class="distro-container" v-if="distroActive">
-        <div id="route-pie-chart-container">
+        <div id="route-pie-chart-container" class="z-depth-1">
+          <div class="chart-header">
+            <p>Circuit Distrobution</p>
+          </div>
           <route-pie-chart :routes="routes"  v-if="!!wall"></route-pie-chart>
         </div>
 
-        <div id="route-dist-container">
+        <div id="route-dist-container" class="z-depth-1">
+          <div class="chart-header">
+            <p>V-Grade Distrobution</p>
+          </div>
           <route-dist :routes="routes"  v-if="!!wall"></route-dist>
         </div>
       </div>
@@ -158,6 +164,12 @@
        margin: auto;
        margin-bottom: 2em;
 
+       i {
+         font-size: 1.2em;
+         vertical-align: middle;
+         margin-right: .3em;
+       }
+
        p {
          color: rgba(0, 0, 0, .5) !important;
          margin-right: 1.5em !important;
@@ -176,21 +188,41 @@
          }
        }
      }
-     #route-dist-container {
-       flex-grow: 1;
-       display: flex;
-       height: 40vh;
-       margin: auto;
-       flex-basis: 100%;
-     }
 
-     #route-pie-chart-container {
-       display: flex;
-       flex-grow: 1;
-       margin: auto;
-       margin-bottom: 2em;
-       height: 40vh;
-       flex-basis: 100%;
+     .distro-container {
+       margin-bottom: 50px;
+
+       #route-dist-container {
+         display: flex;
+         flex-grow: 1;
+         flex-wrap: wrap;
+         margin: auto;
+         padding-bottom: 3em;
+         margin-bottom: 2em;
+         height: 40vh;
+         flex-basis: 100%;
+       }
+
+       #route-pie-chart-container {
+         display: flex;
+         flex-grow: 1;
+         flex-wrap: wrap;
+         margin: auto;
+         padding-bottom: 3em;
+         margin-bottom: 2em;
+         height: 40vh;
+         flex-basis: 100%;
+       }
+
+       .chart-header {
+         padding: 1em;
+         flex-grow: 1;
+         flex-basis: 100%;
+         font-size: .9em;
+         font-weight: bold;
+         color: rgba(0, 0, 0, .5) !important;
+         border-bottom: 2px solid rgba(0, 0, 0, .05);
+       }
      }
 
      #wall-image {
