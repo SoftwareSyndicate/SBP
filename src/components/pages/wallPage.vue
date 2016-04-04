@@ -29,8 +29,8 @@
 
 
       <!-- Routes Tab -->
-      <div class="routes-container" v-if="routesActive">
-        <route-list :routes="routes" :display-keys="routeKeys"></route-list>
+      <div class="routes-container z-depth-1" v-if="routesActive">
+        <route-table :routes="routes" :display-keys="routeKeys" v-if="!!wall"></route-table>
       </div>
 
       <!-- Info Tab -->
@@ -45,6 +45,7 @@
  import WallListItem from '../wallList/wallListItem.vue'
  import RouteModel from '../../models/RouteModel.js'
  import RouteList from '../routeList/routeList.vue'
+ import RouteTable from '../routeTable/routeTable.vue'
  import RouteDist from '../routeDist/routeDist.vue'
  import RoutePieChart from '../routePieChart/routePieChart.vue'
  import BaseComponent from '../../components/base/baseComponent.vue'
@@ -54,6 +55,7 @@
    components: {
      RouteDist,
      RouteList,
+     RouteTable,
      RoutePieChart,
      WallListItem
    },
