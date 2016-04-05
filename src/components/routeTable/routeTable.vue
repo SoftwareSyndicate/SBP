@@ -9,9 +9,17 @@
       </div>
     </div>
     <div class="table-body">
-      <div class="table-row" v-for="tableGradeObject in tableData | gradeFilter">
+      <div class="table-row" v-for="tableGradeObject in tableData | gradeFilter | orderBy 'color'">
         <div class="left">
-          <img v-bind:src="'/images/grades/' + tableGradeObject.name + '.png'">
+          <div class="diamond">
+            <div class="diamond-background" v-bind:style="{'background-color': tableGradeObject.color}">
+
+            </div>
+            <div class="diamond-grade">
+              {{tableGradeObject.grade}}
+            </div>
+          </div>
+          <!-- <img v-bind:src="'/images/grades/' + tableGradeObject.name + '.png'"> -->
         </div>
         <div class="right">
           {{tableGradeObject.total}}
@@ -56,7 +64,7 @@
            var tableGradeObject = {
              name: vGrade,
              total: 1,
-             color: route.attributes.color,
+             color: window.colorMappings[route.attributes.color],
              grade: route.attributes.grade
            };
            tableData.push(tableGradeObject);
@@ -137,6 +145,28 @@
          flex-basis: 50%;
          padding: $cell-padding;
        }
+     }
+   }
+
+   .diamond {
+     position: relative;
+     .diamond-background {
+       position: absolute;
+       width: 2em;
+       height: 2em;
+       transform: rotate(45deg);
+       transform-origin: 0 100%;
+       background-color: red;
+       top: -2em;
+     }
+
+     .diamond-grade {
+       font-weight: normal;
+       font-size: .9em;
+       color: white;
+       position: absolute;
+       top: -.72em;
+       right: -1.88em;
      }
    }
  }
