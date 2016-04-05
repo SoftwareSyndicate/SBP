@@ -1,11 +1,13 @@
 <template>
   <li class="collection-item wall-list-item waves-effect" v-link="{name: 'wall', params: {wallId: wall.id}}">
     <div class="left">
-      <div class="name-container">
-        <h5 class="name">{{wall.attributes.name}}</h5>
+      <div class="name-container"">
+        <h5 class="name" v-if="!!wall">{{wall.attributes.name}}</h5>
+        <h5 class="name" v-if="gym">Gym Last Set</h5>
       </div>
       <span class="spacer"></span>
-      <p class="set-date" v-text="wall.attributes.lastSet | dateSet"></p>
+      <p class="set-date" v-text="wall.attributes.lastSet | dateSet" v-if="!!wall"></p>
+      <p class="set-date" v-text="lastSet | dateSet" v-if="gym"></p>
     </div>
     <div class="right">
       <div class="color" v-for="color in colors" v-bind:style="{'background-color': color.color, 'width': color.percent}">&nbsp</div>
@@ -17,15 +19,28 @@
  import WallModel from '../../models/WallModel.js';
  export default {
    name: 'WallListItem',
-   props: ['wall'],
+   props: ['wall', 'routes', 'gym'],
    data(){
      return {
        colors: [],
-       height: 0
+       height: 0,
+       lastSet: new Date()
      }
    },
    created(){
-     this.wall.lastSet = WallModel.getLastSetDate(this.wall.attributes.lastSet);
+     if(!!this.wall){
+       this.routes = this.wall.attributes.routes;
+       this.wall.lastSet = WallModel.getLastSetDate(this.wall.attributes.lastSet);
+     }
+
+     this.lastSet = this.routes[0].updatedAt;
+     this.routes.forEach(route => {
+
+       if(route.updatedAt > this.lastSet){
+         this.lastSet = route.updatedAt;
+         console.log(this.lastSet);
+       }
+     });
      this.calcColorPercents();
    },
    methods: {
@@ -40,7 +55,7 @@
          purple: 0,
          black: 0
        };
-       this.wall.attributes.routes.forEach(route => {
+       this.routes.forEach(route => {
          colorData[route.attributes.color]++;
        });
 
@@ -86,7 +101,7 @@
 
      .name-container {
        padding-top: 1.5em;
-       padding-bottom: 1em;
+       padding-bottom: .3em !important;
 
        .name {
          font-size: 2em;

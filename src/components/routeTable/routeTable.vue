@@ -12,10 +12,10 @@
       <div class="table-row" v-for="tableGradeObject in tableData | gradeFilter | orderBy 'color'">
         <div class="left">
           <div class="diamond">
-            <div class="diamond-background" v-bind:style="{'background-color': tableGradeObject.color}">
+            <div class="diamond-background z-depth-1" v-bind:style="{'background-color': tableGradeObject.color}">
 
             </div>
-            <div class="diamond-grade">
+            <div class="diamond-grade" v-bind:class="{'tenner': tableGradeObject.grade > 9}">
               {{tableGradeObject.grade}}
             </div>
           </div>
@@ -167,6 +167,11 @@
        position: absolute;
        top: -.72em;
        right: -1.88em;
+
+     }
+
+     .tenner {
+       right: -2.12em;
      }
    }
  }
