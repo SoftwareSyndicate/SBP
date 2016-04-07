@@ -65,6 +65,7 @@ import WallsPage from './components/pages/wallsPage.vue'
 import WallPage from './components/pages/wallPage.vue'
 import RoutesPage from './components/pages/routesPage.vue'
 import RoutePage from './components/pages/routePage.vue'
+import NavPage from './components/pages/navPage.vue'
 import UserPage from './components/pages/userPage.vue'
 import nvd3 from './libs/nvd3.js'
 import stream_layers from './libs/streamLayers.js'
@@ -107,6 +108,10 @@ router.map({
       '/layout': {
         name: 'layout',
         component: GymLayoutPage
+      },
+      '/menu': {
+        name: 'menu',
+        component: NavPage
       }
     }
   }

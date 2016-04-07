@@ -1,26 +1,26 @@
 <template>
-  <div class="navbar-fixed" id="navbar">
+  <div class="navbar-fixed" id="navbar" v-show="visible">
     <div class="nav-wrapper">
       <nav>
         <a href="#!" class="brand-logo center">{{header}}</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a class="waves-effect waves-light" href="#!/gym">Gym</a></li>
-          <li><a class="waves-effect waves-light" href="#!/walls">Walls</a></li>
-          <li><a class="waves-effect waves-light" href="#!/routes">Routes</a></li>
-          <!-- <li v-show="!currentUser" @click="openLoginModal"><a class="waves-effect waves-light" href="#loginModal">Login</a></li>
-               <li v-show="currentUser"><a @click="logout" class="waves-effect waves-light">Logout</a></li> -->
-        </ul>
-        <ul id="slide-out" class="side-nav">
-          <div class="nav-brand"></div>
-          <li v-bind:class="{'active': activeTab === 'gym'}"><a class="waves-effect waves-light" href="#!/gym"><i class="medium material-icons">language</i>Gym</a></li>
-          <li v-bind:class="{'active': activeTab === 'walls'}"><a class="waves-effect waves-light" href="#!/walls"><i class="medium material-icons">view_module</i>Walls</a></li>
-          <li v-bind:class="{'active': activeTab === 'routes'}"><a class="waves-effect waves-light" href="#!/routes"><i class="medium material-icons">view_list</i>Routes</a></li>
-          <!-- <li v-show="currentUser" v-bind:class="{'active': activeTab === 'user'}"><a class="waves-effect waves-light" href="#!/stats"><i class="medium material-icons">equalizer</i>My Stats</a></li>
-               <li @click="openLoginModal" v-show="!currentUser"><a class="waves-effect waves-light"><i class="medium material-icons">person_pin</i>Login</a></li>
-               <li v-show="currentUser"><a class="waves-effect waves-light" @click="logout" class="waves-effect waves-light"><i class="medium material-icons">settings_power</i>Logout</a></li> -->
-        </ul>
-        <a v-if="!navigateBack" data-activates="slide-out" class="button-collapse"><i class="material-icons side-nav-icon">menu</i></a>
-        <a v-if="navigateBack" lass="" href="javascript:history.go(-1)" ><i class="material-icons side-nav-icon">keyboard_backspace</i></a>
+        <!-- <ul class="right hide-on-med-and-down">
+             <li><a class="waves-effect waves-light" href="#!/gym">Gym</a></li>
+             <li><a class="waves-effect waves-light" href="#!/walls">Walls</a></li>
+             <li><a class="waves-effect waves-light" href="#!/routes">Routes</a></li>
+             <li v-show="!currentUser" @click="openLoginModal"><a class="waves-effect waves-light" href="#loginModal">Login</a></li>
+             <li v-show="currentUser"><a @click="logout" class="waves-effect waves-light">Logout</a></li>
+             </ul> -->
+        <!-- <ul id="slide-out" class="side-nav">
+             <div class="nav-brand"></div>
+             <li v-bind:class="{'active': activeTab === 'gym'}"><a class="waves-effect waves-light" href="#!/gym"><i class="medium material-icons">language</i>Gym</a></li>
+             <li v-bind:class="{'active': activeTab === 'walls'}"><a class="waves-effect waves-light" href="#!/walls"><i class="medium material-icons">view_module</i>Walls</a></li>
+             <li v-bind:class="{'active': activeTab === 'routes'}"><a class="waves-effect waves-light" href="#!/routes"><i class="medium material-icons">view_list</i>Routes</a></li>
+             <li v-show="currentUser" v-bind:class="{'active': activeTab === 'user'}"><a class="waves-effect waves-light" href="#!/stats"><i class="medium material-icons">equalizer</i>My Stats</a></li>
+             <li @click="openLoginModal" v-show="!currentUser"><a class="waves-effect waves-light"><i class="medium material-icons">person_pin</i>Login</a></li>
+             <li v-show="currentUser"><a class="waves-effect waves-light" @click="logout" class="waves-effect waves-light"><i class="medium material-icons">settings_power</i>Logout</a></li>
+             </ul> -->
+        <a v-if="!navigateBack" class="button-collapse menu-button" v-link="{name: 'menu'}" @click.stop="onMenu = true;"><i class="material-icons side-nav-icon">menu</i></a>
+        <a v-if="navigateBack"  class="back-button" href="javascript:history.go(-1)" ><i class="material-icons side-nav-icon">keyboard_backspace</i></a>
         <!-- <i class="material-icons alerts-icon">notifications</i> -->
       </nav>
     </div>
@@ -37,21 +37,24 @@
    data(){
      return {
        navigateBack: false,
+       onMenu: true,
        currentUser: {},
        activeTab: "",
+       visible: true,
        header: "Seattle Bouldering Project"
      }
    },
 
    ready(){
-     $('.button-collapse').sideNav({
-       menuWidth: 280,
-       closeOnClick: true
-     });
+     /* $('.button-collapse').sideNav({
+        menuWidth: 280,
+        closeOnClick: true
+        }); */
 
      this.currentUser = UserModel.currentUser;
      this.notifications.listenFor('Navbar.setHeader', this.setHeader, this);
      this.notifications.listenFor('Navbar.setActiveTab', this.setActiveTab, this);
+     this.notifications.listenFor('Navbar.setVisible', this.setVisible, this);
      this.notifications.listenFor('Navbar.setNavigateBack', this.setNavigateBack, this);
      this.notifications.listenFor('User.login', this.onUserLogin, this);
      this.notifications.listenFor('User.logout', this.onUserLogout, this);
@@ -76,6 +79,9 @@
      setActiveTab(e, tab){
        this.activeTab = tab;
      },
+     setVisible(e, visible){
+       this.visible = visible;
+     },
      logout(){
        UserModel.logout();
      }
@@ -87,7 +93,6 @@
 
 <style lang="sass">
  #navbar {
-
    nav {
      background-color: #ff6d00;
      border-bottom: 2px solid rgba(220, 94, 0, .8);
@@ -95,6 +100,15 @@
      background-size: 50%;
      background-repeat: no-repeat;
      background-position: 50% 18px;
+
+     .menu-button {
+       cursor: pointer;
+     }
+
+     .back-button {
+       cursor: pointer;
+     }
+
      .nav-brand {
        height: 10em;
        background-image: url("../../../images/sbp_navbar.png");

@@ -1,6 +1,6 @@
 <template>
   <div class="gym-page">
-    <ul class="tabs z-depth-1">
+    <ul class="tabs z-depth-1" v-show="tabsVisible">
       <li class="tab col s3 z-depth-1" v-bind:class="{'active': wallsTabVisible}" @click="changeTab('walls')" v-link="{name: 'walls'}">
         <p class="tab-name">Walls</p>
         <a href="#tab-walls" class="">
@@ -35,10 +35,12 @@
      return {
        wallsTabVisible: true,
        infoTabVisible: false,
-       layoutTabVisible: false
+       layoutTabVisible: false,
+       tabsVisible: true
      }
    },
    created(){
+     this.notifications.listenFor('GymPage.setTabsVisible', this.setTabsVisible, this);
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
      this.notifications.notify('Navbar.setActiveTab', "gym");
      this.changeTab(this.$route.name);
@@ -61,6 +63,9 @@
          this.wallsTabVisible = false;
          this.newsTabVisible = true;
        }
+     },
+     setTabsVisible(e, visible){
+       this.tabsVisible = visible;
      }
    },
 
