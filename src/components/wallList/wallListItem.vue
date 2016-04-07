@@ -38,7 +38,6 @@
 
        if(route.updatedAt > this.lastSet){
          this.lastSet = route.updatedAt;
-         console.log(this.lastSet);
        }
      });
      this.calcColorPercents();

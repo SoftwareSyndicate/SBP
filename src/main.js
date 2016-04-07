@@ -61,6 +61,7 @@ import Router from 'vue-router'
 import App from './components/App.vue'
 import GymPage from './components/pages/gymPage.vue'
 import GymLayoutPage from './components/pages/gymLayoutPage.vue'
+import GymInfoPage from './components/pages/gymInfoPage.vue'
 import WallsPage from './components/pages/wallsPage.vue'
 import WallPage from './components/pages/wallPage.vue'
 import RoutesPage from './components/pages/routesPage.vue'
@@ -112,6 +113,10 @@ router.map({
       '/menu': {
         name: 'menu',
         component: NavPage
+      },
+      '/info': {
+        name: 'info',
+        component: GymInfoPage
       }
     }
   }

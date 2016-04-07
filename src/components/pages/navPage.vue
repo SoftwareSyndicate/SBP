@@ -10,7 +10,7 @@
     </div>
     <div class="nav-list">
       <div class="link">
-        <h3>Gym Info</h3>
+        <h3 v-link="{name: 'info'}">Gym Info</h3>
       </div>
     </div>
     <img src="../../../images/mountains.png">;
