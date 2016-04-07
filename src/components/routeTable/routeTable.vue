@@ -81,7 +81,7 @@
 <style lang="sass">
 
  $cell-padding: 1.4em;
- $cell-border: 2px solid rgba(0, 0, 0, .05);
+ $cell-border: 2px rgba(215, 218, 230, .5) solid;
 
  .route-table {
    display: flex;

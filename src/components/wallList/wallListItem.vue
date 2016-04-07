@@ -1,5 +1,5 @@
 <template>
-  <li class="collection-item wall-list-item waves-effect" v-link="{name: 'wall', params: {wallId: wall.id}}">
+  <li class="collection-item wall-list-item waves-effect component" v-link="{name: 'wall', params: {wallId: wall.id}}">
     <div class="left">
       <div class="name-container"">
         <h5 class="name" v-if="!!wall">{{wall.attributes.name}}</h5>
@@ -84,9 +84,10 @@
 </script>
 
 <style lang="sass">
+@import '../../styles/main.scss';
+
  .wall-list-item {
    padding: 0 0 0 10px !important;
-   //border-bottom: 2px solid #E5E5E5 !important;
    display: flex;
    background-color: white;
    flex-grow: 1;

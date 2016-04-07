@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-fixed" id="navbar">
     <div class="nav-wrapper">
-      <nav class="">
+      <nav>
         <a href="#!" class="brand-logo center">{{header}}</a>
         <ul class="right hide-on-med-and-down">
           <li><a class="waves-effect waves-light" href="#!/gym">Gym</a></li>
@@ -91,6 +91,10 @@
    nav {
      background-color: #ff6d00;
      border-bottom: 2px solid rgba(220, 94, 0, .8);
+     background-image: url("../../../images/mountains.png");
+     background-size: 50%;
+     background-repeat: no-repeat;
+     background-position: 50% 18px;
      .nav-brand {
        height: 10em;
        background-image: url("../../../images/sbp_navbar.png");

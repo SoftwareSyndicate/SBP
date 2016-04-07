@@ -1,0 +1,10 @@
+//Variables
+$color-background: #f5f6fa;
+
+$component-border: 1px rgba(215, 218, 230, 1) solid;
+
+//Containers
+.component {
+  border-radius: 2px;
+  border: $component-border;
+}

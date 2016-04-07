@@ -7,6 +7,7 @@
     <div class="ball"></div>
     <div class="ball"></div>
     <div class="ball"></div>
+    <div class="ball"></div>
   </div>
 </template>
 
@@ -46,52 +47,59 @@
    border-radius: 50px;
  }
  .ball:nth-child(1) {
-   background: #e91e63;
+   background: #95a5a6;
    -webkit-animation: right 1s infinite ease-in-out;
    -moz-animation: right 1s infinite ease-in-out;
    animation: right 1s infinite ease-in-out;    
  }
 
  .ball:nth-child(2) {
-   background: #76ff03;
+   background: #ffeb3b;
    -webkit-animation: left 1.1s infinite ease-in-out;
    -moz-animation: left 1.1s infinite ease-in-out;
    animation: left 1.1s infinite ease-in-out;
  }
 
  .ball:nth-child(3) {
-   background: #008597;
+   background: #4caf50;
    -webkit-animation: right 1.05s infinite ease-in-out;
    -moz-animation: right 1.05s infinite ease-in-out;
    animation: right 1.05s infinite ease-in-out;
  }
 
  .ball:nth-child(4) {
-   background: #ffcc00;
+   background: #f44336;
    -webkit-animation: left 1.15s infinite ease-in-out;
    -moz-animation: left 1.15s infinite ease-in-out;
    animation: left 1.15s infinite ease-in-out;
  }
 
  .ball:nth-child(5) {
-   background: #2d3443;  
+   background: #2196f3;
    -webkit-animation: right 1.1s infinite ease-in-out;
    -moz-animation: right 1.1s infinite ease-in-out;
    animation: right 1.1s infinite ease-in-out;
  }
 
  .ball:nth-child(6) {
-   background: #ff7c35;  
+   background: #ff9800;
    -webkit-animation: left 1.05s infinite ease-in-out;
    -moz-animation: left 1.05s infinite ease-in-out;
    animation: left 1.05s infinite ease-in-out;
  }
 
  .ball:nth-child(7) {
-   background: #4d407c;  
+   background: #9c27b0;
    -webkit-animation: right 1s infinite ease-in-out;
    -moz-animation: right 1s infinite ease-in-out;
    animation: right 1s infinite ease-in-out;
+ }
+
+ .ball:nth-child(8) {
+   background: #212121;
+   -webkit-animation: right 1.15s infinite ease-in-out;
+   -moz-animation: right 1.15s infinite ease-in-out;
+   animation: right 1.15s infinite ease-in-out;
  }
 
 

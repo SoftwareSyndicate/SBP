@@ -12,14 +12,14 @@
       </div>
 
       <div class="distro-container" v-if="distroActive">
-        <div id="route-pie-chart-container" class="z-depth-1">
+        <div id="route-pie-chart-container" class="component">
           <div class="chart-header">
             <p>Circuit Distrobution</p>
           </div>
           <route-pie-chart :routes="routes"  v-if="!!wall"></route-pie-chart>
         </div>
 
-        <div id="route-dist-container" class="z-depth-1">
+        <div id="route-dist-container" class="component">
           <div class="chart-header">
             <p>V-Grade Distrobution</p>
           </div>
@@ -29,7 +29,7 @@
 
 
       <!-- Routes Tab -->
-      <div class="routes-container z-depth-1" v-if="routesActive">
+      <div class="routes-container component" v-if="routesActive">
         <route-table :routes="routes" :display-keys="routeKeys" v-if="!!wall"></route-table>
       </div>
 
@@ -114,6 +114,8 @@
 </script>
 
 <style lang="sass">
+ @import '../../styles/main.scss';
+
  .wall-page {
    display: flex;
    flex-wrap: wrap;
@@ -125,6 +127,10 @@
      margin-bottom: 2em;
 
      li {
+       border-radius: 0px !important;
+       border-top: none !important;
+       border-right: none !important;
+       border-left: none !important;
        &:hover {
          cursor: auto !important;
          background-color: white !important;
@@ -223,7 +229,7 @@
          font-size: .9em;
          font-weight: bold;
          color: rgba(0, 0, 0, .5) !important;
-         border-bottom: 2px solid rgba(0, 0, 0, .05);
+         border-bottom: $component-border;
        }
      }
 
