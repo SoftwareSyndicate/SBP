@@ -17,10 +17,14 @@
      }
    },
    created(){
-     this.chartData = this.getTotals(this.routes);
+     //this.chartData = this.getTotals(this.routes);
+     this.tableData = this.calculateGradeTotals(this.routes, window.colorsArray, window.gradesArray);
+     //console.log("chartData: ", this.chartData);
+     console.log("tableData: ", this.tableData);
    },
    ready(){
-     this.drawChart(this.chartData);
+     //this.drawChart(this.chartData);
+     this.drawChart(this.tableData);
    },
 
    methods: {
@@ -45,7 +49,7 @@
          chart.yAxis.tickFormat(d3.format(',1f'));
 
          d3.select('#route-dist-chart-svg')
-           .datum(this.chartData)
+           .datum(chartData)
            .call(chart);
 
          nv.utils.windowResize(chart.update);
@@ -84,6 +88,46 @@
            chartData.push(colorObj);
          }
        }.bind(this));
+       return chartData;
+     },
+     calculateGradeTotals(routes, colors, grades){
+       var tableData = [];
+       var chartData = [];
+
+       colors.forEach(color => {
+         let values = [];
+         let x = 0;
+         grades.forEach(grade => {
+           let value = {
+             x: x,
+             y: 0,
+             key: color.toLowerCase()
+           };
+           x++;
+           values.push(value);
+         });
+
+         let colorObj = {
+           key: color.toLowerCase(),
+           color: window.colorMappings[color.toLowerCase()],
+           values: values
+         };
+         chartData.push(colorObj);
+       });
+
+       routes.forEach(route => {
+         chartData.forEach(colorObj => {
+           if(colorObj.key.toLowerCase() === route.attributes.color.toLowerCase()){
+             colorObj.values.forEach(value => {
+               if(parseInt(value.x) === parseInt(route.attributes.grade)){
+                 value.y++;
+               }
+             });
+           }
+         });
+       });
+
+       this.tableData = chartData;
        return chartData;
      }
    },
