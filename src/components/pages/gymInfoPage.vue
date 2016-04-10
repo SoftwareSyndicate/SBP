@@ -111,6 +111,7 @@
      .range {
        display: flex;
        flex-grow: 1;
+       flex-basis: 100%;
        align-content: center;
 
        .date {
@@ -144,6 +145,7 @@
 
      .range {
        display: flex;
+       flex-basis: 100%;
        flex-grow: 1;
        align-content: center;
 
