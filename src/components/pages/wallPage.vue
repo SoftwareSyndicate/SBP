@@ -7,36 +7,37 @@
     <div class="content-container">
       <div class="nav-tabs">
         <p v-bind:class="{'active': routesActive}" @click.stop="changeTab('routes')">Routes</p>
-        <p v-bind:class="{'active': distroActive}" @click.stop="changeTab('distro')">Distrobution</p>
+        <p v-bind:class="{'active': distroActive}" @click.stop="changeTab('distro')">Distribution</p>
         <p @click.stop="showWallImage()"><i class="material-icons">photo</i>View Wall</p>
       </div>
 
       <div class="distro-container" v-if="distroActive">
+        <!-- Routes Pie -->
         <div id="route-pie-chart-container" class="component">
           <div class="chart-header">
-            <p>Circuit Distrobution</p>
+            <p>Circuit Distribution</p>
           </div>
           <route-pie-chart :routes="routes"  v-if="!!wall"></route-pie-chart>
         </div>
 
+        <!-- Routes Dist -->
         <div id="route-dist-container" class="component">
           <div class="chart-header">
-            <p>V-Grade Distrobution</p>
+            <p>V-Grade Distribution</p>
           </div>
           <route-dist :routes="routes"  v-if="!!wall"></route-dist>
         </div>
       </div>
 
+      <!-- Wall Image -->
+      <img v-bind:src="wall.attributes.image.url()" v-show="imageVisible" id="wall-image">
+      <i class="material-icons" id="close-wall-image" v-show="imageVisible" @click.stop="closeWallImage()">clear</i>
 
-      <!-- Routes Tab -->
+
+      <!-- Routes Table -->
       <div class="routes-container component" v-if="routesActive">
         <route-table :routes="routes" :display-keys="routeKeys" v-if="!!wall"></route-table>
       </div>
-
-      <!-- Info Tab -->
-      <!-- <div id="tab-map" class="col s12">
-           <img v-bind:src="wall.attributes.image.url()" id="wall-image">
-           </div> -->
     </div>
   </div>
 </template>
@@ -65,7 +66,8 @@
        routes: [],
        routeKeys: ['grade', 'sends', 'sent'],
        distroActive: true,
-       routesActive: false
+       routesActive: false,
+       imageVisible: false
      }
    },
    created(){
@@ -98,7 +100,16 @@
        }
      },
      showWallImage(){
-       Materialize.toast('Sorry, no wall image yet!', 3000);
+       if(this.wall.attributes.image){
+         this.imageVisible = true;
+         $("body").css("overflow", "hidden");
+       } else {
+         Materialize.toast('Sorry, no wall image yet!', 3000);
+       }
+     },
+     closeWallImage(){
+       this.imageVisible = false;
+       $("body").css("overflow", "scroll");
      }
    },
 
@@ -234,8 +245,24 @@
      }
 
      #wall-image {
-       width: 100%;
-       height: 100%;
+       width: 100vw;
+       height: 100vh;
+       position: absolute;
+       top: 0;
+       left: 0;
+       z-index: 999;
+     }
+
+     #close-wall-image {
+       color: rgba(255, 255, 255, 1);
+       cursor: pointer;
+       font-size: 2em;
+       width: 50px;
+       height: 30px;
+       position: absolute;
+       top: 20px;
+       right: 0;
+       z-index: 9999;
      }
 
 

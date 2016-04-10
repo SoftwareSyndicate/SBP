@@ -38,4 +38,5 @@
     <allow-intent href="itms-apps:*" />
   </platform>
   <preference name="SplashScreenDelay" value="5500" />
+  <preference name="orientation" value="portrait" />
 </widget>

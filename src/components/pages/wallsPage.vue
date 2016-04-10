@@ -20,6 +20,7 @@
      }
    },
    created(){
+     this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
      WallModel.getWalls().then(results => {
        this.walls = results;
        notifications.notify('Overlay.setVisible', false);
@@ -37,6 +38,10 @@
 <style lang="sass">
  .walls-page {
    padding: 16px;
+
+   .wall-list {
+     padding-bottom: 40px;
+   }
 
  }
 </style>

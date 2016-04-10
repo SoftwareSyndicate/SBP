@@ -7,48 +7,36 @@
     <div class="content-container">
       <div class="nav-tabs">
         <p v-bind:class="{'active': routesActive}" @click.stop="changeTab('routes')">Routes</p>
-        <p v-bind:class="{'active': distroActive}" @click.stop="changeTab('distro')">Distrobution</p>
+        <p v-bind:class="{'active': distroActive}" @click.stop="changeTab('distro')">Distribution</p>
         <p @click.stop="showWallImage()"><i class="material-icons">photo</i>View Wall</p>
       </div>
 
       <div class="distro-container" v-if="distroActive">
+        <!-- Route Pie -->
         <div id="route-pie-chart-container" class="component">
           <div class="chart-header">
-            <p>Circuit Distrobution</p>
+            <p>Circuit Distribution</p>
           </div>
           <route-pie-chart :routes="routes" v-if="routes.length > 0"></route-pie-chart>
         </div>
 
+        <!-- Route Dist -->
         <div id="route-dist-container" class="component">
           <div class="chart-header">
-            <p>V-Grade Distrobution</p>
+            <p>V-Grade Distribution</p>
           </div>
           <route-dist :routes="routes"  v-if="routes.length > 0"></route-dist>
         </div>
       </div>
 
 
-      <!-- Routes Tab -->
+      <!-- Route Table -->
       <div class="routes-container" v-if="routesActive">
         <route-table :routes="routes" :display-keys="routeKeys" v-if="routes.length > 0" class="component"></route-table>
       </div>
-
-      <!-- Info Tab -->
-      <!-- <div id="tab-map" class="col s12">
-           <img v-bind:src="wall.attributes.image.url()" id="wall-image">
-           </div> -->
     </div>
   </div>
-  <!-- <div class="gym-layout-page">
-       <div id="route-dist-container" v-if="routes.length > 0" class="z-depth-1">
-       <route-dist :routes="routes"></route-dist>
-       </div>
-       <div id="route-pie-chart-container" v-if="routes.length > 0" class="z-depth-1">
-       <route-pie-chart :routes="routes"></route-pie-chart>
-       </div>
-       </div> -->
 </template>
-
 <script>
  import WallModel from '../../models/WallModel.js'
  import RouteModel from '../../models/RouteModel.js'

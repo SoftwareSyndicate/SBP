@@ -101,6 +101,7 @@
 
      .link {
        h3 {
+         cursor: pointer;
          color: white;
          font-weight: 100;
          font-size: 2em;
