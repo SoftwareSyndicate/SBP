@@ -1,6 +1,7 @@
 <template>
   <div id="route-pie-chart">
     <svg id="route-pie-chart-svg"></svg>
+    <p>Select a color to view number of routes</p>
   </div>
 </template>
 
@@ -72,14 +73,27 @@
 </script>
 
 <style lang="sass">
+ @import '../../styles/main.scss';
+
  #route-pie-chart {
    display: flex;
    flex-grow: 1;
    height: 100%;
+   position: relative;
 
    svg {
      flex-grow: 1;
      height: 100%;
+   }
+
+   p {
+     font-size: .85em;
+     color: $color-base-gray;
+     position: absolute;
+     bottom: 10px;
+     width: 100%;
+     left: 0px;
+     text-align: center;
    }
  }
 </style>
