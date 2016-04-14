@@ -70,11 +70,11 @@
    background-color: lighten($color-base-orange, 3%);
 
    img {
-     width: 8em;
-     height: 8em;
+     width: 10em;
+     height: 10em;
      margin-right: auto;
      margin-left: auto;
-     margin-top: 6em;
+     margin-top: 4em;
      margin-bottom: 1em;
    }
 
