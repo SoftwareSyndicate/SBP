@@ -10,3 +10,21 @@ $component-border: 1px rgba(215, 218, 230, 1) solid;
   border-radius: 2px;
   border: $component-border;
 }
+
+
+//Inputs
+input {
+  background-color: white !important;
+  border-radius: 2% !important;
+  padding-left: 10px !important;
+}
+
+
+//Buttons
+.btn-primary {
+  background-color: white !important;
+  color: black !important;
+  text-transform: none;
+}
+
+

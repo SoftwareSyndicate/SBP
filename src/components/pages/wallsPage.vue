@@ -21,10 +21,15 @@
    },
    created(){
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
-     WallModel.getWalls().then(results => {
-       this.walls = results;
+     if(!WallModel.walls){
+       WallModel.getWalls().then(results => {
+         this.walls = results;
+         notifications.notify('Overlay.setVisible', false);
+       });
+     } else {
+       this.walls = WallModel.walls;
        notifications.notify('Overlay.setVisible', false);
-     });
+     }
    },
 
    beforeDestroy(){

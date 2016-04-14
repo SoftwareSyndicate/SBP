@@ -1,9 +1,8 @@
 import ParseService from '../services/ParseService.js'
-import notifications from '../services/NotificationService.js'
 
 class UserModel {
   constructor(){
-
+    this.currentUser = null;
     this.loadUser()
   }
 
@@ -12,23 +11,23 @@ class UserModel {
     this.currentUser = Parse.User.current();
   }
 
-  login(email, password){
+  signIn(email, password){
     return ParseService.login(email, password).then(results => {
       this.currentUser = results;
-      notifications.notify("User.login");
       return results;
+    }, error => {
+      return Promise.reject(error);
     });
   }
 
-  logout(){
+  signOut(){
     Parse.User.logOut();
-    notifications.notify("User.logout");
+    this.currentUser = null;
   }
 
   signUp(email, password){
     return ParseService.signUp(email, password).then(results => {
       this.currentUser = results;
-      notifications.notify("User.login");
       return results;
     });
   }

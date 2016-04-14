@@ -12,13 +12,20 @@
       <div class="link">
         <h3 v-link="{name: 'info'}">Gym Info</h3>
       </div>
+      <div class="link" v-if="!currentUser">
+        <h3 v-link="{name: 'signIn'}">Login</h3>
+      </div>
+      <div class="link" v-if="!!currentUser">
+        <h3 @click.stop="signOut()">Logout</h3>
+      </div>
     </div>
-    <img src="../../../images/mountains.png">;
+    <img src="../../../images/mountains.png">
   </div>
 </template>
 <script>
 
  import BaseComponent from '../../components/base/baseComponent.vue'
+ import UserModel from '../../models/UserModel.js'
 
  var NavPage = BaseComponent.extend({
    name: 'NavPage',
@@ -27,6 +34,7 @@
    },
    data(){
      return {
+       currentUser: UserModel.currentUser
      }
    },
    created(){
@@ -38,7 +46,10 @@
 
    },
    methods: {
-
+     signOut(){
+       UserModel.signOut();
+       this.currentUser = null;
+     }
    },
 
    beforeDestroy(){
@@ -63,10 +74,11 @@
    flex-basis: 100%;
    height: 100vh;
    width: 100vw;
-   background-color: lighten($color-base-orange, 3%);
+   background-color: $color-base-orange;
 
    .back-button-container {
-     margin-bottom: 1.5em;
+     background-color: lighten($color-base-orange, 3%);
+     padding-bottom: 1.5em;
      i {
        color: white;
        padding: .5em;
@@ -94,12 +106,14 @@
 
    .nav-list {
      display: flex;
-     flex-grow: 1;
-     flex-basis: 100%;
+     flex-wrap: wrap;
      background-color: $color-base-orange;
-     padding-top: 4em;
-
+     padding-top: 2em;
      .link {
+       flex-basis: 100%;
+       display: flex;
+       padding-bottom: 1em;
+
        h3 {
          cursor: pointer;
          color: white;

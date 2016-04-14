@@ -68,6 +68,9 @@ import RoutesPage from './components/pages/routesPage.vue'
 import RoutePage from './components/pages/routePage.vue'
 import NavPage from './components/pages/navPage.vue'
 import UserPage from './components/pages/userPage.vue'
+import SignInPage from './components/pages/signInPage.vue'
+
+
 import nvd3 from './libs/nvd3.js'
 import stream_layers from './libs/streamLayers.js'
 
@@ -122,6 +125,10 @@ router.map({
         component: GymInfoPage
       }
     }
+  },
+  '/signIn': {
+    name: 'signIn',
+    component: SignInPage
   }
 });
 
