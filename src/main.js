@@ -72,6 +72,11 @@ import UserPage from './components/pages/userPage.vue'
 import SignInPage from './components/pages/signInPage.vue'
 
 
+import SignUpPage from './components/pages/signUpPage.vue'
+import EmailForm from './components/signUp/emailForm.vue'
+import NameForm from './components/signUp/nameForm.vue'
+
+
 import nvd3 from './libs/nvd3.js'
 import stream_layers from './libs/streamLayers.js'
 
@@ -134,6 +139,20 @@ router.map({
   '/signIn': {
     name: 'signIn',
     component: SignInPage
+  },
+  '/signUp': {
+    name: 'signUp',
+    component: SignUpPage,
+    subRoutes: {
+      '/name': {
+        name: 'name',
+        component: NameForm
+      },
+      '/email': {
+        name: 'email',
+        component: EmailForm
+      }
+    }
   }
 });
 
@@ -143,6 +162,10 @@ router.beforeEach(function () {
 
 router.redirect({
   '*': '/gym'
+});
+
+router.redirect({
+  '/signUp': '/signUp/name'
 });
 
 router.start(App, '#app');

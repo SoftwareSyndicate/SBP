@@ -1,12 +1,13 @@
 <template>
   <div class="sign-in-page">
     <img src="../../../images/sbp_stamp.png">
-    <p>Seattle Bouldering Project</p>
+    <p class="header">Seattle Bouldering Project</p>
 
     <form>
       <input placeholder="Email" id="email" type="email" class="validate" v-model="email">
       <input placeholder="Password" id="password" type="password" class="validate" v-model="password">
       <a class="waves-effect waves-dark btn btn-primary" @click.stop="signIn()">Log in</a>
+      <a v-link="{name: 'signUp'}" class="sign-up">Sign Up</a>
     </form>
   </div>
 </template>
@@ -32,20 +33,21 @@
      this.hideLoadingAnimation();
    },
    ready(){
-     $('ul.tabs').tabs();
+
    },
    methods: {
      signIn(){
-       console.log("signIn");
-       this.showLoadingAnimation();
-       UserModel.signIn(this.email, this.password).then(results => {
-         this.notifications.notify("UserModel.signUp");
-         this.$router.go({name: 'layout'});
-         console.log(results);
-       }, error => {
-         Materialize.toast("Sorry, Invalid Credentials", 2000);
-         this.hideLoadingAnimation();
-       });
+       if(UserModel.isValidCreds(this.email, this.password)){
+         this.showLoadingAnimation();
+         UserModel.signIn(this.email, this.password).then(results => {
+           this.notifications.notify("UserModel.signUp");
+           this.$router.go({name: 'layout'});
+           console.log(results);
+         }, error => {
+           Materialize.toast("Sorry, Invalid Credentials", 2000);
+           this.hideLoadingAnimation();
+         });
+       }
      }
    },
 
@@ -78,13 +80,13 @@
      margin-bottom: 1em;
    }
 
-   p {
+   p.header {
      font-weight: 100;
      font-size: 1.5em;
      color: white;
      margin-left: auto !important;
      margin-right: auto !important;
-     margin-bottom: 2em !important;
+     margin-bottom: 1em !important;
    }
 
    form {
@@ -101,6 +103,14 @@
        width: 60%;
        margin-right: auto;
        margin-left: auto;
+     }
+
+     a.sign-up {
+       color: white;
+       text-decoration: underline;
+       margin: auto !important;
+       margin-top: 1.5em !important;
+       cursor: pointer;
      }
    }
  }

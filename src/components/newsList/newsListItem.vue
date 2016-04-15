@@ -76,6 +76,10 @@
        padding: 1em;
        border-bottom: $component-border;
 
+       .message {
+         margin-bottom: 1em !important;
+       }
+
        .btn {
          margin: auto;
        }

@@ -1,7 +1,5 @@
 <template>
   <navbar></navbar>
-  <login-modal></login-modal>
-  <sign-up-modal></sign-up-modal>
 
   <!-- main view -->
   <overlay></overlay>
@@ -17,8 +15,6 @@
 <script>
  import Overlay from './overlay/overlay.vue'
  import Navbar from './navbar/navbar.vue'
- import LoginModal from './loginModal/loginModal.vue'
- import SignUpModal from './signUpModal/signUpModal.vue'
 
  export default {
    name: 'LoginPage',
@@ -27,8 +23,6 @@
    },
    components: {
      Navbar,
-     LoginModal,
-     SignUpModal,
      Overlay
    }
  };

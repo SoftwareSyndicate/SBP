@@ -25,11 +25,24 @@ class UserModel {
     this.currentUser = null;
   }
 
-  signUp(email, password){
+  signUp(firstName, lastName, email, password){
     return ParseService.signUp(email, password).then(results => {
       this.currentUser = results;
       return results;
     });
+  }
+
+  isValidCreds(email, password){
+    var valid = true;
+    if(email.length < 3){
+      valid = false;
+      Materialize.toast("Email Invalid", 3000);
+    }
+    if(password.length < 6){
+      valid = false;
+      Materialize.toast("Password must be longer than 5 characters", 3000);
+    }
+    return valid;
   }
 }
 
