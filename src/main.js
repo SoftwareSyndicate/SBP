@@ -63,6 +63,7 @@ import GymPage from './components/pages/gymPage.vue'
 import GymLayoutPage from './components/pages/gymLayoutPage.vue'
 import GymInfoPage from './components/pages/gymInfoPage.vue'
 import WallsPage from './components/pages/wallsPage.vue'
+import NewsPage from './components/pages/newsPage.vue'
 import WallPage from './components/pages/wallPage.vue'
 import RoutesPage from './components/pages/routesPage.vue'
 import RoutePage from './components/pages/routePage.vue'
@@ -123,6 +124,10 @@ router.map({
       '/info': {
         name: 'info',
         component: GymInfoPage
+      },
+      '/news': {
+        name: 'news',
+        component: NewsPage
       }
     }
   },

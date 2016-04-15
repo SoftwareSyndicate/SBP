@@ -13,7 +13,7 @@
           <i class="material-icons">equalizer</i>
         </a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': newsTabVisible}" @click="changeTab('news')">
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': newsTabVisible}" @click="changeTab('news')" v-link="{name: 'news'}">
         <p class="tab-name">News</p>
         <a href="#tab-news" class="">
           <i class="material-icons">web</i>

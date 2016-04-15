@@ -6,7 +6,6 @@
 
 <script>
  import WallList from '../wallList/wallList.vue'
- import notifications from '../../services/NotificationService.js'
  import WallModel from '../../models/WallModel.js'
  import BaseComponent from '../../components/base/baseComponent.vue'
  var WallsPage =  BaseComponent.extend({
@@ -24,11 +23,11 @@
      if(!WallModel.walls){
        WallModel.getWalls().then(results => {
          this.walls = results;
-         notifications.notify('Overlay.setVisible', false);
+         this.notifications.notify('Overlay.setVisible', false);
        });
      } else {
        this.walls = WallModel.walls;
-       notifications.notify('Overlay.setVisible', false);
+       this.notifications.notify('Overlay.setVisible', false);
      }
    },
 
