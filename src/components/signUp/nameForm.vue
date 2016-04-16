@@ -79,12 +79,7 @@
      margin-right: auto;
      margin-left: auto;
 
-     input {
-
-     }
-
      .btn {
-       width: 60%;
        margin-right: auto;
        margin-left: auto;
      }

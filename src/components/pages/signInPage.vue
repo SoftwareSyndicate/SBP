@@ -68,9 +68,7 @@
    flex-wrap: wrap;
    flex-basis: 100%;
    flex-direction: column;
-   height: 100%;
    background-color: lighten($color-base-orange, 3%);
-
    img {
      width: 10em;
      height: 10em;
@@ -95,9 +93,6 @@
      width: 60%;
      margin-right: auto;
      margin-left: auto;
-
-     input {
-     }
 
      .btn {
        width: 60%;
