@@ -90,7 +90,7 @@
      font-size: .85em;
      color: $color-base-gray;
      position: absolute;
-     bottom: 10px;
+     bottom: 0px;
      width: 100%;
      left: 0px;
      text-align: center;

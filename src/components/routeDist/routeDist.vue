@@ -1,6 +1,7 @@
 <template>
   <div id="route-dist">
     <svg id="route-dist-chart-svg"></svg>
+    <p>Select a color to view number of routes</p>
   </div>
 </template>
 
@@ -17,10 +18,7 @@
      }
    },
    created(){
-     //this.chartData = this.getTotals(this.routes);
      this.tableData = this.calculateGradeTotals(this.routes, window.colorsArray, window.gradesArray);
-     //console.log("chartData: ", this.chartData);
-     console.log("tableData: ", this.tableData);
    },
    ready(){
      //this.drawChart(this.chartData);
@@ -135,10 +133,13 @@
 </script>
 
 <style lang="sass">
+ @import '../../styles/main.scss';
+
  #route-dist {
    display: flex;
    flex-grow: 1;
    height: 100%;
+   position: relative;
 
    #route-dist-chart-svg {
      flex-grow: 1;
@@ -148,6 +149,16 @@
    .route-dist-tooltip {
      color: white;
      background-color: black;
+   }
+
+   p {
+     font-size: .85em;
+     color: $color-base-gray;
+     position: absolute;
+     bottom: 0px;
+     width: 100%;
+     left: 0px;
+     text-align: center;
    }
  }
 </style>

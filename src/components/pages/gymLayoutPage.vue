@@ -5,7 +5,7 @@
     </div>
 
     <div class="content-container">
-      <div class="nav-tabs">
+      <div class="gym-nav-tabs">
         <p v-bind:class="{'active': routesActive}" @click.stop="changeTab('routes')">Routes</p>
         <p v-bind:class="{'active': distroActive}" @click.stop="changeTab('distro')">Distribution</p>
         <p @click.stop="showWallImage()"><i class="material-icons">photo</i>View Wall</p>
@@ -71,7 +71,7 @@
      this.getRoutes();
    },
    ready(){
-
+     this.notifications.notify('NavTabs.setActiveTab', 'layout');
    },
    methods: {
      getRoutes(){
@@ -168,7 +168,7 @@
      flex-grow: 1;
      margin: 16px;
 
-     .nav-tabs {
+     .gym-nav-tabs {
        display: flex;
        flex-grow: 1;
        margin: auto;
@@ -207,7 +207,7 @@
          flex-grow: 1;
          flex-wrap: wrap;
          margin: auto;
-         padding-bottom: 3em;
+         padding-bottom: 4em;
          margin-bottom: 2em;
          height: 40vh;
          flex-basis: 100%;
@@ -218,7 +218,7 @@
          flex-grow: 1;
          flex-wrap: wrap;
          margin: auto;
-         padding-bottom: 3em;
+         padding-bottom: 4em;
          margin-bottom: 2em;
          height: 40vh;
          flex-basis: 100%;

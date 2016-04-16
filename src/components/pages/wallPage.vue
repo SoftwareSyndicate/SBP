@@ -5,7 +5,7 @@
     </div>
 
     <div class="content-container">
-      <div class="nav-tabs">
+      <div class="wall-nav-tabs">
         <p v-bind:class="{'active': routesActive}" @click.stop="changeTab('routes')">Routes</p>
         <p v-bind:class="{'active': distroActive}" @click.stop="changeTab('distro')">Distribution</p>
         <p @click.stop="showWallImage()"><i class="material-icons">photo</i>View Wall</p>
@@ -72,10 +72,11 @@
    },
    created(){
      this.getWall();
-     this.notifications.notify('Navbar.setNavigateBack', true);
+
    },
    ready(){
-
+     this.notifications.notify('Navbar.setNavigateBack', true);
+     this.notifications.notify('NavTabs.setActiveTab', 'walls');
    },
    methods: {
      getWall(){
@@ -177,7 +178,7 @@
      flex-grow: 1;
      margin: 16px;
 
-     .nav-tabs {
+     .wall-nav-tabs {
        display: flex;
        flex-grow: 1;
        margin: auto;
@@ -216,7 +217,7 @@
          flex-grow: 1;
          flex-wrap: wrap;
          margin: auto;
-         padding-bottom: 3em;
+         padding-bottom: 4em;
          margin-bottom: 2em;
          height: 40vh;
          flex-basis: 100%;
@@ -227,7 +228,7 @@
          flex-grow: 1;
          flex-wrap: wrap;
          margin: auto;
-         padding-bottom: 3em;
+         padding-bottom: 4em;
          margin-bottom: 2em;
          height: 40vh;
          flex-basis: 100%;

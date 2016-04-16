@@ -69,6 +69,8 @@
    flex-basis: 100%;
    flex-direction: column;
    background-color: lighten($color-base-orange, 3%);
+   height: 100%;
+
    img {
      width: 10em;
      height: 10em;

@@ -52,11 +52,12 @@
 
    },
    created(){
-     this.notifications.notify('Navbar.setHeader', "GYM INFO");
-     this.hideLoadingAnimation();
+
    },
    ready(){
-
+     this.notifications.notify('Navbar.setHeader', "GYM INFO");
+     this.notifications.notify('GymPage.setActiveTab', 'none');
+     this.hideLoadingAnimation();
    },
    methods: {
    },

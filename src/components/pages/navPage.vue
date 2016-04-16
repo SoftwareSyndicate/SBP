@@ -43,7 +43,7 @@
    created(){
      this.hideLoadingAnimation();
      this.notifications.notify('Navbar.setVisible', false);
-     this.notifications.notify('GymPage.setTabsVisible', false);
+     this.notifications.notify('NavTabs.setVisible', false);
    },
    ready(){
 
@@ -58,7 +58,7 @@
    beforeDestroy(){
      this.showLoadingAnimation();
      this.notifications.notify('Navbar.setVisible', true);
-     this.notifications.notify('GymPage.setTabsVisible', true);
+     this.notifications.notify('NavTabs.setVisible', true);
    }
  });
 

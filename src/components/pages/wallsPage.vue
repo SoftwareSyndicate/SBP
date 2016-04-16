@@ -31,7 +31,7 @@
    },
    ready(){
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
-     this.notifications.notify('GymPage.changeTab', 'walls');
+     this.notifications.notify('NavTabs.setActiveTab', 'walls');
    },
    beforeDestroy(){
      window.scrollTo(0, 0);
