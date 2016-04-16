@@ -16,6 +16,9 @@
         <h3 v-link="{name: 'signIn'}">Login</h3>
       </div>
       <div class="link" v-if="!!currentUser">
+        <h3 v-link="{name: 'profile'}">My Stats</h3>
+      </div>
+      <div class="link" v-if="!!currentUser">
         <h3 @click.stop="signOut()">Logout</h3>
       </div>
     </div>

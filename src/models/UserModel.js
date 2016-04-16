@@ -26,9 +26,21 @@ class UserModel {
   }
 
   signUp(firstName, lastName, email, password){
-    return ParseService.signUp(email, password).then(results => {
-      this.currentUser = results;
-      return results;
+    var user = new Parse.User();
+    user.set("firstName", firstName);
+    user.set("lastName", lastName);
+    user.set("username", email);
+    user.set("password", password);
+    user.set("email", email);
+
+    return user.signUp(null, {
+      success: function(user) {
+        this.currentUser = user;
+        return user;
+      },
+      error: function(user, error) {
+        return error;
+      }
     });
   }
 

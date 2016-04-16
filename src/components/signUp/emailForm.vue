@@ -19,8 +19,8 @@
    name: 'EmailForm',
    data(){
      return {
-       firstName: UserModel.signUp.firstName,
-       lastName: UserModel.signUp.lastName,
+       firstName: UserModel.firstName,
+       lastName: UserModel.lastName,
        email: "",
        password: "",
      }
@@ -33,8 +33,9 @@
      signUp(){
        if(UserModel.isValidCreds(this.email, this.password)){
          UserModel.signUp(this.firstName, this.lastName, this.email, this.password).then(results => {
-           console.log(results);
+           this.$router.go({name: 'profile'});
          }, error => {
+           Materialize.toast(error.message, 3000);
            console.log(error);
          });
        }
@@ -51,7 +52,7 @@
    display: flex;
    flex-direction: column;
    flex-grow: 1;
-   color: rgba(0, 0, 0, .5);
+   color: rgba(0, 0, 0, .7);
 
    .header {
      color: white;

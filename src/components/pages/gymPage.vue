@@ -63,6 +63,10 @@
          this.layoutTabVisible = false;
          this.wallsTabVisible = false;
          this.newsTabVisible = true;
+       } else {
+         this.layoutTabVisible = false;
+         this.wallsTabVisible = false;
+         this.newsTabVisible = false;
        }
      },
      setTabsVisible(e, visible){
