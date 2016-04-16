@@ -32,8 +32,6 @@
  import BaseComponent from '../base/baseComponent.vue'
  var Navbar = BaseComponent.extend({
    name: 'Navbar',
-   props: ['header'],
-   el: '#navbar',
    data(){
      return {
        navigateBack: false,
@@ -44,7 +42,6 @@
        header: "Seattle Bouldering Project"
      }
    },
-
    ready(){
      /* $('.button-collapse').sideNav({
         menuWidth: 280,

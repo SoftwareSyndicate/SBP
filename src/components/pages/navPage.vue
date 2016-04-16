@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-page">
+  <div class="nav-page" transition transition-mode="out-in">
     <div class="back-button-container">
       <a class="back-button" href="javascript:history.go(-1)" ><i class="material-icons side-nav-icon">keyboard_backspace</i></a>
     </div>
@@ -67,6 +67,7 @@
  @import '../../styles/main.scss';
 
  $text-padding: 1.8em;
+
  .nav-page {
    display: flex;
    flex-grow: 1;
@@ -75,6 +76,11 @@
    height: 100vh;
    width: 100vw;
    background-color: $color-base-orange;
+   transition: opacity .3s ease;
+   &.v-enter, &.v-leave {
+     opacity: 0;
+   }
+
 
    .back-button-container {
      background-color: lighten($color-base-orange, 3%);

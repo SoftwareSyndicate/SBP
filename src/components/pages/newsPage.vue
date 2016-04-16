@@ -40,10 +40,13 @@
      }
    },
    created(){
+
+   },
+   ready(){
      this.notifications.notify('Navbar.setHeader', "News");
      this.notifications.notify('Overlay.setVisible', false);
+     this.notifications.notify('GymPage.changeTab', 'news');
    },
-
    beforeDestroy(){
      window.scrollTo(0, 0);
    }

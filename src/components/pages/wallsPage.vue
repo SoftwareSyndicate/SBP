@@ -19,7 +19,6 @@
      }
    },
    created(){
-     this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
      if(!WallModel.walls){
        WallModel.getWalls().then(results => {
          this.walls = results;
@@ -30,7 +29,10 @@
        this.notifications.notify('Overlay.setVisible', false);
      }
    },
-
+   ready(){
+     this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
+     this.notifications.notify('GymPage.changeTab', 'walls');
+   },
    beforeDestroy(){
      window.scrollTo(0, 0);
    }

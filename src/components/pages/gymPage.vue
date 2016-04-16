@@ -34,13 +34,14 @@
    data(){
      return {
        wallsTabVisible: true,
-       infoTabVisible: false,
+       newsTabVisible: false,
        layoutTabVisible: false,
        tabsVisible: true
      }
    },
    created(){
      this.notifications.listenFor('GymPage.setTabsVisible', this.setTabsVisible, this);
+     this.notifications.listenFor('GymPage.setActiveTab', this.changeTab, this);
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
      this.notifications.notify('Navbar.setActiveTab', "gym");
      this.changeTab(this.$route.name);
