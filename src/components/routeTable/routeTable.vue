@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="table-body">
-      <div class="table-row" v-for="tableGradeObject in tableData | gradeFilter | orderBy 'color'">
+      <div class="table-row" v-for="tableGradeObject in tableData | gradeFilter">
         <div class="left">
           <div class="diamond">
             <div class="diamond-background z-depth-1" v-bind:style="{'background-color': tableGradeObject.color}">
@@ -43,7 +43,6 @@
      }
    },
    created(){
-     console.log(this.routes.length);
      this.calculateGradeTotals(this.routes);
    },
 
