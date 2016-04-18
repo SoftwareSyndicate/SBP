@@ -1,14 +1,30 @@
 <template>
   <div class="sign-in-page">
-    <img src="../../../images/sbp_stamp.png">
-    <p class="header">Seattle Bouldering Project</p>
+    <div class="header-container">
+      <p class="header">
+        Seattle
+        <br>
+        Bouldering
+        <br>
+        Project
+      </p>
+    </div>
 
     <form>
       <input placeholder="Email" id="email" type="email" class="validate" v-model="email">
       <input placeholder="Password" id="password" type="password" class="validate" v-model="password">
       <a class="waves-effect waves-dark btn btn-primary" @click.stop="signIn()">Log in</a>
-      <a v-link="{name: 'signUp'}" class="sign-up">Sign Up</a>
+      <a class="forgot-password">Forgot your password?</a>
     </form>
+
+    <img src="../../../images/mountains.png">
+    <div class="footer-container">
+      <div class="message">
+        <p>New to our app?</p>
+        <p class="create">Create a SBP Mobile Account</p>
+      </div>
+      <i class="material-icons" v-link="{name: 'signUp'}">keyboard_arrow_right</i>
+    </div>
   </div>
 </template>
 
@@ -64,52 +80,93 @@
  @import '../../styles/main.scss';
 
  .sign-in-page {
+   height: 100%;
    display: flex;
    flex-wrap: wrap;
    flex-basis: 100%;
    flex-direction: column;
    background-color: lighten($color-base-orange, 3%);
-   height: 100%;
 
-   img {
-     width: 10em;
-     height: 10em;
-     margin-right: auto;
-     margin-left: auto;
-     margin-top: 4em;
-     margin-bottom: 1em;
-   }
-
-   p.header {
-     font-weight: 100;
-     font-size: 1.5em;
-     color: white;
-     margin-left: auto !important;
-     margin-right: auto !important;
-     margin-bottom: 1em !important;
+   .header-container {
+     margin-top: 6em;
+     margin-bottom: 2em;
+     padding-left: 10%;
+     padding-right: 10%;
+     .header {
+       text-transform: uppercase;
+       font-weight: 300;
+       font-size: 1.1em;
+       color: white;
+     }
    }
 
    form {
+     padding-left: 10%;
+     padding-right: 10%;
      display: flex;
      flex-direction: column;
-     width: 60%;
-     margin-right: auto;
-     margin-left: auto;
+
+     input {
+       margin-bottom: 1px !important;
+       width: initial;
+     }
 
      .btn {
-       width: 60%;
+       background-color: darken($color-base-orange, 8%) !important;
+       box-shadow: none;
+       color: white !important;
+       width: 100%;
+       margin-top: 1em;
        margin-right: auto;
        margin-left: auto;
      }
 
-     a.sign-up {
-       color: white;
-       text-decoration: underline;
+     a.forgot-password {
+       color:  darken($color-base-orange, 18%) !important;
+       font-size: .9em;
        margin: auto !important;
        margin-top: 1.5em !important;
        cursor: pointer;
      }
    }
+
+   img {
+     width: 100%;
+     position: absolute;
+     bottom: 52px;
+   }
+
+   .footer-container {
+     display: flex;
+     padding: 1.5em;
+     position: fixed;
+     z-index: 2;
+     top: calc(100vh - 70px);
+     height: 70px;
+     width: 100%;
+     background-color: white;
+     align-items: center;
+
+     .message {
+       flex-basis: 70%;
+
+       p {
+         color: rgba(0, 0, 0, .5);
+
+         &.create {
+           color: $color-base-orange;
+         }
+       }
+     }
+
+     i {
+       margin-left: auto;
+       border-radius: 50%;
+       background-color: rgba(0, 0, 0, .1);
+       color: rgba(0, 0, 0, .5);
+     }
+   }
+
  }
 
 </style>
