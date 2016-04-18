@@ -23,6 +23,7 @@ import SignInPage from './components/pages/signInPage.vue'
 
 //Sign Up
 import SignUpPage from './components/pages/signUpPage.vue'
+import IntroForm from './components/signUp/introForm.vue'
 import EmailForm from './components/signUp/emailForm.vue'
 import NameForm from './components/signUp/nameForm.vue'
 
@@ -108,6 +109,10 @@ router.map({
     name: 'signUp',
     component: SignUpPage,
     subRoutes: {
+      '/intro': {
+        name: 'intro',
+        component: IntroForm
+      },
       '/name': {
         name: 'name',
         component: NameForm
@@ -129,7 +134,7 @@ router.redirect({
 });
 
 router.redirect({
-  '/signUp': '/signUp/name'
+  '/signUp': '/signUp/intro'
 });
 
 router.start(App, '#app');

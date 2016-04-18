@@ -23,11 +23,11 @@
      if(UserModel.currentUser){
        this.$router.go({name: 'layout'});
      }
-     this.notifications.notify('Navbar.setHeader', "Seattle Bouldering Project");
      this.hideLoadingAnimation();
    },
    ready(){
-
+     this.notifications.notify('Navbar.setHeader', "Seattle Bouldering Project");
+     this.notifications.notify('Navbar.setVisible', false);
    },
    methods: {
 

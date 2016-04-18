@@ -49,7 +49,7 @@
      this.hideLoadingAnimation();
    },
    ready(){
-
+     this.notifications.notify('Navbar.setVisible', false);
    },
    methods: {
      signIn(){
@@ -85,13 +85,13 @@
    flex-wrap: wrap;
    flex-basis: 100%;
    flex-direction: column;
-   background-color: lighten($color-base-orange, 3%);
+   background: $gradient-background;
 
    .header-container {
-     margin-top: 6em;
+     margin-top: 10em;
      margin-bottom: 2em;
-     padding-left: 10%;
-     padding-right: 10%;
+     padding-left: $signUp-page-padding;
+     padding-right: $signUp-page-padding;
      .header {
        text-transform: uppercase;
        font-weight: 300;
@@ -101,8 +101,8 @@
    }
 
    form {
-     padding-left: 10%;
-     padding-right: 10%;
+     padding-left: $signUp-page-padding;
+     padding-right: $signUp-page-padding;
      display: flex;
      flex-direction: column;
 

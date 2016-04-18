@@ -42,7 +42,7 @@
  }
  #wrapper {
    position: relative;
-   height: calc(100vh - 56px);
+   height: 100%;
    margin: 0 auto;
  }
  .view {

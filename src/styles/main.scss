@@ -3,8 +3,9 @@ $color-background: #f5f6fa;
 $color-base-orange: #ff6d00;
 $color-base-gray: #91a0b0;
 
-$component-border: 1px rgba(215, 218, 230, 1) solid;
 
+$component-border: 1px rgba(215, 218, 230, 1) solid;
+$gradient-background: linear-gradient($color-base-orange, lighten($color-base-orange, 8%));
 //Containers
 .component {
   border-radius: 2px;
@@ -29,4 +30,5 @@ input {
   font-size: small !important;
 }
 
-
+//SignUp
+$signUp-page-padding: 14%;
