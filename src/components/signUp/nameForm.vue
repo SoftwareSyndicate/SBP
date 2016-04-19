@@ -1,12 +1,18 @@
 <template>
   <div class="name-form">
-    <div class="header">
-      Get Started
+    <div class="header-container">
+      <p class="header">
+        What's Your Name?
+      </p>
+      <span>&nbsp</span>
     </div>
     <form>
-      <input placeholder="First" id="first" type="text" class="validate" v-model="firstName">
-      <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName">
-      <a class="waves-effect waves-dark btn btn-primary" @click.stop="proceed()"><i class="material-icons right">forward</i>Continue</a>
+      <div class="inputs">
+        <input placeholder="First" id="first" type="text" class="validate" v-model="firstName" >
+        <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName">
+      </div>
+      <p v-if="!valid">We want to be able to congratulate you on your climbing progress!</p>
+      <a class="waves-effect waves-dark btn btn-primary" @click.stop="proceed()" v-if="valid"><i class="material-icons right">arrow_forward</i>Continue</a>
     </form>
   </div>
 </template>
@@ -20,33 +26,41 @@
    data(){
      return {
        firstName: "",
-       lastName: ""
+       lastName: "",
+       valid: false
      }
    },
    created(){
 
    },
-
+   ready(){
+     this.$watch('firstName', function(val){
+       this.firstName = val;
+       this.isValid(this.firstName, this.lastName);
+     });
+     this.$watch('lastName', function(val){
+       this.lastName = val;
+       this.isValid(this.firstName, this.lastName);
+     });
+   },
    methods: {
      proceed(){
-       if(this.isValid(this.firstName, this.lastName)){
+       if(this.valid){
          UserModel.firstName = this.firstName;
          UserModel.lastName = this.lastName;
          this.$router.go({name: 'email'});
        }
      },
      isValid(first, last){
-       var valid = true;
+       this.valid = true;
        if(first.length === 0){
-         valid = false;
-         Materialize.toast("First Name Required", 3000);
+         this.valid = false;
        }
        if(last.length === 0){
-         valid = false;
-         Materialize.toast("Last Name Required", 3000);
+         this.valid = false;
        }
-
-       return valid;
+       console.log(this.valid);
+       return this.valid;
      }
 
    }
@@ -56,30 +70,71 @@
 </script>
 
 <style lang="sass">
-
+ @import "../../styles/main.scss";
  .name-form {
    display: flex;
    flex-direction: column;
    flex-grow: 1;
    color: rgba(0, 0, 0, .7);
+   height: 100%;
 
-   .header {
-     color: white;
-     font-size: 1.8em;
-     font-weight: 300;
-     text-align: center;
-     margin-top: 4em;
-     margin-bottom: 2em;
+   .header-container {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     margin-top: 10em;
+     padding-left: $signUp-page-padding;
+     padding-right: $signUp-page-padding;
+     .header {
+       font-weight: 100;
+       font-size: 1.3em;
+       color: rgba(255, 255, 255, 1);
+       margin-bottom: .5em !important;
+     }
+
+     span {
+       margin-bottom: 1.2em;
+       display: block;
+       height: 3px;
+       width: 3em;
+       border-bottom: 2px solid darken($color-base-orange, 10%)
+     }
    }
 
    form {
      display: flex;
      flex-direction: column;
-     width: 60%;
+     width: 85%;
      margin-right: auto;
      margin-left: auto;
 
+     .inputs {
+       display: flex;
+       input {
+         display: flex;
+         flex-basis: 50%;
+         margin-left: .5em;
+         margin-right: .5em;
+       }
+     }
+
+     p {
+       padding-left: 1.5em !important;
+       padding-right: 1.5em !important;
+       font-size: .9em;
+       font-weight: 100;
+       text-align: center;
+       color: rgba(255, 255, 255, .9);
+     }
+
      .btn {
+       padding-right: 30%;
+       padding-left: 30%;
+       background-color: darken($color-base-orange, 8%) !important;
+       box-shadow: none;
+       color: white !important;
+       width: 100%;
        margin-right: auto;
        margin-left: auto;
      }

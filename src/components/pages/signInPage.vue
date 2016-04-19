@@ -18,12 +18,12 @@
     </form>
 
     <img src="../../../images/mountains.png">
-    <div class="footer-container">
+    <div class="footer-container" v-link="{name: 'signUp'}">
       <div class="message">
         <p>New to our app?</p>
         <p class="create">Create a SBP Mobile Account</p>
       </div>
-      <i class="material-icons" v-link="{name: 'signUp'}">keyboard_arrow_right</i>
+      <i class="material-icons">keyboard_arrow_right</i>
     </div>
   </div>
 </template>
@@ -50,6 +50,7 @@
    },
    ready(){
      this.notifications.notify('Navbar.setVisible', false);
+     $('.sign-in-page').css("height", document.body.clientHeight + "px");
    },
    methods: {
      signIn(){

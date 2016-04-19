@@ -5,7 +5,7 @@ $color-base-gray: #91a0b0;
 
 
 $component-border: 1px rgba(215, 218, 230, 1) solid;
-$gradient-background: linear-gradient($color-base-orange, lighten($color-base-orange, 8%));
+$gradient-background: linear-gradient(darken($color-base-orange, 3%), lighten($color-base-orange, 8%));
 //Containers
 .component {
   border-radius: 2px;
@@ -17,8 +17,12 @@ $gradient-background: linear-gradient($color-base-orange, lighten($color-base-or
 //Inputs
 input {
   background-color: white !important;
-  border-radius: 2% !important;
+  border-radius: 4px !important;
   padding-left: 10px !important;
+  border-bottom: none !important;
+  -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, .2) !important;
+  -moz-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, .2) !important;
+  box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, .2) !important;
 }
 
 

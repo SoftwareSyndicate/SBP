@@ -16,9 +16,9 @@
     </form>
 
     <img src="../../../images/mountains.png">
-    <div class="footer-container">
-      <p>Alredy have an account?</p>
-    </div>
+    <!-- <div class="footer-container">
+         <p>Alredy have an account?</p>
+         </div> -->
   </div>
 </template>
 
