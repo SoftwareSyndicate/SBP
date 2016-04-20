@@ -113,6 +113,7 @@
      }
 
      .btn {
+       font-weight: 300;
        background-color: darken($color-base-orange, 8%) !important;
        box-shadow: none;
        color: white !important;

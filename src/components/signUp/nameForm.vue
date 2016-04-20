@@ -12,7 +12,7 @@
         <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName">
       </div>
       <p v-if="!valid">We want to be able to congratulate you on your climbing progress!</p>
-      <a class="waves-effect waves-dark btn btn-primary" @click.stop="proceed()" v-if="valid"><i class="material-icons right">arrow_forward</i>Continue</a>
+      <a class="waves-effect waves-dark btn btn-primary" @click.stop="proceed()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
     </form>
   </div>
 </template>
@@ -59,10 +59,8 @@
        if(last.length === 0){
          this.valid = false;
        }
-       console.log(this.valid);
        return this.valid;
      }
-
    }
  });
 
@@ -129,6 +127,7 @@
      }
 
      .btn {
+       font-weight: 300;
        padding-right: 30%;
        padding-left: 30%;
        background-color: darken($color-base-orange, 8%) !important;
