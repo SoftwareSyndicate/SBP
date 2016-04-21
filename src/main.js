@@ -72,14 +72,14 @@ import nvd3 from './libs/nvd3.js'
 import stream_layers from './libs/streamLayers.js'
 
 window.colorMappings = {
-  gray: "#95a5a6",
-  yellow: "#ffeb3b",
-  green: "#4caf50",
-  red: "#f44336",
-  blue: "#2196f3",
-  orange: "#ff9800",
-  purple: "#9c27b0",
-  black: "#212121"
+  gray: "rgba(209,209,209, 0.8)",
+  yellow: "rgba(255,210,28, 0.8)",
+  green: "rgba(5,179,99, 0.9)",
+  red: "rgba(243,23,38, 0.8)",
+  blue: "rgba(48,99,245, 0.8)",
+  orange: "rgba(252,109,33, 0.8)",
+  purple: "rgba(183,22,229,0.8)",
+  black: "rgba(33,33,33,0.9)"
 }
 
 window.colorsArray = ['Gray','Yellow','Green','Red','Blue','Orange','Purple','Black'];
