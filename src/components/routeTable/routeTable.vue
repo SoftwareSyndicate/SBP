@@ -45,6 +45,7 @@
    created(){
      this.calculateGradeTotals(this.routes);
      this.tableData = this.filterRoutes(this.tableData);
+     console.log(this.tableData);
    },
 
    methods: {
@@ -64,7 +65,7 @@
              name: vGrade,
              total: 1,
              color: window.colorMappings[route.attributes.color],
-             grade: route.attributes.grade,
+             grade: parseInt(route.attributes.grade),
              colorValue: RouteModel.findColorIndex(window.colorMappings[route.attributes.color])
            };
            tableData.push(tableGradeObject);
@@ -94,7 +95,6 @@
            return 0;
          }
        });
-
        routes.reverse();
        return routes;
      }
