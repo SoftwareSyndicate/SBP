@@ -4,6 +4,37 @@ class RouteModel {
 
   }
 
+  findColorIndex(color) {
+    var value;
+    switch(color){
+      case "#95a5a6":
+        value = 0;
+        break;
+      case "#ffeb3b":
+        value = 1;
+        break;
+      case "#4caf50":
+        value = 2;
+        break;
+      case "#f44336":
+        value = 3;
+        break;
+      case "#2196f3":
+        value = 4;
+        break;
+      case "#ff9800":
+        value = 5;
+        break;
+      case "#9c27b0":
+        value = 6;
+        break;
+      case "#212121":
+        value = 7;
+        break;
+    }
+    return value;
+  }
+
   getGradeImage(route){
     var gradeImage;
     switch(Math.round(parseInt(route.attributes.grade))){

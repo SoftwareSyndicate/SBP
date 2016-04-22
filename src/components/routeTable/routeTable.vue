@@ -31,7 +31,7 @@
 
 <script>
  import BaseComponent from '../base/baseComponent.vue'
-
+ import RouteModel from '../../models/RouteModel.js'
  var RouteTable = BaseComponent.extend({
    name: 'RouteTable',
    props: ['routes', 'displayKeys'],
@@ -59,12 +59,12 @@
            }
          });
          if(!found){
-           console.log("NEW TABLE GRADE OBJECT");
            var tableGradeObject = {
              name: vGrade,
              total: 1,
              color: window.colorMappings[route.attributes.color],
-             grade: route.attributes.grade
+             grade: route.attributes.grade,
+             colorValue: RouteModel.findColorIndex(window.colorMappings[route.attributes.color])
            };
            tableData.push(tableGradeObject);
          }

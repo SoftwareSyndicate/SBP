@@ -16,9 +16,9 @@ Vue.filter('gradeFilter', function(arr, limit){
   });
 
   arr.sort(function(a, b){
-    if(findColorIndex(a.color) > findColorIndex(b.color)){
+    if(a.colorValue > b.colorValue){
       return 1;
-    } else if(findColorIndex(a.color) < findColorIndex(b.color)){
+    } else if(a.colorValue < b.colorValue){
       return -1;
     } else {
       return 0;
@@ -26,37 +26,6 @@ Vue.filter('gradeFilter', function(arr, limit){
   });
 
   arr.reverse();
-
-  function findColorIndex(color) {
-    var value;
-    switch(color){
-      case "#95a5a6":
-        value = 0;
-        break;
-      case "#ffeb3b":
-        value = 1;
-        break;
-      case "#4caf50":
-        value = 2;
-        break;
-      case "#f44336":
-        value = 3;
-        break;
-      case "#2196f3":
-        value = 4;
-        break;
-      case "#ff9800":
-        value = 5;
-        break;
-      case "#9c27b0":
-        value = 6;
-        break;
-      case "#212121":
-        value = 7;
-        break;
-    }
-    return value;
-  }
 
   //return arr.slice(0, Number(limit))
   return arr;
