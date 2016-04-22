@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="table-body">
-      <div class="table-row" v-for="tableGradeObject in tableData | gradeFilter">
+      <div class="table-row" v-for="tableGradeObject in tableData">
         <div class="left">
           <div class="diamond">
             <div class="diamond-background z-depth-1" v-bind:style="{'background-color': tableGradeObject.color}">
@@ -44,6 +44,7 @@
    },
    created(){
      this.calculateGradeTotals(this.routes);
+     this.tableData = this.filterRoutes(this.tableData);
    },
 
    methods: {
@@ -69,7 +70,33 @@
            tableData.push(tableGradeObject);
          }
        });
+
+       //Filter Routes before displaying them, don't use filter - performance 
        this.tableData = tableData;
+     },
+     filterRoutes(routes){
+       routes.sort(function(a, b) {
+         if(a.grade > b.grade){
+           return 1;
+         } else if(a.grade < b.grade) {
+           return -1;
+         } else {
+           return 0;
+         }
+       });
+
+       routes.sort(function(a, b){
+         if(a.colorValue > b.colorValue){
+           return 1;
+         } else if(a.colorValue < b.colorValue){
+           return -1;
+         } else {
+           return 0;
+         }
+       });
+
+       routes.reverse();
+       return routes;
      }
    }
  });
