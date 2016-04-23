@@ -117,7 +117,7 @@
 
 <style lang="sass">
  @import '../../styles/main.scss';
- 
+
  .gym-layout-page {
    display: flex;
    flex-wrap: wrap;
@@ -128,7 +128,7 @@
      flex-basis: 100%;
      margin-bottom: 2em;
 
-     li {
+     li.wall-list-item {
        border-radius: 0px !important;
        border-top: none !important;
        border-right: none !important;
@@ -139,12 +139,18 @@
        }
      }
 
+     .wall-list-item .left .name-container {
+       margin: 0px !important;
+     }
+
      .color {
        height: 10px !important;
      }
 
      .name-container {
+       padding-top: 1.8em;
        padding-bottom: .5em;
+       margin: 0px !important;
      }
 
      h5 {
@@ -152,6 +158,11 @@
        text-transform: none !important;
        font-weight: 500 !important;
        color: rgba(0, 0, 0, .3) !important;
+       padding-left: 10px !important;
+     }
+
+     p {
+       padding-left: 10px !important;
      }
      .right {
        flex-basis: 30%;

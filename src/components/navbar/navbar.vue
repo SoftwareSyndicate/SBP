@@ -91,12 +91,13 @@
 <style lang="sass">
  #navbar {
    nav {
-     background-color: #ff6d00;
-     border-bottom: 2px solid rgba(220, 94, 0, .8);
+     background-color: #fc6d21;
+     border-bottom: 3px solid rgba(229, 98, 1, 1);
      background-image: url("../../../images/mountains.png");
      background-size: 50%;
      background-repeat: no-repeat;
      background-position: 50% 18px;
+     box-shadow: none !important;
 
      .menu-button {
        cursor: pointer;

@@ -1,17 +1,19 @@
 <template>
   <div class="profile-page">
     profile
+
   </div>
+  <nav-tabs></nav-tabs>
 </template>
 
 <script>
  import BaseComponent from '../../components/base/baseComponent.vue'
  import UserModel from '../../models/UserModel.js'
-
+ import NavTabs from '../navTabs/navTabs.vue'
  var ProfilePage =  BaseComponent.extend({
    name: 'ProfilePage',
    components: {
-
+     NavTabs
    },
    data(){
      return {

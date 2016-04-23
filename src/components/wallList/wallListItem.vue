@@ -102,15 +102,16 @@
      .name-container {
        padding-top: 1.5em;
        padding-bottom: .3em !important;
+       margin: 20px 0px 0px 4px !important;
 
        .name {
          font-size: 1.6em;
          white-space: nowrap;
          overflow: hidden;
          text-overflow: ellipsis;
-         font-weight: 100;
-         margin: 20px 0px 0px 4px !important;
-         color: rgba(96, 98, 127, .9);
+         font-weight: 300;
+
+         color: rgba(96, 98, 127, .8);
        }
      }
 

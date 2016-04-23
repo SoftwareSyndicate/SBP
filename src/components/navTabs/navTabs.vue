@@ -13,10 +13,10 @@
           <i class="material-icons">equalizer</i>
         </a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': newsTabVisible}" @click="setActiveTab('news')" v-link="{name: 'news'}">
-        <p class="tab-name">News</p>
-        <a href="#tab-news" class="">
-          <i class="material-icons">web</i>
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': profileTabVisible}" @click="setActiveTab('profile')" v-link="{name: 'profile'}">
+        <p class="tab-name">Profile</p>
+        <a href="#tab-profile" class="">
+          <i class="material-icons">account_circle</i>
         </a>
       </li>
     </ul>
@@ -30,7 +30,7 @@
    data(){
      return {
        wallsTabVisible: false,
-       newsTabVisible: false,
+       profileTabVisible: false,
        layoutTabVisible: false,
        visible: true
      }
@@ -49,19 +49,19 @@
        if(tab === "layout"){
          this.layoutTabVisible = true;
          this.wallsTabVisible = false;
-         this.newsTabVisible = false;
+         this.profileTabVisible = false;
        } else if(tab === "walls"){
          this.layoutTabVisible = false;
          this.wallsTabVisible = true;
-         this.newsTabVisible = false;
-       } else if(tab === "news"){
+         this.profileTabVisible = false;
+       } else if(tab === "profile"){
          this.layoutTabVisible = false;
          this.wallsTabVisible = false;
-         this.newsTabVisible = true;
+         this.profileTabVisible = true;
        } else {
          this.layoutTabVisible = false;
          this.wallsTabVisible = false;
-         this.newsTabVisible = false;
+         this.profileTabVisible = false;
        }
      },
      setVisible(e, visible){

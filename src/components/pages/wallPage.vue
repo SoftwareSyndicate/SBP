@@ -154,9 +154,14 @@
        height: 10px !important;
      }
 
+     .left {
+       padding-left: 10px !important;
+     }
+
      .name-container {
+       padding-top: 1.8em;
        padding-bottom: .5em;
-       margin-bottom: 0px !important;
+       margin: 0px !important;
 
        h5 {
          margin-bottom: 0px !important;
@@ -169,6 +174,10 @@
        text-transform: none !important;
        font-weight: 500 !important;
        color: rgba(0, 0, 0, .3) !important;
+     }
+
+     p {
+       padding: 0px !important;
      }
      .right {
        flex-basis: 30%;

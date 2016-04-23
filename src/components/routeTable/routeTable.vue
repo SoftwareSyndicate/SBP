@@ -12,7 +12,7 @@
       <div class="table-row" v-for="tableGradeObject in tableData">
         <div class="left">
           <div class="diamond">
-            <div class="diamond-background z-depth-1" v-bind:style="{'background-color': tableGradeObject.color}">
+            <div class="diamond-background" v-bind:style="{'background-color': tableGradeObject.color}">
 
             </div>
             <div class="diamond-grade" v-bind:class="{'tenner': tableGradeObject.grade > 9}">
@@ -106,8 +106,9 @@
 
 <style lang="sass">
 
- $cell-padding: 1.4em;
- $cell-border: 2px rgba(215, 218, 230, .5) solid;
+ $header-cell-padding: 1.4em;
+ $cell-padding: 1.6em;
+ $cell-border: 2px rgba(215, 218, 230, .3) solid;
 
  .route-table {
    display: flex;
@@ -124,13 +125,13 @@
      border-bottom: $cell-border;
      .left {
        flex-basis: 50%;
-       padding: $cell-padding;
+       padding: $header-cell-padding;
        border-right: $cell-border;
      }
 
      .right {
        flex-basis: 50%;
-       padding: $cell-padding;
+       padding: $header-cell-padding;
      }
    }
 
@@ -148,7 +149,6 @@
 
      .table-row {
        display: flex;
-
        flex-grow: 1;
        flex-basis: 100%;
        border-bottom: $cell-border;

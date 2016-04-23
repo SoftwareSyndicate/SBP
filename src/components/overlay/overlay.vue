@@ -1,13 +1,16 @@
 <template>
   <div class="overlay-container" v-show="visible">
-    <div class="ball"></div>
-    <div class="ball"></div>
-    <div class="ball"></div>
-    <div class="ball"></div>
-    <div class="ball"></div>
-    <div class="ball"></div>
-    <div class="ball"></div>
-    <div class="ball"></div>
+    <div class='triangles'>
+      <div class='tri invert'></div>
+      <div class='tri invert'></div>
+      <div class='tri'></div>
+      <div class='tri invert'></div>
+      <div class='tri invert'></div>
+      <div class='tri'></div>
+      <div class='tri invert'></div>
+      <div class='tri'></div>
+      <div class='tri invert'></div>
+    </div>
   </div>
 </template>
 
@@ -38,106 +41,128 @@
    height: 100vh;
    padding-top: 20vh;
    margin: 0 auto;
- }
 
- .ball {
-   width: 10px;
-   height: 10px;
-   margin: 10px auto;
-   border-radius: 50px;
- }
- .ball:nth-child(1) {
-   background: #95a5a6;
-   -webkit-animation: right 1s infinite ease-in-out;
-   -moz-animation: right 1s infinite ease-in-out;
-   animation: right 1s infinite ease-in-out;    
- }
+   @-webkit-keyframes pulse {
+     0% {
+       opacity: 1;
+     }
+     16.666% {
+       opacity: 1;
+     }
+     100% {
+       opacity: 0;
+     }
+   }
+   @-moz-keyframes pulse {
+     0% {
+       opacity: 1;
+     }
+     16.666% {
+       opacity: 1;
+     }
+     100% {
+       opacity: 0;
+     }
+   }
+   @keyframes pulse {
+     0% {
+       opacity: 1;
+     }
+     16.666% {
+       opacity: 1;
+     }
+     100% {
+       opacity: 0;
+     }
+   }
+   body {
+     background: #e4e4e5;
+   }
 
- .ball:nth-child(2) {
-   background: #ffeb3b;
-   -webkit-animation: left 1.1s infinite ease-in-out;
-   -moz-animation: left 1.1s infinite ease-in-out;
-   animation: left 1.1s infinite ease-in-out;
+   .triangles {
+     -webkit-transform: translate(-50%, -50%);
+     -moz-transform: translate(-50%, -50%);
+     -ms-transform: translate(-50%, -50%);
+     -o-transform: translate(-50%, -50%);
+     transform: translate(-50%, -50%);
+     height: 54px;
+     width: 60px;
+     position: absolute;
+     left: 50%;
+     top: 50%;
+   }
+
+   .tri {
+     position: absolute;
+     -webkit-animation: pulse 750ms ease-in infinite;
+     -moz-animation: pulse 750ms ease-in infinite;
+     animation: pulse 750ms ease-in infinite;
+     border-top: 18px solid #CED3E4;
+     border-left: 10px solid transparent;
+     border-right: 10px solid transparent;
+     border-bottom: 0px;
+   }
+   .tri.invert {
+     border-top: 0px;
+     border-bottom: 18px solid #CED3E4;
+     border-left: 10px solid transparent;
+     border-right: 10px solid transparent;
+   }
+   .tri:nth-child(1) {
+     left: 20px;
+   }
+   .tri:nth-child(2) {
+     left: 10px;
+     top: 18px;
+     -webkit-animation-delay: -125ms;
+     -moz-animation-delay: -125ms;
+     animation-delay: -125ms;
+   }
+   .tri:nth-child(3) {
+     left: 20px;
+     top: 18px;
+   }
+   .tri:nth-child(4) {
+     left: 30px;
+     top: 18px;
+     -webkit-animation-delay: -625ms;
+     -moz-animation-delay: -625ms;
+     animation-delay: -625ms;
+   }
+   .tri:nth-child(5) {
+     top: 36px;
+     -webkit-animation-delay: -250ms;
+     -moz-animation-delay: -250ms;
+     animation-delay: -250ms;
+   }
+   .tri:nth-child(6) {
+     top: 36px;
+     left: 10px;
+     -webkit-animation-delay: -250ms;
+     -moz-animation-delay: -250ms;
+     animation-delay: -250ms;
+   }
+   .tri:nth-child(7) {
+     top: 36px;
+     left: 20px;
+     -webkit-animation-delay: -375ms;
+     -moz-animation-delay: -375ms;
+     animation-delay: -375ms;
+   }
+   .tri:nth-child(8) {
+     top: 36px;
+     left: 30px;
+     -webkit-animation-delay: -500ms;
+     -moz-animation-delay: -500ms;
+     animation-delay: -500ms;
+   }
+   .tri:nth-child(9) {
+     top: 36px;
+     left: 40px;
+     -webkit-animation-delay: -500ms;
+     -moz-animation-delay: -500ms;
+     animation-delay: -500ms;
+   }
  }
-
- .ball:nth-child(3) {
-   background: #4caf50;
-   -webkit-animation: right 1.05s infinite ease-in-out;
-   -moz-animation: right 1.05s infinite ease-in-out;
-   animation: right 1.05s infinite ease-in-out;
- }
-
- .ball:nth-child(4) {
-   background: #f44336;
-   -webkit-animation: left 1.15s infinite ease-in-out;
-   -moz-animation: left 1.15s infinite ease-in-out;
-   animation: left 1.15s infinite ease-in-out;
- }
-
- .ball:nth-child(5) {
-   background: #2196f3;
-   -webkit-animation: right 1.1s infinite ease-in-out;
-   -moz-animation: right 1.1s infinite ease-in-out;
-   animation: right 1.1s infinite ease-in-out;
- }
-
- .ball:nth-child(6) {
-   background: #ff9800;
-   -webkit-animation: left 1.05s infinite ease-in-out;
-   -moz-animation: left 1.05s infinite ease-in-out;
-   animation: left 1.05s infinite ease-in-out;
- }
-
- .ball:nth-child(7) {
-   background: #9c27b0;
-   -webkit-animation: right 1s infinite ease-in-out;
-   -moz-animation: right 1s infinite ease-in-out;
-   animation: right 1s infinite ease-in-out;
- }
-
- .ball:nth-child(8) {
-   background: #212121;
-   -webkit-animation: right 1.15s infinite ease-in-out;
-   -moz-animation: right 1.15s infinite ease-in-out;
-   animation: right 1.15s infinite ease-in-out;
- }
-
-
- @-webkit-keyframes right {
-   0%   { -webkit-transform: translate(-15px);   }
-   50%  { -webkit-transform: translate(15px);    }
-   100% { -webkit-transform: translate(-15px);   }
- }
-
- @-webkit-keyframes left {
-   0%   { -webkit-transform: translate(15px);    }
-   50%  { -webkit-transform: translate(-15px);   }
-   100% { -webkit-transform: translate(15px);    }
- }
-
- @-moz-keyframes right {
-   0%   { -moz-transform: translate(-15px);   }
-   50%  { -moz-transform: translate(15px);    }
-   100% { -moz-transform: translate(-15px);   }
- }
-
- @-moz-keyframes left {
-   0%   { -moz-transform: translate(15px);    }
-   50%  { -moz-transform: translate(-15px);   }
-   100% { -moz-transform: translate(15px);    }
- }
-
- @keyframes right {
-   0%   { transform: translate(-15px);  }
-   50%  { transform: translate(15px);   }
-   100% { transform: translate(-15px);  }
- }
-
- @keyframes left {
-   0%   { transform: translate(15px);   }
-   50%  { transform: translate(-15px);  }
-   100% { transform: translate(15px);   }
- }
-
 
 </style>
