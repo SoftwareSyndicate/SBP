@@ -104,14 +104,13 @@
        padding-bottom: .3em !important;
 
        .name {
-         font-size: 2em;
+         font-size: 1.6em;
          white-space: nowrap;
          overflow: hidden;
          text-overflow: ellipsis;
-         text-transform: uppercase;
          font-weight: 100;
-         margin: 0;
-         color: rgba(0, 0, 0, .5);
+         margin: 20px 0px 15px 4px !important;
+         color: rgba(96, 98, 127, .9);
        }
      }
 
@@ -119,13 +118,13 @@
        padding-bottom: .8em;
        border-top: 2px solid rgba(0, 0, 0, .1);
        width: 10%;
+       margin-left: 6px;
      }
 
      .set-date {
        font-size: .9em;
-       margin: 5px 0 0;
        color: #ff5722;
-       padding-left: .2em !important;
+       padding: 0.4em 0 0 0.4em;
      }
    }
 
@@ -138,7 +137,7 @@
 
      .color {
        display: flex;
-       height: 15px;
+       height: 20px;
        margin-left: auto;
      }
    }
