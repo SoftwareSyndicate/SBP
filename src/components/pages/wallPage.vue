@@ -138,6 +138,7 @@
      flex-basis: 100%;
      margin-bottom: 2em;
 
+
      li {
        border-radius: 0px !important;
        border-top: none !important;
@@ -155,9 +156,15 @@
 
      .name-container {
        padding-bottom: .5em;
+       margin-bottom: 0px !important;
+
+       h5 {
+         margin-bottom: 0px !important;
+       }
      }
 
      h5 {
+       margin-bottom: 0px !important;
        font-size: .95em !important;
        text-transform: none !important;
        font-weight: 500 !important;

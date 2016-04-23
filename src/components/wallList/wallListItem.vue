@@ -109,12 +109,13 @@
          overflow: hidden;
          text-overflow: ellipsis;
          font-weight: 100;
-         margin: 20px 0px 15px 4px !important;
+         margin: 20px 0px 0px 4px !important;
          color: rgba(96, 98, 127, .9);
        }
      }
 
      .spacer {
+       margin-top: 15px;
        padding-bottom: .8em;
        border-top: 2px solid rgba(0, 0, 0, .1);
        width: 10%;
