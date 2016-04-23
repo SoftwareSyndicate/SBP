@@ -9,20 +9,21 @@
       </div>
     </div>
     <div class="table-body">
-      <div class="table-row" v-for="tableGradeObject in tableData">
+      <div class="table-row" v-for="route in routes">
         <div class="left">
           <div class="diamond">
-            <div class="diamond-background" v-bind:style="{'background-color': tableGradeObject.color}">
+            <div class="diamond-background" v-bind:style="{'background-color': route.actualColor}">
 
             </div>
-            <div class="diamond-grade" v-bind:class="{'tenner': tableGradeObject.grade > 9}">
-              {{tableGradeObject.grade}}
+            <div class="diamond-grade" v-bind:class="{'tenner': route.attributes.grade > 9}">
+              {{route.attributes.grade}}
             </div>
           </div>
           <!-- <img v-bind:src="'/images/grades/' + tableGradeObject.name + '.png'"> -->
         </div>
         <div class="right">
-          {{tableGradeObject.total}}
+          <sent-switch :route.sync="route">
+          <!-- {{tableGradeObject.total}} -->
         </div>
       </div>
     </div>
@@ -32,9 +33,13 @@
 <script>
  import BaseComponent from '../base/baseComponent.vue'
  import RouteModel from '../../models/RouteModel.js'
+ import SentSwitch from '../sentSwitch/sentSwitch.vue'
  var RouteTable = BaseComponent.extend({
    name: 'RouteTable',
    props: ['routes', 'displayKeys'],
+   components: {
+     SentSwitch
+   },
    data(){
      return {
        tableData: [],
@@ -44,32 +49,35 @@
    },
    created(){
      this.calculateGradeTotals(this.routes);
-     this.tableData = this.filterRoutes(this.tableData);
-     console.log(this.tableData);
+     this.filterRoutes(this.routes);
    },
 
    methods: {
      calculateGradeTotals(routes){
        var tableData = [];
        routes.forEach(route => {
-         var vGrade = route.attributes.color + route.attributes.grade;
-         var found = false;
-         tableData.forEach(tableGradeObject => {
-           if(tableGradeObject.name === vGrade){
-             tableGradeObject.total++;
-             found = true;
-           }
-         });
-         if(!found){
-           var tableGradeObject = {
-             name: vGrade,
-             total: 1,
-             color: window.colorMappings[route.attributes.color],
-             grade: parseInt(route.attributes.grade),
-             colorValue: RouteModel.findColorIndex(window.colorMappings[route.attributes.color])
-           };
-           tableData.push(tableGradeObject);
-         }
+         route.grade = route.attributes.grade;
+         route.actualColor = window.colorMappings[route.attributes.color];
+         route.colorValue = RouteModel.findColorIndex(route.actualColor);
+         route.attributes.sent = false;
+         /* var vGrade = route.attributes.color + route.attributes.grade;
+            var found = false;
+            tableData.forEach(tableGradeObject => {
+            if(tableGradeObject.name === vGrade){
+            tableGradeObject.total++;
+            found = true;
+            }
+            });
+            if(!found){
+            var tableGradeObject = {
+            name: vGrade,
+            total: 1,
+            color: window.colorMappings[route.attributes.color],
+            grade: parseInt(route.attributes.grade),
+            colorValue: RouteModel.findColorIndex(window.colorMappings[route.attributes.color])
+            };
+            tableData.push(tableGradeObject);
+            } */
        });
 
        //Filter Routes before displaying them, don't use filter - performance 

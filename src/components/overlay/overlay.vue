@@ -89,7 +89,7 @@
      width: 60px;
      position: absolute;
      left: 50%;
-     top: 50%;
+     top: 45%;
    }
 
    .tri {

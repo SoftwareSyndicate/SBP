@@ -7,28 +7,28 @@ class RouteModel {
   findColorIndex(color) {
     var value;
     switch(color){
-      case "#95a5a6":
+      case "rgba(209,209,209, 0.8)":
         value = 0;
         break;
-      case "#ffeb3b":
+      case "rgba(255,210,28, 0.8)":
         value = 1;
         break;
-      case "#4caf50":
+      case "rgba(5,179,99, 0.9)":
         value = 2;
         break;
-      case "#f44336":
+      case "rgba(243,23,38, 0.8)":
         value = 3;
         break;
-      case "#2196f3":
+      case "rgba(48,99,245, 0.8)":
         value = 4;
         break;
-      case "#ff9800":
+      case "rgba(252,109,33, 0.8)":
         value = 5;
         break;
-      case "#9c27b0":
+      case "rgba(183,22,229,0.8)":
         value = 6;
         break;
-      case "#212121":
+      case "rgba(33,33,33,0.9)":
         value = 7;
         break;
     }
