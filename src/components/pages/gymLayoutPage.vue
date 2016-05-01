@@ -81,18 +81,6 @@
          this.hideLoadingAnimation();
        });
      },
-     getWall(){
-       this.showLoadingAnimation();
-       var wallId = this.$route.params.wallId;
-       WallModel.getWallById(wallId).then(results => {
-         this.notifications.notify('Navbar.setHeader', results.attributes.name);
-         results.attributes.name = "Wall Last Set";
-         this.wall = results;
-         this.routes = results.attributes.routes;
-
-         this.hideLoadingAnimation();
-       });
-     },
      changeTab(tab){
        if(tab === 'distro'){
          this.distroActive = true;

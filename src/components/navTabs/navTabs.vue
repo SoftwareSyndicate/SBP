@@ -79,7 +79,7 @@
 
  .nav-tabs {
    position: fixed;
-   z-index: 2;
+   z-index: 9999;
    top: calc(100vh - 50px);
    height: 50px;
    .tabs {

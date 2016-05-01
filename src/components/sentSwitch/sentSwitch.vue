@@ -99,16 +99,15 @@
    }
 
    .toggle .texts:before {
-     content: "\01F44D";
-     //content: '\01F63A';
-     //content: "sent";
+     content: '\01F44D';
      position: absolute;
      font-size: 12px;
      left: 12px;
+     z-index: 100
    }
    ​
    .toggle .texts:after {
-     content: "";
+     content: '\01F44D';
      position: absolute;
      right: 11px;
    }

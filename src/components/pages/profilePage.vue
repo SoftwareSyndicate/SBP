@@ -19,7 +19,7 @@
     <div class="sent-history">
       <div class="sent-history-header">
         <h4>Sent History</h4>
-        <div class="view-progress-button waves-effect waves-dark" v-link="{name: 'progress'}">
+        <div class="view-progress-button waves-effect waves-dark" v-link="{name: 'progress'}"  v-if="sentRoutes.length > 0">
           View progress
         </div>
       </div>
@@ -147,19 +147,17 @@
 
      .sent-history-header {
        display: flex;
-       justify-content: center;
        align-items: center;
        flex-grow: 1;
        padding-bottom: 1em !important;
        border-bottom: 1px solid rgba(0, 0, 0, .1);
        margin-bottom: 2em;
+
        h4 {
          font-size: 1.8em;
          font-weight: 300;
          color: $color-text-normal;
          text-transform: capitalize;
-         margin-right: .3em !important;
-         margin-bottom: .4em !important;
        }
 
        .view-progress-button {

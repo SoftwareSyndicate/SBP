@@ -75,11 +75,9 @@
        opacity: 0;
      }
    }
-   body {
-     background: #e4e4e5;
-   }
 
    .triangles {
+     zoom: 1.4;
      -webkit-transform: translate(-50%, -50%);
      -moz-transform: translate(-50%, -50%);
      -ms-transform: translate(-50%, -50%);
@@ -89,7 +87,7 @@
      width: 60px;
      position: absolute;
      left: 50%;
-     top: 45%;
+     top: 40%;
    }
 
    .tri {
