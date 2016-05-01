@@ -2,9 +2,19 @@ import ParseService from '../services/ParseService.js';
 class RouteModel {
   constructor(){
     this.sentRoutes = [];
+    if(!localStorage.getItem("routesToBeUpdated")){
+      var empty = [];
+      localStorage.setItem("routesToBeUpdated", JSON.stringify(empty));
+    }
   }
 
-  findColorIndex(color) {
+  saveRoutes(){
+    console.log("RouteModel.saveRoutes()");
+    var routesToBeUpdated = JSON.parse(localStorage.getItem("routesToBeUpdated"));
+    console.log(routesToBeUpdated);
+  }
+
+  findColorIndex(color){
     var value;
     switch(color){
       case "rgba(209,209,209, 0.8)":

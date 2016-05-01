@@ -19,24 +19,34 @@
    props: ['route'],
    data(){
      return {
-       switchFlipped: true,
-       sent: true,
+       sent: false
      }
    },
    created(){
-     this.sent = this.route.attributes.sent;
+     this.initState = false;
+     RouteModel.sentRoutes.forEach(route => {
+       if(route.id === this.route.id){
+         this.sent = true;
+         this.initState = true;
+       }
+     });
    },
 
    methods: {
      flipSwitch(){
-       this.route.attributes.sent = !this.route.attributes.sent;
-         this.sent = this.route.attributes.sent;
-         console.log(this.route.attributes.sent);
-         /* if(this.route.attributes.sent){
-            RouteModel.sendRoute(this.route, UserModel.currentUser).then(results => {
-            console.log(results);
-            });
-            } */
+       this.sent = !this.sent;
+     }
+   },
+   beforeDestroy(){
+     if(this.initState != this.sent){
+       var routeToBeUpdated = {
+         id: this.route.id,
+         sent: this.sent
+       };
+
+       var routesToBeUpdated = JSON.parse(localStorage.getItem("routesToBeUpdated"));
+       routesToBeUpdated.push(routeToBeUpdated);
+       localStorage.setItem("routesToBeUpdated", JSON.stringify(routesToBeUpdated));
      }
    }
  }
@@ -99,7 +109,7 @@
    }
 
    .toggle .texts:before {
-     content: '\01F44D';
+     /* content: '\01F44D'; */
      position: absolute;
      font-size: 12px;
      left: 12px;
@@ -107,7 +117,7 @@
    }
    ​
    .toggle .texts:after {
-     content: '\01F44D';
+     /* content: '\01F44D'; */
      position: absolute;
      right: 11px;
    }

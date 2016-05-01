@@ -93,6 +93,7 @@
      },
      changeTab(tab){
        if(tab === 'distro'){
+         RouteModel.saveRoutes();
          this.distroActive = true;
          this.routesActive = false;
        } else {
@@ -115,6 +116,7 @@
    },
 
    beforeDestroy(){
+     RouteModel.saveRoutes();
      this.showLoadingAnimation();
      this.notifications.notify('Navbar.setNavigateBack', false);
      window.scrollTo(0, 0);
