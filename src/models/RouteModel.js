@@ -1,6 +1,8 @@
 import ParseService from '../services/ParseService.js';
+import Notifications from '../services/NotificationService.js';
 class RouteModel {
   constructor(){
+    this.getSentRoutes();
     this.sentRoutes = [];
     if(!localStorage.getItem("routesToBeUpdated")){
       var empty = [];
@@ -12,6 +14,28 @@ class RouteModel {
     console.log("RouteModel.saveRoutes()");
     var routesToBeUpdated = JSON.parse(localStorage.getItem("routesToBeUpdated"));
     console.log(routesToBeUpdated);
+    if(routesToBeUpdated.length > 0){
+      return ParseService.updateSentRoutes(routesToBeUpdated).then(results => {
+        console.log(results);
+        this.sentRoutes = this.sentRoutes.concat(results);
+        var empty = [];
+        localStorage.setItem("routesToBeUpdated", JSON.stringify(empty));
+      }, error => {
+        return Promise.reject(error);
+      });
+    }
+  }
+
+  getSentRoutes(){
+    if(Parse.User.current()){
+      return ParseService.getSentRoutes(Parse.User.current().id).then(results => {
+        this.sentRoutes = results;
+        Notifications.notify("RouteModel.sentRoutesUpdated");
+        return results;
+      }, error => {
+        return Promise.reject(error);
+      });
+    }
   }
 
   findColorIndex(color){

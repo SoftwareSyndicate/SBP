@@ -57,12 +57,14 @@
    ready(){
      this.notifications.notify('Navbar.setHeader', "GYM INFO");
      this.notifications.notify('GymPage.setActiveTab', 'none');
+     $("body").css("overflow", "hidden");
      this.hideLoadingAnimation();
    },
    methods: {
    },
 
    beforeDestroy(){
+     $("body").css("overflow", "auto");
      this.showLoadingAnimation();
    }
  });

@@ -9,7 +9,7 @@
           Avg / Mo: <span>{{averageMonthly}}</span>
         </div>
         <div class="stat">
-          Total Sent: <span>{{totalSent}}</span>
+          Total Sent: <span>{{sentRoutes.length}}</span>
         </div>
         <div class="stat">
           Avg Grade: <span>{{averageGrade}}</span>
@@ -23,17 +23,18 @@
           View progress
         </div>
       </div>
-      <div class="no-routes-box">
+      <div class="no-routes-box" v-if="sentRoutes.length === 0">
         <p>Hey <span>{{currentUser.attributes.firstName}}</span>, lets record your first send!</p>
         <div class="view-walls-button waves-effect waves-light" v-link="{name: 'walls'}">
           View the walls
         </div>
       </div>
     </div>
-  </div>
 
-  <nav-tabs></nav-tabs>
+    <nav-tabs></nav-tabs>
+  </div>
 </template>
+
 <script>
  import BaseComponent from '../../components/base/baseComponent.vue'
  import UserModel from '../../models/UserModel.js'
@@ -48,17 +49,15 @@
      return {
        currentUser: UserModel.currentUser,
        sentRoutes: RouteModel.sentRoutes,
-       averageMonthly: 20,
-       totalSent: 356,
-       averageGrade: "v5"
+       averageMonthly: 0,
+       totalSent: 0,
+       averageGrade: ""
      }
    },
    created(){
-     console.log(this.currentUser);
-     console.log(this.sentRoutes);
-     console.log(this.averageMonthly);
-     console.log(this.totalSent);
-     console.log(this.averageGrade);
+     this.calcAverageGrade();
+     this.calcAverageMonthly();
+     this.notifications.listenFor("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated, this);
    },
    ready(){
      this.notifications.notify('Navbar.setHeader', "MY PROFILE");
@@ -70,6 +69,24 @@
    beforeDestroy(){
      window.scrollTo(0, 0);
      $("body").css("overflow", "auto");
+   },
+   methods: {
+     onSentRoutesUpdated(){
+       this.sentRoutes = RouteModel.sentRoutes;
+       this.calcAverageGrade();
+       this.calcAverageMonthly();
+     },
+     calcAverageGrade(){
+       var total = 0;
+       this.sentRoutes.forEach(route => {
+         total += parseInt(route.attributes.route.attributes.grade);
+       });
+
+       this.averageGrade = "v" + Math.round(total / this.sentRoutes.length);
+     },
+     calcAverageMonthly(){
+       this.averageMonthly = this.sentRoutes.length;
+     }
    }
  });
 

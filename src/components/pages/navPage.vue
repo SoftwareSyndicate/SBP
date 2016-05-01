@@ -46,7 +46,7 @@
      this.notifications.notify('NavTabs.setVisible', false);
    },
    ready(){
-
+     $("body").css("overflow", "hidden");
    },
    methods: {
      signOut(){
@@ -59,6 +59,7 @@
      this.showLoadingAnimation();
      this.notifications.notify('Navbar.setVisible', true);
      this.notifications.notify('NavTabs.setVisible', true);
+     $("body").css("overflow", "auto");
    }
  });
 

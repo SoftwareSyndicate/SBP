@@ -24,8 +24,8 @@
    },
    created(){
      this.initState = false;
-     RouteModel.sentRoutes.forEach(route => {
-       if(route.id === this.route.id){
+     RouteModel.sentRoutes.forEach(sentRoute => {
+       if(sentRoute.attributes.route.id === this.route.id){
          this.sent = true;
          this.initState = true;
        }

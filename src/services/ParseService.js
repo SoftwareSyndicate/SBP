@@ -5,6 +5,7 @@ class ParseService {
     this.Gym = Parse.Object.extend("Gym");
     this.Wall = Parse.Object.extend("Wall");
     this.Route = Parse.Object.extend("Route");
+    this.SentRoute = Parse.Object.extend("SentRoute");
     this.Hold = Parse.Object.extend("Hold");
     this.gymId = "4WChpaHxDE"
     this.SBP = {
@@ -68,6 +69,30 @@ class ParseService {
     var query = new Parse.Query(this.Route);
     query.include("wall");
     return query.get(id);
+  }
+
+  updateSentRoutes(routes){
+    console.log("ParseService.updateSentRoutes()");
+    var data = {
+      userId: Parse.User.current().id,
+      routes: routes
+    };
+
+    return Parse.Cloud.run("sendRoutes", data).then(results => {
+      console.log(results);
+      return results;
+    }, error => {
+      console.log(error);
+      return Promise.reject(error);
+    });
+  }
+
+  getSentRoutes(userId){
+    var query = new Parse.Query(this.SentRoute);
+    query.equalTo("user", Parse.User.current());
+    query.limit(1000);
+    query.include("route");
+    return query.find();
   }
 
 
