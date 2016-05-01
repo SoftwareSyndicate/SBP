@@ -1,7 +1,7 @@
 import ParseService from '../services/ParseService.js';
 class RouteModel {
   constructor(){
-
+    this.sentRoutes = [];
   }
 
   findColorIndex(color) {

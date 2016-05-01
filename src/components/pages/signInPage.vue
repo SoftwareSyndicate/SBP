@@ -69,6 +69,7 @@
    },
 
    beforeDestroy(){
+     this.notifications.notify('Navbar.setVisible', true);
      this.showLoadingAnimation();
      window.scrollTo(0, 0);
    }

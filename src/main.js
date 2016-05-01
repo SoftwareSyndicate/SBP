@@ -17,6 +17,7 @@ import RoutePage from './components/pages/routePage.vue'
 import NavPage from './components/pages/navPage.vue'
 import UserPage from './components/pages/userPage.vue'
 import ProfilePage from './components/pages/profilePage.vue'
+import ProgressPage from './components/pages/progressPage.vue'
 
 //Sign In
 import SignInPage from './components/pages/signInPage.vue'
@@ -96,6 +97,11 @@ router.map({
   '/users/:id': {
     name: 'profile',
     component: ProfilePage
+  },
+
+  '/users/:id/progress': {
+    name: 'progress',
+    component: ProgressPage
   },
 
   //Sign In
