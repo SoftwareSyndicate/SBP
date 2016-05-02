@@ -29,6 +29,9 @@
           View the walls
         </div>
       </div>
+      <!-- <div class="routes-container component" v-if="sentRoutes.length > 0">
+           <route-table :routes="sentRoutes"></route-table>
+           </div> -->
     </div>
 
     <nav-tabs></nav-tabs>
@@ -40,10 +43,13 @@
  import UserModel from '../../models/UserModel.js'
  import RouteModel from '../../models/RouteModel.js'
  import NavTabs from '../navTabs/navTabs.vue'
+ import RouteTable from '../routeTable/routeTable.vue'
+
  var ProfilePage =  BaseComponent.extend({
    name: 'ProfilePage',
    components: {
-     NavTabs
+     NavTabs,
+     RouteTable
    },
    data(){
      return {
@@ -64,11 +70,12 @@
      this.notifications.notify('Overlay.setVisible', false);
      this.notifications.notify('GymPage.changeTab', 'none');
      this.notifications.notify('NavTabs.setActiveTab', 'profile');
-     $("body").css("overflow", "hidden");
+     //$("body").css("overflow", "hidden");
    },
    beforeDestroy(){
+     this.notifications.removeListener("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated);
+     //$("body").css("overflow", "auto");
      window.scrollTo(0, 0);
-     $("body").css("overflow", "auto");
    },
    methods: {
      onSentRoutesUpdated(){

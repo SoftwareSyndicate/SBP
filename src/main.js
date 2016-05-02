@@ -29,6 +29,9 @@ import EmailForm from './components/signUp/emailForm.vue'
 import NameForm from './components/signUp/nameForm.vue'
 
 
+import chartJS from 'chart.js'
+window.chartJS = chartJS;
+
 import nvd3 from './libs/nvd3.js'
 import stream_layers from './libs/streamLayers.js'
 

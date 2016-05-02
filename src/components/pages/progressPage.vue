@@ -1,6 +1,17 @@
 <template>
   <div class="progress-page">
-    progress page
+    <div id="routes-over-time-chart-container" class="component">
+      <div class="chart-header">
+        <p>Routes Sent Over Time</p>
+      </div>
+      <routes-over-time-chart :routes="sentRoutes"  v-if="true"></routes-over-time-chart>
+    </div>
+    <div id="routes-over-time-chart-container" class="component">
+      <div class="chart-header">
+        <p>Avg V-Grade Over Time</p>
+      </div>
+      <grade-over-time-chart :routes="sentRoutes"  v-if="true"></grade-over-time-chart>
+    </div>
   </div>
   <nav-tabs></nav-tabs>
 </template>
@@ -9,35 +20,38 @@
  import UserModel from '../../models/UserModel.js'
  import RouteModel from '../../models/RouteModel.js'
  import NavTabs from '../navTabs/navTabs.vue'
+ import RoutesOverTimeChart from '../routesOverTimeChart/routesOverTimeChart.vue'
+ import GradeOverTimeChart from '../gradeOverTimeChart/gradeOverTimeChart.vue'
+
  var ProgressPage =  BaseComponent.extend({
    name: 'ProgressPage',
    components: {
-     NavTabs
+     NavTabs,
+     RoutesOverTimeChart,
+     GradeOverTimeChart
    },
    data(){
      return {
        currentUser: UserModel.currentUser,
-       sentRoutes: RouteModel.sentRoutes,
-       averageMonthly: 20,
-       totalSent: 356,
-       averageGrade: "v5"
+       sentRoutes: RouteModel.sentRoutes
      }
    },
    created(){
-     console.log(this.currentUser);
-     console.log(this.sentRoutes);
-     console.log(this.averageMonthly);
-     console.log(this.totalSent);
-     console.log(this.averageGrade);
+     this.notifications.listenFor("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated, this);
    },
    ready(){
      this.notifications.notify('Navbar.setHeader', "MY PROGRESS");
-     this.notifications.notify('Overlay.setVisible', false);
-     this.notifications.notify('GymPage.changeTab', 'none');
      this.notifications.notify('NavTabs.setActiveTab', 'profile');
+     this.hideLoadingAnimation();
    },
    beforeDestroy(){
+     this.notifications.removeListener("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated);
      window.scrollTo(0, 0);
+   },
+   methods: {
+     onSentRoutesUpdated(){
+       this.sentRoutes = RouteModel.sentRoutes;
+     }
    }
  });
 
@@ -47,7 +61,27 @@
 <style lang="sass">
  @import "../../styles/main.scss";
  .progress-page {
+   padding: 16px;
 
+   #routes-over-time-chart-container {
+     display: flex;
+     flex-grow: 1;
+     flex-wrap: wrap;
+     margin: auto;
+     padding-bottom: 4em;
+     margin-bottom: 2em;
+     height: 40vh;
+     flex-basis: 100%;
+   }
 
+   .chart-header {
+     padding: 1em;
+     flex-grow: 1;
+     flex-basis: 100%;
+     font-size: .9em;
+     font-weight: bold;
+     color: rgba(0, 0, 0, .5) !important;
+     border-bottom: $component-border;
+   }
  }
 </style>
