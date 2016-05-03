@@ -1,12 +1,12 @@
 <template>
   <div class="progress-page">
-    <div id="routes-over-time-chart-container" class="component">
+    <div class="routes-over-time-chart-container component">
       <div class="chart-header">
         <p>Routes Sent Over Time</p>
       </div>
       <routes-over-time-chart :routes="sentRoutes"  v-if="true"></routes-over-time-chart>
     </div>
-    <div id="routes-over-time-chart-container" class="component">
+    <div class="routes-over-time-chart-container component">
       <div class="chart-header">
         <p>Avg V-Grade Over Time</p>
       </div>
@@ -63,7 +63,7 @@
  .progress-page {
    padding: 16px;
 
-   #routes-over-time-chart-container {
+   .routes-over-time-chart-container {
      display: flex;
      flex-grow: 1;
      flex-wrap: wrap;
@@ -75,8 +75,8 @@
    }
 
    .chart-header {
+     margin-bottom: 1em;
      padding: 1em;
-     flex-grow: 1;
      flex-basis: 100%;
      font-size: .9em;
      font-weight: bold;

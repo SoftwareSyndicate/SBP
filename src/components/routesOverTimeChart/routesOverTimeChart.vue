@@ -37,11 +37,12 @@
      },
      redraw(){
        if(this.routes.length > 0){
-         this.formatData();
+         this.formatData(this.routes);
          this.draw()
        }
      },
      draw(){
+       console.log(this.lineData);
        var myChart = new Chart(this.ctx, {
          type: 'line',
          data: this.lineData,
@@ -59,12 +60,34 @@
          }
        });
      },
-     formatData(){
-       this.addRoutesLine(this.routes);
-     },
-     addRoutesLine(routes){
-       var options = {month: 'long'};
-       this.lineData = {
+     formatData(routes){
+       //First lets determine the date range of sent routes
+       var min = new Date();
+       var max = new Date();
+       max.setFullYear(1980);
+
+       routes.sort(function(a, b) {
+         if(a.createdAt > b.createdAt){
+           return 1;
+         } else if(a.createdAt < b.createdAt) {
+           return -1;
+         } else {
+           return 0;
+         }
+       });
+
+       this.routes.forEach(route => {
+         if(route.createdAt > max){
+           max = route.createdAt;
+         }
+         if(route.createdAt < min){
+           min = route.createdAt;
+         }
+       });
+
+       var days = Math.round((max-min)/(1000*60*60*24));
+       var dateStringOptions;
+       var lineData = {
          labels: [],
          datasets: [{
            label: "Routes Sent",
@@ -73,11 +96,31 @@
            data: []
          }],
        }
+       if(days < 8){
+         dateStringOptions = {weekday: 'long'};
+       } else if (days < 57){
+         dateStringOptions = {month: 'numeric', day: 'numeric'};
+       } else {
+         dateStringOptions = {month: 'short'};
+       }
+       this.lineData = this.groupByDate(dateStringOptions, lineData, routes);
+     },
 
+     groupByDate(dateStringOptions, lineData, routes){
+       var dateObj = {};
        routes.forEach(route => {
-         this.lineData.labels.push(route.createdAt.toLocaleDateString('en-US', options));
-         this.lineData.datasets[0].data.push(parseInt(route.attributes.route.attributes.grade));
+         var name = route.createdAt.toLocaleDateString('en-US', dateStringOptions);
+         if(dateObj[name]){
+           dateObj[name]++;
+         } else {
+           dateObj[name] = 1;
+         }
        });
+       for(var name in dateObj){
+         lineData.labels.push(name);
+         lineData.datasets[0].data.push(dateObj[name]);
+       }
+       return lineData;
      }
    }
  });

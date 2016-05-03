@@ -29,11 +29,10 @@
           View the walls
         </div>
       </div>
-      <!-- <div class="routes-container component" v-if="sentRoutes.length > 0">
-           <route-table :routes="sentRoutes"></route-table>
-           </div> -->
+      <div class="routes-container component" v-if="sentRoutes.length > 0">
+        <sent-route-table :routes="sentRoutes"></sent-route-table>
+      </div>
     </div>
-
     <nav-tabs></nav-tabs>
   </div>
 </template>
@@ -43,13 +42,13 @@
  import UserModel from '../../models/UserModel.js'
  import RouteModel from '../../models/RouteModel.js'
  import NavTabs from '../navTabs/navTabs.vue'
- import RouteTable from '../routeTable/routeTable.vue'
+ import SentRouteTable from '../sentRouteTable/sentRouteTable.vue'
 
  var ProfilePage =  BaseComponent.extend({
    name: 'ProfilePage',
    components: {
      NavTabs,
-     RouteTable
+     SentRouteTable
    },
    data(){
      return {
@@ -168,6 +167,7 @@
      padding-top: 3em;
      display: flex;
      flex-wrap: wrap;
+     margin-bottom: 66px;
 
      .sent-history-header {
        display: flex;
