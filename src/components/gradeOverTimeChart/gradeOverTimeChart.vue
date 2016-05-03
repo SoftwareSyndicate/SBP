@@ -94,6 +94,8 @@
        }
        if(days === 0){
          dateStringOptions = {hour: '2-digit'};
+         lineData.labels.push("Joined");
+         lineData.datasets[0].data.push(0);
        } else if(days < 8){
          dateStringOptions = {weekday: 'long'};
        } else if (days < 57){
