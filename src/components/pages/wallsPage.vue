@@ -19,14 +19,15 @@
      }
    },
    created(){
+     this.showLoadingAnimation();
      if(!WallModel.walls){
        WallModel.getWalls().then(results => {
          this.walls = results;
-         this.notifications.notify('Overlay.setVisible', false);
+         this.hideLoadingAnimation();
        });
      } else {
        this.walls = WallModel.walls;
-       this.notifications.notify('Overlay.setVisible', false);
+       this.hideLoadingAnimation();
      }
    },
    ready(){

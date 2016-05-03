@@ -1,12 +1,18 @@
 <template>
   <div class="progress-page">
-    <div class="routes-over-time-chart-container component">
+    <div class="need-more-routes component" v-if="sentRoutes.length < 2">
+      You must send at least 2 routes before progress can be generated
+      <div class="view-walls-button waves-effect waves-light" v-link="{name: 'walls'}">
+        View the walls
+      </div>
+    </div>
+    <div class="routes-over-time-chart-container component" v-if="sentRoutes.length > 1">
       <div class="chart-header">
         <p>Routes Sent Over Time</p>
       </div>
       <routes-over-time-chart :routes="sentRoutes"  v-if="true"></routes-over-time-chart>
     </div>
-    <div class="routes-over-time-chart-container component">
+    <div class="routes-over-time-chart-container component" v-if="sentRoutes.length > 1">
       <div class="chart-header">
         <p>Avg V-Grade Over Time</p>
       </div>
@@ -62,6 +68,26 @@
  @import "../../styles/main.scss";
  .progress-page {
    padding: 16px;
+
+   .need-more-routes {
+     margin-top: 3em;
+     padding: 1em;
+     text-align: center;
+
+     .view-walls-button {
+
+       margin: auto;
+       margin-top: 2em;
+       padding: .7em;
+       padding-left: 1.2em;
+       padding-right: 1.2em;
+       color: white;
+       background-color: $color-base-orange;
+       border-radius: 3px;
+       font-size: .8em;
+       cursor: pointer;
+     }
+   }
 
    .routes-over-time-chart-container {
      display: flex;

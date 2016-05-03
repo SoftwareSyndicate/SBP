@@ -65,12 +65,12 @@
      this.notifications.listenFor("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated, this);
    },
    ready(){
-     this.currentUser = UserModel.currentUser;
      this.notifications.notify('Navbar.setHeader', "MY PROFILE");
-     this.notifications.notify('Overlay.setVisible', false);
      this.notifications.notify('GymPage.changeTab', 'none');
      this.notifications.notify('NavTabs.setActiveTab', 'profile');
+     this.hideLoadingAnimation();
      //$("body").css("overflow", "hidden");
+     console.log(this.currentUser);
    },
    beforeDestroy(){
      this.notifications.removeListener("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated);

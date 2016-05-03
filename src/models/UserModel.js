@@ -35,12 +35,13 @@ class UserModel {
 
     return user.signUp(null, {
       success: function(user) {
+        console.log(user);
         this.currentUser = user;
         return user;
-      },
+      }.bind(this),
       error: function(user, error) {
         return error;
-      }
+      }.bind(this)
     });
   }
 

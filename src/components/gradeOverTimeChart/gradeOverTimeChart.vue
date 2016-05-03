@@ -92,7 +92,9 @@
            data: []
          }],
        }
-       if(days < 8){
+       if(days === 0){
+         dateStringOptions = {hour: '2-digit'};
+       } else if(days < 8){
          dateStringOptions = {weekday: 'long'};
        } else if (days < 57){
          dateStringOptions = {month: 'numeric', day: 'numeric'};

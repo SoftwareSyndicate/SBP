@@ -115,9 +115,6 @@
 
      .brand-logo {
        max-width: 65vw;
-       overflow: hidden;
-       white-space: nowrap;
-       text-overflow: ellipsis;
        font-weight: 300;
        text-transform: uppercase;
        font-size: .85em;

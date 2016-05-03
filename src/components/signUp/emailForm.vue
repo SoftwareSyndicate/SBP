@@ -81,7 +81,7 @@
      flex-direction: column;
      justify-content: center;
      align-items: center;
-     margin-top: 10em;
+     margin-top: 8em;
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
      .header {

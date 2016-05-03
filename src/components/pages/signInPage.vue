@@ -31,6 +31,7 @@
 <script>
  import BaseComponent from '../base/baseComponent.vue'
  import UserModel from '../../models/UserModel.js'
+ import RouteModel from '../../models/RouteModel.js'
 
  var SignInPage = BaseComponent.extend({
    name: 'SignInPage',
@@ -58,6 +59,7 @@
          this.showLoadingAnimation();
          UserModel.signIn(this.email, this.password).then(results => {
            this.notifications.notify("UserModel.signUp");
+           RouteModel.getSentRoutes();
            this.$router.go({name: 'layout'});
            console.log(results);
          }, error => {
@@ -90,7 +92,7 @@
    background: $gradient-background;
 
    .header-container {
-     margin-top: 10em;
+     margin-top: 8em;
      margin-bottom: 2em;
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
