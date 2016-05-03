@@ -65,6 +65,7 @@
      this.notifications.listenFor("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated, this);
    },
    ready(){
+     this.currentUser = UserModel.currentUser;
      this.notifications.notify('Navbar.setHeader', "MY PROFILE");
      this.notifications.notify('Overlay.setVisible', false);
      this.notifications.notify('GymPage.changeTab', 'none');

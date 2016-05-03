@@ -72,17 +72,14 @@ class ParseService {
   }
 
   updateSentRoutes(routes){
-    console.log("ParseService.updateSentRoutes()");
     var data = {
       userId: Parse.User.current().id,
       routes: routes
     };
 
     return Parse.Cloud.run("sendRoutes", data).then(results => {
-      console.log(results);
       return results;
     }, error => {
-      console.log(error);
       return Promise.reject(error);
     });
   }

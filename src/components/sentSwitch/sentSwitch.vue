@@ -39,6 +39,7 @@
    },
    beforeDestroy(){
      if(this.initState != this.sent){
+       console.log("sentSwitch.beforeDestroy()");
        var routeToBeUpdated = {
          id: this.route.id,
          sent: this.sent
@@ -47,6 +48,7 @@
        var routesToBeUpdated = JSON.parse(localStorage.getItem("routesToBeUpdated"));
        routesToBeUpdated.push(routeToBeUpdated);
        localStorage.setItem("routesToBeUpdated", JSON.stringify(routesToBeUpdated));
+       console.log(JSON.parse(localStorage.getItem("routesToBeUpdated")));
      }
    }
  }

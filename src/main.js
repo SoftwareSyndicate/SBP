@@ -145,7 +145,7 @@ router.beforeEach(function () {
 });
 
 router.redirect({
-  '*': '/gym'
+  '*': '/signUp'
 });
 
 router.redirect({

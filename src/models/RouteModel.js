@@ -11,24 +11,34 @@ class RouteModel {
   }
 
   saveRoutes(){
-    console.log("RouteModel.saveRoutes()");
-    var routesToBeUpdated = JSON.parse(localStorage.getItem("routesToBeUpdated"));
-    console.log(routesToBeUpdated);
-    if(routesToBeUpdated.length > 0){
-      return ParseService.updateSentRoutes(routesToBeUpdated).then(results => {
-        console.log(results);
-        this.sentRoutes = this.sentRoutes.concat(results);
-        var empty = [];
-        localStorage.setItem("routesToBeUpdated", JSON.stringify(empty));
-      }, error => {
-        return Promise.reject(error);
-      });
-    }
+    setTimeout(() => {
+      console.log("RouteModel.saveRoutes()");
+      var routesToBeUpdated = JSON.parse(localStorage.getItem("routesToBeUpdated"));
+      console.log(routesToBeUpdated);
+      if(routesToBeUpdated.length > 0){
+        Notifications.notify('Overlay.setVisible', true);
+        return ParseService.updateSentRoutes(routesToBeUpdated).then(results => {
+          console.log("done sending");
+          console.log(results);
+          this.getSentRoutes().then(results => {
+            Notifications.notify('Overlay.setVisible', false);
+          }, error => {
+            Notifications.notify('Overlay.setVisible', false);
+          });
+          var empty = [];
+          localStorage.setItem("routesToBeUpdated", JSON.stringify(empty));
+        }, error => {
+          return Promise.reject(error);
+        });
+      }
+    });
   }
 
   getSentRoutes(){
     if(Parse.User.current()){
       return ParseService.getSentRoutes(Parse.User.current().id).then(results => {
+        console.log("got new sent routes");
+        console.log(results);
         this.sentRoutes = results;
         Notifications.notify("RouteModel.sentRoutesUpdated");
         return results;
