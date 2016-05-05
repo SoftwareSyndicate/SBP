@@ -8,8 +8,8 @@
     </div>
     <form>
       <div class="inputs">
-        <input placeholder="First" id="first" type="text" class="validate" v-model="firstName" >
-        <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName">
+        <input placeholder="First" id="first" type="text" class="validate" v-model="firstName">
+        <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName" @keyup.enter="proceed()">
       </div>
       <p v-if="!valid">We want to be able to congratulate you on your climbing progress!</p>
       <a class="waves-effect waves-dark btn btn-primary" @click.stop="proceed()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
@@ -85,7 +85,7 @@
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
      .header {
-       font-weight: 100;
+       font-weight: 300;
        font-size: 1.3em;
        color: rgba(255, 255, 255, 1);
        margin-bottom: .5em !important;
@@ -121,7 +121,7 @@
        padding-left: 1.5em !important;
        padding-right: 1.5em !important;
        font-size: .9em;
-       font-weight: 100;
+       font-weight: 300;
        text-align: center;
        color: rgba(255, 255, 255, .9);
      }

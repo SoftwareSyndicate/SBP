@@ -9,7 +9,7 @@
     <form>
       <div class="inputs">
         <input placeholder="Enter your email address" id="email" type="email" class="validate" v-model="email" >
-        <input placeholder="Password" id="password" type="password" class="validate" v-model="password">
+        <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signUp()">
       </div>
       <p v-if="!valid">You'll use this email when you log in and if you ever need to reset your password</p>
       <a class="waves-effect waves-dark btn btn-primary" @click.stop="signUp()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
@@ -49,9 +49,11 @@
    methods: {
      signUp(){
        if(UserModel.isValidCreds(this.email, this.password)){
+         this.showLoadingAnimation();
          UserModel.signUp(this.firstName, this.lastName, this.email, this.password).then(results => {
            this.$router.go({name: 'profile'});
          }, error => {
+           this.hideLoadingAnimation();
            Materialize.toast(error.message, 3000);
            console.error(error);
          });
@@ -85,7 +87,7 @@
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
      .header {
-       font-weight: 100;
+       font-weight: 300;
        font-size: 1.3em;
        color: rgba(255, 255, 255, 1);
        margin-bottom: .5em !important;
@@ -123,7 +125,7 @@
        padding-left: 1.5em !important;
        padding-right: 1.5em !important;
        font-size: .9em;
-       font-weight: 100;
+       font-weight: 300;
        text-align: center;
        color: rgba(255, 255, 255, .9);
      }

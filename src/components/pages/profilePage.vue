@@ -69,12 +69,10 @@
      this.notifications.notify('GymPage.changeTab', 'none');
      this.notifications.notify('NavTabs.setActiveTab', 'profile');
      this.hideLoadingAnimation();
-     //$("body").css("overflow", "hidden");
      console.log(this.currentUser);
    },
    beforeDestroy(){
      this.notifications.removeListener("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated);
-     //$("body").css("overflow", "auto");
      window.scrollTo(0, 0);
    },
    methods: {

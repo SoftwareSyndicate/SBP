@@ -122,12 +122,12 @@
      .link {
        flex-basis: 100%;
        display: flex;
-       padding-bottom: 1em;
+       padding-bottom: 1.5em;
 
        h3 {
          cursor: pointer;
          color: white;
-         font-weight: 100;
+         font-weight: 300;
          font-size: 2em;
          padding-left: 1.2em;
        }

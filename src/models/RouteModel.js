@@ -2,6 +2,7 @@ import ParseService from '../services/ParseService.js';
 import Notifications from '../services/NotificationService.js';
 class RouteModel {
   constructor(){
+    this.allRoutes = [];
     this.getSentRoutes();
     this.sentRoutes = [];
     if(!localStorage.getItem("routesToBeUpdated")){
@@ -12,9 +13,7 @@ class RouteModel {
 
   saveRoutes(){
     setTimeout(() => {
-      console.log("RouteModel.saveRoutes()");
       var routesToBeUpdated = JSON.parse(localStorage.getItem("routesToBeUpdated"));
-      console.log(routesToBeUpdated);
       if(routesToBeUpdated.length > 0){
         Notifications.notify('Overlay.setVisible', true);
         return ParseService.updateSentRoutes(routesToBeUpdated).then(results => {
@@ -125,7 +124,7 @@ class RouteModel {
     return gradeImage;
   }
 
-  getRoutes(){
+  getAllRoutes(){
     return ParseService.getRoutes().then(function(results){
       results.forEach(route => {
         route.attributes.grade = parseInt(route.attributes.grade);
@@ -140,7 +139,7 @@ class RouteModel {
           route.attributes.wall.attributes = {};
         }
       });
-      this.routes = results;
+      this.allRoutes = results;
       return results;
     }.bind(this));
   }

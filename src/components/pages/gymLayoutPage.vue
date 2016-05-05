@@ -75,14 +75,20 @@
    },
    methods: {
      getRoutes(){
-       this.showLoadingAnimation();
-       return RouteModel.getRoutes().then(results => {
-         this.routes = results;
+       if(RouteModel.allRoutes.length > 0){
+         this.routes = RouteModel.allRoutes
          this.hideLoadingAnimation();
-       });
+       } else {
+         this.showLoadingAnimation();
+         return RouteModel.getAllRoutes().then(results => {
+           this.routes = results;
+           this.hideLoadingAnimation();
+         });
+       }
      },
      changeTab(tab){
        if(tab === 'distro'){
+         RouteModel.saveRoutes();
          this.distroActive = true;
          this.routesActive = false;
        } else {
@@ -96,6 +102,7 @@
    },
 
    beforeDestroy(){
+     RouteModel.saveRoutes();
      this.showLoadingAnimation();
    }
  });

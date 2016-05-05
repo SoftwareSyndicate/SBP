@@ -15,7 +15,6 @@ import WallPage from './components/pages/wallPage.vue'
 import RoutesPage from './components/pages/routesPage.vue'
 import RoutePage from './components/pages/routePage.vue'
 import NavPage from './components/pages/navPage.vue'
-import UserPage from './components/pages/userPage.vue'
 import ProfilePage from './components/pages/profilePage.vue'
 import ProgressPage from './components/pages/progressPage.vue'
 
@@ -99,16 +98,12 @@ router.map({
   },
 
   //Users
-  /* '/users': {
-     name: 'users',
-     component: UsersPage
-     }, */
-  '/users/:id': {
+  '/profile': {
     name: 'profile',
     component: ProfilePage
   },
 
-  '/users/:id/progress': {
+  '/progress': {
     name: 'progress',
     component: ProgressPage
   },
