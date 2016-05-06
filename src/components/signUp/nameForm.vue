@@ -9,10 +9,10 @@
     <form>
       <div class="inputs">
         <input placeholder="First" id="first" type="text" class="validate" v-model="firstName" onfocus="onInputFocused()" onblur="onInputBlured()">
-        <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName" @keyup.enter="proceed()" onfocus="onInputFocused()" onblur="onInputBlured()">
+        <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName" @keyup.enter="proceed()" onfocus="onInputFocused()">
       </div>
       <p v-if="!valid">We want to be able to congratulate you on your climbing progress!</p>
-      <a class="waves-effect waves-dark btn btn-primary" @click.stop="proceed()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
+      <a class="waves-effect waves-dark btn btn-primary" @click="proceed()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
     </form>
   </div>
 </template>
@@ -89,6 +89,11 @@
      margin-top: 9em;
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
+
+     &.keyboardActive {
+       margin-top: 4em !important;
+     }
+
      .header {
        font-weight: 300;
        font-size: 1.3em;

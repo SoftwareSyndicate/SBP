@@ -9,7 +9,7 @@
     <form>
       <div class="inputs">
         <input placeholder="Enter your email address" id="email" type="email" class="validate" v-model="email" onfocus="onInputFocused()" onblur="onInputBlured()">
-        <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signUp()" onfocus="onInputFocused()" onblur="onInputBlured()">
+        <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signUp()" onfocus="onInputFocused()">
       </div>
       <p v-if="!valid">You'll use this email when you log in and if you ever need to reset your password</p>
       <a class="waves-effect waves-dark btn btn-primary" @click.stop="signUp()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
@@ -101,6 +101,10 @@
        height: 3px;
        width: 3em;
        border-bottom: 2px solid darken($color-base-orange, 10%)
+     }
+
+     &.keyboardActive {
+       margin-top: 4em !important;
      }
    }
 

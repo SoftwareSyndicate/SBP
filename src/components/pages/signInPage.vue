@@ -106,6 +106,10 @@
        font-size: 1.1em;
        color: white;
      }
+
+     &.keyboardActive {
+       margin-top: 2em !important;
+     }
    }
 
    form {
@@ -145,7 +149,7 @@
    img {
      width: 100%;
      position: absolute;
-     bottom: 60px;
+     bottom: 52px;
    }
 
    .footer-container {
