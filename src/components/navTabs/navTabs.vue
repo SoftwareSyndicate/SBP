@@ -104,7 +104,12 @@
        i {
          color: rgba(0, 0, 0, .3);
        }
+       box-shadow: none !important;
+       border-right: solid 1px rgba(0, 0, 0, .3);
 
+       &:last-child {
+         border-right: none;
+       }
        &.active {
          box-shadow: none;
 

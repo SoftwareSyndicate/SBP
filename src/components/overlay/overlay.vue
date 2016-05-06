@@ -39,7 +39,7 @@
  .overlay-container {
    width: 100vw;
    height: 100vh;
-   padding-top: 20vh;
+   padding-top: 0px;
    margin: 0 auto;
 
    @-webkit-keyframes pulse {
@@ -87,7 +87,7 @@
      width: 60px;
      position: absolute;
      left: 50%;
-     top: 40%;
+     top: calc(50% - 2px);
    }
 
    .tri {

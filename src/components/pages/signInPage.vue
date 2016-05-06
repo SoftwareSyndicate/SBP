@@ -97,6 +97,7 @@
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
      .header {
+       letter-spacing: .2em;
        text-transform: uppercase;
        font-weight: 300;
        font-size: 1.1em;
@@ -111,19 +112,22 @@
      flex-direction: column;
 
      input {
-       margin-bottom: 1px !important;
+       margin-bottom: 10px !important;
        width: initial;
      }
 
      .btn {
+       padding-top: .5em !important;
+       height: 4rem;
        font-weight: 300;
        background-color: darken($color-base-orange, 8%) !important;
        box-shadow: none;
        color: white !important;
        width: 100%;
-       margin-top: 1em;
+       margin-top: .5em;
        margin-right: auto;
        margin-left: auto;
+       font-size: 16px !important;
      }
 
      a.forgot-password {
@@ -146,8 +150,8 @@
      padding: 1.5em;
      position: fixed;
      z-index: 2;
-     top: calc(100vh - 70px);
-     height: 70px;
+     top: calc(100vh - 100px);
+     height: 100px;
      width: 100%;
      background-color: white;
      align-items: center;
@@ -165,6 +169,8 @@
      }
 
      i {
+       font-size: 1.5em;
+       padding: 6px;
        margin-left: auto;
        border-radius: 50%;
        background-color: rgba(0, 0, 0, .1);
