@@ -58,11 +58,12 @@
    background: $gradient-background;
 
    .header-container {
-     margin-top: 10em;
+     margin-top: 9em;
      margin-bottom: 1em;
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
      .header {
+       letter-spacing: .2em;
        text-transform: uppercase;
        font-weight: 300;
        font-size: 1.1em;
@@ -79,11 +80,13 @@
      p {
        color: white;
        margin-bottom: 1em !important;
-       font-size: .8em;
+       font-size: .9em;
        font-weight: 300;
      }
 
      .btn {
+       padding-top: .5em !important;
+       height: 4rem;
        background-color: darken($color-base-orange, 8%) !important;
        box-shadow: none;
        color: white !important;
@@ -91,7 +94,7 @@
        margin-top: 1em;
        margin-right: auto;
        margin-left: auto;
-
+       font-size: 16px !important;
        i {
          margin-left: 0px !important;
        }

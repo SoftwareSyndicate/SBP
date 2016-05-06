@@ -17,6 +17,7 @@ import RoutePage from './components/pages/routePage.vue'
 import NavPage from './components/pages/navPage.vue'
 import ProfilePage from './components/pages/profilePage.vue'
 import ProgressPage from './components/pages/progressPage.vue'
+import Notifications from './services/NotificationService.js'
 
 //Sign In
 import SignInPage from './components/pages/signInPage.vue'
@@ -148,3 +149,11 @@ router.redirect({
 });
 
 router.start(App, '#app');
+
+window.onInputFocused = function(){
+  Notifications.notify("Input.focused");
+}
+
+window.onInputBlured = function(){
+  Notifications.notify("Input.blured");
+}

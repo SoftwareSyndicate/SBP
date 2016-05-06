@@ -1,6 +1,6 @@
 <template>
   <div class="sign-in-page">
-    <div class="header-container">
+    <div class="header-container" v-bind:class="{'keyboardActive': inputFocused}">
       <p class="header">
         Seattle
         <br>
@@ -11,8 +11,8 @@
     </div>
 
     <form>
-      <input placeholder="Email" id="email" type="email" class="validate" v-model="email">
-      <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signIn()">
+      <input placeholder="Email" id="email" type="email" class="validate" v-model="email" onfocus="onInputFocused()" onblur="onInputBlured()">
+      <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signIn()" onfocus="onInputFocused()" onblur="onInputBlured()">
       <a class="waves-effect waves-dark btn btn-primary" @click.stop="signIn()">Log in</a>
       <a class="forgot-password">Forgot your password?</a>
     </form>
@@ -39,7 +39,8 @@
      return {
        email: "",
        password: "",
-       error: false
+       error: false,
+       inputFocused: false
      }
    },
    created(){
@@ -47,6 +48,8 @@
        this.$router.go({name: 'layout'});
      }
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
+     this.notifications.listenFor("Input.focused", function(){this.inputFocused = true}, this);
+     this.notifications.listenFor("Input.blured", function(){this.inputFocused = false}, this);
      this.hideLoadingAnimation();
    },
    ready(){
@@ -92,7 +95,7 @@
    background: $gradient-background;
 
    .header-container {
-     margin-top: 8em;
+     margin-top: 9em;
      margin-bottom: 2em;
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
@@ -142,7 +145,7 @@
    img {
      width: 100%;
      position: absolute;
-     bottom: 52px;
+     bottom: 60px;
    }
 
    .footer-container {
@@ -150,8 +153,8 @@
      padding: 1.5em;
      position: fixed;
      z-index: 2;
-     top: calc(100vh - 100px);
-     height: 100px;
+     top: calc(100vh - 80px);
+     height: 80px;
      width: 100%;
      background-color: white;
      align-items: center;

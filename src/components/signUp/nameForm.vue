@@ -1,6 +1,6 @@
 <template>
   <div class="name-form">
-    <div class="header-container">
+    <div class="header-container" v-bind:class="{'keyboardActive': inputFocused}">
       <p class="header">
         What's Your Name?
       </p>
@@ -8,8 +8,8 @@
     </div>
     <form>
       <div class="inputs">
-        <input placeholder="First" id="first" type="text" class="validate" v-model="firstName">
-        <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName" @keyup.enter="proceed()">
+        <input placeholder="First" id="first" type="text" class="validate" v-model="firstName" onfocus="onInputFocused()" onblur="onInputBlured()">
+        <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName" @keyup.enter="proceed()" onfocus="onInputFocused()" onblur="onInputBlured()">
       </div>
       <p v-if="!valid">We want to be able to congratulate you on your climbing progress!</p>
       <a class="waves-effect waves-dark btn btn-primary" @click.stop="proceed()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
@@ -27,11 +27,13 @@
      return {
        firstName: "",
        lastName: "",
-       valid: false
+       valid: false,
+       inputFocused: false
      }
    },
    created(){
-
+     this.notifications.listenFor("Input.focused", function(){this.inputFocused = true}, this);
+     this.notifications.listenFor("Input.blured", function(){this.inputFocused = false}, this);
    },
    ready(){
      this.$watch('firstName', function(val){
@@ -60,6 +62,9 @@
          this.valid = false;
        }
        return this.valid;
+     },
+     onInputFocus(){
+       console.log("Input Focus");
      }
    }
  });
@@ -81,7 +86,7 @@
      flex-direction: column;
      justify-content: center;
      align-items: center;
-     margin-top: 8em;
+     margin-top: 9em;
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
      .header {
@@ -127,6 +132,8 @@
      }
 
      .btn {
+       padding-top: .5em !important;
+       height: 4rem;
        font-weight: 300;
        padding-right: 30%;
        padding-left: 30%;
@@ -136,6 +143,7 @@
        width: 100%;
        margin-right: auto;
        margin-left: auto;
+       font-size: 16px !important;
      }
 
      a.sign-up {
