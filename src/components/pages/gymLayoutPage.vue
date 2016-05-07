@@ -67,25 +67,14 @@
      WallListItem
    },
    created(){
-     this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
-     this.getRoutes();
+     this.routes = RouteModel.allRoutes
    },
    ready(){
+     this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
      this.notifications.notify('NavTabs.setActiveTab', 'layout');
+     this.hideLoadingAnimation();
    },
    methods: {
-     getRoutes(){
-       if(RouteModel.allRoutes.length > 0){
-         this.routes = RouteModel.allRoutes
-         this.hideLoadingAnimation();
-       } else {
-         this.showLoadingAnimation();
-         return RouteModel.getAllRoutes().then(results => {
-           this.routes = results;
-           this.hideLoadingAnimation();
-         });
-       }
-     },
      changeTab(tab){
        if(tab === 'distro'){
          RouteModel.saveRoutes();
@@ -103,7 +92,6 @@
 
    beforeDestroy(){
      RouteModel.saveRoutes();
-     this.showLoadingAnimation();
    }
  });
 

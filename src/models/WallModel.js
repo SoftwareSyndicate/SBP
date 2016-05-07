@@ -3,6 +3,7 @@ class WallModel {
   constructor(){
     this.walls = null;
     this.wall = null;
+    this.cachedWalls = [];
   }
 
   calculateAverageWallGrade(walls){
@@ -71,6 +72,7 @@ class WallModel {
         route.attributes.gradeImage = this.getRouteGradeImage(route);
         route.attributes.roundedGrade = Math.round(route.attributes.grade);
       });
+      this.cachedWalls.push(this.wall);
       return results;
     }.bind(this));
   }

@@ -7,7 +7,7 @@
     <router-view
         class="view"
         transition
-        transition-mode="out-in">
+        transition-mode="out-in" v-if="loaded">
     </router-view>
   </div>
 </template>
@@ -15,17 +15,43 @@
 <script>
  import Overlay from './overlay/overlay.vue'
  import Navbar from './navbar/navbar.vue'
+ import BaseComponent from './base/baseComponent.vue'
+ import WallModel from '../models/WallModel.js'
+ import RouteModel from '../models/RouteModel.js'
 
- export default {
-   name: 'LoginPage',
-   ready(){
-
-   },
+ var App = BaseComponent.extend({
+   name: 'App',
    components: {
      Navbar,
      Overlay
+   },
+   data(){
+     return {
+       loaded: false
+     }
+   },
+   created(){
+     this.showLoadingAnimation();
+     this.getResources();
+   },
+   ready(){
+
+   },
+   methods: {
+     getResources(){
+       var promises = []
+       promises.push(WallModel.getWalls());
+       promises.push(RouteModel.getAllRoutes());
+       promises.push(RouteModel.getSentRoutes());
+       Promise.all(promises).then(results => {
+         this.loaded = true;
+         this.hideLoadingAnimation();
+       });
+     }
    }
- };
+ });
+
+ export default App;
 </script>
 
 

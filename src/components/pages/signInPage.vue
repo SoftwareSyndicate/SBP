@@ -12,7 +12,7 @@
 
     <form>
       <input placeholder="Email" id="email" type="email" class="validate" v-model="email" onfocus="onInputFocused()" onblur="onInputBlured()">
-      <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signIn()" onfocus="onInputFocused()" onblur="onInputBlured()">
+      <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signIn()" onfocus="onInputFocused()">
       <a class="waves-effect waves-dark btn btn-primary" @click.stop="signIn()">Log in</a>
       <a class="forgot-password">Forgot your password?</a>
     </form>

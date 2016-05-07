@@ -3,7 +3,6 @@ import Notifications from '../services/NotificationService.js';
 class RouteModel {
   constructor(){
     this.allRoutes = [];
-    this.getSentRoutes();
     this.sentRoutes = [];
     if(!localStorage.getItem("routesToBeUpdated")){
       var empty = [];
@@ -17,8 +16,6 @@ class RouteModel {
       if(routesToBeUpdated.length > 0){
         Notifications.notify('Overlay.setVisible', true);
         return ParseService.updateSentRoutes(routesToBeUpdated).then(results => {
-          console.log("done sending");
-          console.log(results);
           this.getSentRoutes().then(results => {
             Notifications.notify('Overlay.setVisible', false);
           }, error => {

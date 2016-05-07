@@ -20,19 +20,12 @@
    },
    created(){
      this.showLoadingAnimation();
-     if(!WallModel.walls){
-       WallModel.getWalls().then(results => {
-         this.walls = results;
-         this.hideLoadingAnimation();
-       });
-     } else {
-       this.walls = WallModel.walls;
-       this.hideLoadingAnimation();
-     }
+     this.walls = WallModel.walls;
    },
    ready(){
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
      this.notifications.notify('NavTabs.setActiveTab', 'walls');
+     this.hideLoadingAnimation();
    },
    beforeDestroy(){
      window.scrollTo(0, 0);

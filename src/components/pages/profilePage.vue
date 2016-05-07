@@ -69,7 +69,6 @@
      this.notifications.notify('GymPage.changeTab', 'none');
      this.notifications.notify('NavTabs.setActiveTab', 'profile');
      this.hideLoadingAnimation();
-     console.log(this.currentUser);
    },
    beforeDestroy(){
      this.notifications.removeListener("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated);

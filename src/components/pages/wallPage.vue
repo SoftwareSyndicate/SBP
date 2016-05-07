@@ -71,8 +71,9 @@
      }
    },
    created(){
+     this.showLoadingAnimation();
+     this.wallName = "";
      this.getWall();
-
    },
    ready(){
      this.notifications.notify('Navbar.setNavigateBack', true);
@@ -81,15 +82,29 @@
    methods: {
      getWall(){
        this.showLoadingAnimation();
-       var wallId = this.$route.params.wallId;
-       WallModel.getWallById(wallId).then(results => {
-         this.notifications.notify('Navbar.setHeader', results.attributes.name);
-         results.attributes.name = "Wall Last Set";
-         this.wall = results;
-         this.routes = results.attributes.routes;
-
-         this.hideLoadingAnimation();
+       let wallId = this.$route.params.wallId;
+       let found = false;
+       WallModel.cachedWalls.forEach(wall => {
+         if(wallId === wall.id){
+           found = true;
+           this.wall = wall;
+           this.wallName = this.wall.attributes.name;
+           this.routes = this.wall.attributes.routes;
+           this.notifications.notify('Navbar.setHeader', this.wall.attributes.name);
+           this.wall.attributes.name = "Wall Last Set";
+           this.hideLoadingAnimation();
+         }
        });
+       if(!found){
+         WallModel.getWallById(wallId).then(results => {
+           this.wall = results;
+           this.wallName = this.wall.attributes.name;
+           this.notifications.notify('Navbar.setHeader', results.attributes.name);
+           results.attributes.name = "Wall Last Set";
+           this.routes = results.attributes.routes;
+           this.hideLoadingAnimation();
+         });
+       }
      },
      changeTab(tab){
        if(tab === 'distro'){
@@ -117,8 +132,8 @@
 
    beforeDestroy(){
      RouteModel.saveRoutes();
-     this.showLoadingAnimation();
      this.notifications.notify('Navbar.setNavigateBack', false);
+     this.wall.attributes.name = this.wallName;
      window.scrollTo(0, 0);
    }
  });
