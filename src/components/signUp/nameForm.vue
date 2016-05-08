@@ -11,7 +11,6 @@
         <input placeholder="First" id="first" type="text" class="validate" v-model="firstName" onfocus="onInputFocused()" onblur="onInputBlured()">
         <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName" @keyup.enter="proceed()" onfocus="onInputFocused()">
       </div>
-      <p v-if="!valid">We want to be able to congratulate you on your climbing progress!</p>
       <a class="waves-effect waves-dark btn btn-primary" @click="proceed()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
     </form>
   </div>
@@ -86,23 +85,23 @@
      flex-direction: column;
      justify-content: center;
      align-items: center;
-     margin-top: 9em;
+     margin-top: 50%;
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
 
      &.keyboardActive {
-       margin-top: 6em !important;
+       margin-top: 18% !important;
      }
 
      .header {
        font-weight: 300;
        font-size: 1.3em;
        color: rgba(255, 255, 255, 1);
-       margin-bottom: .5em !important;
+       margin-bottom: 1em !important;
      }
 
      span {
-       margin-bottom: 1.2em;
+       margin-bottom: 1.5em;
        display: block;
        height: 3px;
        width: 3em;
@@ -122,8 +121,13 @@
        input {
          display: flex;
          flex-basis: 50%;
-         margin-left: .5em;
-         margin-right: .5em;
+         &:first-child {
+           margin-right: .5em;
+         }
+
+         &:last-child {
+           margin-left: .5em;
+         }
        }
      }
 

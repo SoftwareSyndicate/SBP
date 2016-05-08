@@ -89,9 +89,10 @@
 </script>
 
 <style lang="sass">
+ @import '../../styles/main.scss';
  #navbar {
    nav {
-     background-color: #fc6d21;
+     background-color: $color-base-orange;
      border-bottom: 3px solid rgba(229, 98, 1, 1);
      background-image: url("../../../images/mountains.png");
      background-size: 50%;

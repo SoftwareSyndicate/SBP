@@ -59,7 +59,7 @@
 
    .header-container {
      margin-top: 9em;
-     margin-bottom: 1em;
+     margin-bottom: 2em;
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
      .header {
@@ -80,13 +80,13 @@
      p {
        color: white;
        margin-bottom: 1em !important;
-       font-size: .9em;
+       font-size: 1.3em;
        font-weight: 300;
      }
 
      .btn {
-       padding-top: .5em !important;
-       height: 4rem;
+       padding-top: .75em !important;
+       height: 4.5rem;
        background-color: darken($color-base-orange, 8%) !important;
        box-shadow: none;
        color: white !important;

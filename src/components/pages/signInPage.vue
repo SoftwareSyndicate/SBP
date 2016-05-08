@@ -63,7 +63,7 @@
          UserModel.signIn(this.email, this.password).then(results => {
            this.notifications.notify("UserModel.signUp");
            RouteModel.getSentRoutes();
-           this.$router.go({name: 'layout'});
+           this.$router.go({name: 'profile'});
            console.log(results);
          }, error => {
            Materialize.toast("Sorry, Invalid Credentials", 2000);
@@ -74,7 +74,6 @@
    },
 
    beforeDestroy(){
-     this.notifications.notify('Navbar.setVisible', true);
      this.showLoadingAnimation();
      window.scrollTo(0, 0);
    }

@@ -74,6 +74,7 @@
 </script>
 
 <style lang="sass">
+ @import '../../styles/main.scss';
  $cell-padding: 1.4em;
  $cell-border: 2px rgba(215, 218, 230, .5) solid;
 
@@ -97,27 +98,29 @@
          top: 25%;
          font-size: .6em;
          text-align: center;
-         font-weight: bold;
-         color: rgba(0, 0, 0, .3);
+         font-weight: 300;
+         color: #c9cddc;
+         text-transform: capitalize !important;
+
        }
 
        i {
-         color: rgba(0, 0, 0, .3);
+         color: #c9cddc;
        }
        box-shadow: none !important;
-       border-right: solid 1px rgba(0, 0, 0, .3);
+       /* border-right: solid 1px rgba(0, 0, 0, .3);
 
-       &:last-child {
-         border-right: none;
-       }
+          &:last-child {
+          border-right: none;
+          } */
        &.active {
          box-shadow: none;
 
          .tab-name {
-           color: black
+           color: $color-base-orange;
          }
          i {
-           color: black;
+           color: $color-base-orange;
          }
        }
      }

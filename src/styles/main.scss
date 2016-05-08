@@ -1,6 +1,6 @@
 //Variables
 $color-background: #edeff5;
-$color-base-orange: #ff6d00;
+$color-base-orange: #f3501e;
 $color-base-gray: #91a0b0;
 $color-text-normal: rgba(0, 0, 0, .7);
 $color-text-light: rgba(0, 0, 0, .5);
@@ -23,7 +23,7 @@ body {
 //Inputs
 input {
   background-color: white !important;
-  border-radius: 4px !important;
+  border-radius: 2px !important; //We were at 4px, Omri says fuck that shit
   padding-left: 18px !important;
   border-bottom: none !important;
   -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, .2) !important;
@@ -44,4 +44,4 @@ input {
 }
 
 //SignUp
-$signUp-page-padding: 14%;
+$signUp-page-padding: 10%;

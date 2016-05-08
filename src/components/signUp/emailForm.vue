@@ -11,7 +11,6 @@
         <input placeholder="Enter your email address" id="email" type="email" class="validate" v-model="email" onfocus="onInputFocused()" onblur="onInputBlured()">
         <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signUp()" onfocus="onInputFocused()">
       </div>
-      <p v-if="!valid">You'll use this email when you log in and if you ever need to reset your password</p>
       <a class="waves-effect waves-dark btn btn-primary" @click.stop="signUp()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
     </form>
   </div>
@@ -85,18 +84,18 @@
      flex-direction: column;
      justify-content: center;
      align-items: center;
-     margin-top: 9em;
+     margin-top: 45%;
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
      .header {
        font-weight: 300;
        font-size: 1.3em;
        color: rgba(255, 255, 255, 1);
-       margin-bottom: .5em !important;
+       margin-bottom: 1em !important;
      }
 
      span {
-       margin-bottom: 1.2em;
+       margin-bottom: 1.5em;
        display: block;
        height: 3px;
        width: 3em;
@@ -104,7 +103,7 @@
      }
 
      &.keyboardActive {
-       margin-top: 5em !important;
+       margin-top: 15% !important;
      }
    }
 
@@ -122,8 +121,8 @@
          display: flex;
          flex-grow: 1;
          flex-basis: 100%;
-         margin-left: .5em;
-         margin-right: .5em;
+         margin-left: 0px !important;
+         margin-right: 0px !important;
        }
      }
 
@@ -137,8 +136,8 @@
      }
 
      .btn {
-       padding-top: .5em !important;
-       height: 4rem;
+       padding-top: .75em !important;
+       height: 4.5rem;
        font-weight: 300;
        padding-right: 30%;
        padding-left: 30%;

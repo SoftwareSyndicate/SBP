@@ -40,7 +40,6 @@
 
    beforeDestroy(){
      this.showLoadingAnimation();
-     this.notifications.notify('Navbar.setVisible', true);
      window.scrollTo(0, 0);
    }
  });
