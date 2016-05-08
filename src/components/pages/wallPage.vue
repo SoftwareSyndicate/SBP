@@ -12,6 +12,15 @@
       </div>
 
       <div class="distro-container" v-if="distroActive">
+
+        <!-- Polar Area Chart -->
+        <div id="polar-area-chart-container" class="component">
+          <div class="chart-header">
+            <p>Circuit Distribution</p>
+          </div>
+          <polar-area-chart :routes="routes" v-if="routes.length > 0"></polar-area-chart>
+        </div>
+
         <!-- Routes Pie -->
         <div id="route-pie-chart-container" class="component">
           <div class="chart-header">
@@ -48,12 +57,14 @@
  import RouteList from '../routeList/routeList.vue'
  import RouteTable from '../routeTable/routeTable.vue'
  import RouteDist from '../routeDist/routeDist.vue'
+ import PolarAreaChart from '../polarAreaChart/polarAreaChart.vue'
  import RoutePieChart from '../routePieChart/routePieChart.vue'
  import BaseComponent from '../../components/base/baseComponent.vue'
 
  var WallPage = BaseComponent.extend({
    name: 'WallPage',
    components: {
+     PolarAreaChart,
      RouteDist,
      RouteList,
      RouteTable,
@@ -244,6 +255,20 @@
 
      .distro-container {
        margin-bottom: 50px;
+
+       #polar-area-chart-container {
+         display: flex;
+         flex-grow: 1;
+         flex-wrap: wrap;
+         margin: auto;
+         margin-bottom: 2em;
+         height: 40vh;
+         flex-basis: 100%;
+
+         .chart-header {
+           margin-bottom: 1em;
+         }
+       }
 
        #route-dist-container {
          display: flex;
