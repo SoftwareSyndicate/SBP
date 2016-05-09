@@ -13,12 +13,12 @@
 
       <div class="distro-container" v-if="distroActive">
         <!-- Polar Area Chart -->
-        <div id="polar-area-chart-container" class="component">
-          <div class="chart-header">
-            <p>Circuit Distribution</p>
-          </div>
-          <polar-area-chart :routes="routes" v-if="routes.length > 0"></polar-area-chart>
-        </div>
+        <!-- <div id="polar-area-chart-container" class="component">
+             <div class="chart-header">
+             <p>Circuit Distribution</p>
+             </div>
+             <polar-area-chart :routes="routes" v-if="routes.length > 0"></polar-area-chart>
+             </div> -->
 
         <!-- Route Pie Chart -->
         <div id="route-pie-chart-container" class="component">
@@ -197,8 +197,8 @@
          }
 
          &.active {
-           color: #ff6d00 !important;
-           border-bottom: 2px solid #ff6d00;
+           color: $color-base-orange !important;
+           border-bottom: 2px solid $color-base-orange;
          }
        }
      }
@@ -236,13 +236,17 @@
          flex-grow: 1;
          flex-wrap: wrap;
          margin: auto;
-         padding-bottom: 4em;
          margin-bottom: 2em;
-         height: 40vh;
          flex-basis: 100%;
+         padding-bottom: 1em;
+
+         .chart-header {
+           margin-bottom: 1em;
+         }
        }
 
        .chart-header {
+         height: 42px;
          padding: 1em;
          flex-grow: 1;
          flex-basis: 100%;

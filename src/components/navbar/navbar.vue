@@ -93,11 +93,11 @@
  #navbar {
    nav {
      background-color: $color-base-orange;
-     border-bottom: 3px solid rgba(229, 98, 1, 1);
+     border-bottom: 2px solid darken($color-base-orange, 6%);
      background-image: url("../../../images/mountains.png");
      background-size: 50%;
      background-repeat: no-repeat;
-     background-position: 50% 18px;
+     background-position: 50% 10px;
      box-shadow: none !important;
 
      .menu-button {

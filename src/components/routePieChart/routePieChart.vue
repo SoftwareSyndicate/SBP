@@ -1,13 +1,15 @@
 <template>
-  <div id="route-pie-chart">
-    <svg id="route-pie-chart-svg"></svg>
+  <div id="pie-chart">
+    <canvas id="pie-chart-canvas"></canvas>
     <p>Select a color to view number of routes</p>
   </div>
 </template>
 
 <script>
  import RouteModel from '../../models/RouteModel.js';
- export default {
+ import BaseComponent from '../base/baseComponent.vue'
+
+ var RoutePieChart = BaseComponent.extend({
    name: 'RoutePieChart',
    props: ['routes'],
    data(){
@@ -17,11 +19,30 @@
      }
    },
    ready(){
-     this.drawChart(this.routes);
+     let data = this.formatData(this.routes);
+     let options = {};
+     this.ctx = document.getElementById("pie-chart-canvas");
+     this.formatData(this.routes);
+     this.draw(data, options);
    },
 
    methods: {
-     drawChart(routes){
+     draw(data, options){
+       this.chart = new Chart(this.ctx, {
+         type: "doughnut",
+         data: data,
+         options: options
+       });
+     },
+     formatData(routes){
+       let data = {
+         datasets: [{
+           data: [],
+           backgroundColor: []
+         }],
+         labels: []
+       };
+
        var routeData = {};
        routes.forEach(route => {
          if(typeof routeData[route.attributes.color] === "undefined"){
@@ -32,68 +53,29 @@
        });
 
        //Create Rows for chart
-       var rows = [];
        for(var color in routeData){
-         var row = {
-           color: window.colorMappings[color],
-           label: color,
-           value: routeData[color].total
-         };
-         rows.push(row);
+         data.datasets[0].data.push(routeData[color].total);
+         data.datasets[0].backgroundColor.push(window.colorMappings[color]);
+         data.labels.push(color);
        }
-
-       nv.addGraph(function() {
-         var chart = nv.models.pieChart()
-                       .x(function(d) { return d.label })
-                       .y(function(d) { return d.value })
-                       .showLegend(false)
-                       .valueFormat(d3.format("f"))
-                       .showLabels(false)
-                       .labelThreshold(1)
-                       .labelType("percent") 
-                       .donut(true)
-                       .donutRatio(0.5)
-           ;
-
-         chart.tooltip.contentGenerator(function(data){
-           return  "<div style='color: white; background-color: rgba(0, 0, 0, .6); padding-left: 1em; padding-top: .5em; padding-right: 1em; padding-bottom: .5em;'><h6 style='font-size: 1.1em;'>" + data.data.value + " " + data.data.label + "</h6></div>";
-         });
-
-
-         d3.select("#route-pie-chart svg")
-           .datum(rows)
-           .transition().duration(350)
-           .call(chart);
-
-         return chart;
-       });
+       return data;
      }
    }
- }
+ });
+
+ export default RoutePieChart;
 </script>
 
 <style lang="sass">
  @import '../../styles/main.scss';
 
- #route-pie-chart {
-   display: flex;
-   flex-grow: 1;
-   height: 100%;
-   position: relative;
-
-   svg {
-     flex-grow: 1;
-     height: 100%;
-   }
+ #pie-chart {
+   margin: auto;
 
    p {
+     text-align: center;
      font-size: .85em;
      color: $color-base-gray;
-     position: absolute;
-     bottom: 0px;
-     width: 100%;
-     left: 0px;
-     text-align: center;
    }
  }
 </style>

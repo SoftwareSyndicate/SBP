@@ -25,7 +25,7 @@
    },
    created(){
      if(UserModel.currentUser){
-       this.$router.go({name: 'layout'});
+       this.$router.go({name: 'profile'});
      }
      this.hideLoadingAnimation();
    },

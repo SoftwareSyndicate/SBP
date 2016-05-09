@@ -84,6 +84,7 @@
    top: calc(100vh - 50px);
    height: 50px;
    .tabs {
+     border-top: 1px solid rgba(0, 0, 0, .1);
      height: 50px;
      position: fixed;
      z-index: 2;

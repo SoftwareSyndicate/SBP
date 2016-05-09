@@ -125,7 +125,7 @@
 
      .set-date {
        font-size: .9em;
-       color: #ff5722;
+       color: $color-base-orange;
        padding: 0.4em 0 0 0.4em;
      }
    }

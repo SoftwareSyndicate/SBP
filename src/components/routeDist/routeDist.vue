@@ -27,6 +27,7 @@
 
    methods: {
      drawChart(chartData){
+       console.log(chartData);
        nv.addGraph(function() {
          var chart = nv.models.multiBarChart()
                        .showYAxis(false)        //Show the y-axis
@@ -155,7 +156,7 @@
      font-size: .85em;
      color: $color-base-gray;
      position: absolute;
-     bottom: 0px;
+     bottom: 10px;
      width: 100%;
      left: 0px;
      text-align: center;

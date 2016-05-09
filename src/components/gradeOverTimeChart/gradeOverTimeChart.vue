@@ -87,8 +87,8 @@
          labels: [],
          datasets: [{
            label: "Routes Sent",
-           borderColor:  "rgba(255, 109, 0, .8)",
-           backgroundColor: "rgba(255, 109, 0, .4)",
+           borderColor: "rgba(243, 80, 30, .9)",
+           backgroundColor: "rgba(243, 80, 30, .6)",
            data: []
          }],
        }
@@ -96,9 +96,9 @@
          dateStringOptions = {hour: '2-digit'};
          lineData.labels.push("Joined");
          lineData.datasets[0].data.push(0);
-       } else if(days < 8){
+       } else if(days < 7){
          dateStringOptions = {weekday: 'long'};
-       } else if (days < 57){
+       } else if (days < 56){
          dateStringOptions = {month: 'numeric', day: 'numeric'};
        } else {
          dateStringOptions = {month: 'short'};

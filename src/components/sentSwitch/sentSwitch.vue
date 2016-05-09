@@ -55,6 +55,8 @@
 </script>
 
 <style lang="sass">
+ @import '../../styles/main.scss';
+
  .sent-switch {
    .wrap {
      width: 90px;
@@ -139,7 +141,7 @@
    }
 
    .toggle input[type="checkbox"]:checked ~ .bg {
-     background: #fc6d21;
+     background: $color-base-orange;
    }
 
    * {
