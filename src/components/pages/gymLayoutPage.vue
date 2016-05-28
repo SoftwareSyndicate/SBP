@@ -6,8 +6,8 @@
 
     <div class="content-container">
       <div class="gym-nav-tabs">
-        <p v-bind:class="{'active': routesActive}" @click.stop="changeTab('routes')">Routes</p>
         <p v-bind:class="{'active': distroActive}" @click.stop="changeTab('distro')">Distribution</p>
+        <p v-bind:class="{'active': routesActive}" @click.stop="changeTab('routes')">Routes</p>
         <p @click.stop="showWallImage()"><i class="material-icons">photo</i>View Wall</p>
       </div>
 
