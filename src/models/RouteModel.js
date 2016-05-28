@@ -29,6 +29,7 @@ class RouteModel {
         });
       } else {
         this.sendingRoutes = false;
+        Notifications.notify("RouteModel.sentRoutesUpdated");
       }
     });
   }
@@ -38,8 +39,6 @@ class RouteModel {
       this.gettingRoutes = true;
       return ParseService.getSentRoutes(Parse.User.current().id).then(results => {
         this.gettingRoutes = false;
-        console.log("got new sent routes");
-        console.log(results);
         this.sentRoutes = results;
         Notifications.notify("RouteModel.sentRoutesUpdated");
         return results;
