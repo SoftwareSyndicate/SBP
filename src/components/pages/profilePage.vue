@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page">
+  <div class="profile-page" v-if="!gettingRoutes">
     <div class="header">
       <h4 class="first-name">{{currentUser.attributes.firstName}}</h4>
       <h4 class="last-name">{{currentUser.attributes.lastName}}</h4>
@@ -56,7 +56,8 @@
        sentRoutes: RouteModel.sentRoutes,
        averageMonthly: 0,
        totalSent: 0,
-       averageGrade: ""
+       averageGrade: "",
+       gettingRoutes: RouteModel.gettingRoutes
      }
    },
    created(){
@@ -77,9 +78,11 @@
    },
    methods: {
      onSentRoutesUpdated(){
+       console.log("updating routes");
        this.sentRoutes = RouteModel.sentRoutes;
        this.calcAverageGrade();
        this.calcAverageMonthly();
+       this.gettingRoutes = false;
      },
      calcAverageGrade(){
        var total = 0;

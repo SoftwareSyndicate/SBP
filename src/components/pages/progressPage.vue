@@ -70,12 +70,14 @@
    padding: 16px;
 
    .need-more-routes {
+     display: flex;
+     flex-wrap: wrap;
      margin-top: 3em;
      padding: 1em;
      text-align: center;
 
      .view-walls-button {
-
+       flex-basis: 100%;
        margin: auto;
        margin-top: 2em;
        padding: .7em;

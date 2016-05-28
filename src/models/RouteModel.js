@@ -4,6 +4,7 @@ class RouteModel {
   constructor(){
     this.allRoutes = [];
     this.sentRoutes = [];
+    this.gettingRoutes = false;
     if(!localStorage.getItem("routesToBeUpdated")){
       var empty = [];
       localStorage.setItem("routesToBeUpdated", JSON.stringify(empty));
@@ -15,6 +16,7 @@ class RouteModel {
       var routesToBeUpdated = JSON.parse(localStorage.getItem("routesToBeUpdated"));
       if(routesToBeUpdated.length > 0){
         Notifications.notify('Overlay.setVisible', true);
+
         return ParseService.updateSentRoutes(routesToBeUpdated).then(results => {
           this.getSentRoutes().then(results => {
             Notifications.notify('Overlay.setVisible', false);
@@ -32,7 +34,9 @@ class RouteModel {
 
   getSentRoutes(){
     if(Parse.User.current()){
+      this.gettingRoutes = true;
       return ParseService.getSentRoutes(Parse.User.current().id).then(results => {
+        this.gettingRoutes = false;
         console.log("got new sent routes");
         console.log(results);
         this.sentRoutes = results;

@@ -52,6 +52,11 @@
      this.filterRoutes(this.routes);
    },
 
+   beforeDestroy(){
+     RouteModel.saveRoutes();
+     console.log("Before destroying the route table");
+   },
+
    methods: {
      calculateGradeTotals(routes){
        var tableData = [];

@@ -120,7 +120,6 @@
      },
      changeTab(tab){
        if(tab === 'distro'){
-         RouteModel.saveRoutes();
          this.distroActive = true;
          this.routesActive = false;
        } else {
@@ -143,7 +142,6 @@
    },
 
    beforeDestroy(){
-     RouteModel.saveRoutes();
      this.notifications.notify('Navbar.setNavigateBack', false);
      this.wall.attributes.name = this.wallName;
      window.scrollTo(0, 0);

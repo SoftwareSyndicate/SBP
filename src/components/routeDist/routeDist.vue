@@ -27,7 +27,6 @@
 
    methods: {
      drawChart(chartData){
-       console.log(chartData);
        nv.addGraph(function() {
          var chart = nv.models.multiBarChart()
                        .showYAxis(false)        //Show the y-axis
