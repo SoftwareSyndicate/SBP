@@ -47,8 +47,14 @@
      }
    },
    created(){
-     this.calculateGradeTotals(this.routes);
-     this.filterRoutes(this.routes);
+     /* this.calculateGradeTotals(this.routes);
+        this.filterRoutes(this.routes);
+
+        this.$watch('routes', function (val) {
+        console.log("FUCK");
+        this.calculateGradeTotals(this.routes);
+        this.filterRoutes(this.routes);
+        }.bind(this)) */
    },
 
    methods: {

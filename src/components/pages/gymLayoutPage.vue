@@ -101,7 +101,7 @@
    },
 
    beforeDestroy(){
-     RouteModel.saveRoutes();
+
    }
  });
 

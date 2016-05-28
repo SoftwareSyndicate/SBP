@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page" v-if="!gettingRoutes">
+  <div class="profile-page" v-if="!sendingRoutes">
     <div class="header">
       <h4 class="first-name">{{currentUser.attributes.firstName}}</h4>
       <h4 class="last-name">{{currentUser.attributes.lastName}}</h4>
@@ -57,12 +57,14 @@
        averageMonthly: 0,
        totalSent: 0,
        averageGrade: "",
-       gettingRoutes: RouteModel.gettingRoutes
+       sendingRoutes: RouteModel.sendingRoutes
      }
    },
    created(){
      this.calcAverageGrade();
      this.calcAverageMonthly();
+     this.calculateGradeTotals(this.sentRoutes);
+     this.filterRoutes(this.sentRoutes);
      this.notifications.listenFor("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated, this);
    },
    ready(){
@@ -70,7 +72,9 @@
      this.notifications.notify('Navbar.setHeader', "MY PROFILE");
      this.notifications.notify('GymPage.changeTab', 'none');
      this.notifications.notify('NavTabs.setActiveTab', 'profile');
-     this.hideLoadingAnimation();
+     if(!this.sendingRoutes){
+       this.hideLoadingAnimation();
+     }
    },
    beforeDestroy(){
      this.notifications.removeListener("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated);
@@ -78,11 +82,13 @@
    },
    methods: {
      onSentRoutesUpdated(){
-       console.log("updating routes");
        this.sentRoutes = RouteModel.sentRoutes;
        this.calcAverageGrade();
        this.calcAverageMonthly();
-       this.gettingRoutes = false;
+       this.calculateGradeTotals(this.sentRoutes);
+       this.filterRoutes(this.sentRoutes);
+       this.sendingRoutes = false;
+       this.hideLoadingAnimation();
      },
      calcAverageGrade(){
        var total = 0;
@@ -94,6 +100,36 @@
      },
      calcAverageMonthly(){
        this.averageMonthly = this.sentRoutes.length;
+     },
+     calculateGradeTotals(routes){
+       routes.forEach(route => {
+         route.grade = route.attributes.route.attributes.grade;
+         route.actualColor = window.colorMappings[route.attributes.route.attributes.color];
+         route.colorValue = RouteModel.findColorIndex(route.actualColor);
+       });
+     },
+     filterRoutes(routes){
+       routes.sort(function(a, b) {
+         if(a.grade > b.grade){
+           return 1;
+         } else if(a.grade < b.grade) {
+           return -1;
+         } else {
+           return 0;
+         }
+       });
+
+       routes.sort(function(a, b){
+         if(a.colorValue > b.colorValue){
+           return 1;
+         } else if(a.colorValue < b.colorValue){
+           return -1;
+         } else {
+           return 0;
+         }
+       });
+       routes.reverse();
+       return routes;
      }
    }
  });

@@ -4,7 +4,7 @@ class RouteModel {
   constructor(){
     this.allRoutes = [];
     this.sentRoutes = [];
-    this.gettingRoutes = false;
+    this.sendingRoutes = false;
     if(!localStorage.getItem("routesToBeUpdated")){
       var empty = [];
       localStorage.setItem("routesToBeUpdated", JSON.stringify(empty));
@@ -12,22 +12,23 @@ class RouteModel {
   }
 
   saveRoutes(){
+    this.sendingRoutes = true;
     setTimeout(() => {
       var routesToBeUpdated = JSON.parse(localStorage.getItem("routesToBeUpdated"));
       if(routesToBeUpdated.length > 0){
         Notifications.notify('Overlay.setVisible', true);
 
         return ParseService.updateSentRoutes(routesToBeUpdated).then(results => {
-          this.getSentRoutes().then(results => {
-            Notifications.notify('Overlay.setVisible', false);
-          }, error => {
-            Notifications.notify('Overlay.setVisible', false);
-          });
+          this.sentRoutes = results;
           var empty = [];
           localStorage.setItem("routesToBeUpdated", JSON.stringify(empty));
+          Notifications.notify("RouteModel.sentRoutesUpdated");
+          this.sendingRoutes = false;
         }, error => {
           return Promise.reject(error);
         });
+      } else {
+        this.sendingRoutes = false;
       }
     });
   }

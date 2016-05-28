@@ -64,6 +64,7 @@
          route.grade = route.attributes.grade;
          route.actualColor = window.colorMappings[route.attributes.color];
          route.colorValue = RouteModel.findColorIndex(route.actualColor);
+
          //route.attributes.sent = false;
          /* var vGrade = route.attributes.color + route.attributes.grade;
             var found = false;
