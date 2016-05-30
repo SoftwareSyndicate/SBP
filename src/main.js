@@ -1,5 +1,12 @@
 require('file?name=[name].[ext]!../index.html'); // copy the index.html file
 
+import {default as $} from 'jquery'
+
+window.$ = $;
+console.log($);
+
+/* import {default as jmobile} from 'jquery-mobile'
+   console.log(jmobile); */
 import d3 from 'd3'
 import Parse from './services/ParseService.js'
 import Vue from 'vue'
@@ -41,6 +48,7 @@ Chart.defaults.global.animation.duration = 1800;
 
 import nvd3 from './libs/nvd3.js'
 import stream_layers from './libs/streamLayers.js'
+
 
 window.colorMappings = {
   gray: "rgba(209,209,209, 0.8)",

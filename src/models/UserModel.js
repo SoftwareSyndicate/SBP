@@ -2,12 +2,6 @@ import ParseService from '../services/ParseService.js'
 
 class UserModel {
   constructor(){
-    this.currentUser = null;
-    this.loadUser()
-  }
-
-  //A bit easier than parsing objects into/outta localStorage?
-  loadUser(){
     this.currentUser = Parse.User.current();
   }
 

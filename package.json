@@ -34,6 +34,8 @@
     "chart.js": "^2.0.2",
     "d3": "^3.5.16",
     "es6-promise": "^3.0.2",
+    "jquery": "^2.2.4",
+    "jquery-mobile": "^1.4.1",
     "materialize-css": "^0.97.5",
     "vue": "^1.0.8",
     "vue-router": "^0.7.5"

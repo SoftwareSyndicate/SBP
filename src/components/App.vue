@@ -32,12 +32,27 @@
    },
    created(){
      this.showLoadingAnimation();
+     /* this.registerSwipes(); */
      this.getResources();
    },
    ready(){
 
    },
    methods: {
+     registerSwipes(){
+       console.log("reg swips");
+       $(document).on('swipeleft', 'body', function(event){
+         alert("swipe left");
+         console.log("swipeleft");
+         window.history.back();
+       });
+
+       $(document).on('swiperight', 'body', function(event){
+         window.history.forward();
+         console.log("swiperight");
+       });
+
+     },
      getResources(){
        var promises = []
        promises.push(WallModel.getWalls());

@@ -83,6 +83,11 @@
    z-index: 9999;
    top: calc(100vh - 50px);
    height: 50px;
+
+   .indicator {
+     display: none !important;
+   }
+
    .tabs {
      border-top: 1px solid rgba(0, 0, 0, .1);
      height: 50px;
