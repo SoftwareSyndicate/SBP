@@ -1,13 +1,12 @@
 <template>
-  <li class="collection-item wall-list-item waves-effect component" v-link="{name: 'wall', params: {wallId: wall.id}}">
+  <li class="collection-item wall-list-item waves-effect component" v-link="{name: 'wall', params: {id: wall.id}}">
     <div class="left">
       <div class="name-container"">
-        <h5 class="name" v-if="!!wall">{{wall.attributes.name}}</h5>
+        <h5 class="name" v-if="!!wall">{{wall.name}}</h5>
         <h5 class="name" v-if="gym">Gym Last Set</h5>
       </div>
       <span class="spacer"></span>
-      <p class="set-date" v-text="wall.attributes.lastSet | dateSet" v-if="!!wall"></p>
-      <p class="set-date" v-text="lastSet | dateSet" v-if="gym"></p>
+      <p class="set-date" v-text="wall.last_set | dateSet"></p>
     </div>
     <div class="right">
       <div class="color" v-for="color in colors" v-bind:style="{'background-color': color.color, 'width': color.percent}">&nbsp</div>
@@ -16,31 +15,20 @@
 </template>
 
 <script>
- import WallModel from '../../models/WallModel.js';
  export default {
    name: 'WallListItem',
    props: ['wall', 'routes', 'gym'],
    data(){
      return {
        colors: [],
-       height: 0,
-       lastSet: new Date()
+       height: 0
      }
    },
    created(){
-     if(!!this.wall){
-       this.routes = this.wall.attributes.routes;
-       this.wall.lastSet = WallModel.getLastSetDate(this.wall.attributes.lastSet);
+     this.routes = this.wall.routes;
+     if(this.routes){
+       this.calcColorPercents();
      }
-
-     this.lastSet = this.routes[0].updatedAt;
-     this.routes.forEach(route => {
-
-       if(route.updatedAt > this.lastSet){
-         this.lastSet = route.updatedAt;
-       }
-     });
-     this.calcColorPercents();
    },
    methods: {
      calcColorPercents(){
@@ -55,7 +43,7 @@
          black: 0
        };
        this.routes.forEach(route => {
-         colorData[route.attributes.color]++;
+         colorData[route.color]++;
        });
 
        var mostFrequentColor;
@@ -83,7 +71,7 @@
 </script>
 
 <style lang="sass">
-@import '../../styles/main.scss';
+ @import '../../styles/main.scss';
 
  .wall-list-item {
    padding: 0 0 0 10px !important;
