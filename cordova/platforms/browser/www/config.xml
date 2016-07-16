@@ -2,11 +2,11 @@
 <widget id="io.cordova.hellocordova" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>SBP</name>
     <description>
-      Seattle Bouldering Project 
-    </description>
+    Seattle Bouldering Project 
+  </description>
     <author email="yintothayang@gmail.com" href="http://makowaredev.com">
-      Syndicate Software
-    </author>
+    Syndicate Software
+  </author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -15,4 +15,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="SplashScreenDelay" value="3500" />
+    <preference name="orientation" value="portrait" />
 </widget>
