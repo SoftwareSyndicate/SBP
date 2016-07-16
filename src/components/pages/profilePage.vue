@@ -1,39 +1,41 @@
 <template>
-  <div class="profile-page" v-if="!sendingRoutes">
-    <div class="header">
-      <h4 class="first-name">{{currentUser.attributes.firstName}}</h4>
-      <h4 class="last-name">{{currentUser.attributes.lastName}}</h4>
-      <p class="no-routes-message" v-if="sentRoutes.length == 0">No walls sent yet</p>
-      <div class="base-stats" v-if="sentRoutes.length > 0">
-        <div class="stat">
-          Avg / Mo: <span>{{averageMonthly}}</span>
-        </div>
-        <div class="stat">
-          Total Sent: <span>{{sentRoutes.length}}</span>
-        </div>
-        <div class="stat">
-          Avg Grade: <span>{{averageGrade}}</span>
+  <div> 
+    <div class="profile-page" v-if="!sendingRoutes">
+      <div class="header">
+        <h4 class="first-name">{{currentUser.attributes.firstName}}</h4>
+        <h4 class="last-name">{{currentUser.attributes.lastName}}</h4>
+        <p class="no-routes-message" v-if="sentRoutes.length == 0">No walls sent yet</p>
+        <div class="base-stats" v-if="sentRoutes.length > 0">
+          <div class="stat">
+            Avg / Mo: <span>{{averageMonthly}}</span>
+          </div>
+          <div class="stat">
+            Total Sent: <span>{{sentRoutes.length}}</span>
+          </div>
+          <div class="stat">
+            Avg Grade: <span>{{averageGrade}}</span>
+          </div>
         </div>
       </div>
+      <div class="sent-history">
+        <div class="sent-history-header">
+          <h4>Sent History</h4>
+          <div class="view-progress-button waves-effect waves-dark" v-link="{name: 'progress'}"  v-if="sentRoutes.length > 0">
+            View progress
+          </div>
+        </div>
+        <div class="no-routes-box" v-if="sentRoutes.length === 0">
+          <p>Hey <span>{{currentUser.attributes.firstName}}</span>, lets record your first send!</p>
+          <div class="view-walls-button waves-effect waves-light" v-link="{name: 'walls'}">
+            View the walls
+          </div>
+        </div>
+        <div class="routes-container component" v-if="sentRoutes.length > 0">
+          <sent-route-table :routes="sentRoutes"></sent-route-table>
+        </div>
+      </div>
+      <nav-tabs></nav-tabs>
     </div>
-    <div class="sent-history">
-      <div class="sent-history-header">
-        <h4>Sent History</h4>
-        <div class="view-progress-button waves-effect waves-dark" v-link="{name: 'progress'}"  v-if="sentRoutes.length > 0">
-          View progress
-        </div>
-      </div>
-      <div class="no-routes-box" v-if="sentRoutes.length === 0">
-        <p>Hey <span>{{currentUser.attributes.firstName}}</span>, lets record your first send!</p>
-        <div class="view-walls-button waves-effect waves-light" v-link="{name: 'walls'}">
-          View the walls
-        </div>
-      </div>
-      <div class="routes-container component" v-if="sentRoutes.length > 0">
-        <sent-route-table :routes="sentRoutes"></sent-route-table>
-      </div>
-    </div>
-    <nav-tabs></nav-tabs>
   </div>
 </template>
 

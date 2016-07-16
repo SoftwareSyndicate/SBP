@@ -1,19 +1,19 @@
 <template>
   <div class="nav-tabs" v-if="visible">
     <ul class="tabs z-depth-1">
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': wallsTabVisible}" @click="setActiveTab('walls')" v-link="{name: 'walls'}">
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': currentTab == 'walls'}" v-link="{name: 'walls'}">
         <p class="tab-name">Walls</p>
         <a href="#tab-walls" class="">
           <i class="material-icons">dns</i>
         </a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': layoutTabVisible}" @click="setActiveTab('layout')" v-link="{name: 'layout'}">
-        <p class="tab-name">Layout</p>
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': currentTab == 'news'}" v-link="{name: 'news'}">
+        <p class="tab-name">News</p>
         <a href="#tab-layout" class="">
-          <i class="material-icons">equalizer</i>
+          <i class="material-icons">add_alert</i>
         </a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': profileTabVisible}" @click="setActiveTab('profile')" v-link="{name: 'profile'}">
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': currentTab == 'profile'}" v-link="{name: 'profile'}">
         <p class="tab-name">Profile</p>
         <a href="#tab-profile" class="">
           <i class="material-icons">account_circle</i>
@@ -32,7 +32,8 @@
        wallsTabVisible: false,
        profileTabVisible: false,
        layoutTabVisible: false,
-       visible: true
+       visible: true,
+       currentTab: ""
      }
    },
    created(){
@@ -41,28 +42,12 @@
    },
    ready(){
      $('ul.tabs').tabs();
-     this.setActiveTab(null, this.$route.name);
+     this.currentTab = this.$route.name;
    },
 
    methods: {
      setActiveTab(e, tab){
-       if(tab === "layout"){
-         this.layoutTabVisible = true;
-         this.wallsTabVisible = false;
-         this.profileTabVisible = false;
-       } else if(tab === "walls"){
-         this.layoutTabVisible = false;
-         this.wallsTabVisible = true;
-         this.profileTabVisible = false;
-       } else if(tab === "profile"){
-         this.layoutTabVisible = false;
-         this.wallsTabVisible = false;
-         this.profileTabVisible = true;
-       } else {
-         this.layoutTabVisible = false;
-         this.wallsTabVisible = false;
-         this.profileTabVisible = false;
-       }
+       this.currentTab = tab;
      },
      setVisible(e, visible){
        this.visible = visible;
