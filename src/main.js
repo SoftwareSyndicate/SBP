@@ -3,10 +3,7 @@ require('file?name=[name].[ext]!../index.html'); // copy the index.html file
 import {default as $} from 'jquery'
 
 window.$ = $;
-console.log($);
 
-/* import {default as jmobile} from 'jquery-mobile'
-   console.log(jmobile); */
 import d3 from 'd3'
 import Parse from './services/ParseService.js'
 import Vue from 'vue'
