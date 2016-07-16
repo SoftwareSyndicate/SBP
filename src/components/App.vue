@@ -1,14 +1,16 @@
 <template>
-  <navbar></navbar>
+  <div class="">
+    <navbar></navbar>
 
-  <!-- main view -->
-  <overlay></overlay>
-  <div id="wrapper">
-    <router-view
-        class="view"
-        transition
-        transition-mode="out-in" v-if="loaded">
-    </router-view>
+    <!-- main view -->
+    <overlay></overlay>
+    <div id="wrapper">
+      <router-view
+          class="view"
+          transition
+          transition-mode="out-in" v-if="loaded">
+      </router-view>
+    </div>
   </div>
 </template>
 
