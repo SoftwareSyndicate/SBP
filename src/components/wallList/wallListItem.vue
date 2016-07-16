@@ -71,7 +71,6 @@
 </script>
 
 <style lang="sass">
- @import '../../styles/main.scss';
 
  .wall-list-item {
    padding: 0 0 0 10px !important;
@@ -113,7 +112,7 @@
 
      .set-date {
        font-size: .9em;
-       color: $color-base-orange;
+       color: #FF7055;
        padding: 0.4em 0 0 0.4em;
      }
    }
