@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var CordovaPlugin = require('webpack-cordova-plugin');
+var path = require('path');
 
 var PATH = './static';
 if (process.env.NODE_ENV === 'production') {
@@ -38,6 +39,20 @@ module.exports = {
   babel: {
     presets: ['es2015'],
     plugins: ['transform-runtime']
+  },
+  resolve: {
+    root: path.resolve(__dirname),
+    alias: {
+      components: 'src/components',
+      base: 'src/components/base',
+      pages: 'src/components/pages',
+      filters: 'src/filters',
+      libs: 'src/libs',
+      models: 'src/models',
+      services: 'src/services',
+      styles: 'src/styles'
+    },
+    extensions: ['', '.js', '.vue', '.scss']
   }
 }
 
