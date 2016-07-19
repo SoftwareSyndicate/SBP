@@ -11,46 +11,6 @@
                         {
                             "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"UniversalAnalytics\"><param name=\"android-package\" value=\"com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin\" /></feature>",
-                            "count": 1
-                        }
-                    ]
-                }
-            },
-            "AndroidManifest.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-                            "count": 1
-                        }
-                    ],
-                    "/manifest/application": [
-                        {
-                            "xml": "<receiver android:enabled=\"true\" android:name=\"com.google.android.gms.analytics.AnalyticsReceiver\"><intent-filter><action android:name=\"com.google.android.gms.analytics.ANALYTICS_DISPATCH\" /></intent-filter></receiver>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<service android:enabled=\"true\" android:exported=\"false\" android:name=\"com.google.android.gms.analytics.AnalyticsService\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<receiver android:exported=\"true\" android:name=\"com.google.android.gms.analytics.CampaignTrackingReceiver\"><intent-filter><action android:name=\"com.android.vending.INSTALL_REFERRER\" /></intent-filter></receiver>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<service android:name=\"com.google.android.gms.analytics.CampaignTrackingService\" />",
-                            "count": 1
                         }
                     ]
                 }
@@ -59,13 +19,7 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
-        },
-        "cordova-plugin-google-analytics": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
+            "PACKAGE_NAME": "software.syndicate.sbp"
         }
     },
     "dependent_plugins": {},
@@ -74,25 +28,9 @@
             "file": "plugins/cordova-plugin-whitelist/whitelist.js",
             "id": "cordova-plugin-whitelist.whitelist",
             "runs": true
-        },
-        {
-            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-            "id": "cordova-plugin-splashscreen.SplashScreen",
-            "clobbers": [
-                "navigator.splashscreen"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-google-analytics/www/analytics.js",
-            "id": "cordova-plugin-google-analytics.UniversalAnalytics",
-            "clobbers": [
-                "analytics"
-            ]
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-whitelist": "1.2.1",
-        "cordova-plugin-splashscreen": "3.2.1",
-        "cordova-plugin-google-analytics": "0.8.1"
+        "cordova-plugin-whitelist": "1.2.1"
     }
 }

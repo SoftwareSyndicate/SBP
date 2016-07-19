@@ -50,9 +50,10 @@ module.exports = {
       libs: 'src/libs',
       models: 'src/models',
       services: 'src/services',
-      styles: 'src/styles'
+      styles: 'src/styles',
+      images: 'images'
     },
-    extensions: ['', '.js', '.vue', '.scss']
+    extensions: ['', '.js', '.vue', '.scss', '.svg', '.png']
   }
 }
 

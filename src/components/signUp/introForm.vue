@@ -1,24 +1,6 @@
 <template>
   <div class="intro-form">
-    <div class="header-container">
-      <p class="header">
-        Seattle
-        <br>
-        Bouldering
-        <br>
-        Project
-      </p>
-    </div>
-
-    <form>
-      <p>We created a new app to help notify you of new walls being set. We're excited to have you be a part of our community!</p>
-      <a class="waves-effect waves-dark btn btn-primary" v-link="{name: 'name'}"><i class="material-icons right">arrow_forward</i>Create an account</a>
-    </form>
-
-    <img src="../../../images/mountains.png">
-    <!-- <div class="footer-container">
-         <p>Alredy have an account?</p>
-         </div> -->
+    
   </div>
 </template>
 

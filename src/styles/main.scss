@@ -5,6 +5,9 @@ $color-base-gray: #91a0b0;
 $color-text-normal: rgba(0, 0, 0, .7);
 $color-text-light: rgba(0, 0, 0, .5);
 
+$color-orange-1: #F1522B;
+$color-orange-2: #FF5B32; // lighter than 1
+
 $component-border: 1px rgba(215, 218, 230, 1) solid;
 $gradient-background: linear-gradient(darken($color-base-orange, 3%), lighten($color-base-orange, 8%));
 //Containers

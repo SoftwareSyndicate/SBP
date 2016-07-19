@@ -1,7 +1,7 @@
 <template>
   <div class="sign-up-page">
     <router-view></router-view>
-    <img src="../../../images/mountains.png">
+    <img src="~images/mountains.png">
     <div class="footer-container" v-link="{name: 'signIn'}">
       <p>Alredy have an account?</p>
     </div>
