@@ -6,14 +6,13 @@
 
     <div class="content-container">
       <div class="wall-nav-tabs">
-        <p v-bind:class="{'active': currentTab === 'distro'}" @click.stop="currentTab = 'distro'">Distribution</p>
-        <p v-bind:class="{'active': currentTab === 'routes'}" @click.stop="currentTab = 'routes'">Routes</p>
+        <p v-bind:class="{'active': currentTab === 'distro'}" @click.stop="currentTab = 'distro';">Distribution</p>
+        <p v-bind:class="{'active': currentTab === 'routes'}" @click.stop="currentTab = 'routes';">Routes</p>
 
         <p @click.stop="showWallImage()"><i class="material-icons">photo</i>View Wall</p>
       </div>
 
-      <div class="distro-container" v-if="distroActive">
-
+      <div class="distro-container" v-if="currentTab == 'distro'">
         <!-- Polar Area Chart -->
         <!-- <div id="polar-area-chart-container" class="component">
              <div class="chart-header">
@@ -27,7 +26,7 @@
           <div class="chart-header">
             <p>Circuit Distribution</p>
           </div>
-          <route-pie-chart :routes="routes"  v-if="!!wall"></route-pie-chart>
+          <route-pie-chart :routes="wall.routes" v-if="!!wall"></route-pie-chart>
         </div>
 
         <!-- Routes Dist -->
@@ -35,7 +34,7 @@
           <div class="chart-header">
             <p>V-Grade Distribution</p>
           </div>
-          <route-dist :routes="routes"  v-if="!!wall"></route-dist>
+          <route-dist :routes="wall.routes"  v-if="!!wall"></route-dist>
         </div>
       </div>
 
@@ -45,7 +44,7 @@
 
 
       <!-- Routes Table -->
-      <div class="routes-container component" v-if="routesActive">
+      <div class="routes-container component" v-if="currentTab == 'routes'">
         <route-table :routes="routes" :display-keys="routeKeys" v-if="!!wall"></route-table>
       </div>
     </div>
@@ -53,7 +52,7 @@
 </template>
 <script>
  import WallListItem from '../wallList/wallListItem.vue'
- import RouteModel from '../../models/RouteModel.js'
+ import RouteModel from '../../RMS/src/models/RouteModel.js'
  import RouteList from '../routeList/routeList.vue'
  import RouteTable from '../routeTable/routeTable.vue'
  import RouteDist from '../routeDist/routeDist.vue'
@@ -78,11 +77,12 @@
        wall: {},
        routes: [],
        routeKeys: ['grade', 'sends', 'sent'],
-       currentTab: 'routes',
+       currentTab: 'distro',
        imageVisible: false
      }
    },
    created(){
+     window.scrollTo(0, 0);
      this.wallName = "";
      this.onWallsUpdated();
    },
@@ -91,7 +91,8 @@
    },
    notifs(){
      return {
-       "WallModel.wallsUpdated": "onWallsUpdated"
+       "WallModel.wallsUpdated": "onWallsUpdated",
+       "RouteModel.routesUpdated": "parseRoutes"
      }
    },
 
@@ -101,13 +102,18 @@
        WallModel.walls.forEach(wall => {
          if(wall.id === this.$route.params.id){
            this.wall = wall;
-           console.log("THIS WALL: ", this.wall);
          }
        });
        this.notifications.notify('Navbar.setHeader', this.wall.name);
-       /* this.routes = this.wall.attributes.routes; */
      },
-
+     parseRoutes(){
+       this.wall.routes = [];
+       RouteModel.routes.forEach(route => {
+         if(route.wall_id === this.wall.id){
+           this.wall.routes.push(route);
+         }
+       });
+     },
      showWallImage(){
        if(this.wall.attributes.image){
          this.imageVisible = true;

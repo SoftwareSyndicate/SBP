@@ -1,5 +1,6 @@
 <template>
   <div id="pie-chart">
+    {{routes.length}}
     <canvas id="pie-chart-canvas"></canvas>
     <p>Select a color to view number of routes</p>
   </div>
@@ -22,8 +23,14 @@
      let data = this.formatData(this.routes);
      let options = {};
      this.ctx = document.getElementById("pie-chart-canvas");
-     this.formatData(this.routes);
+     this.data = this.formatData(this.routes);
      this.draw(data, options);
+
+     this.$watch('routes', val => {
+       this.data = this.formatData(this.routes);
+       this.chart.data.datasets[0] = this.data.datasets[0];
+       this.chart.update();
+     });
    },
 
    methods: {
@@ -45,11 +52,11 @@
 
        var routeData = {};
        routes.forEach(route => {
-         if(typeof routeData[route.attributes.color] === "undefined"){
-           routeData[route.attributes.color] = {};
-           routeData[route.attributes.color].total = 0;
+         if(typeof routeData[route.color] === "undefined"){
+           routeData[route.color] = {};
+           routeData[route.color].total = 0;
          }
-         routeData[route.attributes.color].total++;
+         routeData[route.color].total++;
        });
 
        //Create Rows for chart

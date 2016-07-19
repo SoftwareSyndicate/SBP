@@ -60,10 +60,10 @@
        $.each(routes, function(index,route){
          var colorFound = false;
          chartData.forEach(colorObj => {
-           if(colorObj["key"] === route.attributes.color){
+           if(colorObj["key"] === route.color){
              colorFound = true;
              colorObj.values.forEach(value => {
-               if(value.x === route.attributes.grade){
+               if(value.x === route.grade){
                  value.y++;
                }
              });
@@ -79,8 +79,8 @@
              values.push(value);
            }
            var colorObj = {
-             color: window.colorMappings[route.attributes.color],
-             key: route.attributes.color,
+             color: window.colorMappings[route.color],
+             key: route.color,
              values: values,
            }
            chartData.push(colorObj);
@@ -115,9 +115,9 @@
 
        routes.forEach(route => {
          chartData.forEach(colorObj => {
-           if(colorObj.key.toLowerCase() === route.attributes.color.toLowerCase()){
+           if(colorObj.key.toLowerCase() === route.color.toLowerCase()){
              colorObj.values.forEach(value => {
-               if(parseInt(value.x) === parseInt(route.attributes.grade)){
+               if(parseInt(value.x) === parseInt(route.grade)){
                  value.y++;
                }
              });

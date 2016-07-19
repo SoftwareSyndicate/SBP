@@ -5,7 +5,6 @@ import {default as $} from 'jquery'
 window.$ = $;
 
 import d3 from 'd3'
-import Parse from './services/ParseService.js'
 import Vue from 'vue'
 import filters from './filters/filters.js'
 import Router from 'vue-router'
@@ -16,12 +15,11 @@ import GymInfoPage from './components/pages/gymInfoPage.vue'
 import WallsPage from './components/pages/wallsPage.vue'
 import NewsPage from './components/pages/newsPage.vue'
 import WallPage from './components/pages/wallPage.vue'
-import RoutesPage from './components/pages/routesPage.vue'
-import RoutePage from './components/pages/routePage.vue'
 import NavPage from './components/pages/navPage.vue'
 import ProfilePage from './components/pages/profilePage.vue'
 import ProgressPage from './components/pages/progressPage.vue'
-import Notifications from './services/NotificationService.js'
+import Notifications from './RMS/src/services/NotificationService.js'
+import UserModel from './RMS/src/models/UserModel.js'
 
 //Sign In
 import SignInPage from './components/pages/signInPage.vue'
@@ -144,12 +142,17 @@ router.map({
   }
 });
 
-router.beforeEach(function () {
-  window.scrollTo(0, 0)
+router.beforeEach(function(transition){
+  if(!UserModel.currentUser){
+    transition.redirect("/signIn");
+  } else {
+    Notifications.notify('Router.beforeTransition', transition);
+    transition.next();
+  }
 });
 
 router.redirect({
-  '*': '/signUp'
+  '*': '/gym/walls'
 });
 
 router.redirect({

@@ -19,7 +19,7 @@
    props: {
      wall: {
        type: Object,
-       default: {}
+       default: () => {}
      }
    },
    data(){
@@ -29,11 +29,13 @@
      }
    },
    created(){
-     console.log(this.wall);
-     this.routes = this.wall.routes;
-     if(this.routes){
+     this.$watch('wall', val => {
+       this.colors = [];
        this.calcColorPercents();
-     }
+     }, {
+       deep: true,
+       immediate: true
+     });
    },
    methods: {
      calcColorPercents(){
@@ -47,7 +49,7 @@
          purple: 0,
          black: 0
        };
-       this.routes.forEach(route => {
+       this.wall.routes.forEach(route => {
          colorData[route.color]++;
        });
 

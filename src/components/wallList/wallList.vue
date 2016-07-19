@@ -11,7 +11,12 @@
      WallListItem
    },
    name: 'WallList',
-   props: ['walls'],
+   props: {
+     walls: {
+       type: Array,
+       default: () => []
+     }
+   },
    data(){
      return {
        order: "last_set",
@@ -23,7 +28,6 @@
    },
    methods: {
      changeOrder(order){
-       console.log(this.walls);
        this.order = order;
        this.reverse = this.reverse * -1;
      }

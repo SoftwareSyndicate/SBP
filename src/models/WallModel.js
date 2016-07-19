@@ -1,4 +1,3 @@
-import ParseService from '../services/ParseService.js';
 class WallModel {
   constructor(){
     this.walls = null;

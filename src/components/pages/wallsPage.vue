@@ -7,6 +7,8 @@
 <script>
  import WallList from '../wallList/wallList.vue'
  import WallModel from '../../RMS/src/models/WallModel.js'
+ import RouteModel from '../../RMS/src/models/RouteModel.js'
+
  import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
 
  var WallsPage =  BaseComponent.extend({
@@ -20,23 +22,36 @@
      }
    },
    created(){
-     this.walls = WallModel.walls;
+
    },
    ready(){
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
+     this.walls = WallModel.walls;
    },
    beforeDestroy(){
 
    },
    notifs(){
      return {
-       "WallModel.wallsUpdated": "onWallsUpdated"
+       "WallModel.wallsUpdated": "onWallsUpdated",
+       "RouteModel.routesUpdated": "parseRoutes"
      }
    },
 
    methods: {
-     onWallsUpdated(){
+     onWallsUpdated(e){
        this.walls = WallModel.walls;
+       this.parseRoutes();
+     },
+     parseRoutes(){
+       this.walls.forEach(wall => {
+         wall.routes = [];
+         RouteModel.routes.forEach(route => {
+           if(route.wall_id === wall.id){
+             wall.routes.push(route);
+           }
+         });
+       });
      }
    }
  });
