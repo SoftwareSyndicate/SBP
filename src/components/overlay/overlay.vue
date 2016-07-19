@@ -20,7 +20,7 @@
    name: 'Overlay',
    data(){
      return {
-       visible: true
+       visible: false
      }
    },
    created(){

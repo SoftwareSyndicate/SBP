@@ -47,6 +47,8 @@ import nvd3 from './libs/nvd3.js'
 import stream_layers from './libs/streamLayers.js'
 
 
+window.gymId = "-KLi8WWAMzuH1k4mlkbj";
+
 window.colorMappings = {
   gray: "rgba(209,209,209, 0.8)",
   yellow: "rgba(255,210,28, 0.8)",
@@ -81,7 +83,7 @@ router.map({
         name: 'walls',
         component: WallsPage
       },
-      '/walls/:wallId': {
+      '/walls/:id': {
         name: 'wall',
         component: WallPage
       },
@@ -154,8 +156,6 @@ router.redirect({
   '/signUp': '/signUp/intro'
 });
 
-router.start(App, '#app');
-
 window.onInputFocused = function(){
   Notifications.notify("Input.focused");
 }
@@ -163,3 +163,12 @@ window.onInputFocused = function(){
 window.onInputBlured = function(){
   Notifications.notify("Input.blured");
 }
+
+let loaded = false;
+firebase.auth().onAuthStateChanged(user => {
+  if(!loaded){
+    router.start(App, '#app');
+    loaded = true;
+  }
+});
+

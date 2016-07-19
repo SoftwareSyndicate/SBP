@@ -1,13 +1,14 @@
 <template>
   <div class="walls-page">
-    <wall-list :walls="walls" v-if="walls.length > 0"></wall-list>
+    <wall-list :walls="walls"></wall-list>
   </div>
 </template>
 
 <script>
  import WallList from '../wallList/wallList.vue'
- import WallModel from '../../models/WallModel.js'
- import BaseComponent from '../../components/base/baseComponent.vue'
+ import WallModel from '../../RMS/src/models/WallModel.js'
+ import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
+
  var WallsPage =  BaseComponent.extend({
    name: 'WallsPage',
    components: {
@@ -19,16 +20,24 @@
      }
    },
    created(){
-     this.showLoadingAnimation();
      this.walls = WallModel.walls;
    },
    ready(){
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
-     this.notifications.notify('NavTabs.setActiveTab', 'walls');
-     this.hideLoadingAnimation();
    },
    beforeDestroy(){
-     window.scrollTo(0, 0);
+
+   },
+   notifs(){
+     return {
+       "WallModel.wallsUpdated": "onWallsUpdated"
+     }
+   },
+
+   methods: {
+     onWallsUpdated(){
+       this.walls = WallModel.walls;
+     }
    }
  });
 

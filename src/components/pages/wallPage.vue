@@ -1,13 +1,13 @@
 <template>
   <div class="wall-page">
-    <div class="wall-header-container" v-if="!!wall">
+    <div class="wall-header-container">
       <wall-list-item :wall="wall"></wall-list-item>
     </div>
 
     <div class="content-container">
       <div class="wall-nav-tabs">
-        <p v-bind:class="{'active': distroActive}" @click.stop="changeTab('distro')">Distribution</p>
-        <p v-bind:class="{'active': routesActive}" @click.stop="changeTab('routes')">Routes</p>
+        <p v-bind:class="{'active': currentTab === 'distro'}" @click.stop="currentTab = 'distro'">Distribution</p>
+        <p v-bind:class="{'active': currentTab === 'routes'}" @click.stop="currentTab = 'routes'">Routes</p>
 
         <p @click.stop="showWallImage()"><i class="material-icons">photo</i>View Wall</p>
       </div>
@@ -52,7 +52,6 @@
   </div>
 </template>
 <script>
- import WallModel from '../../models/WallModel.js'
  import WallListItem from '../wallList/wallListItem.vue'
  import RouteModel from '../../models/RouteModel.js'
  import RouteList from '../routeList/routeList.vue'
@@ -60,7 +59,9 @@
  import RouteDist from '../routeDist/routeDist.vue'
  import PolarAreaChart from '../polarAreaChart/polarAreaChart.vue'
  import RoutePieChart from '../routePieChart/routePieChart.vue'
- import BaseComponent from '../../components/base/baseComponent.vue'
+ import WallModel from '../../RMS/src/models/WallModel.js'
+ import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
+
 
  var WallPage = BaseComponent.extend({
    name: 'WallPage',
@@ -74,59 +75,39 @@
    },
    data(){
      return {
-       wall: null,
+       wall: {},
        routes: [],
        routeKeys: ['grade', 'sends', 'sent'],
-       distroActive: true,
-       routesActive: false,
+       currentTab: 'routes',
        imageVisible: false
      }
    },
    created(){
-     this.showLoadingAnimation();
      this.wallName = "";
-     this.getWall();
+     this.onWallsUpdated();
    },
    ready(){
-     this.notifications.notify('Navbar.setNavigateBack', true);
-     this.notifications.notify('NavTabs.setActiveTab', 'walls');
+
    },
+   notifs(){
+     return {
+       "WallModel.wallsUpdated": "onWallsUpdated"
+     }
+   },
+
    methods: {
-     getWall(){
-       this.showLoadingAnimation();
-       let wallId = this.$route.params.wallId;
-       let found = false;
-       WallModel.cachedWalls.forEach(wall => {
-         if(wallId === wall.id){
-           found = true;
+     onWallsUpdated(){
+       this.walls = WallModel.walls;
+       WallModel.walls.forEach(wall => {
+         if(wall.id === this.$route.params.id){
            this.wall = wall;
-           this.wallName = this.wall.attributes.name;
-           this.routes = this.wall.attributes.routes;
-           this.notifications.notify('Navbar.setHeader', this.wall.attributes.name);
-           this.wall.attributes.name = "Wall Last Set";
-           this.hideLoadingAnimation();
+           console.log("THIS WALL: ", this.wall);
          }
        });
-       if(!found){
-         WallModel.getWallById(wallId).then(results => {
-           this.wall = results;
-           this.wallName = this.wall.attributes.name;
-           this.notifications.notify('Navbar.setHeader', results.attributes.name);
-           results.attributes.name = "Wall Last Set";
-           this.routes = results.attributes.routes;
-           this.hideLoadingAnimation();
-         });
-       }
+       this.notifications.notify('Navbar.setHeader', this.wall.name);
+       /* this.routes = this.wall.attributes.routes; */
      },
-     changeTab(tab){
-       if(tab === 'distro'){
-         this.distroActive = true;
-         this.routesActive = false;
-       } else {
-         this.distroActive = false;
-         this.routesActive = true;
-       }
-     },
+
      showWallImage(){
        if(this.wall.attributes.image){
          this.imageVisible = true;
@@ -135,6 +116,7 @@
          Materialize.toast('Sorry, no wall image yet!', 3000);
        }
      },
+
      closeWallImage(){
        this.imageVisible = false;
        $("body").css("overflow", "scroll");
@@ -142,9 +124,7 @@
    },
 
    beforeDestroy(){
-     this.notifications.notify('Navbar.setNavigateBack', false);
-     this.wall.attributes.name = this.wallName;
-     window.scrollTo(0, 0);
+
    }
  });
 

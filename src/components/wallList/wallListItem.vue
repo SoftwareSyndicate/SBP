@@ -2,8 +2,7 @@
   <li class="collection-item wall-list-item waves-effect component" v-link="{name: 'wall', params: {id: wall.id}}">
     <div class="left">
       <div class="name-container"">
-        <h5 class="name" v-if="!!wall">{{wall.name}}</h5>
-        <h5 class="name" v-if="gym">Gym Last Set</h5>
+        <h5 class="name" v-if="wall">{{wall.name}}</h5>
       </div>
       <span class="spacer"></span>
       <p class="set-date" v-text="wall.last_set | dateSet"></p>
@@ -17,7 +16,12 @@
 <script>
  export default {
    name: 'WallListItem',
-   props: ['wall', 'routes', 'gym'],
+   props: {
+     wall: {
+       type: Object,
+       default: {}
+     }
+   },
    data(){
      return {
        colors: [],
@@ -25,6 +29,7 @@
      }
    },
    created(){
+     console.log(this.wall);
      this.routes = this.wall.routes;
      if(this.routes){
        this.calcColorPercents();
