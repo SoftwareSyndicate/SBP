@@ -3,12 +3,12 @@
     <div class="set-news-item">
       <div class="header">
         <img src="../../../images/sbp_stamp.png">
-        <p class="author">{{newsItem.attributes.author.attributes.username}}</p>
+        <p class="author">{{newsItem.author.username}}</p>
         <p class="time">{{newsItem.createdAt | dateSet}}</p>
       </div>
       <div class="content">
-        <p class="message">{{newsItem.attributes.message}}</p>
-        <a class="waves-effect waves-dark btn btn-primary" v-link="newsItem.attributes.link">View Wall</a>
+        <p class="message">{{newsItem.message}}</p>
+        <a class="waves-effect waves-dark btn btn-primary" v-link="newsItem.link">View Wall</a>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
      }
    },
    created(){
-     console.log(this.newsItem);
+     /* console.log(this.newsItem); */
    },
    methods: {
      calcColorPercents(){

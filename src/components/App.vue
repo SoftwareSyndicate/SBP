@@ -42,13 +42,6 @@
      getResources(){
        WallModel.watchAllWallsInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
        RouteModel.watchAllRoutesInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
-
-       /* promises.push(RouteModel.getAllRoutes());
-          promises.push(RouteModel.getSentRoutes());
-          Promise.all(promises).then(results => {
-
-
-          }); */
      }
    }
  });

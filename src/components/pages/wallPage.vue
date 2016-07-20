@@ -39,7 +39,7 @@
       </div>
 
       <!-- Wall Image -->
-      <img v-bind:src="wall.image.url()" v-show="imageVisible" id="wall-image">
+      <!-- <img v-bind:src="wall.image.url()" v-show="imageVisible" id="wall-image"> -->
       <i class="material-icons" id="close-wall-image" v-show="imageVisible" @click.stop="closeWallImage()">clear</i>
 
 
@@ -74,7 +74,7 @@
    },
    data(){
      return {
-       wall: {},
+       wall: {routes: []},
        routes: [],
        routeKeys: ['grade', 'sends', 'sent'],
        currentTab: 'distro',

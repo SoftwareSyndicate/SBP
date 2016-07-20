@@ -9,7 +9,12 @@
  import RouteModel from '../../models/RouteModel.js';
  export default {
    name: 'RouteDist',
-   props: ['routes'],
+   props: {
+     routes: {
+       type: Array,
+       default: () => []
+     }
+   },
    data(){
      return {
        chartData: [],
@@ -18,11 +23,22 @@
      }
    },
    created(){
-     this.tableData = this.calculateGradeTotals(this.routes, window.colorsArray, window.gradesArray);
+     /* if(this.routes){
+        this.tableData = this.calculateGradeTotals(this.routes, window.colorsArray, window.gradesArray);
+        } */
    },
    ready(){
+     this.$watch('routes', val => {
+       /* this.colors = []; */
+       /* this.calcColorPercents(); */
+       this.tableData = this.calculateGradeTotals(this.routes, window.colorsArray, window.gradesArray);
+       this.drawChart(this.tableData);
+     }, {
+       deep: true,
+       immediate: true
+     });
      //this.drawChart(this.chartData);
-     this.drawChart(this.tableData);
+     /* this.drawChart(this.tableData); */
    },
 
    methods: {

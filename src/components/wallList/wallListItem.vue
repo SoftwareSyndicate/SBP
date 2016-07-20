@@ -30,8 +30,10 @@
    },
    created(){
      this.$watch('wall', val => {
-       this.colors = [];
-       this.calcColorPercents();
+       if(this.wall.routes){
+         this.colors = [];
+         this.calcColorPercents();
+       }
      }, {
        deep: true,
        immediate: true

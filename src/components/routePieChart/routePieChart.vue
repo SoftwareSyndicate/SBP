@@ -11,7 +11,12 @@
 
  var RoutePieChart = BaseComponent.extend({
    name: 'RoutePieChart',
-   props: ['routes'],
+   props: {
+     routes: {
+       type: Array,
+       default: () => []
+     }
+   },
    data(){
      return {
        colorsArray:['Gray','Yellow','Green','Red','Blue','Orange','Purple','Black'],
@@ -19,16 +24,27 @@
      }
    },
    ready(){
-     let data = this.formatData(this.routes);
+     /* let data = this.formatData(this.routes); */
      let options = {};
      this.ctx = document.getElementById("pie-chart-canvas");
-     this.data = this.formatData(this.routes);
-     this.draw(data, options);
+     /* this.data = this.formatData(this.routes); */
+     /* this.draw(data, options); */
 
      this.$watch('routes', val => {
-       this.data = this.formatData(this.routes);
-       this.chart.data.datasets[0] = this.data.datasets[0];
-       this.chart.update();
+       if(this.routes){
+         if(!!this.chart){
+           this.data = this.formatData(this.routes);
+           this.chart.data.datasets[0] = this.data.datasets[0];
+           this.chart.update();
+         } else {
+           this.data = this.formatData(this.routes);
+           this.draw(this.data, options);
+         }
+       }
+
+     }, {
+       deep: true,
+       immediate: true
      });
    },
 

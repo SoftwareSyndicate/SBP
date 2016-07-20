@@ -1,9 +1,9 @@
 <template>
-  <div> 
-    <div class="profile-page" v-if="!sendingRoutes">
+  <div>
+    <div class="profile-page">
       <div class="header">
-        <h4 class="first-name">{{currentUser.attributes.firstName}}</h4>
-        <h4 class="last-name">{{currentUser.attributes.lastName}}</h4>
+        <h4 class="first-name">{{currentUser.first_name}}</h4>
+        <h4 class="last-name">{{currentUser.last_name}}</h4>
         <p class="no-routes-message" v-if="sentRoutes.length == 0">No walls sent yet</p>
         <div class="base-stats" v-if="sentRoutes.length > 0">
           <div class="stat">
@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="no-routes-box" v-if="sentRoutes.length === 0">
-          <p>Hey <span>{{currentUser.attributes.firstName}}</span>, lets record your first send!</p>
+          <p>Hey <span>{{currentUser.first_name}}</span>, lets record your first send!</p>
           <div class="view-walls-button waves-effect waves-light" v-link="{name: 'walls'}">
             View the walls
           </div>
@@ -40,9 +40,9 @@
 </template>
 
 <script>
- import BaseComponent from '../../components/base/baseComponent.vue'
- import UserModel from '../../models/UserModel.js'
- import RouteModel from '../../models/RouteModel.js'
+ import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
+ import UserModel from '../../RMS/src/models/UserModel.js'
+ import RouteModel from '../../RMS/src/models/RouteModel.js'
  import NavTabs from '../navTabs/navTabs.vue'
  import SentRouteTable from '../sentRouteTable/sentRouteTable.vue'
 
@@ -58,8 +58,7 @@
        sentRoutes: RouteModel.sentRoutes,
        averageMonthly: 0,
        totalSent: 0,
-       averageGrade: "",
-       sendingRoutes: RouteModel.sendingRoutes
+       averageGrade: ""
      }
    },
    created(){
@@ -74,9 +73,7 @@
      this.notifications.notify('Navbar.setHeader', "MY PROFILE");
      this.notifications.notify('GymPage.changeTab', 'none');
      this.notifications.notify('NavTabs.setActiveTab', 'profile');
-     if(!this.sendingRoutes){
-       this.hideLoadingAnimation();
-     }
+     this.hideLoadingAnimation();
    },
    beforeDestroy(){
      this.notifications.removeListener("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated);
@@ -89,13 +86,12 @@
        this.calcAverageMonthly();
        this.calculateGradeTotals(this.sentRoutes);
        this.filterRoutes(this.sentRoutes);
-       this.sendingRoutes = false;
        this.hideLoadingAnimation();
      },
      calcAverageGrade(){
        var total = 0;
        this.sentRoutes.forEach(route => {
-         total += parseInt(route.attributes.route.attributes.grade);
+         total += parseInt(route.route.grade);
        });
 
        this.averageGrade = "v" + Math.round(total / this.sentRoutes.length);
@@ -105,8 +101,8 @@
      },
      calculateGradeTotals(routes){
        routes.forEach(route => {
-         route.grade = route.attributes.route.attributes.grade;
-         route.actualColor = window.colorMappings[route.attributes.route.attributes.color];
+         route.grade = route.route.grade;
+         route.actualColor = window.colorMappings[route.route.color];
          route.colorValue = RouteModel.findColorIndex(route.actualColor);
        });
      },

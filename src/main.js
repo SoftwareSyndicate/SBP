@@ -168,10 +168,19 @@ window.onInputBlured = function(){
 }
 
 let loaded = false;
-firebase.auth().onAuthStateChanged(user => {
+Notifications.listenFor("UserModel.userUpdated", function(){
   if(!loaded){
     router.start(App, '#app');
+    console.log("user model updated");
     loaded = true;
   }
 });
 
+
+/* firebase.auth().onAuthStateChanged(user => {
+   if(!loaded){
+   router.start(App, '#app');
+   loaded = true;
+   }
+   });
+ */
