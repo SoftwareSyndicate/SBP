@@ -12,18 +12,16 @@
       <div class="table-row" v-for="route in routes">
         <div class="left">
           <div class="diamond">
-            <div class="diamond-background" v-bind:style="{'background-color': route.actualColor}">
+            <div class="diamond-background" v-bind:style="{'background-color': route.htmlColor}">
 
             </div>
-            <div class="diamond-grade" v-bind:class="{'tenner': route.attributes.grade > 9}">
-              {{route.attributes.grade}}
+            <div class="diamond-grade" v-bind:class="{'tenner': route.grade > 9}">
+              {{route.grade}}
             </div>
           </div>
-          <!-- <img v-bind:src="'/images/grades/' + tableGradeObject.name + '.png'"> -->
         </div>
         <div class="right">
           <sent-switch :route.sync="route">
-          <!-- {{tableGradeObject.total}} -->
         </div>
       </div>
     </div>
@@ -31,12 +29,21 @@
 </template>
 
 <script>
- import BaseComponent from '../base/baseComponent.vue'
- import RouteModel from '../../models/RouteModel.js'
+ import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
+ import RouteModel from '../../RMS/src/models/RouteModel.js'
  import SentSwitch from '../sentSwitch/sentSwitch.vue'
  var RouteTable = BaseComponent.extend({
    name: 'RouteTable',
-   props: ['routes', 'displayKeys'],
+   props: {
+     routes: {
+       type: Array,
+       default: () => []
+     },
+     displayKeys: {
+       type: Array,
+       default: () => []
+     }
+   }, //['routes', 'displayKeys'],
    components: {
      SentSwitch
    },
@@ -48,45 +55,29 @@
      }
    },
    created(){
-     this.calculateGradeTotals(this.routes);
-     this.filterRoutes(this.routes);
+     this.$watch('routes', val => {
+       this.calculateGradeTotals(this.routes);
+       this.filterRoutes(this.routes);
+     }, {
+       deep: true,
+       immediate: true
+     });
    },
 
    beforeDestroy(){
-     RouteModel.saveRoutes();
-     console.log("Before destroying the route table");
+
    },
 
    methods: {
      calculateGradeTotals(routes){
        var tableData = [];
        routes.forEach(route => {
-         route.grade = route.attributes.grade;
-         route.actualColor = window.colorMappings[route.attributes.color];
+         route.grade = route.grade;
+         route.actualColor = window.colorMappings[route.color];
          route.colorValue = RouteModel.findColorIndex(route.actualColor);
-
-         //route.attributes.sent = false;
-         /* var vGrade = route.attributes.color + route.attributes.grade;
-            var found = false;
-            tableData.forEach(tableGradeObject => {
-            if(tableGradeObject.name === vGrade){
-            tableGradeObject.total++;
-            found = true;
-            }
-            });
-            if(!found){
-            var tableGradeObject = {
-            name: vGrade,
-            total: 1,
-            color: window.colorMappings[route.attributes.color],
-            grade: parseInt(route.attributes.grade),
-            colorValue: RouteModel.findColorIndex(window.colorMappings[route.attributes.color])
-            };
-            tableData.push(tableGradeObject);
-            } */
        });
 
-       //Filter Routes before displaying them, don't use filter - performance 
+       //Filter Routes before displaying them, don't use filter - performance
        this.tableData = tableData;
      },
      filterRoutes(routes){

@@ -1,6 +1,5 @@
 <template>
   <div id="pie-chart">
-    {{routes.length}}
     <canvas id="pie-chart-canvas"></canvas>
     <p>Select a color to view number of routes</p>
   </div>

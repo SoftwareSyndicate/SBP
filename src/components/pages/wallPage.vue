@@ -39,13 +39,13 @@
       </div>
 
       <!-- Wall Image -->
-      <img v-bind:src="wall.attributes.image.url()" v-show="imageVisible" id="wall-image">
+      <img v-bind:src="wall.image.url()" v-show="imageVisible" id="wall-image">
       <i class="material-icons" id="close-wall-image" v-show="imageVisible" @click.stop="closeWallImage()">clear</i>
 
 
       <!-- Routes Table -->
       <div class="routes-container component" v-if="currentTab == 'routes'">
-        <route-table :routes="routes" :display-keys="routeKeys" v-if="!!wall"></route-table>
+        <route-table :routes="wall.routes" :display-keys="routeKeys" v-if="!!wall"></route-table>
       </div>
     </div>
   </div>
@@ -115,7 +115,7 @@
        });
      },
      showWallImage(){
-       if(this.wall.attributes.image){
+       if(this.wall.image){
          this.imageVisible = true;
          $("body").css("overflow", "hidden");
        } else {
