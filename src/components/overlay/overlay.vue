@@ -1,5 +1,6 @@
 <template>
-  <div class="overlay-container" v-show="visible">
+  <!-- <div class="overlay-container" v-show="visible"> -->
+  <div class="overlay-container" v-show="false">
     <div class='triangles'>
       <div class='tri invert'></div>
       <div class='tri invert'></div>

@@ -87,7 +87,7 @@
      this.onWallsUpdated();
    },
    ready(){
-
+     this.notifications.notify('NavTabs.setActiveTab', "walls");
    },
    notifs(){
      return {
