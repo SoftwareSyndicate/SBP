@@ -6,8 +6,8 @@
 
     <div class="content-container">
       <div class="wall-nav-tabs">
-        <p v-bind:class="{'active': currentTab === 'distro'}" @click.stop="currentTab = 'distro';">Distribution</p>
         <p v-bind:class="{'active': currentTab === 'routes'}" @click.stop="currentTab = 'routes';">Routes</p>
+        <p v-bind:class="{'active': currentTab === 'distro'}" @click.stop="currentTab = 'distro';">Distribution</p>
 
         <p @click.stop="showWallImage()"><i class="material-icons">photo</i>View Wall</p>
       </div>
@@ -45,7 +45,7 @@
 
       <!-- Routes Table -->
       <div class="routes-container component" v-if="currentTab == 'routes'">
-        <route-table :routes="wall.routes" :display-keys="routeKeys" v-if="!!wall"></route-table>
+        <route-table :routes="wall.routes" v-if="!!wall"></route-table>
       </div>
     </div>
   </div>
@@ -53,6 +53,7 @@
 <script>
  import WallListItem from '../wallList/wallListItem.vue'
  import RouteModel from '../../RMS/src/models/RouteModel.js'
+ import UserModel from '../../RMS/src/models/UserModel.js'
  import RouteList from '../routeList/routeList.vue'
  import RouteTable from '../routeTable/routeTable.vue'
  import RouteDist from '../routeDist/routeDist.vue'
@@ -60,7 +61,6 @@
  import RoutePieChart from '../routePieChart/routePieChart.vue'
  import WallModel from '../../RMS/src/models/WallModel.js'
  import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
-
 
  var WallPage = BaseComponent.extend({
    name: 'WallPage',
@@ -76,8 +76,7 @@
      return {
        wall: {routes: []},
        routes: [],
-       routeKeys: ['grade', 'sends', 'sent'],
-       currentTab: 'distro',
+       currentTab: 'routes',
        imageVisible: false
      }
    },

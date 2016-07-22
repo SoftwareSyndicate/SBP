@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="right">
-          <sent-switch :route.sync="route">
+          <sent-switch :route="route" :toggle="toggleRouteSent">
         </div>
       </div>
     </div>
@@ -30,7 +30,6 @@
 
 <script>
  import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
- import RouteModel from '../../RMS/src/models/RouteModel.js'
  import SentSwitch from '../sentSwitch/sentSwitch.vue'
  var RouteTable = BaseComponent.extend({
    name: 'RouteTable',
@@ -38,18 +37,13 @@
      routes: {
        type: Array,
        default: () => []
-     },
-     displayKeys: {
-       type: Array,
-       default: () => []
      }
-   }, //['routes', 'displayKeys'],
+   },
    components: {
      SentSwitch
    },
    data(){
      return {
-       tableData: [],
        colorsArray:['Gray','Yellow','Green','Red','Blue','Orange','Purple','Black'],
        gradesArray:['v0','v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12']
      }
@@ -59,7 +53,6 @@
        this.calculateGradeTotals(this.routes);
        this.filterRoutes(this.routes);
      }, {
-       deep: true,
        immediate: true
      });
    },
@@ -70,15 +63,12 @@
 
    methods: {
      calculateGradeTotals(routes){
-       var tableData = [];
+       //Filter Routes before displaying them, don't use filter - performance issues
        routes.forEach(route => {
          route.grade = route.grade;
          route.actualColor = window.colorMappings[route.color];
-         route.colorValue = RouteModel.findColorIndex(route.actualColor);
+         route.colorValue = this.findColorIndex(route.actualColor);
        });
-
-       //Filter Routes before displaying them, don't use filter - performance
-       this.tableData = tableData;
      },
      filterRoutes(routes){
        routes.sort(function(a, b) {
@@ -103,8 +93,42 @@
        routes.reverse();
        return routes;
      },
-     toggleRouteSent(route){
 
+     findColorIndex(color){
+       var value;
+       switch(color){
+         case "rgba(209,209,209, 0.8)":
+           value = 0;
+           break;
+         case "rgba(255,210,28, 0.8)":
+           value = 1;
+           break;
+         case "rgba(5,179,99, 0.9)":
+           value = 2;
+           break;
+         case "rgba(243,23,38, 0.8)":
+           value = 3;
+           break;
+         case "rgba(48,99,245, 0.8)":
+           value = 4;
+           break;
+         case "rgba(252,109,33, 0.8)":
+           value = 5;
+           break;
+         case "rgba(183,22,229,0.8)":
+           value = 6;
+           break;
+         case "rgba(33,33,33,0.9)":
+           value = 7;
+           break;
+       }
+       return value;
+     },
+
+     toggleRouteSent(route){
+       console.log("toggle fo");
+       console.log(route);
+       route.sent = !route.sent;
      }
    }
  });
