@@ -22,7 +22,7 @@
         <a v-if="!navigateBack" class="button-collapse menu-button" v-link="{name: 'menu'}" @click.stop="onMenu = true;"><i class="material-icons side-nav-icon">menu</i></a>
         <a v-if="navigateBack"  class="back-button" href="javascript:history.go(-1)" ><i class="material-icons side-nav-icon">keyboard_backspace</i></a>
 
-        <a v-if="true"  class="back-button right" href="javascript:history.go(-1)"><img src="/images/sbp_stamp.png"></a>
+        <!-- <a v-if="true"  class="back-button right" href="javascript:history.go(-1)"><img src="/images/sbp_stamp.png"></a> -->
         <!-- <i class="material-icons alerts-icon">notifications</i> -->
       </nav>
     </div>
@@ -30,8 +30,8 @@
 </template>
 
 <script>
- import UserModel from '../../models/UserModel.js'
- import BaseComponent from '../base/baseComponent.vue'
+ import UserModel from '../../RMS/src/models/UserModel.js'
+ import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
  var Navbar = BaseComponent.extend({
    name: 'Navbar',
    data(){

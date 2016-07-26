@@ -1,6 +1,6 @@
 <script>
  import Vue from 'vue'
- import Notifications from '../../services/NotificationService.js'
+ import Notifications from '../../RMS/src/services/NotificationService.js'
  var BaseComponent = Vue.extend({
    name: 'BaseComponent',
    created(){

@@ -17,9 +17,10 @@
 <script>
  import Overlay from './overlay/overlay.vue'
  import Navbar from './navbar/navbar.vue'
- import BaseComponent from './base/baseComponent.vue'
- import WallModel from '../models/WallModel.js'
- import RouteModel from '../models/RouteModel.js'
+ import WallModel from '../RMS/src/models/WallModel.js'
+ import RouteModel from '../RMS/src/models/RouteModel.js'
+
+ import BaseComponent from '../RMS/src/components/base/baseComponent.vue'
 
  var App = BaseComponent.extend({
    name: 'App',
@@ -29,41 +30,20 @@
    },
    data(){
      return {
-       loaded: false
+       loaded: true
      }
    },
    created(){
      this.showLoadingAnimation();
-     /* this.registerSwipes(); */
      this.getResources();
    },
    ready(){
 
    },
    methods: {
-     registerSwipes(){
-       console.log("reg swips");
-       $(document).on('swipeleft', 'body', function(event){
-         alert("swipe left");
-         console.log("swipeleft");
-         window.history.back();
-       });
-
-       $(document).on('swiperight', 'body', function(event){
-         window.history.forward();
-         console.log("swiperight");
-       });
-
-     },
      getResources(){
-       var promises = []
-       promises.push(WallModel.getWalls());
-       promises.push(RouteModel.getAllRoutes());
-       promises.push(RouteModel.getSentRoutes());
-       Promise.all(promises).then(results => {
-         this.loaded = true;
-         this.hideLoadingAnimation();
-       });
+       WallModel.watchAllWallsInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
+       RouteModel.watchAllRoutesInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
      }
    }
  });

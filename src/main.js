@@ -5,7 +5,6 @@ import {default as $} from 'jquery'
 window.$ = $;
 
 import d3 from 'd3'
-import Parse from './services/ParseService.js'
 import Vue from 'vue'
 import filters from './filters/filters.js'
 import Router from 'vue-router'
@@ -16,12 +15,11 @@ import GymInfoPage from './components/pages/gymInfoPage.vue'
 import WallsPage from './components/pages/wallsPage.vue'
 import NewsPage from './components/pages/newsPage.vue'
 import WallPage from './components/pages/wallPage.vue'
-import RoutesPage from './components/pages/routesPage.vue'
-import RoutePage from './components/pages/routePage.vue'
 import NavPage from './components/pages/navPage.vue'
 import ProfilePage from './components/pages/profilePage.vue'
 import ProgressPage from './components/pages/progressPage.vue'
-import Notifications from './services/NotificationService.js'
+import Notifications from './RMS/src/services/NotificationService.js'
+import UserModel from './RMS/src/models/UserModel.js'
 
 //Sign In
 import SignInPage from './components/pages/signInPage.vue'
@@ -46,6 +44,8 @@ Chart.defaults.global.animation.duration = 1800;
 import nvd3 from './libs/nvd3.js'
 import stream_layers from './libs/streamLayers.js'
 
+
+window.gymId = "-KLi8WWAMzuH1k4mlkbj";
 
 window.colorMappings = {
   gray: "rgba(209,209,209, 0.8)",
@@ -81,7 +81,7 @@ router.map({
         name: 'walls',
         component: WallsPage
       },
-      '/walls/:wallId': {
+      '/walls/:id': {
         name: 'wall',
         component: WallPage
       },
@@ -142,19 +142,22 @@ router.map({
   }
 });
 
-router.beforeEach(function () {
-  window.scrollTo(0, 0)
+router.beforeEach(function(transition){
+  if(!UserModel.currentUser){
+    transition.redirect("/signIn");
+  } else {
+    Notifications.notify('Router.beforeTransition', transition);
+    transition.next();
+  }
 });
 
 router.redirect({
-  '*': '/signUp'
+  '*': '/gym/walls'
 });
 
 router.redirect({
   '/signUp': '/signUp/intro'
 });
-
-router.start(App, '#app');
 
 window.onInputFocused = function(){
   Notifications.notify("Input.focused");
@@ -163,3 +166,21 @@ window.onInputFocused = function(){
 window.onInputBlured = function(){
   Notifications.notify("Input.blured");
 }
+
+let loaded = false;
+Notifications.listenFor("UserModel.userUpdated", function(){
+  if(!loaded){
+    router.start(App, '#app');
+    console.log("user model updated");
+    loaded = true;
+  }
+});
+
+
+/* firebase.auth().onAuthStateChanged(user => {
+   if(!loaded){
+   router.start(App, '#app');
+   loaded = true;
+   }
+   });
+ */

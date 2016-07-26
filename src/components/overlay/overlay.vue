@@ -1,5 +1,6 @@
 <template>
-  <div class="overlay-container" v-show="visible">
+  <!-- <div class="overlay-container" v-show="visible"> -->
+  <div class="overlay-container" v-show="false">
     <div class='triangles'>
       <div class='tri invert'></div>
       <div class='tri invert'></div>
@@ -15,12 +16,12 @@
 </template>
 
 <script>
- import notifications from '../../services/NotificationService.js'
+ import notifications from '../../RMS/src/services/NotificationService.js'
  export default {
    name: 'Overlay',
    data(){
      return {
-       visible: true
+       visible: false
      }
    },
    created(){

@@ -30,8 +30,8 @@
 
 <script>
  import BaseComponent from '../base/baseComponent.vue'
- import UserModel from '../../models/UserModel.js'
- import RouteModel from '../../models/RouteModel.js'
+ /* import UserModel from '../../models/UserModel.js' */
+ import UserModel from '../../RMS/src/models/UserModel.js'
 
  var SignInPage = BaseComponent.extend({
    name: 'SignInPage',
@@ -58,18 +58,15 @@
    },
    methods: {
      signIn(){
-       if(UserModel.isValidCreds(this.email, this.password)){
-         this.showLoadingAnimation();
-         UserModel.signIn(this.email, this.password).then(results => {
-           this.notifications.notify("UserModel.signUp");
-           RouteModel.getSentRoutes();
-           this.$router.go({name: 'profile'});
-           console.log(results);
-         }, error => {
-           Materialize.toast("Sorry, Invalid Credentials", 2000);
-           this.hideLoadingAnimation();
-         });
-       }
+       this.showLoadingAnimation();
+       UserModel.signInWithEmail(this.email, this.password).then(results => {
+         console.log(results);
+         this.notifications.notify("UserModel.signUp");
+         this.$router.go({name: 'profile'});
+       }, error => {
+         Materialize.toast("Sorry, Invalid Credentials", 2000);
+         this.hideLoadingAnimation();
+       });
      }
    },
 

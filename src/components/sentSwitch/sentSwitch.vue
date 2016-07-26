@@ -1,8 +1,9 @@
 <template>
-  <div class="sent-switch" @click.stop="flipSwitch()">
+  <div class="sent-switch" @click.stop="toggle(route)">
+    {{route.sent}}
     <div class="wrap">
       <div class="toggle">
-	<input type="checkbox" v-bind:checked="sent">
+	<input type="checkbox" v-bind:checked="route.sent">
 	<span class="btn"></span>
 	<span class="texts"></span>
 	<span class="bg"></span>
@@ -16,40 +17,25 @@
  import UserModel from '../../models/UserModel.js'
  export default {
    name: 'SentSwitch',
-   props: ['route'],
+   props: {
+     route: {
+       type: Object,
+       default: {}
+     },
+     toggle: {
+
+     }
+   },
    data(){
      return {
-       sent: false
+
      }
    },
    created(){
-     this.initState = false;
-     RouteModel.sentRoutes.forEach(sentRoute => {
-       if(sentRoute.attributes.route.id === this.route.id){
-         this.sent = true;
-         this.initState = true;
-       }
-     });
-   },
 
-   methods: {
-     flipSwitch(){
-       this.sent = !this.sent;
-     }
    },
    beforeDestroy(){
-     if(this.initState != this.sent){
-       console.log("sentSwitch.beforeDestroy()");
-       var routeToBeUpdated = {
-         id: this.route.id,
-         sent: this.sent
-       };
 
-       var routesToBeUpdated = JSON.parse(localStorage.getItem("routesToBeUpdated"));
-       routesToBeUpdated.push(routeToBeUpdated);
-       localStorage.setItem("routesToBeUpdated", JSON.stringify(routesToBeUpdated));
-       console.log(JSON.parse(localStorage.getItem("routesToBeUpdated")));
-     }
    }
  }
 </script>

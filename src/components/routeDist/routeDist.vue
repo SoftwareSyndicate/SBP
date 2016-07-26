@@ -9,7 +9,12 @@
  import RouteModel from '../../models/RouteModel.js';
  export default {
    name: 'RouteDist',
-   props: ['routes'],
+   props: {
+     routes: {
+       type: Array,
+       default: () => []
+     }
+   },
    data(){
      return {
        chartData: [],
@@ -18,11 +23,22 @@
      }
    },
    created(){
-     this.tableData = this.calculateGradeTotals(this.routes, window.colorsArray, window.gradesArray);
+     /* if(this.routes){
+        this.tableData = this.calculateGradeTotals(this.routes, window.colorsArray, window.gradesArray);
+        } */
    },
    ready(){
+     this.$watch('routes', val => {
+       /* this.colors = []; */
+       /* this.calcColorPercents(); */
+       this.tableData = this.calculateGradeTotals(this.routes, window.colorsArray, window.gradesArray);
+       this.drawChart(this.tableData);
+     }, {
+       deep: true,
+       immediate: true
+     });
      //this.drawChart(this.chartData);
-     this.drawChart(this.tableData);
+     /* this.drawChart(this.tableData); */
    },
 
    methods: {
@@ -60,10 +76,10 @@
        $.each(routes, function(index,route){
          var colorFound = false;
          chartData.forEach(colorObj => {
-           if(colorObj["key"] === route.attributes.color){
+           if(colorObj["key"] === route.color){
              colorFound = true;
              colorObj.values.forEach(value => {
-               if(value.x === route.attributes.grade){
+               if(value.x === route.grade){
                  value.y++;
                }
              });
@@ -79,8 +95,8 @@
              values.push(value);
            }
            var colorObj = {
-             color: window.colorMappings[route.attributes.color],
-             key: route.attributes.color,
+             color: window.colorMappings[route.color],
+             key: route.color,
              values: values,
            }
            chartData.push(colorObj);
@@ -115,9 +131,9 @@
 
        routes.forEach(route => {
          chartData.forEach(colorObj => {
-           if(colorObj.key.toLowerCase() === route.attributes.color.toLowerCase()){
+           if(colorObj.key.toLowerCase() === route.color.toLowerCase()){
              colorObj.values.forEach(value => {
-               if(parseInt(value.x) === parseInt(route.attributes.grade)){
+               if(parseInt(value.x) === parseInt(route.grade)){
                  value.y++;
                }
              });

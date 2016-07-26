@@ -12,18 +12,16 @@
       <div class="table-row" v-for="route in routes">
         <div class="left">
           <div class="diamond">
-            <div class="diamond-background" v-bind:style="{'background-color': route.actualColor}">
+            <div class="diamond-background" v-bind:style="{'background-color': route.htmlColor}">
 
             </div>
-            <div class="diamond-grade" v-bind:class="{'tenner': route.attributes.grade > 9}">
-              {{route.attributes.grade}}
+            <div class="diamond-grade" v-bind:class="{'tenner': route.grade > 9}">
+              {{route.grade}}
             </div>
           </div>
-          <!-- <img v-bind:src="'/images/grades/' + tableGradeObject.name + '.png'"> -->
         </div>
         <div class="right">
-          <sent-switch :route.sync="route">
-          <!-- {{tableGradeObject.total}} -->
+          <sent-switch :route="route" :toggle="toggleRouteSent">
         </div>
       </div>
     </div>
@@ -31,63 +29,46 @@
 </template>
 
 <script>
- import BaseComponent from '../base/baseComponent.vue'
- import RouteModel from '../../models/RouteModel.js'
+ import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
  import SentSwitch from '../sentSwitch/sentSwitch.vue'
  var RouteTable = BaseComponent.extend({
    name: 'RouteTable',
-   props: ['routes', 'displayKeys'],
+   props: {
+     routes: {
+       type: Array,
+       default: () => []
+     }
+   },
    components: {
      SentSwitch
    },
    data(){
      return {
-       tableData: [],
        colorsArray:['Gray','Yellow','Green','Red','Blue','Orange','Purple','Black'],
        gradesArray:['v0','v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12']
      }
    },
    created(){
-     this.calculateGradeTotals(this.routes);
-     this.filterRoutes(this.routes);
+     this.$watch('routes', val => {
+       this.calculateGradeTotals(this.routes);
+       this.filterRoutes(this.routes);
+     }, {
+       immediate: true
+     });
    },
 
    beforeDestroy(){
-     RouteModel.saveRoutes();
-     console.log("Before destroying the route table");
+
    },
 
    methods: {
      calculateGradeTotals(routes){
-       var tableData = [];
+       //Filter Routes before displaying them, don't use filter - performance issues
        routes.forEach(route => {
-         route.grade = route.attributes.grade;
-         route.actualColor = window.colorMappings[route.attributes.color];
-         route.colorValue = RouteModel.findColorIndex(route.actualColor);
-
-         //route.attributes.sent = false;
-         /* var vGrade = route.attributes.color + route.attributes.grade;
-            var found = false;
-            tableData.forEach(tableGradeObject => {
-            if(tableGradeObject.name === vGrade){
-            tableGradeObject.total++;
-            found = true;
-            }
-            });
-            if(!found){
-            var tableGradeObject = {
-            name: vGrade,
-            total: 1,
-            color: window.colorMappings[route.attributes.color],
-            grade: parseInt(route.attributes.grade),
-            colorValue: RouteModel.findColorIndex(window.colorMappings[route.attributes.color])
-            };
-            tableData.push(tableGradeObject);
-            } */
+         route.grade = route.grade;
+         route.actualColor = window.colorMappings[route.color];
+         route.colorValue = this.findColorIndex(route.actualColor);
        });
-
-       //Filter Routes before displaying them, don't use filter - performance 
-       this.tableData = tableData;
      },
      filterRoutes(routes){
        routes.sort(function(a, b) {
@@ -111,6 +92,43 @@
        });
        routes.reverse();
        return routes;
+     },
+
+     findColorIndex(color){
+       var value;
+       switch(color){
+         case "rgba(209,209,209, 0.8)":
+           value = 0;
+           break;
+         case "rgba(255,210,28, 0.8)":
+           value = 1;
+           break;
+         case "rgba(5,179,99, 0.9)":
+           value = 2;
+           break;
+         case "rgba(243,23,38, 0.8)":
+           value = 3;
+           break;
+         case "rgba(48,99,245, 0.8)":
+           value = 4;
+           break;
+         case "rgba(252,109,33, 0.8)":
+           value = 5;
+           break;
+         case "rgba(183,22,229,0.8)":
+           value = 6;
+           break;
+         case "rgba(33,33,33,0.9)":
+           value = 7;
+           break;
+       }
+       return value;
+     },
+
+     toggleRouteSent(route){
+       console.log("toggle fo");
+       console.log(route);
+       route.sent = !route.sent;
      }
    }
  });

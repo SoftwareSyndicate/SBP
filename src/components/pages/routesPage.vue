@@ -7,7 +7,7 @@
 <script>
  import RouteModel from '../../models/RouteModel.js';
  import RouteList from '../routeList/routeList.vue'
- import notifications from '../../services/NotificationService.js'
+ import notifications from '../../RMS/src/services/NotificationService.js'
  export default {
    name: 'RoutePage',
    components: {

@@ -1,13 +1,11 @@
 <template>
-  <li class="collection-item wall-list-item waves-effect component" v-link="{name: 'wall', params: {wallId: wall.id}}">
+  <li class="collection-item wall-list-item waves-effect component" v-link="{name: 'wall', params: {id: wall.id}}">
     <div class="left">
       <div class="name-container"">
-        <h5 class="name" v-if="!!wall">{{wall.attributes.name}}</h5>
-        <h5 class="name" v-if="gym">Gym Last Set</h5>
+        <h5 class="name" v-if="wall">{{wall.name}}</h5>
       </div>
       <span class="spacer"></span>
-      <p class="set-date" v-text="wall.attributes.lastSet | dateSet" v-if="!!wall"></p>
-      <p class="set-date" v-text="lastSet | dateSet" v-if="gym"></p>
+      <p class="set-date" v-text="wall.last_set | dateSet"></p>
     </div>
     <div class="right">
       <div class="color" v-for="color in colors" v-bind:style="{'background-color': color.color, 'width': color.percent}">&nbsp</div>
@@ -16,31 +14,30 @@
 </template>
 
 <script>
- import WallModel from '../../models/WallModel.js';
  export default {
    name: 'WallListItem',
-   props: ['wall', 'routes', 'gym'],
+   props: {
+     wall: {
+       type: Object,
+       default: () => {}
+     }
+   },
    data(){
      return {
        colors: [],
-       height: 0,
-       lastSet: new Date()
+       height: 0
      }
    },
    created(){
-     if(!!this.wall){
-       this.routes = this.wall.attributes.routes;
-       this.wall.lastSet = WallModel.getLastSetDate(this.wall.attributes.lastSet);
-     }
-
-     this.lastSet = this.routes[0].updatedAt;
-     this.routes.forEach(route => {
-
-       if(route.updatedAt > this.lastSet){
-         this.lastSet = route.updatedAt;
+     this.$watch('wall', val => {
+       if(this.wall.routes){
+         this.colors = [];
+         this.calcColorPercents();
        }
+     }, {
+       deep: true,
+       immediate: true
      });
-     this.calcColorPercents();
    },
    methods: {
      calcColorPercents(){
@@ -54,8 +51,8 @@
          purple: 0,
          black: 0
        };
-       this.routes.forEach(route => {
-         colorData[route.attributes.color]++;
+       this.wall.routes.forEach(route => {
+         colorData[route.color]++;
        });
 
        var mostFrequentColor;
@@ -83,7 +80,6 @@
 </script>
 
 <style lang="sass">
-@import '../../styles/main.scss';
 
  .wall-list-item {
    padding: 0 0 0 10px !important;
@@ -125,7 +121,7 @@
 
      .set-date {
        font-size: .9em;
-       color: $color-base-orange;
+       color: #FF7055;
        padding: 0.4em 0 0 0.4em;
      }
    }

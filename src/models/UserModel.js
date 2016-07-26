@@ -1,8 +1,7 @@
-import ParseService from '../services/ParseService.js'
 
 class UserModel {
   constructor(){
-    this.currentUser = Parse.User.current();
+
   }
 
   signIn(email, password){
