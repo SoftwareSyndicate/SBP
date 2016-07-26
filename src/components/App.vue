@@ -1,14 +1,16 @@
 <template>
-  <navbar></navbar>
+  <div class="">
+    <navbar></navbar>
 
-  <!-- main view -->
-  <overlay></overlay>
-  <div id="wrapper">
-    <router-view
-        class="view"
-        transition
-        transition-mode="out-in" v-if="loaded">
-    </router-view>
+    <!-- main view -->
+    <overlay></overlay>
+    <div id="wrapper">
+      <router-view
+          class="view"
+          transition
+          transition-mode="out-in" v-if="loaded">
+      </router-view>
+    </div>
   </div>
 </template>
 
@@ -105,7 +107,7 @@
    z-index: 99999999;
  }
  p {
-   margin: 0 !important;
+   margin: 0;
  }
  h1, h2, h3, h4, h5, h6 {
    margin: 0 !important;

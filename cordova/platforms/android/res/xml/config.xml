@@ -1,16 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.hellocordova" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="software.syndicate.sbp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
-    </feature>
-    <feature name="SplashScreen">
-        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="UniversalAnalytics">
-        <param name="android-package" value="com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin" />
     </feature>
     <splash density="land-hdpi" src="www/images/sbp_splash_screen.png" />
     <splash density="land-ldpi" src="www/images/sbp_splash_screen.png" />
@@ -29,9 +22,9 @@
     <allow-intent href="market:*" />
     <name>SBP</name>
     <description>
-    Seattle Bouldering Project 
+    Seattle Bouldering Project
   </description>
-    <author email="yintothayang@gmail.com" href="http://makowaredev.com">
+    <author email="yintothayang@gmail.com" href="http://syndicate.software">
     Syndicate Software
   </author>
     <content src="index.html" />
