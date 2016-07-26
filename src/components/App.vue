@@ -107,7 +107,7 @@
    z-index: 99999999;
  }
  p {
-   margin: 0 !important;
+   margin: 0;
  }
  h1, h2, h3, h4, h5, h6 {
    margin: 0 !important;

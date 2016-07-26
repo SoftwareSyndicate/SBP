@@ -1,109 +1,54 @@
 <template>
   <div class="intro-form">
-    
+    <div class="image-wrapper">
+      <img class="iphone-image" src="~images/iphone_img.png" alt="" />
+    </div>
   </div>
 </template>
 
 <script>
- import BaseComponent from '../base/baseComponent.vue'
- import UserModel from '../../models/UserModel.js'
+import BaseComponent from '../base/baseComponent.vue'
+import UserModel from '../../models/UserModel.js'
 
- var IntroForm = BaseComponent.extend({
-   name: 'IntroForm',
-   data(){
-     return {
+var IntroForm = BaseComponent.extend({
+  name: 'IntroForm',
+  data(){
+    return {
 
-     }
-   },
-   created(){
+    }
+  },
+  created(){
+    this.$dispatch('setNavHeaderVisible', false);
+  },
 
-   },
+  methods: {
 
-   methods: {
+  }
+});
 
-   }
- });
-
- export default IntroForm;
+export default IntroForm;
 </script>
 
 <style lang="sass">
 
- @import '../../styles/main.scss';
+@import '~styles/main.scss';
 
- .intro-form {
-   height: 100%;
-   display: flex;
-   flex-wrap: wrap;
-   flex-basis: 100%;
-   flex-direction: column;
-   background: $gradient-background;
+.intro-form {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 100%;
+  flex-direction: column;
+  background: $color-orange-1;
 
-   .header-container {
-     margin-top: 9em;
-     margin-bottom: 2em;
-     padding-left: $signUp-page-padding;
-     padding-right: $signUp-page-padding;
-     .header {
-       letter-spacing: .2em;
-       text-transform: uppercase;
-       font-weight: 300;
-       font-size: 1.1em;
-       color: white;
-     }
-   }
+  .image-wrapper {
+    padding: 0 50px;
+    padding-top: 40px;
+    .iphone-image {
+      width: 100%;
+      height: auto;
+    }
+  }
 
-   form {
-     padding-left: $signUp-page-padding;
-     padding-right: $signUp-page-padding;
-     display: flex;
-     flex-direction: column;
-
-     p {
-       color: white;
-       margin-bottom: 1em !important;
-       font-size: 1.3em;
-       font-weight: 300;
-     }
-
-     .btn {
-       padding-top: .75em !important;
-       height: 4.5rem;
-       background-color: darken($color-base-orange, 8%) !important;
-       box-shadow: none;
-       color: white !important;
-       width: 100%;
-       margin-top: 1em;
-       margin-right: auto;
-       margin-left: auto;
-       font-size: 16px !important;
-       i {
-         margin-left: 0px !important;
-       }
-     }
-   }
-
-   img {
-     width: 100%;
-     position: absolute;
-     bottom: 32px;
-   }
-
-   .footer-container {
-     display: flex;
-     position: fixed;
-     z-index: 2;
-     top: calc(100vh - 50px);
-     height: 50px;
-     width: 100%;
-     background-color: darken($color-base-orange, 3%) !important;
-     align-items: center;
-     justify-content: space-around;
-     p {
-       font-size: .9em;
-       font-weight: 300;
-       color: rgba(255, 255, 255, .9);
-     }
-   }
- }
+}
 </style>

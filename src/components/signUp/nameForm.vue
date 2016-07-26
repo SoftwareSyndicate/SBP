@@ -1,167 +1,131 @@
 <template>
-  <div class="name-form">
-    <div class="header-container" v-bind:class="{'keyboardActive': inputFocused}">
-      <p class="header">
-        What's Your Name?
-      </p>
-      <span>&nbsp</span>
-    </div>
-    <form>
-      <div class="inputs">
-        <input placeholder="First" id="first" type="text" class="validate" v-model="firstName" onfocus="onInputFocused()" onblur="onInputBlured()">
-        <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName" @keyup.enter="proceed()" onfocus="onInputFocused()">
-      </div>
-      <a class="waves-effect waves-dark btn btn-primary" @click="proceed()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
-    </form>
+  <!-- <div class="name-form">
+  <div class="header-container" v-bind:class="{'keyboardActive': inputFocused}">
+  <p class="header">
+  What's Your Name?
+</p>
+<span>&nbsp</span>
+</div>
+<form>
+<div class="inputs">
+<input placeholder="First" id="first" type="text" class="validate" v-model="firstName" onfocus="onInputFocused()" onblur="onInputBlured()">
+<input placeholder="Last" id="last" type="text" class="validate" v-model="lastName" @keyup.enter="proceed()" onfocus="onInputFocused()">
+</div>
+<a class="waves-effect waves-dark btn btn-primary" @click="proceed()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
+</form>
+</div> -->
+<div class="name-form">
+  <p class="headline">
+    What's Your Name?
+  </p>
+  <div class="input-wrapper">
+    <input placeholder="First" id="first" type="text" class="validate" v-model="firstName">
+    <input placeholder="Last" id="last" type="text" class="validate" v-model="lastName" @keyup.enter="proceed()">
   </div>
+</div>
 </template>
 
 <script>
- import BaseComponent from '../base/baseComponent.vue'
- import UserModel from '../../models/UserModel.js'
+import BaseComponent from '../base/baseComponent.vue'
+import UserModel from '../../models/UserModel.js'
 
- var NameForm = BaseComponent.extend({
-   name: 'NameForm',
-   data(){
-     return {
-       firstName: "",
-       lastName: "",
-       valid: false,
-       inputFocused: false
-     }
-   },
-   created(){
-     this.notifications.listenFor("Input.focused", function(){this.inputFocused = true}, this);
-     this.notifications.listenFor("Input.blured", function(){this.inputFocused = false}, this);
-   },
-   ready(){
-     this.$watch('firstName', function(val){
-       this.firstName = val;
-       this.isValid(this.firstName, this.lastName);
-     });
-     this.$watch('lastName', function(val){
-       this.lastName = val;
-       this.isValid(this.firstName, this.lastName);
-     });
-   },
-   methods: {
-     proceed(){
-       if(this.valid){
-         UserModel.firstName = this.firstName;
-         UserModel.lastName = this.lastName;
-         this.$router.go({name: 'email'});
-       }
-     },
-     isValid(first, last){
-       this.valid = true;
-       if(first.length === 0){
-         this.valid = false;
-       }
-       if(last.length === 0){
-         this.valid = false;
-       }
-       return this.valid;
-     },
-     onInputFocus(){
-       console.log("Input Focus");
-     }
-   }
- });
+var NameForm = BaseComponent.extend({
+  name: 'NameForm',
+  props: [
+    'parent'
+  ],
+  data(){
+    return {
+      firstName: "",
+      lastName: "",
+      valid: false,
+      inputFocused: false
+    }
+  },
+  created(){
+    this.notifications.listenFor("Input.focused", function(){this.inputFocused = true}, this);
+    this.notifications.listenFor("Input.blured", function(){this.inputFocused = false}, this);
+    this.$dispatch('setNavHeaderVisible', true);
+  },
+  ready(){
+    this.$watch('firstName', function(val){
+      this.firstName = val;
+      this.isValid(this.firstName, this.lastName);
+    });
+    this.$watch('lastName', function(val){
+      this.lastName = val;
+      this.isValid(this.firstName, this.lastName);
+    });
 
- export default NameForm;
+    console.log(this.parent);
+  },
+  events: {
+    'nav-left-click': function(){
+      this.$router.go({name: 'intro'})
+    },
+    'nav-right-click': function(){
+      this.proceed();
+    }
+  },
+  methods: {
+    proceed(){
+      if(this.valid){
+        UserModel.firstName = this.firstName;
+        UserModel.lastName = this.lastName;
+        this.$router.go({name: 'email'});
+      }
+    },
+    isValid(first, last){
+      this.valid = true;
+      if(first.length === 0){
+        this.valid = false;
+      }
+      if(last.length === 0){
+        this.valid = false;
+      }
+      return this.valid;
+    },
+    onInputFocus(){
+      console.log("Input Focus");
+    }
+  }
+});
+
+export default NameForm;
 </script>
 
 <style lang="sass">
- @import "../../styles/main.scss";
- .name-form {
-   display: flex;
-   flex-direction: column;
-   flex-grow: 1;
-   color: rgba(0, 0, 0, .7);
-   height: 100%;
+@import "../../styles/main.scss";
+.name-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  color: rgba(0, 0, 0, .7);
+  padding: 0 25px;
+  padding-top: 60px;
 
-   .header-container {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     margin-top: 50%;
-     padding-left: $signUp-page-padding;
-     padding-right: $signUp-page-padding;
+  //  height: 100%;
 
-     &.keyboardActive {
-       margin-top: 18% !important;
-     }
+  .headline {
+    font-size: 22px;
+    font-weight: 100;
+    color: white;
+  }
 
-     .header {
-       font-weight: 300;
-       font-size: 1.3em;
-       color: rgba(255, 255, 255, 1);
-       margin-bottom: 1em !important;
-     }
+  .input-wrapper {
+    display: flex;
+    margin-top: 15px;
+    input {
+      display: flex;
+      flex-basis: 50%;
+      &:first-child {
+        margin-right: .5em;
+      }
 
-     span {
-       margin-bottom: 1.5em;
-       display: block;
-       height: 3px;
-       width: 3em;
-       border-bottom: 2px solid darken($color-base-orange, 10%)
-     }
-   }
-
-   form {
-     display: flex;
-     flex-direction: column;
-     width: 85%;
-     margin-right: auto;
-     margin-left: auto;
-
-     .inputs {
-       display: flex;
-       input {
-         display: flex;
-         flex-basis: 50%;
-         &:first-child {
-           margin-right: .5em;
-         }
-
-         &:last-child {
-           margin-left: .5em;
-         }
-       }
-     }
-
-     p {
-       padding-left: 1.5em !important;
-       padding-right: 1.5em !important;
-       font-size: .9em;
-       font-weight: 300;
-       text-align: center;
-       color: rgba(255, 255, 255, .9);
-     }
-
-     .btn {
-       padding-top: .5em !important;
-       height: 4rem;
-       font-weight: 300;
-       padding-right: 30%;
-       padding-left: 30%;
-       background-color: darken($color-base-orange, 8%) !important;
-       box-shadow: none;
-       color: white !important;
-       width: 100%;
-       margin-right: auto;
-       margin-left: auto;
-       font-size: 16px !important;
-     }
-
-     a.sign-up {
-       color: white;
-       text-decoration: underline;
-       margin: auto !important;
-       margin-top: 1.5em !important;
-       cursor: pointer;
-     }
-   }
- }
+      &:last-child {
+        margin-left: .5em;
+      }
+    }
+  }
+}
 </style>
