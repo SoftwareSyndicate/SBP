@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="right">
-          <sent-switch :route="route" :toggle="toggleRouteSent">
+          <sent-switch :route="route" :sent-routes="sentRoutes">
         </div>
       </div>
     </div>
@@ -35,6 +35,10 @@
    name: 'RouteTable',
    props: {
      routes: {
+       type: Array,
+       default: () => []
+     },
+     sentRoutes: {
        type: Array,
        default: () => []
      }
@@ -57,11 +61,7 @@
    },
 
    methods: {
-     toggleRouteSent(route){
-       console.log("toggle fo");
-       console.log(route);
-       route.sent = !route.sent;
-     }
+
    }
  });
 

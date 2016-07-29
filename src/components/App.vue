@@ -19,6 +19,7 @@
  import Navbar from './navbar/navbar.vue'
  import WallModel from '../RMS/src/models/WallModel.js'
  import RouteModel from '../RMS/src/models/RouteModel.js'
+ import SentRouteModel from '../RMS/src/models/SentRouteModel.js'
  import UserModel from '../RMS/src/models/UserModel.js'
 
  import BaseComponent from '../RMS/src/components/base/baseComponent.vue'
@@ -54,6 +55,7 @@
          console.log('GETTING RESOEURSES');
          WallModel.watchAllWallsInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
          RouteModel.watchAllRoutesInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
+         SentRouteModel.watchAllRoutesInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
          this.resourcesLoaded = true;
        }
      }

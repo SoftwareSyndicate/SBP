@@ -1,9 +1,9 @@
 <template>
-  <div class="sent-switch" @click.stop="toggle(route)">
+  <div class="sent-switch"> <!-- @click.stop="toggle(route)"> -->
     {{route.sent}}
     <div class="wrap">
       <div class="toggle">
-	<input type="checkbox" v-bind:checked="route.sent">
+	<input type="checkbox" v-model="isChecked" v-bind:true-value="true" v-bind:false-value="false"  :change="toggle()">
 	<span class="btn"></span>
 	<span class="texts"></span>
 	<span class="bg"></span>
@@ -21,17 +21,25 @@
        type: Object,
        default: {}
      },
-     toggle: {
-
+     sentRoutes: {
+       type: Array,
+       default: []
      }
    },
    data(){
      return {
-
+       isChecked: true
      }
    },
    created(){
-
+     console.log(this.isChecked);
+   },
+   methods:{
+     return: {
+       toggle(){
+         console.log("toggleRoute");
+       }
+     }
    },
    beforeDestroy(){
 
