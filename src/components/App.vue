@@ -8,7 +8,7 @@
       <router-view
           class="view"
           transition
-          transition-mode="out-in" v-if="loaded">
+          transition-mode="out-in">
       </router-view>
     </div>
   </div>
@@ -19,6 +19,7 @@
  import Navbar from './navbar/navbar.vue'
  import WallModel from '../RMS/src/models/WallModel.js'
  import RouteModel from '../RMS/src/models/RouteModel.js'
+ import UserModel from '../RMS/src/models/UserModel.js'
 
  import BaseComponent from '../RMS/src/components/base/baseComponent.vue'
 
@@ -30,20 +31,31 @@
    },
    data(){
      return {
-       loaded: true
+       loaded: true,
+       resourcesLoaded: false
      }
    },
    created(){
-     this.showLoadingAnimation();
-     this.getResources();
+     if(UserModel.currentUser){
+       this.getResources();
+     }
    },
    ready(){
 
    },
+   notifs(){
+     return {
+       'UserModel.userUpdated': 'getResources'
+     }
+   },
    methods: {
      getResources(){
-       WallModel.watchAllWallsInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
-       RouteModel.watchAllRoutesInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
+       if(!this.resourcesLoaded){
+         console.log('GETTING RESOEURSES');
+         WallModel.watchAllWallsInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
+         RouteModel.watchAllRoutesInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
+         this.resourcesLoaded = true;
+       }
      }
    }
  });

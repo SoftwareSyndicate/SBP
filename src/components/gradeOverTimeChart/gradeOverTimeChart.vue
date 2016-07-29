@@ -5,8 +5,8 @@
 </template>
 
 <script>
- import BaseComponent from '../base/baseComponent.vue'
- import RouteModel from '../../models/RouteModel.js'
+ import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
+ import RouteModel from '../../RMS/src/models/RouteModel.js'
  var GradeOverTimeChart =  BaseComponent.extend({
    name: 'GradeOverTimeChart',
    props: ['routes'],

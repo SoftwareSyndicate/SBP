@@ -1,3 +1,4 @@
+/* Note to self: tell Skrillex to drop Nelly - Hot in Here! inbetween a transition */
 require('file?name=[name].[ext]!../index.html'); // copy the index.html file
 
 import {default as $} from 'jquery'
@@ -10,7 +11,6 @@ import filters from './filters/filters.js'
 import Router from 'vue-router'
 import App from './components/App.vue'
 import GymPage from './components/pages/gymPage.vue'
-import GymLayoutPage from './components/pages/gymLayoutPage.vue'
 import GymInfoPage from './components/pages/gymInfoPage.vue'
 import WallsPage from './components/pages/wallsPage.vue'
 import NewsPage from './components/pages/newsPage.vue'
@@ -85,10 +85,6 @@ router.map({
         name: 'wall',
         component: WallPage
       },
-      '/layout': {
-        name: 'layout',
-        component: GymLayoutPage
-      },
       '/menu': {
         name: 'menu',
         component: NavPage
@@ -143,13 +139,20 @@ router.map({
 });
 
 router.beforeEach(function(transition){
-  if(!UserModel.currentUser){
-    transition.redirect("/signIn");
-  } else {
-    Notifications.notify('Router.beforeTransition', transition);
-    transition.next();
-  }
+  /* if(!UserModel.firebaseUser){
+     console.log("redirect to signIn page");
+     transition.redirect("/signIn");
+     } else {
+     Notifications.notify('Router.beforeTransition', transition);
+     transition.next();
+     } */
+  transition.next();
 });
+
+router.afterEach(function(transition){
+  Notifications.notify('Router.afterTransition', transition);
+});
+
 
 router.redirect({
   '*': '/gym/walls'
@@ -159,28 +162,10 @@ router.redirect({
   '/signUp': '/signUp/intro'
 });
 
-window.onInputFocused = function(){
-  Notifications.notify("Input.focused");
-}
-
-window.onInputBlured = function(){
-  Notifications.notify("Input.blured");
-}
-
 let loaded = false;
-Notifications.listenFor("UserModel.userUpdated", function(){
+Notifications.listenFor("UserModel.userUpdated", () => {
   if(!loaded){
     router.start(App, '#app');
-    console.log("user model updated");
     loaded = true;
   }
 });
-
-
-/* firebase.auth().onAuthStateChanged(user => {
-   if(!loaded){
-   router.start(App, '#app');
-   loaded = true;
-   }
-   });
- */

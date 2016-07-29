@@ -41,7 +41,7 @@
      this.notifications.listenFor('NavTabs.setActiveTab', this.setActiveTab, this);
    },
    ready(){
-     $('ul.tabs').tabs();
+     /* $('ul.tabs').tabs(); */
      this.currentTab = this.$route.name;
    },
 

@@ -1,91 +1,59 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="software.syndicate.sbp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>SBP</name>
-  <description>
+    <name>SBP</name>
+    <description>
     Seattle Bouldering Project
   </description>
-  <author email="yintothayang@gmail.com" href="http://syndicate.software">
+    <author email="yintothayang@gmail.com" href="http://syndicate.software">
     Syndicate Software
   </author>
-  <content src="index.html"/>
-  <plugin name="cordova-plugin-whitelist" spec="1" />
-  <access origin="*" />
-  <allow-intent href="http://*/*" />
-  <allow-intent href="https://*/*" />
-  <allow-intent href="tel:*" />
-  <allow-intent href="sms:*" />
-  <allow-intent href="mailto:*" />
-  <allow-intent href="geo:*" />
-  <platform name="android">
-    <splash src="www/images/sbp_splash_screen.png" density="land-hdpi"/>
-    <splash src="www/images/sbp_splash_screen.png" density="land-ldpi"/>
-    <splash src="www/images/sbp_splash_screen.png" density="land-mdpi"/>
-    <splash src="www/images/sbp_splash_screen.png" density="land-xhdpi"/>
-    <splash src="www/images/sbp_splash_screen.png" density="port-hdpi"/>
-    <splash src="www/images/sbp_splash_screen.png" density="port-ldpi"/>
-    <splash src="www/images/sbp_splash_screen.png" density="port-mdpi"/>
-    <splash src="www/images/sbp_splash_screen.png" density="port-xhdpi"/>
-    <icon src="www/images/sbp_stamp.png" density="ldpi" />
-    <icon src="www/images/sbp_stamp.png" density="mdpi" />
-    <icon src="www/images/sbp_stamp.png" density="hdpi" />
-    <icon src="www/images/sbp_stamp.png" density="xhdpi" />
-    <icon src="www/images/sbp_stamp.png" density="xxhdpi" />
-    <icon src="www/images/sbp_stamp.png" density="xxxhdpi" />
-    <allow-intent href="market:*" />
-  </platform>
-  <platform name="ios">
-    <allow-intent href="itms:*" />
-    <allow-intent href="itms-apps:*" />
-    <!-- iOS 8.0+ -->
-    <!-- iPhone 6 Plus  -->
-    <icon src="www/images/ios_icons/icon-60@3x.png" width="180" height="180" />
-    <!-- iOS 7.0+ -->
-    <!-- iPhone / iPod Touch  -->
-    <icon src="www/images/ios_icons/icon-60.png" width="60" height="60" />
-    <icon src="www/images/ios_icons/icon-60@2x.png" width="120" height="120" />
-    <!-- iPad -->
-    <icon src="www/images/ios_icons/icon-76.png" width="76" height="76" />
-    <icon src="www/images/ios_icons/icon-76@2x.png" width="152" height="152" />
-    <!-- iOS 6.1 -->
-    <!-- Spotlight Icon -->
-    <icon src="www/images/ios_icons/icon-40.png" width="40" height="40" />
-    <icon src="www/images/ios_icons/icon-40@2x.png" width="80" height="80" />
-    <icon src="www/images/ios_icons/icon-40@3x.png" width="120" height="120" />
-    <!-- iPhone / iPod Touch -->
-    <icon src="www/images/ios_icons/icon.png" width="57" height="57" />
-    <icon src="www/images/ios_icons/icon@2x.png" width="114" height="114" />
-    <!-- iPad -->
-    <icon src="www/images/ios_icons/icon-72.png" width="72" height="72" />
-    <icon src="www/images/ios_icons/icon-72@2x.png" width="144" height="144" />
-    <!-- iPhone Spotlight and Settings Icon -->
-    <icon src="www/images/ios_icons/icon-small.png" width="29" height="29" />
-    <icon src="www/images/ios_icons/icon-small@2x.png" width="58" height="58" />
-    <!-- iPad Spotlight and Settings Icon -->
-    <icon src="www/images/ios_icons/icon-50.png" width="50" height="50" />
-    <icon src="www/images/ios_icons/icon-50@2x.png" width="100" height="100" />
-
-    <!-- splash screen -->
-    <!-- <splash src="www/images/sbp_splash_screen.png" width="1080" height="1920"/> -->
-    <!--
-    <splash src="www/images/sbp_splash_screen.png" width="320" height="480"/>
-    <splash src="www/images/sbp_splash_screen.png" width="640" height="960"/>
-    <splash src="www/images/sbp_splash_screen.png" width="640" height="1136"/>
-    <splash src="www/images/sbp_splash_screen.png" width="750" height="1334"/>
-    <splash src="www/images/sbp_splash_screen.png" width="768" height="1024"/>
-    <splash src="www/images/sbp_splash_screen.png" width="1242" height="2208"/>
-    <splash src="www/images/sbp_splash_screen.png" width="1536" height="2048"/>
-    -->
-
-    <!--
-    320x480
-    640x960
-    640x1136
-    750x1334
-    768x1024
-    1242x2208
-    1536x2048
-    -->
-  </platform>
-  <preference name="SplashScreenDelay" value="3500" />
-  <preference name="orientation" value="portrait" />
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <splash density="land-hdpi" src="www/images/sbp_splash_screen.png" />
+        <splash density="land-ldpi" src="www/images/sbp_splash_screen.png" />
+        <splash density="land-mdpi" src="www/images/sbp_splash_screen.png" />
+        <splash density="land-xhdpi" src="www/images/sbp_splash_screen.png" />
+        <splash density="port-hdpi" src="www/images/sbp_splash_screen.png" />
+        <splash density="port-ldpi" src="www/images/sbp_splash_screen.png" />
+        <splash density="port-mdpi" src="www/images/sbp_splash_screen.png" />
+        <splash density="port-xhdpi" src="www/images/sbp_splash_screen.png" />
+        <icon density="ldpi" src="www/images/sbp_stamp.png" />
+        <icon density="mdpi" src="www/images/sbp_stamp.png" />
+        <icon density="hdpi" src="www/images/sbp_stamp.png" />
+        <icon density="xhdpi" src="www/images/sbp_stamp.png" />
+        <icon density="xxhdpi" src="www/images/sbp_stamp.png" />
+        <icon density="xxxhdpi" src="www/images/sbp_stamp.png" />
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <icon height="180" src="www/images/ios_icons/icon-60@3x.png" width="180" />
+        <icon height="60" src="www/images/ios_icons/icon-60.png" width="60" />
+        <icon height="120" src="www/images/ios_icons/icon-60@2x.png" width="120" />
+        <icon height="76" src="www/images/ios_icons/icon-76.png" width="76" />
+        <icon height="152" src="www/images/ios_icons/icon-76@2x.png" width="152" />
+        <icon height="40" src="www/images/ios_icons/icon-40.png" width="40" />
+        <icon height="80" src="www/images/ios_icons/icon-40@2x.png" width="80" />
+        <icon height="120" src="www/images/ios_icons/icon-40@3x.png" width="120" />
+        <icon height="57" src="www/images/ios_icons/icon.png" width="57" />
+        <icon height="114" src="www/images/ios_icons/icon@2x.png" width="114" />
+        <icon height="72" src="www/images/ios_icons/icon-72.png" width="72" />
+        <icon height="144" src="www/images/ios_icons/icon-72@2x.png" width="144" />
+        <icon height="29" src="www/images/ios_icons/icon-small.png" width="29" />
+        <icon height="58" src="www/images/ios_icons/icon-small@2x.png" width="58" />
+        <icon height="50" src="www/images/ios_icons/icon-50.png" width="50" />
+        <icon height="100" src="www/images/ios_icons/icon-50@2x.png" width="100" />
+    </platform>
+    <preference name="SplashScreenDelay" value="3500" />
+    <preference name="orientation" value="portrait" />
+    <engine name="android" spec="~5.1.1" />
 </widget>

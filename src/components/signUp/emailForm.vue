@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import BaseComponent from '../base/baseComponent.vue'
-import UserModel from '../../models/UserModel.js'
+import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
+import UserModel from '../../RMS/src/models/UserModel.js'
 
 var EmailForm = BaseComponent.extend({
   name: 'EmailForm',

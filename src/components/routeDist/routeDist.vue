@@ -6,7 +6,6 @@
 </template>
 
 <script>
- import RouteModel from '../../models/RouteModel.js';
  export default {
    name: 'RouteDist',
    props: {

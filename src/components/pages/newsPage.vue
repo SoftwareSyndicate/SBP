@@ -6,7 +6,7 @@
 
 <script>
  import BaseComponent from '../../components/base/baseComponent.vue'
- import UserModel from '../../models/UserModel.js'
+ import UserModel from '../../RMS/src/models/UserModel.js'
  import NewsList from '../../components/newsList/newsList.vue'
  var NewsPage =  BaseComponent.extend({
    name: 'NewsPage',

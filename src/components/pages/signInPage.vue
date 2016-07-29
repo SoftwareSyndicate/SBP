@@ -11,8 +11,8 @@
     </div>
 
     <form>
-      <input placeholder="Email" id="email" type="email" class="validate" v-model="email" onfocus="onInputFocused()" onblur="onInputBlured()">
-      <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signIn()" onfocus="onInputFocused()">
+      <input placeholder="Email" id="email" type="email" class="validate" v-model="email">
+      <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signIn()">
       <a class="waves-effect waves-dark btn btn-primary" @click.stop="signIn()">Log in</a>
       <a class="forgot-password">Forgot your password?</a>
     </form>
@@ -29,8 +29,7 @@
 </template>
 
 <script>
- import BaseComponent from '../base/baseComponent.vue'
- /* import UserModel from '../../models/UserModel.js' */
+ import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
  import UserModel from '../../RMS/src/models/UserModel.js'
 
  var SignInPage = BaseComponent.extend({
@@ -44,7 +43,7 @@
      }
    },
    created(){
-     if(UserModel.currentUser){
+     if(UserModel.firebaseUser){
        this.$router.go({name: 'layout'});
      }
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");

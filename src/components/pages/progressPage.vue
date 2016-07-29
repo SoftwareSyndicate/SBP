@@ -23,8 +23,9 @@
 </template>
 <script>
  import BaseComponent from '../../components/base/baseComponent.vue'
- import UserModel from '../../models/UserModel.js'
- import RouteModel from '../../models/RouteModel.js'
+ import UserModel from '../../RMS/src/models/UserModel.js'
+ import RouteModel from '../../RMS/src/models/RouteModel.js'
+ 
  import NavTabs from '../navTabs/navTabs.vue'
  import RoutesOverTimeChart from '../routesOverTimeChart/routesOverTimeChart.vue'
  import GradeOverTimeChart from '../gradeOverTimeChart/gradeOverTimeChart.vue'

@@ -13,8 +13,7 @@
 </template>
 
 <script>
- import RouteModel from '../../models/RouteModel.js'
- import UserModel from '../../models/UserModel.js'
+ import SentRouteModel from '../../RMS/src/models/SentRouteModel'
  export default {
    name: 'SentSwitch',
    props: {

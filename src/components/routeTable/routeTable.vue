@@ -49,12 +49,7 @@
      }
    },
    created(){
-     this.$watch('routes', val => {
-       this.calculateGradeTotals(this.routes);
-       this.filterRoutes(this.routes);
-     }, {
-       immediate: true
-     });
+
    },
 
    beforeDestroy(){
@@ -62,69 +57,6 @@
    },
 
    methods: {
-     calculateGradeTotals(routes){
-       //Filter Routes before displaying them, don't use filter - performance issues
-       routes.forEach(route => {
-         route.grade = route.grade;
-         route.actualColor = window.colorMappings[route.color];
-         route.colorValue = this.findColorIndex(route.actualColor);
-       });
-     },
-     filterRoutes(routes){
-       routes.sort(function(a, b) {
-         if(a.grade > b.grade){
-           return 1;
-         } else if(a.grade < b.grade) {
-           return -1;
-         } else {
-           return 0;
-         }
-       });
-
-       routes.sort(function(a, b){
-         if(a.colorValue > b.colorValue){
-           return 1;
-         } else if(a.colorValue < b.colorValue){
-           return -1;
-         } else {
-           return 0;
-         }
-       });
-       routes.reverse();
-       return routes;
-     },
-
-     findColorIndex(color){
-       var value;
-       switch(color){
-         case "rgba(209,209,209, 0.8)":
-           value = 0;
-           break;
-         case "rgba(255,210,28, 0.8)":
-           value = 1;
-           break;
-         case "rgba(5,179,99, 0.9)":
-           value = 2;
-           break;
-         case "rgba(243,23,38, 0.8)":
-           value = 3;
-           break;
-         case "rgba(48,99,245, 0.8)":
-           value = 4;
-           break;
-         case "rgba(252,109,33, 0.8)":
-           value = 5;
-           break;
-         case "rgba(183,22,229,0.8)":
-           value = 6;
-           break;
-         case "rgba(33,33,33,0.9)":
-           value = 7;
-           break;
-       }
-       return value;
-     },
-
      toggleRouteSent(route){
        console.log("toggle fo");
        console.log(route);

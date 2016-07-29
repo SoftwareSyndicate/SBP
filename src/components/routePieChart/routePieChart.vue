@@ -6,7 +6,6 @@
 </template>
 
 <script>
- import RouteModel from '../../models/RouteModel.js';
  import BaseComponent from '../base/baseComponent.vue'
 
  var RoutePieChart = BaseComponent.extend({

@@ -31,7 +31,6 @@
 
 <script>
  import BaseComponent from '../base/baseComponent.vue'
- import RouteModel from '../../models/RouteModel.js'
  import SentSwitch from '../sentSwitch/sentSwitch.vue'
  var SentRouteTable = BaseComponent.extend({
    name: 'SentRouteTable',
@@ -62,7 +61,7 @@
        routes.forEach(route => {
          route.grade = route.attributes.route.attributes.grade;
          route.actualColor = window.colorMappings[route.attributes.route.attributes.color];
-         route.colorValue = RouteModel.findColorIndex(route.actualColor);
+         /* route.colorValue = RouteModel.findColorIndex(route.actualColor); */
        });
      },
      filterRoutes(routes){
