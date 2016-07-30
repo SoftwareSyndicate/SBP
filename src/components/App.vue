@@ -52,7 +52,7 @@
    methods: {
      getResources(){
        if(!this.resourcesLoaded){
-         console.log('GETTING RESOEURSES');
+         console.log('App.getResources()');
          WallModel.watchAllWallsInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
          RouteModel.watchAllRoutesInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
          SentRouteModel.watchAllRoutesInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id

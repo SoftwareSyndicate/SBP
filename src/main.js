@@ -75,27 +75,33 @@ router.map({
     subRoutes: {
       '/': {
         name: 'walls',
-        component: WallsPage
+        component: WallsPage,
+        auth: true
       },
       '/walls': {
         name: 'walls',
-        component: WallsPage
+        component: WallsPage,
+        auth: true
       },
       '/walls/:id': {
         name: 'wall',
-        component: WallPage
+        component: WallPage,
+        auth: true
       },
       '/menu': {
         name: 'menu',
-        component: NavPage
+        component: NavPage,
+        auth: true
       },
       '/info': {
         name: 'info',
-        component: GymInfoPage
+        component: GymInfoPage,
+        auth: true
       },
       '/news': {
         name: 'news',
-        component: NewsPage
+        component: NewsPage,
+        auth: true
       }
     }
   },
@@ -103,50 +109,55 @@ router.map({
   //Users
   '/profile': {
     name: 'profile',
-    component: ProfilePage
+    component: ProfilePage,
+    auth: true
   },
 
   '/progress': {
     name: 'progress',
-    component: ProgressPage
+    component: ProgressPage,
+    auth: true
   },
 
   //Sign In
   '/signIn': {
     name: 'signIn',
-    component: SignInPage
+    component: SignInPage,
+    auth: false
   },
 
   //Sign Up
   '/signUp': {
     name: 'signUp',
     component: SignUpPage,
+    auth: false,
     subRoutes: {
       '/intro': {
         name: 'intro',
-        component: IntroForm
+        component: IntroForm,
+        auth: false
       },
       '/name': {
         name: 'name',
-        component: NameForm
+        component: NameForm,
+        auth: false
       },
       '/email': {
         name: 'email',
-        component: EmailForm
+        component: EmailForm,
+        auth: false
       }
     }
   }
 });
 
 router.beforeEach(function(transition){
-  /* if(!UserModel.firebaseUser){
-     console.log("redirect to signIn page");
-     transition.redirect("/signIn");
-     } else {
-     Notifications.notify('Router.beforeTransition', transition);
-     transition.next();
-     } */
-  transition.next();
+  if(UserModel.currentUser || !transition.to.auth){
+    Notifications.notify('Router.beforeTransition', transition);
+    transition.next();
+  } else {
+    transition.redirect("/signIn");
+  }
 });
 
 router.afterEach(function(transition){

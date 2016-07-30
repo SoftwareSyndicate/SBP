@@ -66,7 +66,6 @@
      this.calcAverageMonthly();
      this.calculateGradeTotals(this.sentRoutes);
      this.filterRoutes(this.sentRoutes);
-     this.notifications.listenFor("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated, this);
    },
    ready(){
      this.notifications.notify('Navbar.setVisible', true);
@@ -75,11 +74,20 @@
      this.notifications.notify('NavTabs.setActiveTab', 'profile');
      this.hideLoadingAnimation();
    },
+   notifs(){
+     return {
+       'RouteModel.sentRoutesUpdated': 'onSentRoutesUpdated',
+       'UserModel.userUpdated': 'onUserUpdated'
+     }
+   },
    beforeDestroy(){
      this.notifications.removeListener("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated);
      window.scrollTo(0, 0);
    },
    methods: {
+     onUserUpdated(){
+       this.currentUser = UserModel.currentUser
+     },
      onSentRoutesUpdated(){
        this.sentRoutes = RouteModel.sentRoutes;
        this.calcAverageGrade();

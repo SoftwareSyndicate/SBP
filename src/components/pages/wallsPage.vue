@@ -18,7 +18,7 @@
    },
    data(){
      return {
-       walls: []
+       walls: WallModel.walls
      }
    },
    created(){
@@ -26,7 +26,7 @@
    },
    ready(){
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
-     this.walls = WallModel.walls;
+     this.onWallsUpdated();
    },
    beforeDestroy(){
 

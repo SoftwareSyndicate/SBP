@@ -44,11 +44,9 @@
    },
    created(){
      if(UserModel.firebaseUser){
-       this.$router.go({name: 'layout'});
+       this.$router.go({name: 'walls'});
      }
      this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
-     this.notifications.listenFor("Input.focused", function(){this.inputFocused = true}, this);
-     this.notifications.listenFor("Input.blured", function(){this.inputFocused = false}, this);
      this.hideLoadingAnimation();
    },
    ready(){
@@ -60,7 +58,6 @@
        this.showLoadingAnimation();
        UserModel.signInWithEmail(this.email, this.password).then(results => {
          console.log(results);
-         this.notifications.notify("UserModel.signUp");
          this.$router.go({name: 'profile'});
        }, error => {
          Materialize.toast("Sorry, Invalid Credentials", 2000);
