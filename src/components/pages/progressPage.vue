@@ -45,7 +45,7 @@
      }
    },
    created(){
-
+     this.parseRoutes();
    },
    ready(){
      this.notifications.notify('Navbar.setHeader', "MY PROGRESS");
