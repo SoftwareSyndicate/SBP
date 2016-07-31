@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="routes-container component" v-if="sentRoutes.length > 0">
-          <sent-route-table :routes="sentRoutes"></sent-route-table>
+          <!-- <sent-route-table :routes="sentRoutes"></sent-route-table> -->
         </div>
       </div>
       <nav-tabs></nav-tabs>
@@ -43,6 +43,8 @@
  import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
  import UserModel from '../../RMS/src/models/UserModel.js'
  import RouteModel from '../../RMS/src/models/RouteModel.js'
+ import SentRouteModel from '../../RMS/src/models/SentRouteModel.js'
+
  import NavTabs from '../navTabs/navTabs.vue'
  import SentRouteTable from '../sentRouteTable/sentRouteTable.vue'
 
@@ -55,17 +57,14 @@
    data(){
      return {
        currentUser: UserModel.currentUser,
-       sentRoutes: RouteModel.sentRoutes,
+       sentRoutes: [],
        averageMonthly: 0,
        totalSent: 0,
        averageGrade: ""
      }
    },
    created(){
-     this.calcAverageGrade();
-     this.calcAverageMonthly();
-     this.calculateGradeTotals(this.sentRoutes);
-     this.filterRoutes(this.sentRoutes);
+     this.parseRoutes();
    },
    ready(){
      this.notifications.notify('Navbar.setVisible', true);
@@ -76,32 +75,39 @@
    },
    notifs(){
      return {
-       'RouteModel.sentRoutesUpdated': 'onSentRoutesUpdated',
+       'RouteModel.routesUpdated': 'parseRoutes',
+       'SentRouteModel.routesUpdated': 'parseRoutes',
        'UserModel.userUpdated': 'onUserUpdated'
      }
    },
    beforeDestroy(){
-     this.notifications.removeListener("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated);
      window.scrollTo(0, 0);
    },
    methods: {
      onUserUpdated(){
        this.currentUser = UserModel.currentUser
      },
-     onSentRoutesUpdated(){
-       this.sentRoutes = RouteModel.sentRoutes;
+
+     parseRoutes(){
+       RouteModel.routes.forEach(route => {
+         SentRouteModel.routes.forEach(sentRoute => {
+           if(route.id === sentRoute.route_id){
+             this.sentRoutes.push(route);
+           }
+         });
+       });
+
        this.calcAverageGrade();
        this.calcAverageMonthly();
        this.calculateGradeTotals(this.sentRoutes);
        this.filterRoutes(this.sentRoutes);
-       this.hideLoadingAnimation();
      },
+
      calcAverageGrade(){
        var total = 0;
        this.sentRoutes.forEach(route => {
-         total += parseInt(route.route.grade);
+         total += parseInt(route.grade);
        });
-
        this.averageGrade = "v" + Math.round(total / this.sentRoutes.length);
      },
      calcAverageMonthly(){
@@ -109,8 +115,8 @@
      },
      calculateGradeTotals(routes){
        routes.forEach(route => {
-         route.grade = route.route.grade;
-         route.actualColor = window.colorMappings[route.route.color];
+         route.grade = route.grade;
+         route.actualColor = window.colorMappings[route.color];
          route.colorValue = RouteModel.findColorIndex(route.actualColor);
        });
      },

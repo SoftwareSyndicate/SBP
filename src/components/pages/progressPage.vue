@@ -18,14 +18,15 @@
       </div>
       <grade-over-time-chart :routes="sentRoutes"  v-if="true"></grade-over-time-chart>
     </div>
+    <nav-tabs></nav-tabs>
   </div>
-  <nav-tabs></nav-tabs>
 </template>
 <script>
- import BaseComponent from '../../components/base/baseComponent.vue'
+ import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
  import UserModel from '../../RMS/src/models/UserModel.js'
  import RouteModel from '../../RMS/src/models/RouteModel.js'
- 
+ import SentRouteModel from '../../RMS/src/models/SentRouteModel.js'
+
  import NavTabs from '../navTabs/navTabs.vue'
  import RoutesOverTimeChart from '../routesOverTimeChart/routesOverTimeChart.vue'
  import GradeOverTimeChart from '../gradeOverTimeChart/gradeOverTimeChart.vue'
@@ -44,21 +45,29 @@
      }
    },
    created(){
-     this.notifications.listenFor("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated, this);
+
    },
    ready(){
      this.notifications.notify('Navbar.setHeader', "MY PROGRESS");
      this.notifications.notify('NavTabs.setActiveTab', 'profile');
      this.hideLoadingAnimation();
    },
-   beforeDestroy(){
-     this.notifications.removeListener("RouteModel.sentRoutesUpdated", this.onSentRoutesUpdated);
-     window.scrollTo(0, 0);
+   notifs(){
+     return {
+       'RouteModel.routesUpdated': 'parseRoutes',
+       'SentRouteModel.routesUpdated': 'parseRoutes'
+     }
    },
    methods: {
-     onSentRoutesUpdated(){
-       this.sentRoutes = RouteModel.sentRoutes;
-     }
+     parseRoutes(){
+       RouteModel.routes.forEach(route => {
+         SentRouteModel.routes.forEach(sentRoute => {
+           if(route.id === sentRoute.route_id){
+             this.sentRoutes.push(route);
+           }
+         });
+       });
+     },
    }
  });
 

@@ -63,9 +63,9 @@
        max.setFullYear(1980);
 
        routes.sort(function(a, b) {
-         if(a.createdAt > b.createdAt){
+         if(a.created_at > b.created_at){
            return 1;
-         } else if(a.createdAt < b.createdAt) {
+         } else if(a.created_at < b.created_at) {
            return -1;
          } else {
            return 0;
@@ -73,11 +73,11 @@
        });
 
        this.routes.forEach(route => {
-         if(route.createdAt > max){
-           max = route.createdAt;
+         if(route.created_at > max){
+           max = route.created_at;
          }
-         if(route.createdAt < min){
-           min = route.createdAt;
+         if(route.created_at < min){
+           min = route.created_at;
          }
        });
 
@@ -108,14 +108,14 @@
      groupByDate(dateStringOptions, lineData, routes){
        var dateObj = {};
        routes.forEach(route => {
-         var name = route.createdAt.toLocaleDateString('en-US', dateStringOptions);
+         var name = new Date(route.created_at).toLocaleDateString('en-US', dateStringOptions);
          if(dateObj[name]){
            dateObj[name].total++;
-           dateObj[name].value += parseInt(route.attributes.route.attributes.grade);
+           dateObj[name].value += parseInt(route.grade);
          } else {
            dateObj[name] = {
              total: 1,
-             value: parseInt(route.attributes.route.attributes.grade)
+             value: parseInt(route.grade)
            }
          }
        });
