@@ -13,13 +13,6 @@
       </div>
 
       <div class="distro-container" v-if="currentTab == 'distro'">
-        <!-- Polar Area Chart -->
-        <!-- <div id="polar-area-chart-container" class="component">
-             <div class="chart-header">
-             <p>Circuit Distribution</p>
-             </div>
-             <polar-area-chart :routes="routes" v-if="routes.length > 0"></polar-area-chart>
-             </div> -->
 
         <!-- Routes Pie -->
         <div id="route-pie-chart-container" class="component">
@@ -34,7 +27,7 @@
           <div class="chart-header">
             <p>V-Grade Distribution</p>
           </div>
-          <route-dist :routes="wall.routes"  v-if="!!wall"></route-dist>
+          <route-dist :routes.sync="wall.routes"  v-if="!!wall"></route-dist>
         </div>
       </div>
 
@@ -51,21 +44,24 @@
   </div>
 </template>
 <script>
- import WallListItem from '../wallList/wallListItem.vue'
- import RouteModel from '../../RMS/src/models/RouteModel.js'
+ import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
+
  import UserModel from '../../RMS/src/models/UserModel.js'
+ import RouteModel from '../../RMS/src/models/RouteModel.js'
+ import SentRouteModel from '../../RMS/src/models/SentRouteModel.js'
+ import WallModel from '../../RMS/src/models/WallModel.js'
+
+ import WallListItem from '../wallList/wallListItem.vue'
  import RouteList from '../routeList/routeList.vue'
  import RouteTable from '../routeTable/routeTable.vue'
  import RouteDist from '../routeDist/routeDist.vue'
- import PolarAreaChart from '../polarAreaChart/polarAreaChart.vue'
  import RoutePieChart from '../routePieChart/routePieChart.vue'
- import WallModel from '../../RMS/src/models/WallModel.js'
- import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
+
+
 
  var WallPage = BaseComponent.extend({
    name: 'WallPage',
    components: {
-     PolarAreaChart,
      RouteDist,
      RouteList,
      RouteTable,
@@ -91,7 +87,8 @@
    notifs(){
      return {
        "WallModel.wallsUpdated": "onWallsUpdated",
-       "RouteModel.routesUpdated": "parseRoutes"
+       "RouteModel.routesUpdated": "parseRoutes",
+       "SentRouteModel.routesUpdated": "parseRoutes"
      }
    },
 
@@ -104,13 +101,22 @@
          }
        });
        this.notifications.notify('Navbar.setHeader', this.wall.name);
+       this.parseRoutes();
      },
      parseRoutes(){
        this.wall.routes = [];
        RouteModel.routes.forEach(route => {
+         route.sent = false;
          route.grade = route.grade;
          route.actualColor = window.colorMappings[route.color];
          route.colorValue = this.findColorIndex(route.actualColor);
+
+         SentRouteModel.routes.forEach(sentRoute => {
+           if(route.id === sentRoute.route_id){
+             route.sent = true;
+           }
+         });
+
          if(route.wall_id === this.wall.id){
            this.wall.routes.push(route);
          }

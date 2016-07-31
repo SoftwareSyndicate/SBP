@@ -1,27 +1,33 @@
 <template>
   <div class="route-table">
     <div class="table-header">
-      <div class="left">
+      <div class="header-item route-id-header" @click="sort('id')" :class="{'active': sortBy == 'id'}">
+        #
+      </div>
+      <div class="header-item grade-header" @click="sort('grade')" :class="{'active': sortBy == 'grade'}">
         Grade
       </div>
-      <div class="right">
+      <div class="header-item sent-header" @click="sort('sent')" :class="{'active': sortBy == 'sent'}">
         Sent
       </div>
     </div>
     <div class="table-body">
       <div class="table-row" v-for="route in routes">
-        <div class="left">
+        <div class="row-item route-id">
+          {{$index + 1}}
+        </div>
+        <div class="row-item grade">
           <div class="diamond">
             <div class="diamond-background" v-bind:style="{'background-color': route.htmlColor}">
 
             </div>
             <div class="diamond-grade" v-bind:class="{'tenner': route.grade > 9}">
-              {{route.grade}}
+              <!-- {{route.grade}} -->
             </div>
           </div>
         </div>
-        <div class="right">
-          <sent-switch :route="route" :sent-routes="sentRoutes">
+        <div class="row-item sent">
+          <sent-switch :route.sync="route">
         </div>
       </div>
     </div>
@@ -37,10 +43,6 @@
      routes: {
        type: Array,
        default: () => []
-     },
-     sentRoutes: {
-       type: Array,
-       default: () => []
      }
    },
    components: {
@@ -49,7 +51,8 @@
    data(){
      return {
        colorsArray:['Gray','Yellow','Green','Red','Blue','Orange','Purple','Black'],
-       gradesArray:['v0','v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12']
+       gradesArray:['v0','v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12'],
+       sortBy: "grade"
      }
    },
    created(){
@@ -61,7 +64,69 @@
    },
 
    methods: {
+     sort(sortBy){
+       if(this.sortBy === sortBy){
+         this.routes = this.routes.reverse();
+       } else {
+         this.sortBy = sortBy;
+         if(sortBy == "id"){
+           /* this.routes = this.sortByNumber(this.routes); // TODO ROUTES NEED NUMBERS */
+         } else if(sortBy == "grade"){
+           this.routes = this.sortByGrade(this.routes);
+         } else if(sortBy == "sent"){
+           /* this.routes = this.sortBySent(this.routes); // TODO ROUTES NEED NUMBERS */
+         }
+       }
+     },
 
+     sortByNumber(routes){
+       routes.sort(function(a, b) {
+         if(a.number > b.number){
+           return 1;
+         } else if(a.number < b.number){
+           return -1;
+         } else {
+           return 0;
+         }
+       });
+     },
+
+     sortBySent(routes){
+       routes.sort(function(a, b) {
+         if(a.sent && !b.sent){
+           return 1;
+         } else if(!a.sent && b.sent){
+           return -1;
+         } else {
+           return 0;
+         }
+       });
+     },
+
+
+     sortByGrade(routes){
+       routes.sort(function(a, b) {
+         if(a.grade > b.grade){
+           return 1;
+         } else if(a.grade < b.grade) {
+           return -1;
+         } else {
+           return 0;
+         }
+       });
+
+       routes.sort(function(a, b){
+         if(a.colorValue > b.colorValue){
+           return 1;
+         } else if(a.colorValue < b.colorValue){
+           return -1;
+         } else {
+           return 0;
+         }
+       });
+       routes.reverse();
+       return routes;
+     }
    }
  });
 
@@ -69,7 +134,7 @@
 </script>
 
 <style lang="sass">
-
+ @import '../../styles/main.scss';
  $header-cell-padding: 1.4em;
  $cell-padding: 1.6em;
  $cell-border: 2px rgba(215, 218, 230, .3) solid;
@@ -87,15 +152,31 @@
      flex-basis: 100%;
      font-weight: bold;
      border-bottom: $cell-border;
-     .left {
-       flex-basis: 50%;
-       padding: $header-cell-padding;
+
+     .header-item {
        border-right: $cell-border;
+       padding: $header-cell-padding;
+       cursor: pointer;
+
+       &.active {
+         color: $color-base-orange;
+       }
+
+       &:last-child {
+         border-right: none;
+       }
      }
 
-     .right {
-       flex-basis: 50%;
-       padding: $header-cell-padding;
+     .route-id-header {
+       flex-basis: 20%;
+     }
+
+     .grade-header {
+       flex-basis: 40%;
+     }
+
+     .sent-header {
+       flex-basis: 40%;
      }
    }
 
@@ -117,9 +198,30 @@
        flex-basis: 100%;
        border-bottom: $cell-border;
 
-       &:last-child {
-         border: none;
+       .row-item {
+         display: flex;
+         align-items: center;
+         padding: $header-cell-padding;
+         border-right: $cell-border;
+
+         &:last-child {
+           border: none;
+         }
        }
+
+       .route-id {
+         flex-basis: 20%;
+       }
+
+       .grade {
+         flex-basis: 40%;
+       }
+
+       .sent {
+         flex-basis: 40%;
+       }
+
+
 
        .left {
          align-items: center;
