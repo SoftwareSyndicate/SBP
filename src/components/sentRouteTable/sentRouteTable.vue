@@ -15,14 +15,14 @@
             <div class="diamond-background" v-bind:style="{'background-color': route.actualColor}">
 
             </div>
-            <div class="diamond-grade" v-bind:class="{'tenner': route.attributes.route.attributes.grade > 9}">
-              {{route.attributes.route.attributes.grade}}
+            <div class="diamond-grade" v-bind:class="{'tenner': route.grade > 9}">
+              <!-- {{route.grade}} -->
             </div>
           </div>
           <!-- <img v-bind:src="'/images/grades/' + tableGradeObject.name + '.png'"> -->
         </div>
         <div class="right">
-          {{route.createdAt.toLocaleDateString()}}
+          {{route.created_at.toLocaleDateString()}}
         </div>
       </div>
     </div>
@@ -59,8 +59,8 @@
    methods: {
      calculateGradeTotals(routes){
        routes.forEach(route => {
-         route.grade = route.attributes.route.attributes.grade;
-         route.actualColor = window.colorMappings[route.attributes.route.attributes.color];
+         route.grade = route.grade;
+         route.actualColor = window.colorMappings[route.color];
          /* route.colorValue = RouteModel.findColorIndex(route.actualColor); */
        });
      },

@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="routes-container component" v-if="sentRoutes.length > 0">
-          <!-- <sent-route-table :routes="sentRoutes"></sent-route-table> -->
+          <sent-route-table :routes="sentRoutes"></sent-route-table>
         </div>
       </div>
       <nav-tabs></nav-tabs>
@@ -92,6 +92,7 @@
        RouteModel.routes.forEach(route => {
          SentRouteModel.routes.forEach(sentRoute => {
            if(route.id === sentRoute.route_id){
+             route.created_at = new Date(route.created_at);
              this.sentRoutes.push(route);
            }
          });
