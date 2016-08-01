@@ -8,7 +8,12 @@ var dateFormat = {
 }
 
 Vue.filter('dateSet', function(lastSet){
-  if(lastSet){
+  if(lastSet != null){
+
+    if(typeof lastSet === 'number'){
+      lastSet = new Date(lastSet);
+    }
+
     var now = new Date();
     var oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);

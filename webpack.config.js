@@ -48,10 +48,13 @@ module.exports = {
       pages: 'src/components/pages',
       filters: 'src/filters',
       libs: 'src/libs',
-      models: 'src/models',
-      services: 'src/services',
+      models: 'src/RMS/src/models',
+      services: 'src/RMS/src/services',
       styles: 'src/styles',
-      images: 'images'
+      images: 'images',
+      rms: 'src/RMS',
+      'rms-models': 'src/RMS/src/models',
+      'rms-services': 'src/RMS/src/services'
     },
     extensions: ['', '.js', '.vue', '.scss', '.svg', '.png']
   }

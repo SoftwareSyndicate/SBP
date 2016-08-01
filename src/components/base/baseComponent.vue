@@ -6,8 +6,9 @@
    created(){
      // custom loading of declared notifications
      if(this.$options.notifs){
-       for(let key in this.$options.notifs()){
-         let f = this.$options.notifs()[key];
+       let _notifs = this.$options.notifs();
+       for(let key in _notifs){
+         let f = _notifs[key];
          Notifications.listenFor(key, this.$options.methods[f], this);
        }
      }
@@ -26,8 +27,9 @@
    beforeDestroy(){
      // custom unloading of declared notifications
      if(this.$options.notifs){
-       for(let key in this.$options.notifs()){
-         let f = this.$options.notifs()[key];
+       let _notifs = this.$options.notifs();
+       for(let key in _notifs){
+         let f = _notifs[key];
          Notifications.removeListener(key, this.$options.methods[f]);
        }
      }

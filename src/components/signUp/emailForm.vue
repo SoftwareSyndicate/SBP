@@ -77,7 +77,8 @@ var EmailForm = BaseComponent.extend({
     signUp(){
       if(UserModel.isValidCreds(this.email, this.password)){
         this.showLoadingAnimation();
-        UserModel.signUp(this.firstName, this.lastName, this.email, this.password).then(results => {
+        // UserModel.signUp(this.firstName, this.lastName, this.email, this.password).then(results => {
+        UserModel.signUpWithEmail(this.email, this.password).then(results => {
           this.$router.go({name: 'profile'});
         }, error => {
           this.hideLoadingAnimation();

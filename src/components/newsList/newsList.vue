@@ -19,7 +19,7 @@
      }
    },
    created(){
-     console.log("news list");
+    //  console.log("news list");
    },
 
    methods: {

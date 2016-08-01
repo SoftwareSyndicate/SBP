@@ -1,7 +1,7 @@
 <template>
   <li class="collection-item wall-list-item waves-effect component" v-link="{name: 'wall', params: {id: wall.id}}">
     <div class="left">
-      <div class="name-container"">
+      <div class="name-container">
         <h5 class="name" v-if="wall">{{wall.name}}</h5>
       </div>
       <span class="spacer"></span>
