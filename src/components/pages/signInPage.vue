@@ -87,7 +87,7 @@
    background: $gradient-background;
 
    .header-container {
-     margin-top: 9em;
+     margin-top: 4em;
      margin-bottom: 2em;
      padding-left: $signUp-page-padding;
      padding-right: $signUp-page-padding;
