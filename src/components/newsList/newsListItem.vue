@@ -38,9 +38,11 @@ var NewsListItem = BaseComponent.extend({
     UserModel.getUserById(this.newsItem.author_id).then((data)=>{
       this.author = data.val();
     })
-    let w = WallModel._walls.child(this.newsItem.wall_id).val();
-    w.routes = RouteModel._routesByWall[this.newsItem.wall_id];
-    this.wall = w;
+    if(this.newsItem.wall_id){
+      let w = WallModel._walls.child(this.newsItem.wall_id).val();
+      w.routes = RouteModel._routesByWall[this.newsItem.wall_id];
+      this.wall = w;
+    }
   },
   notifs(){
     return {
