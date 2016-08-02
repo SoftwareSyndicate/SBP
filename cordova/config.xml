@@ -53,7 +53,7 @@
         <icon height="50" src="www/images/ios_icons/icon-50.png" width="50" />
         <icon height="100" src="www/images/ios_icons/icon-50@2x.png" width="100" />
     </platform>
-    <preference name="SplashScreenDelay" value="3500" />
+    <preference name="SplashScreenDelay" value="1000" />
     <preference name="orientation" value="portrait" />
     <engine name="android" spec="~5.1.1" />
 </widget>
