@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar-fixed" id="navbar" v-show="visible">
+  <div class="navbar-fixed" id="navbar" v-show="visible" :class="{'shadow': shadow}">
     <div class="nav-wrapper">
       <nav>
         <a href="#!" class="brand-logo center">{{header}}</a>
@@ -41,7 +41,8 @@
        currentUser: {},
        activeTab: "",
        visible: true,
-       header: "Seattle Bouldering Project"
+       header: "Seattle Bouldering Project",
+       shadow: false
      }
    },
    ready(){
@@ -57,8 +58,13 @@
      this.notifications.listenFor('Navbar.setNavigateBack', this.setNavigateBack, this);
      this.notifications.listenFor('User.login', this.onUserLogin, this);
      this.notifications.listenFor('User.logout', this.onUserLogout, this);
-   },
 
+     $('body').on('wheel.navbar touchmove.navbar', this.onScroll());
+     this.onScroll()(); // eval the shadow immediately
+   },
+   beforeDestroy(){
+     $('body').off('.navbar');
+   },
    methods: {
      openLoginModal(event){
        $('#loginModal').openModal();
@@ -83,6 +89,18 @@
      },
      logout(){
        UserModel.logout();
+     },
+
+     onScroll(){
+       let self = this;
+       return function(){
+         let body = $(this);
+         if(body.scrollTop() > 5){
+            self.shadow = true;
+          } else {
+            self.shadow = false;
+          }
+       }
      }
    },
  });
@@ -100,7 +118,7 @@
      background-size: 50%;
      background-repeat: no-repeat;
      background-position: 50% 10px;
-     box-shadow: none !important;
+     transition: all 300ms;
 
      .menu-button {
        cursor: pointer;
@@ -159,6 +177,12 @@
      padding-left: .5em;
      padding-right: .8em;
      color: rgba(255, 255, 255, .95);
+   }
+
+   &:not(.shadow){
+     nav {
+       box-shadow: none !important;
+     }
    }
  }
 </style>
