@@ -57,7 +57,6 @@
      signIn(){
        this.showLoadingAnimation();
        UserModel.signInWithEmail(this.email, this.password).then(results => {
-         console.log(results);
          this.$router.go({name: 'profile'});
        }, error => {
          Materialize.toast("Sorry, Invalid Credentials", 2000);

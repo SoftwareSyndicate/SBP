@@ -51,6 +51,7 @@
    methods: {
      signOut(){
        UserModel.signOut();
+       this.$router.go({'name': 'signIn'});
        this.currentUser = null;
      }
    },
