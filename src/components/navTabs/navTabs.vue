@@ -1,19 +1,19 @@
 <template>
   <div class="nav-tabs" v-if="visible">
     <ul class="tabs z-depth-1">
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': currentTab == 'walls'}" v-link="{name: 'walls'}">
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': $route.name == 'walls' || $route.name == 'wall'}" v-link="{name: 'walls'}">
         <p class="tab-name">Walls</p>
         <a href="#tab-walls" class="">
           <i class="material-icons">dns</i>
         </a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': currentTab == 'news'}" v-link="{name: 'news'}">
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': $route.name == 'news'}" v-link="{name: 'news'}">
         <p class="tab-name">News</p>
         <a href="#tab-layout" class="">
           <i class="material-icons">add_alert</i>
         </a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': currentTab == 'profile'}" v-link="{name: 'profile'}">
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': $route.name == 'profile'}" v-link="{name: 'profile'}">
         <p class="tab-name">Profile</p>
         <a href="#tab-profile" class="">
           <i class="material-icons">account_circle</i>
@@ -41,7 +41,6 @@
      this.notifications.listenFor('NavTabs.setActiveTab', this.setActiveTab, this);
    },
    ready(){
-     /* $('ul.tabs').tabs(); */
      this.currentTab = this.$route.name;
    },
 

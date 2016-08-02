@@ -31,8 +31,6 @@ var NewsPage =  BaseComponent.extend({
   },
   ready(){
     this.notifications.notify('Navbar.setHeader', "News");
-    this.notifications.notify('NavTabs.setActiveTab', 'news');
-    this.hideLoadingAnimation();
   },
   beforeDestroy(){
     window.scrollTo(0, 0);

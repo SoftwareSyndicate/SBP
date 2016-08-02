@@ -70,7 +70,6 @@
      this.notifications.notify('Navbar.setVisible', true);
      this.notifications.notify('Navbar.setHeader', "MY PROFILE");
      this.notifications.notify('GymPage.changeTab', 'none');
-     this.notifications.notify('NavTabs.setActiveTab', 'profile');
      this.hideLoadingAnimation();
    },
    notifs(){

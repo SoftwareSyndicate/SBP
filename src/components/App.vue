@@ -3,7 +3,7 @@
     <navbar></navbar>
 
     <!-- main view -->
-    <overlay></overlay>
+    <!-- <overlay></overlay> -->
     <div id="wrapper">
       <router-view
           class="view"
