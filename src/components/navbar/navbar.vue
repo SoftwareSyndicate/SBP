@@ -19,7 +19,8 @@
              <li @click="openLoginModal" v-show="!currentUser"><a class="waves-effect waves-light"><i class="medium material-icons">person_pin</i>Login</a></li>
              <li v-show="currentUser"><a class="waves-effect waves-light" @click="logout" class="waves-effect waves-light"><i class="medium material-icons">settings_power</i>Logout</a></li>
              </ul> -->
-        <a v-if="!navigateBack" class="button-collapse menu-button" v-link="{name: 'menu'}" @click.stop="onMenu = true;"><i class="material-icons side-nav-icon">menu</i></a>
+        <!-- <a v-if="!navigateBack" class="button-collapse menu-button" v-link="{name: 'menu'}" @click.stop="onMenu = true;"><i class="material-icons side-nav-icon">menu</i></a> -->
+        <a v-if="!navigateBack" class="button-collapse menu-button" v-link="{name: 'menu'}" @click.stop="onMenu = true;"><img  src="/images/menu.svg" class="menu-image"/></a>
         <a v-if="navigateBack"  class="back-button" href="javascript:history.go(-1)" ><i class="material-icons side-nav-icon">keyboard_backspace</i></a>
 
         <!-- <a v-if="true"  class="back-button right" href="javascript:history.go(-1)"><img src="/images/sbp_stamp.png"></a> -->
@@ -122,6 +123,12 @@
 
      .menu-button {
        cursor: pointer;
+
+       img {
+         height: 14px;
+         padding-left: 22px;
+         padding-right: 22px;
+       }
      }
 
      .back-button {

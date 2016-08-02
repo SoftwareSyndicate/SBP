@@ -10,7 +10,7 @@
       <li class="tab col s3 z-depth-1" v-bind:class="{'active': $route.name == 'news'}" v-link="{name: 'news'}">
         <p class="tab-name">News</p>
         <a href="#tab-layout" class="">
-          <i class="material-icons">add_alert</i>
+          <i class="material-icons">notifications</i>
         </a>
       </li>
       <li class="tab col s3 z-depth-1" v-bind:class="{'active': $route.name == 'profile' || $route.name == 'progress'}" v-link="{name: 'profile'}">
