@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar-fixed" id="navbar" v-show="visible" :class="{'shadow': shadow}">
+  <div class="navbar-fixed" id="navbar" v-show="visible">
     <div class="nav-wrapper">
       <nav>
         <a href="#!" class="brand-logo center">{{header}}</a>
@@ -20,7 +20,7 @@
              <li v-show="currentUser"><a class="waves-effect waves-light" @click="logout" class="waves-effect waves-light"><i class="medium material-icons">settings_power</i>Logout</a></li>
              </ul> -->
         <!-- <a v-if="!navigateBack" class="button-collapse menu-button" v-link="{name: 'menu'}" @click.stop="onMenu = true;"><i class="material-icons side-nav-icon">menu</i></a> -->
-        <a v-if="!navigateBack" class="button-collapse menu-button" v-link="{name: 'menu'}" @click.stop="onMenu = true;"><img  src="/images/menu.svg" class="menu-image"/></a>
+        <a v-if="!navigateBack" class="button-collapse menu-button" v-link="{name: 'menu'}" @click.stop="onMenu = true;"><img src="~images/menu.svg" class="menu-image"/></a>
         <a v-if="navigateBack"  class="back-button" href="javascript:history.go(-1)" ><i class="material-icons side-nav-icon">keyboard_backspace</i></a>
 
         <!-- <a v-if="true"  class="back-button right" href="javascript:history.go(-1)"><img src="/images/sbp_stamp.png"></a> -->
@@ -42,8 +42,7 @@
        currentUser: {},
        activeTab: "",
        visible: true,
-       header: "Seattle Bouldering Project",
-       shadow: false
+       header: "Seattle Bouldering Project"
      }
    },
    ready(){
@@ -59,13 +58,8 @@
      this.notifications.listenFor('Navbar.setNavigateBack', this.setNavigateBack, this);
      this.notifications.listenFor('User.login', this.onUserLogin, this);
      this.notifications.listenFor('User.logout', this.onUserLogout, this);
+   },
 
-     $('body').on('wheel.navbar touchmove.navbar', this.onScroll());
-     this.onScroll()(); // eval the shadow immediately
-   },
-   beforeDestroy(){
-     $('body').off('.navbar');
-   },
    methods: {
      openLoginModal(event){
        $('#loginModal').openModal();
@@ -90,18 +84,6 @@
      },
      logout(){
        UserModel.logout();
-     },
-
-     onScroll(){
-       let self = this;
-       return function(){
-         let body = $(this);
-         if(body.scrollTop() > 5){
-            self.shadow = true;
-          } else {
-            self.shadow = false;
-          }
-       }
      }
    },
  });
@@ -119,7 +101,7 @@
      background-size: 50%;
      background-repeat: no-repeat;
      background-position: 50% 10px;
-     transition: all 300ms;
+     box-shadow: none !important;
 
      .menu-button {
        cursor: pointer;
@@ -184,12 +166,6 @@
      padding-left: .5em;
      padding-right: .8em;
      color: rgba(255, 255, 255, .95);
-   }
-
-   &:not(.shadow){
-     nav {
-       box-shadow: none !important;
-     }
    }
  }
 </style>
