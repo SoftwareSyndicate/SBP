@@ -1,22 +1,24 @@
 <template>
-  <div class="progress-page">
-    <div class="need-more-routes component" v-if="sentRoutes.length < 2">
-      You must send at least 2 routes before progress can be generated
-      <div class="view-walls-button waves-effect waves-light" v-link="{name: 'walls'}">
-        View the walls
+  <div>
+    <div class="progress-page">
+      <div class="need-more-routes component" v-if="sentRoutes.length < 2">
+        You must send at least 2 routes before progress can be generated
+        <div class="view-walls-button waves-effect waves-light" v-link="{name: 'walls'}">
+          View the walls
+        </div>
       </div>
-    </div>
-    <div class="routes-over-time-chart-container component" v-if="sentRoutes.length > 1">
-      <div class="chart-header">
-        <p>Routes Sent Over Time</p>
+      <div class="routes-over-time-chart-container component" v-if="sentRoutes.length > 1">
+        <div class="chart-header">
+          <p>Routes Sent Over Time</p>
+        </div>
+        <routes-over-time-chart :routes="sentRoutes"  v-if="true"></routes-over-time-chart>
       </div>
-      <routes-over-time-chart :routes="sentRoutes"  v-if="true"></routes-over-time-chart>
-    </div>
-    <div class="routes-over-time-chart-container component" v-if="sentRoutes.length > 1">
-      <div class="chart-header">
-        <p>Avg V-Grade Over Time</p>
+      <div class="routes-over-time-chart-container component" v-if="sentRoutes.length > 1">
+        <div class="chart-header">
+          <p>Avg V-Grade Over Time</p>
+        </div>
+        <grade-over-time-chart :routes="sentRoutes"  v-if="true"></grade-over-time-chart>
       </div>
-      <grade-over-time-chart :routes="sentRoutes"  v-if="true"></grade-over-time-chart>
     </div>
     <nav-tabs></nav-tabs>
   </div>
@@ -60,13 +62,16 @@
    },
    methods: {
      parseRoutes(){
+       this.sentRoutes = [];
        RouteModel.routes.forEach(route => {
          SentRouteModel.routes.forEach(sentRoute => {
            if(route.id === sentRoute.route_id){
+             route.created_at = sentRoute.created_at;
              this.sentRoutes.push(route);
            }
          });
        });
+       console.log(this.sentRoutes);
      },
    }
  });

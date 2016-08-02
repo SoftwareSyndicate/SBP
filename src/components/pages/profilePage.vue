@@ -88,10 +88,11 @@
      },
 
      parseRoutes(){
+       this.sentRoutes = [];
        RouteModel.routes.forEach(route => {
          SentRouteModel.routes.forEach(sentRoute => {
            if(route.id === sentRoute.route_id){
-             route.created_at = new Date(route.created_at);
+             route.created_at = new Date(sentRoute.created_at);
              this.sentRoutes.push(route);
            }
          });

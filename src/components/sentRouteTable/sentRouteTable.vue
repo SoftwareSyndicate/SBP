@@ -61,7 +61,7 @@
        routes.forEach(route => {
          route.grade = route.grade;
          route.actualColor = window.colorMappings[route.color];
-         /* route.colorValue = RouteModel.findColorIndex(route.actualColor); */
+         route.colorValue = RouteModel.findColorIndex(route.actualColor);
        });
      },
      filterRoutes(routes){

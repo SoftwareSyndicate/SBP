@@ -13,7 +13,7 @@
           <i class="material-icons">add_alert</i>
         </a>
       </li>
-      <li class="tab col s3 z-depth-1" v-bind:class="{'active': $route.name == 'profile'}" v-link="{name: 'profile'}">
+      <li class="tab col s3 z-depth-1" v-bind:class="{'active': $route.name == 'profile' || $route.name == 'progress'}" v-link="{name: 'profile'}">
         <p class="tab-name">Profile</p>
         <a href="#tab-profile" class="">
           <i class="material-icons">account_circle</i>
