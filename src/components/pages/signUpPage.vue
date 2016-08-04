@@ -17,7 +17,7 @@
         Start tracking your progress at the Seattle Bouldering Project
       </p>
       <button v-link="{name: 'name'}" class="sign-up-button" type="button" name="button">Sign up today</button>
-      <p class="have-account" v-link="{name: 'signIn'}">I already have an account?</p>
+      <p class="have-account" v-link="{name: 'signIn'}">I already have an account</p>
     </div>
   </div>
 </template>
