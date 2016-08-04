@@ -108,7 +108,7 @@
  export default Navbar;
 </script>
 
-<style lang="sass">
+<style lang="scss">
  @import '../../styles/main.scss';
  #navbar {
    nav {

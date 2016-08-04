@@ -35,7 +35,7 @@
  }
 </script>
 
-<style lang="sass">
+<style lang="scss">
  .wall-list {
    margin: 0px;
    border: none !important;

@@ -59,7 +59,7 @@
  export default WallsPage;
 </script>
 
-<style lang="sass">
+<style lang="scss">
  .walls-page {
    padding: 16px;
 

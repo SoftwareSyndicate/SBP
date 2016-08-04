@@ -36,7 +36,7 @@
  }
 </script>
 
-<style lang="sass">
+<style lang="scss">
  .overlay-container {
    width: 100vw;
    height: 100vh;

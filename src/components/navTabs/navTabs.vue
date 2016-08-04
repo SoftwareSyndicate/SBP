@@ -57,7 +57,7 @@
  export default NavTabs;
 </script>
 
-<style lang="sass">
+<style lang="scss">
  @import '../../styles/main.scss';
  $cell-padding: 1.4em;
  $cell-border: 2px rgba(215, 218, 230, .5) solid;

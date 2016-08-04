@@ -65,7 +65,7 @@
 </script>
 
 
-<style lang="sass">
+<style lang="scss">
  @import '../styles/cordova.scss';
  $body-background-color: #f5f6fa;
  html {

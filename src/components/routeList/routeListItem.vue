@@ -33,7 +33,7 @@
  }
 </script>
 
-<style lang="sass">
+<style lang="scss">
  .route-list-item {
    line-height: 1em;
    display: flex;

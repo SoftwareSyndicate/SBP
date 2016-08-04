@@ -45,7 +45,7 @@ var NewsPage =  BaseComponent.extend({
 export default NewsPage;
 </script>
 
-<style lang="sass">
+<style lang="scss">
 .news-page {
   padding: 16px;
 

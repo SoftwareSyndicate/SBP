@@ -131,7 +131,7 @@
  export default RoutesOverTimeChart
 </script>
 
-<style lang="sass">
+<style lang="scss">
  @import "../../styles/main.scss";
  .routes-over-time-chart {
    display: flex;

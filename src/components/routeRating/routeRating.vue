@@ -36,7 +36,7 @@
  }
 </script>
 
-<style lang="sass">
+<style lang="scss">
  .route-rating {
 
    i {

@@ -66,7 +66,7 @@
  };
 </script>
 
-<style lang="sass">
+<style lang="scss">
  .route-page {
    .grade-image-container {
      margin-bottom: 3em;

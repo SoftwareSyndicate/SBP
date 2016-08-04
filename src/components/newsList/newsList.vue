@@ -32,7 +32,7 @@
  export default NewsList;
 </script>
 
-<style lang="sass">
+<style lang="scss">
  $cell-padding: 1.4em;
  $cell-border: 2px rgba(215, 218, 230, .5) solid;
 

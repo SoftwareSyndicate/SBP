@@ -68,7 +68,7 @@
 
 </script>
 
-<style lang="sass">
+<style lang="scss">
  @import '../../styles/main.scss';
 
  $text-padding: 1.8em;

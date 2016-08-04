@@ -76,7 +76,7 @@ var SignUpPage = BaseComponent.extend({
 export default SignUpPage;
 </script>
 
-<style lang="sass">
+<style lang="scss">
 @import '~styles/main.scss';
 
 .sign-up-page {

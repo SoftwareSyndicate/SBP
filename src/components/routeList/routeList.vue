@@ -40,7 +40,7 @@
  }
 </script>
 
-<style lang="sass">
+<style lang="scss">
  .route-list {
    flex-grow: 1;
    .header-item {

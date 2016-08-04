@@ -40,7 +40,7 @@
  export default GymPage;
 </script>
 
-<style lang="sass">
+<style lang="scss">
  .gym-page {
    .content-wrapper {
      width: 100%;

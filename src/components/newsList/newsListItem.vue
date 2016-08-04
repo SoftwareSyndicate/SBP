@@ -59,7 +59,7 @@ var NewsListItem = BaseComponent.extend({
 export default NewsListItem;
 </script>
 
-<style lang="sass">
+<style lang="scss">
 @import '../../styles/main.scss';
 
 .news-list-item {

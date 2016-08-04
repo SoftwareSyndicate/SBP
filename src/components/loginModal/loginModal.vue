@@ -65,7 +65,7 @@
  }
 </script>
 
-<style lang="sass">
+<style lang="scss">
 
  #loginModal {
    .login-error {

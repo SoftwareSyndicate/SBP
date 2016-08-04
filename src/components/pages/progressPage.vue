@@ -79,7 +79,7 @@
  export default ProgressPage;
 </script>
 
-<style lang="sass">
+<style lang="scss">
  @import "../../styles/main.scss";
  .progress-page {
    padding: 16px;

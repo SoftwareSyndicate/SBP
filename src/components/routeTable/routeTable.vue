@@ -133,7 +133,7 @@
  export default RouteTable;
 </script>
 
-<style lang="sass">
+<style lang="scss">
  @import '../../styles/main.scss';
  $header-cell-padding: 1.4em;
  $cell-padding: 1.6em;

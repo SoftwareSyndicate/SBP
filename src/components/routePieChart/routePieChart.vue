@@ -87,7 +87,7 @@
  export default RoutePieChart;
 </script>
 
-<style lang="sass">
+<style lang="scss">
  @import '../../styles/main.scss';
 
  #pie-chart {

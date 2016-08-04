@@ -150,7 +150,7 @@
  export default ProfilePage;
 </script>
 
-<style lang="sass">
+<style lang="scss">
  @import "../../styles/main.scss";
  .profile-page {
 

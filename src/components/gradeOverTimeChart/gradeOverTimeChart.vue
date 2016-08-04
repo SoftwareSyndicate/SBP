@@ -130,7 +130,7 @@
  export default GradeOverTimeChart
 </script>
 
-<style lang="sass">
+<style lang="scss">
  @import "../../styles/main.scss";
  .grade-over-time-chart {
    display: flex;

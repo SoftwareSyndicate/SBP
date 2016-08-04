@@ -93,7 +93,7 @@
  export default SentRouteTable;
 </script>
 
-<style lang="sass">
+<style lang="scss">
 
  $header-cell-padding: 1.4em;
  $cell-padding: 1.6em;

@@ -79,7 +79,7 @@
  }
 </script>
 
-<style lang="sass">
+<style lang="scss">
 
  .wall-list-item {
    padding: 0 0 0 10px !important;

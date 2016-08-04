@@ -108,7 +108,7 @@
  export default GymLayoutPage
 </script>
 
-<style lang="sass">
+<style lang="scss">
  @import '../../styles/main.scss';
 
  .gym-layout-page {

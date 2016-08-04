@@ -94,7 +94,7 @@ var NameForm = BaseComponent.extend({
 export default NameForm;
 </script>
 
-<style lang="sass">
+<style lang="scss">
 @import "../../styles/main.scss";
 .name-form {
   display: flex;

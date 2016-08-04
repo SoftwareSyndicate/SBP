@@ -106,7 +106,7 @@ var EmailForm = BaseComponent.extend({
 export default EmailForm;
 </script>
 
-<style lang="sass">
+<style lang="scss">
 @import '../../styles/main.scss';
 .email-form {
   padding: 0 25px;

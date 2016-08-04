@@ -29,7 +29,7 @@ var IntroForm = BaseComponent.extend({
 export default IntroForm;
 </script>
 
-<style lang="sass">
+<style lang="scss">
 
 @import '~styles/main.scss';
 

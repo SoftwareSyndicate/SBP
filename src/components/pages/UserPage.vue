@@ -81,7 +81,7 @@
  };
 </script>
 
-<style lang="sass">
+<style lang="scss">
  .user-page {
 
    .tabs {
