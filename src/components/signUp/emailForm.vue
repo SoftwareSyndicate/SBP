@@ -77,12 +77,16 @@ var EmailForm = BaseComponent.extend({
     signUp(){
       if(UserModel.isValidCreds(this.email, this.password)){
         this.showLoadingAnimation();
-        // UserModel.signUp(this.firstName, this.lastName, this.email, this.password).then(results => {
         UserModel.signUpWithEmail(this.email, this.password).then(results => {
-          this.$router.go({name: 'profile'});
+          UserModel.firebaseUser = firebase.auth().currentUser;
+          UserModel.createUser(UserModel.firebaseUser.uid, UserModel.firstName, UserModel.lastName).then(results => {
+            UserModel.watchCurrentUser(UserModel.firebaseUser.uid);
+            this.$router.go({name: 'profile'});
+          }, error => {
+
+          })
         }, error => {
           this.hideLoadingAnimation();
-          // Materialize.toast(error.message, 3000);
           console.error(error);
           if(error.code === 202){
             this.showError = true;

@@ -2,8 +2,9 @@
   <div>
     <div class="profile-page">
       <div class="header">
-        <h4 class="first-name">{{currentUser.first_name}}</h4>
-        <h4 class="last-name">{{currentUser.last_name}}</h4>
+        <div class="name-container">
+          <h4 class="name">{{currentUser.first_name + " " + currentUser.last_name}}</h4>
+        </div>
         <p class="no-routes-message" v-if="sentRoutes.length == 0">No walls sent yet</p>
         <div class="base-stats" v-if="sentRoutes.length > 0">
           <div class="stat">
@@ -163,6 +164,10 @@
      padding-top: 2em;
      display: flex;
      flex-wrap: wrap;
+
+     .name-container {
+       flex-basis: 100%;
+     }
 
      h4 {
        font-size: 1.8em;
