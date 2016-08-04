@@ -23,6 +23,8 @@ import UserModel from './RMS/src/models/UserModel.js'
 
 //Sign In
 import SignInPage from './components/pages/signInPage.vue'
+import UsernameForm from './components/signIn/usernameForm.vue'
+import PasswordForm from './components/signIn/passwordForm.vue'
 
 //Sign Up
 import SignUpPage from './components/pages/signUpPage.vue'
@@ -123,7 +125,19 @@ router.map({
   '/signIn': {
     name: 'signIn',
     component: SignInPage,
-    auth: false
+    auth: false,
+    subRoutes: {
+      '/username': {
+        name: 'username',
+        component: UsernameForm,
+        auth: false
+      },
+      '/password': {
+        name: 'password',
+        component: PasswordForm,
+        auth: false
+      }
+    }
   },
 
   //Sign Up
@@ -156,7 +170,7 @@ router.beforeEach(function(transition){
     Notifications.notify('Router.beforeTransition', transition);
     transition.next();
   } else {
-    transition.redirect("/signIn");
+    transition.redirect({name: 'signUp'});
   }
 });
 
@@ -171,6 +185,9 @@ router.redirect({
 
 router.redirect({
   '/signUp': '/signUp/intro'
+});
+router.redirect({
+  '/signIn': '/signIn/username'
 });
 
 let loaded = false;

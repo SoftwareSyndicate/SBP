@@ -1,181 +1,154 @@
 <template>
   <div class="sign-in-page">
-    <div class="header-container" v-bind:class="{'keyboardActive': inputFocused}">
-      <p class="header">
-        Seattle
-        <br>
-        Bouldering
-        <br>
-        Project
-      </p>
-    </div>
-
-    <form>
-      <input placeholder="Email" id="email" type="email" class="validate" v-model="email">
-      <input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signIn()">
-      <a class="waves-effect waves-dark btn btn-primary" @click.stop="signIn()">Log in</a>
-      <a class="forgot-password">Forgot your password?</a>
-    </form>
-
-    <img src="../../../images/mountains.png">
-    <div class="footer-container" v-link="{name: 'signUp'}">
-      <div class="message">
-        <p>New to our app?</p>
-        <p class="create">Create a SBP Mobile Account</p>
+    <div class="sign-in-nav" v-if="navVisible">
+      <div class="left-container">
+        <i class="material-icons" @click="onLeftClick()">arrow_back</i>
       </div>
-      <i class="material-icons">keyboard_arrow_right</i>
+      <div class="center-container">
+
+      </div>
+      <div class="right-container">
+        <span @click="onRightClick()">{{rightText}}</span>
+      </div>
+    </div>
+    <router-view :parent="this" class="sign-in-page-form"></router-view>
+    <div class="footer-container" v-if="$route.name==='intro'">
+      <p class="headline">
+        Start tracking your progress at the Seattle Bouldering Project
+      </p>
+      <button v-link="{name: 'name'}" class="sign-in-button" type="button" name="button">Sign up today</button>
+      <p class="have-account" v-link="{name: 'signIn'}">I already have an account?</p>
     </div>
   </div>
 </template>
 
 <script>
- import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
- import UserModel from '../../RMS/src/models/UserModel.js'
+import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
+import UserModel from '../../RMS/src/models/UserModel.js'
 
- var SignInPage = BaseComponent.extend({
-   name: 'SignInPage',
-   data(){
-     return {
-       email: "",
-       password: "",
-       error: false,
-       inputFocused: false
-     }
-   },
-   created(){
-     if(UserModel.firebaseUser){
-       this.$router.go({name: 'walls'});
-     }
-     this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
-     this.hideLoadingAnimation();
-   },
-   ready(){
-     this.notifications.notify('Navbar.setVisible', false);
-     $('.sign-in-page').css("height", document.body.clientHeight + "px");
-   },
-   methods: {
-     signIn(){
-       this.showLoadingAnimation();
-       UserModel.signInWithEmail(this.email, this.password).then(results => {
-         this.$router.go({name: 'profile'});
-       }, error => {
-         Materialize.toast("Sorry, Invalid Credentials", 2000);
-         this.hideLoadingAnimation();
-       });
-     }
-   },
+var SignInPage = BaseComponent.extend({
+  name: 'SignInPage',
+  data(){
+    return {
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      error: false,
+      navVisible: false,
+      rightText: 'Next'
+    }
+  },
+  created(){
+    if(UserModel.currentUser){
+      this.$router.go({name: 'profile'});
+    }
+    this.hideLoadingAnimation();
+  },
+  ready(){
+    this.notifications.notify('Navbar.setHeader', "Seattle Bouldering Project");
+    this.notifications.notify('Navbar.setVisible', false);
+    $('.sign-in-page').css("height", document.body.clientHeight + "px");
+  },
+  events: {
+    setNavHeaderVisible(visible){
+      this.navVisible = visible;
+    },
+    'nav-set-right-text': function(text){
+      this.rightText = text;
+    }
+  },
+  methods: {
+    onRightClick(){
+      this.$broadcast('nav-right-click');
+    },
+    onLeftClick(){
+      this.$broadcast('nav-left-click');
+    }
+  },
 
-   beforeDestroy(){
-     this.showLoadingAnimation();
-     window.scrollTo(0, 0);
-   }
- });
+  beforeDestroy(){
+    this.showLoadingAnimation();
+    window.scrollTo(0, 0);
+  }
+});
 
- export default SignInPage;
+export default SignInPage;
 </script>
 
 <style lang="scss">
- @import '../../styles/main.scss';
+@import '~styles/main.scss';
 
- .sign-in-page {
-   height: 100%;
-   display: flex;
-   flex-wrap: wrap;
-   flex-basis: 100%;
-   flex-direction: column;
-   background: $gradient-background;
+.sign-in-page {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 100%;
+  flex-direction: column;
+  height: 100%;
+  background: $gradient-background;
 
-   .header-container {
-     margin-top: 4em;
-     margin-bottom: 2em;
-     padding-left: $signUp-page-padding;
-     padding-right: $signUp-page-padding;
-     .header {
-       letter-spacing: .2em;
-       text-transform: uppercase;
-       font-weight: 300;
-       font-size: 1.1em;
-       color: white;
-     }
+  .sign-in-nav {
+    background-color: $color-orange-1;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 
-     &.keyboardActive {
-       margin-top: 2em !important;
-     }
-   }
+    span,
+    .material-icons {
+      color: white;
+    }
 
-   form {
-     padding-left: $signUp-page-padding;
-     padding-right: $signUp-page-padding;
-     display: flex;
-     flex-direction: column;
+    & + .sign-in-page-form {
+      margin-top: 50px;
+    }
+  }
 
-     input {
-       margin-bottom: 10px !important;
-       width: initial;
-     }
+  .footer-container {
+    display: flex;
+    position: fixed;
+    z-index: 2;
+    bottom: 0px;
+    height: 200px;
+    width: 100%;
+    background-color: $color-orange-2;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 60px;
+    p {
+      margin-top: auto;
+      margin-bottom: 10px;
+      font-size: .9em;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .9);
 
-     .btn {
-       padding-top: .5em !important;
-       height: 4rem;
-       font-weight: 300;
-       background-color: darken($color-base-orange, 8%) !important;
-       box-shadow: none;
-       color: white !important;
-       width: 100%;
-       margin-top: .5em;
-       margin-right: auto;
-       margin-left: auto;
-       font-size: 16px !important;
-     }
+      &.headline {
+        font-size: 1.2em;
+        text-align: center;
+      }
+      &.have-account {
+        margin-bottom: 20px;
+      }
+    }
 
-     a.forgot-password {
-       color:  darken($color-base-orange, 18%) !important;
-       font-size: .9em;
-       margin: auto !important;
-       margin-top: 1.5em !important;
-       cursor: pointer;
-     }
-   }
-
-   img {
-     width: 100%;
-     position: absolute;
-     bottom: 52px;
-   }
-
-   .footer-container {
-     display: flex;
-     padding: 1.5em;
-     position: fixed;
-     z-index: 2;
-     top: calc(100vh - 80px);
-     height: 80px;
-     width: 100%;
-     background-color: white;
-     align-items: center;
-
-     .message {
-       flex-basis: 70%;
-
-       p {
-         color: rgba(0, 0, 0, .5);
-
-         &.create {
-           color: $color-base-orange;
-         }
-       }
-     }
-
-     i {
-       font-size: 1.5em;
-       padding: 6px;
-       margin-left: auto;
-       border-radius: 50%;
-       background-color: rgba(0, 0, 0, .1);
-       color: rgba(0, 0, 0, .5);
-     }
-   }
-
- }
+    .sign-in-button {
+      background-color: darken($color-orange-1, 10);
+      border-bottom: 3px solid darken($color-orange-1, 20);
+      width: 100%;
+      color: white;
+    }
+  }
+  //  img {
+  //    width: 100%;
+  //    position: absolute;
+  //    bottom: 32px;
+  //  }
+}
 
 </style>
