@@ -4,7 +4,8 @@
     "description": "route management system",
     "scripts": {
         "dev": "webpack-dev-server --inline --hot --no-info",
-        "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+        "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+        "ios": "npm run build && cd cordova && cordova build ios"
     },
     "author": "yintothayang",
     "license": "MIT",
