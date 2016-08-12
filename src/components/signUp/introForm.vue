@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
-import UserModel from '../../RMS/src/models/UserModel.js'
+import BaseComponent from 'rms-components/base/baseComponent.vue'
+import UserModel from 'rms-models/UserModel.js'
 
 var IntroForm = BaseComponent.extend({
   name: 'IntroForm',
@@ -30,8 +30,7 @@ export default IntroForm;
 </script>
 
 <style lang="scss">
-
-@import '~styles/main.scss';
+@import '~sbpStyles/main.scss';
 
 .intro-form {
   height: 100%;

@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
-import UserModel from '../../RMS/src/models/UserModel.js'
+import BaseComponent from 'rms-components/base/baseComponent.vue'
+import UserModel from 'rms-models/UserModel.js'
 
 var EmailForm = BaseComponent.extend({
   name: 'EmailForm',
@@ -111,7 +111,8 @@ export default EmailForm;
 </script>
 
 <style lang="scss">
-@import '../../styles/main.scss';
+@import '~sbpStyles/main.scss';
+
 .email-form {
   padding: 0 25px;
   padding-top: 60px;

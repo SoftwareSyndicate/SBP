@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
-import UserModel from '../../RMS/src/models/UserModel.js'
+import BaseComponent from 'rms-components/base/baseComponent.vue'
+import UserModel from 'rms-models/UserModel.js'
 
 var PasswordForm = BaseComponent.extend({
   name: 'PasswordForm',
@@ -61,7 +61,8 @@ export default PasswordForm;
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/main.scss";
+ @import '~sbpStyles/main.scss';
+
 .password-form {
   display: flex;
   flex-direction: column;

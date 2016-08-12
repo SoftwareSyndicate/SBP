@@ -56,10 +56,12 @@ module.exports = {
       models: 'src/RMS/src/models',
       services: 'src/RMS/src/services',
       styles: 'src/styles',
+      sbpStyles: 'src/styles',
       images: 'images',
       rms: 'src/RMS',
       'rms-models': 'src/RMS/src/models',
-      'rms-services': 'src/RMS/src/services'
+      'rms-services': 'src/RMS/src/services',
+      'rms-components': 'src/RMS/src/components'
     },
     extensions: ['', '.js', '.vue', '.scss', '.svg', '.png']
   }

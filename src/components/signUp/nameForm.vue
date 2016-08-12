@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
-import UserModel from '../../RMS/src/models/UserModel.js'
+import BaseComponent from 'rms-components/base/baseComponent.vue'
+import UserModel from 'rms-models/UserModel.js'
 
 var NameForm = BaseComponent.extend({
   name: 'NameForm',
@@ -95,7 +95,8 @@ export default NameForm;
 </script>
 
 <style lang="scss">
-@import "../../styles/main.scss";
+@import '~sbpStyles/main.scss';
+
 .name-form {
   display: flex;
   flex-direction: column;

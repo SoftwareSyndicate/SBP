@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import BaseComponent from '../../RMS/src/components/base/baseComponent.vue'
-import UserModel from '../../RMS/src/models/UserModel.js'
+import BaseComponent from 'rms-components/base/baseComponent.vue'
+import UserModel from 'rms-models/UserModel.js'
 
 var UserameForm = BaseComponent.extend({
   name: 'UserameForm',
@@ -55,7 +55,8 @@ export default UserameForm;
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/main.scss";
+@import '~sbpStyles/main.scss';
+
 .username-form {
   display: flex;
   flex-direction: column;
