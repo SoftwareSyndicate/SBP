@@ -1,18 +1,5 @@
 <template>
   <div class="email-form">
-    <!-- <div class="header-container" v-bind:class="{'keyboardActive': inputFocused}">
-    <p class="header">
-    Email & Password
-  </p>
-  <span>&nbsp</span>
-</div>
-<form>
-<div class="inputs">
-<input placeholder="Enter your email address" id="email" type="email" class="validate" v-model="email" onfocus="onInputFocused()" onblur="onInputBlured()">
-<input placeholder="Password" id="password" type="password" class="validate" v-model="password" @keyup.enter="signUp()" onfocus="onInputFocused()">
-</div>
-<a class="waves-effect waves-dark btn btn-primary" @click.stop="signUp()" v-if="valid"><i class="material-icons right" >arrow_forward</i>Continue</a>
-</form> -->
     <p class="headline" v-if="!showError">
       Add an email and password
     </p>
@@ -125,7 +112,8 @@ export default EmailForm;
 
   .input-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 15px;
     input {
       display: flex;
