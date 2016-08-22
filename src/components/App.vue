@@ -21,6 +21,7 @@
  import RouteModel from '../RMS/src/models/RouteModel.js'
  import SentRouteModel from '../RMS/src/models/SentRouteModel.js'
  import UserModel from '../RMS/src/models/UserModel.js'
+ import NotificationModel from '../RMS/src/models/NotificationModel.js'
 
  import BaseComponent from '../RMS/src/components/base/baseComponent.vue'
 
@@ -55,6 +56,7 @@
          WallModel.watchAllWallsInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
          RouteModel.watchAllRoutesInGym(window.gymId); // TODO MAKE CONFIG FOR SBP - remove gym id
          SentRouteModel.watchAllRoutesByUserId(UserModel.currentUser.id); // TODO MAKE CONFIG FOR SBP - remove gym id
+         NotificationModel.watchAllNotifications(window.gymId);
          this.resourcesLoaded = true;
        }
      }

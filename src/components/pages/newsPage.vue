@@ -1,56 +1,59 @@
 <template>
   <div class="news-page">
-    <news-list :news="news"></news-list>
+    <!-- <news-list :news="news"></news-list> -->
+    <notification-list :notifs="notifs"></notification-list>
   </div>
 </template>
 
 <script>
-import BaseComponent from '../../components/base/baseComponent.vue'
-import UserModel from '../../RMS/src/models/UserModel.js'
-import NewsList from '../../components/newsList/newsList.vue'
-import NotificationModel from 'rms-models/NotificationModel'
+ import BaseComponent from '../../components/base/baseComponent.vue'
+ import UserModel from '../../RMS/src/models/UserModel.js'
+ import NewsList from '../../components/newsList/newsList.vue'
+ import NotificationList from 'components/notificationList/notificationList'
 
+ import NotificationModel from 'rms-models/NotificationModel'
 
-var NewsPage =  BaseComponent.extend({
-  name: 'NewsPage',
-  components: {
-    NewsList
-  },
-  data(){
-    return {
-      news: {}
-    }
-  },
-  created(){
-    NotificationModel.getNotifications();
-  },
-  notifs(){
-    return {
-      'NotificationModel.notificationsUpdated': 'onNotificationsUpdated'
-    }
-  },
-  ready(){
-    this.notifications.notify('Navbar.setHeader', "News");
-  },
-  beforeDestroy(){
-    window.scrollTo(0, 0);
-  },
-  methods: {
-    onNotificationsUpdated(e, notifs){
-      this.news = notifs;
-    }
-  }
-});
+ var NewsPage =  BaseComponent.extend({
+   name: 'NewsPage',
+   components: {
+     NewsList,
+     NotificationList
+   },
+   data(){
+     return {
+       notifs: []
+     }
+   },
+   created(){
+     this.notifs = NotificationModel.notifications;
+   },
+   notifs(){
+     return {
+       'NotificationModel.notificationsUpdated': 'onNotificationsUpdated'
+     }
+   },
+   ready(){
+     this.notifications.notify('Navbar.setHeader', "News");
+   },
+   beforeDestroy(){
+     window.scrollTo(0, 0);
+   },
+   methods: {
+     onNotificationsUpdated(e){
+       this.notifs = NotificationModel.notifications;
+     }
+   }
+ });
 
-export default NewsPage;
+ export default NewsPage;
 </script>
 
 <style lang="scss">
-.news-page {
-  padding: 16px;
+ .news-page {
+   padding: 16px;
 
-  .news-list {
-    padding-bottom: 40px;
-  }
-}
+   .notification-list {
+     padding-bottom: 40px;
+   }
+ }
 </style>
