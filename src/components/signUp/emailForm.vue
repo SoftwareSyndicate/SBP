@@ -1,7 +1,7 @@
 <template>
   <div class="email-form">
     <p class="headline" v-if="!showError">
-      Add an email and password
+      {{errorMessage}}
     </p>
     <div class="" v-else>
       <p class="headline">
@@ -32,7 +32,9 @@ var EmailForm = BaseComponent.extend({
       password: "",
       valid: false,
       inputFocused: false,
-      showError: false
+      showError: false,
+      errorMessage: "",
+      loading: false
     }
   },
   created(){
@@ -62,22 +64,19 @@ var EmailForm = BaseComponent.extend({
   },
   methods: {
     signUp(){
-      if(UserModel.isValidCreds(this.email, this.password)){
-        this.showLoadingAnimation();
+      if(UserModel.isValidCreds(this.email, this.password) && !this.loading){
+        this.loading = true;
         UserModel.signUpWithEmail(this.email, this.password).then(results => {
           UserModel.firebaseUser = firebase.auth().currentUser;
           UserModel.createUser(UserModel.firebaseUser.uid, UserModel.firstName, UserModel.lastName).then(results => {
             UserModel.watchCurrentUser(UserModel.firebaseUser.uid);
             this.$router.go({name: 'profile'});
           }, error => {
-
           })
         }, error => {
-          this.hideLoadingAnimation();
-          console.error(error);
-          if(error.code === 202){
-            this.showError = true;
-          }
+          this.loading = false;
+          this.error = true;
+          this.errorMessage = error.message;
         });
       }
     },
