@@ -4,7 +4,7 @@
 
     <!-- main view -->
     <!-- <overlay></overlay> -->
-    <div id="wrapper">
+    <div id="wrapper" :class="{'android': android, 'ios': ios, 'browser': browser}">
       <router-view
           class="view"
           transition
@@ -34,7 +34,10 @@
    data(){
      return {
        loaded: true,
-       resourcesLoaded: false
+       resourcesLoaded: false,
+       ios: false,
+       android: false,
+       browser: true
      }
    },
    created(){
@@ -43,7 +46,8 @@
      }
    },
    ready(){
-
+     this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+     this.browser = !this.ios;
    },
    notifs(){
      return {
@@ -82,6 +86,11 @@
    position: relative;
    height: 100%;
    margin: 0 auto;
+
+   &.ios {
+     padding-top: 22px;
+     background-color: black;
+   }
  }
  .view {
    position: absolute;

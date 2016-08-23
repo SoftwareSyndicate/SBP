@@ -19,6 +19,14 @@
                         {
                             "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" value=\"org.apache.cordova.statusbar.StatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -66,6 +74,12 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "software.syndicate.sbp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "software.syndicate.sbp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "software.syndicate.sbp"
         }
     },
     "dependent_plugins": {},
@@ -88,11 +102,27 @@
             "file": "plugins/cordova-plugin-whitelist/whitelist.js",
             "id": "cordova-plugin-whitelist.whitelist",
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "id": "cordova-plugin-device.device",
+            "clobbers": [
+                "device"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+            "id": "cordova-plugin-statusbar.statusbar",
+            "clobbers": [
+                "window.StatusBar"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-google-analytics": "0.8.1",
         "cordova-plugin-splashscreen": "3.2.1",
-        "cordova-plugin-whitelist": "1.2.1"
+        "cordova-plugin-whitelist": "1.2.1",
+        "cordova-plugin-device": "1.1.2",
+        "cordova-plugin-statusbar": "2.1.3"
     }
 }

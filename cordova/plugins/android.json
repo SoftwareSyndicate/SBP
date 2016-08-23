@@ -15,6 +15,12 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "software.syndicate.sbp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "software.syndicate.sbp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "software.syndicate.sbp"
         }
     },
     "dependent_plugins": {}
