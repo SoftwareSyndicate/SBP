@@ -1,10 +1,10 @@
 <template>
-  <div class="">
+  <div>
+    <div class="ios-padding" v-if="ios"></div>
     <navbar></navbar>
 
     <!-- main view -->
-    <!-- <overlay></overlay> -->
-    <div id="wrapper" :class="{'android': android, 'ios': ios, 'browser': browser}">
+    <div id="wrapper">
       <router-view
           class="view"
           transition
@@ -82,6 +82,12 @@
    height: 100%;
    background-color: $body-background-color;
  }
+
+ .ios-padding {
+   height: 22px;
+   background-color: black;
+ }
+
  #wrapper {
    position: relative;
    height: 100%;
