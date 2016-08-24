@@ -8,7 +8,9 @@
       <p class="set-date" v-text="wall.last_set | dateSet"></p>
     </div>
     <div class="right">
-      <div class="color" v-for="color in colors" v-bind:style="{'background-color': color.color, 'width': color.percent}">&nbsp</div>
+      <div class="color-container">
+        <div class="color" v-for="color in colors" v-bind:style="{'background-color': color.color, 'width': color.percent}">&nbsp</div>
+      </div>
     </div>
   </li>
 </template>
@@ -90,12 +92,13 @@
    .left {
      display: flex;
      flex-grow: 1;
-     flex-direction: column;
+     flex-wrap: wrap;
      flex-basis: 75%;
      padding-right: 15px;
      width: 75%;
 
      .name-container {
+       flex-basis: 100%;
        padding-top: 1.5em;
        padding-bottom: .3em !important;
        margin: 20px 0px 0px 4px !important;
@@ -112,14 +115,13 @@
      }
 
      .spacer {
-       margin-top: 15px;
-       padding-bottom: .8em;
        border-top: 2px solid rgba(0, 0, 0, .1);
        width: 10%;
        margin-left: 6px;
      }
 
      .set-date {
+       flex-basis: 100%;
        font-size: .9em;
        color: #FF7055;
        padding: 0.4em 0 0 0.4em;
@@ -130,13 +132,17 @@
      display: flex;
      flex-grow: 1;
      flex-basis: 25%;
-     flex-direction: column;
+     flex-wrap: wrap;
      width: 25%;
 
-     .color {
-       display: flex;
-       height: 20px;
-       margin-left: auto;
+     .color-container {
+       flex-basis: 100%;
+
+       .color {
+         display: flex;
+         height: 20px;
+         margin-left: auto;
+       }
      }
    }
 
