@@ -2,6 +2,7 @@
   <div>
     <div class="ios-padding" v-if="ios"></div>
     <navbar></navbar>
+    <overlay></overlay>
 
     <!-- main view -->
     <div id="wrapper">

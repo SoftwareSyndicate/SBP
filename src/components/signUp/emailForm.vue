@@ -19,113 +19,122 @@
 </template>
 
 <script>
-import BaseComponent from 'rms-components/base/baseComponent.vue'
-import UserModel from 'rms-models/UserModel.js'
+ import BaseComponent from 'rms-components/base/baseComponent.vue'
+ import UserModel from 'rms-models/UserModel.js'
 
-var EmailForm = BaseComponent.extend({
-  name: 'EmailForm',
-  data(){
-    return {
-      firstName: UserModel.firstName,
-      lastName: UserModel.lastName,
-      email: "",
-      password: "",
-      valid: false,
-      inputFocused: false,
-      showError: false,
-      errorMessage: "",
-      loading: false
-    }
-  },
-  created(){
-    this.notifications.listenFor("Input.focused", function(){this.inputFocused = true}, this);
-    this.notifications.listenFor("Input.blured", function(){this.inputFocused = false}, this);
+ var EmailForm = BaseComponent.extend({
+   name: 'EmailForm',
+   data(){
+     return {
+       firstName: UserModel.firstName,
+       lastName: UserModel.lastName,
+       email: "",
+       password: "",
+       valid: false,
+       inputFocused: false,
+       showError: false,
+       errorMessage: ""
+     }
+   },
+   created(){
+     this.notifications.listenFor("Input.focused", function(){this.inputFocused = true}, this);
+     this.notifications.listenFor("Input.blured", function(){this.inputFocused = false}, this);
 
-    this.$dispatch('setNavHeaderVisible', true);
-    this.$dispatch('nav-set-right-text', 'Sign Up');
-  },
-  ready(){
-    this.$watch('email', function(val){
-      this.email = val;
-      this.isValid(this.email, this.password);
-    });
-    this.$watch('password', function(val){
-      this.password = val;
-      this.isValid(this.email, this.password);
-    });
-  },
-  events: {
-    'nav-left-click': function(){
-      this.$router.go({name: 'name'});
-    },
-    'nav-right-click': function(){
-      this.signUp();
-    }
-  },
-  methods: {
-    signUp(){
-      if(UserModel.isValidCreds(this.email, this.password) && !this.loading){
-        this.loading = true;
-        UserModel.signUpWithEmail(this.email, this.password).then(results => {
-          UserModel.firebaseUser = firebase.auth().currentUser;
-          UserModel.createUser(UserModel.firebaseUser.uid, UserModel.firstName, UserModel.lastName).then(results => {
-            UserModel.watchCurrentUser(UserModel.firebaseUser.uid);
-            this.$router.go({name: 'profile'});
-          }, error => {
-          })
-        }, error => {
-          this.loading = false;
-          this.error = true;
-          this.errorMessage = error.message;
-        });
-      }
-    },
-    isValid(email, password){
-      this.valid = true;
-      if(email.length === 0){
-        this.valid = false;
-      }
-      if(password.length === 0){
-        this.valid = false;
-      }
-      return this.valid;
-    }
-  }
-});
+     this.$dispatch('setNavHeaderVisible', true);
+     this.$dispatch('nav-set-right-text', 'Sign Up');
+   },
+   ready(){
+     this.$watch('email', function(val){
+       this.email = val;
+       this.isValid(this.email, this.password);
+     });
+     this.$watch('password', function(val){
+       this.password = val;
+       this.isValid(this.email, this.password);
+     });
+   },
+   events: {
+     'nav-left-click': function(){
+       this.$router.go({name: 'name'});
+     },
+     'nav-right-click': function(){
+       this.signUp();
+     }
+   },
+   notifs(){
+     return {
+       "UserModel.userUpdated": "onUserUpdated"
+     }
+   },
 
-export default EmailForm;
+   methods: {
+     signUp(){
+       if(UserModel.isValidCreds(this.email, this.password)){
+         this.showLoadingAnimation();
+         UserModel.signUpWithEmail(this.email, this.password).then(results => {
+           UserModel.firebaseUser = firebase.auth().currentUser;
+           UserModel.createUser(UserModel.firebaseUser.uid, UserModel.firstName, UserModel.lastName).then(results => {
+             UserModel.watchCurrentUser(UserModel.firebaseUser.uid);
+
+           }, error => {
+           })
+         }, error => {
+           this.hideLoadingAnimation();
+           this.error = true;
+           this.errorMessage = error.message;
+         });
+       }
+     },
+     isValid(email, password){
+       this.valid = true;
+       if(email.length === 0){
+         this.valid = false;
+       }
+       if(password.length === 0){
+         this.valid = false;
+       }
+       return this.valid;
+     },
+     onUserUpdated(){
+       this.hideLoadingAnimation();
+       this.$router.go({name: 'profile'});
+     }
+   }
+ });
+
+ export default EmailForm;
 </script>
 
 <style lang="scss">
-@import '~sbpStyles/main.scss';
+ @import '~sbpStyles/main.scss';
 
-.email-form {
-  padding: 0 25px;
-  padding-top: 60px;
+ .email-form {
+   padding: 0 25px;
+   padding-top: 60px;
 
-  .headline {
-    font-size: 22px;
-    font-weight: 100;
-    color: white;
-  }
+   .headline {
+     font-size: 22px;
+     font-weight: 100;
+     color: white;
+   }
 
-  .input-wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 15px;
-    input {
-      display: flex;
-      flex-basis: 100%;
-      box-sizing: border-box;
-    }
+   .input-wrapper {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     margin-top: 15px;
+     input {
+       display: flex;
+       flex-basis: 100%;
+       box-sizing: border-box;
+     }
 
-    &.error {
-      input {
-        color: red;
-        background: rgb(255, 207, 221);
-      }
-    }
-  }
-}
+     &.error {
+       input {
+         color: red;
+         background: rgb(255, 207, 221);
+       }
+     }
+   }
+ }
 </style>

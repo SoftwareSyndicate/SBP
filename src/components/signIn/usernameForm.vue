@@ -31,6 +31,7 @@ var UserameForm = BaseComponent.extend({
     this.$dispatch('setNavHeaderVisible', true);
   },
   ready(){
+
   },
   events: {
     'nav-left-click': function(){

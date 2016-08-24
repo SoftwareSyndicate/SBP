@@ -1,6 +1,5 @@
 <template>
-  <!-- <div class="overlay-container" v-show="visible"> -->
-  <div class="overlay-container" v-show="false">
+  <div class="overlay-container" v-show="show" transition="modal">
     <div class='triangles'>
       <div class='tri invert'></div>
       <div class='tri invert'></div>
@@ -21,27 +20,36 @@
    name: 'Overlay',
    data(){
      return {
-       visible: false
+       show: false
      }
    },
    created(){
      notifications.listenFor('Overlay.setVisible', this.setVisible, this);
    },
+   notifs(){
+     return {
+       "Overlay.setVisible": "setVisible"
+     }
+   },
    methods: {
      setVisible(event, visible){
-       this.visible = visible;
+       this.show = visible;
      }
-
    }
  }
 </script>
 
 <style lang="scss">
  .overlay-container {
-   width: 100vw;
-   height: 100vh;
-   padding-top: 0px;
-   margin: 0 auto;
+   position: fixed;
+   z-index: 9998;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, .5);
+   display: table;
+   transition: opacity .3s ease;
 
    @-webkit-keyframes pulse {
      0% {
@@ -161,6 +169,16 @@
      -webkit-animation-delay: -500ms;
      -moz-animation-delay: -500ms;
      animation-delay: -500ms;
+   }
+
+   &.modal-enter, &.modal-leave {
+     opacity: 0;
+   }
+
+   &.modal-enter &.modal-container,
+   &.modal-leave &.modal-container {
+     -webkit-transform: scale(1.1);
+     transform: scale(1.1);
    }
  }
 
