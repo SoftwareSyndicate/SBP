@@ -8,7 +8,6 @@
 <script>
  import BaseComponent from '../../components/base/baseComponent.vue'
  import UserModel from '../../RMS/src/models/UserModel.js'
- import NewsList from '../../components/newsList/newsList.vue'
  import NotificationList from 'components/notificationList/notificationList'
 
  import NotificationModel from 'rms-models/NotificationModel'
@@ -16,7 +15,6 @@
  var NewsPage =  BaseComponent.extend({
    name: 'NewsPage',
    components: {
-     NewsList,
      NotificationList
    },
    data(){
