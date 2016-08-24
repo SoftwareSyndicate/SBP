@@ -135,7 +135,7 @@
  .grade-over-time-chart {
    display: flex;
    flex-grow: 1;
-   flex-direction: column;
+   flex-basis: 100%;
 
    #grade-over-time-chart {
      width: 100% !important;

@@ -136,7 +136,7 @@
  .routes-over-time-chart {
    display: flex;
    flex-grow: 1;
-   flex-direction: column;
+   flex-basis: 100%;
 
    #routes-over-time-chart {
      width: 100% !important;

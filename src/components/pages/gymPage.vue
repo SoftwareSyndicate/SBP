@@ -32,7 +32,6 @@
    },
 
    beforeDestroy(){
-     this.showLoadingAnimation();
      window.scrollTo(0, 0);
    }
  });
