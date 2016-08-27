@@ -6,9 +6,8 @@
 </template>
 
 <script>
- import BaseComponent from '../base/baseComponent.vue'
 
- var RoutePieChart = BaseComponent.extend({
+ export default {
    name: 'RoutePieChart',
    props: {
      routes: {
@@ -82,9 +81,8 @@
        return data;
      }
    }
- });
+ }
 
- export default RoutePieChart;
 </script>
 
 <style lang="scss">
