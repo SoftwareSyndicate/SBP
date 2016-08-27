@@ -22,22 +22,16 @@
      }
    },
    created(){
-     /* if(this.routes){
-        this.tableData = this.calculateGradeTotals(this.routes, window.colorsArray, window.gradesArray);
-        } */
+
    },
    ready(){
      this.$watch('routes', val => {
-       /* this.colors = []; */
-       /* this.calcColorPercents(); */
        this.tableData = this.calculateGradeTotals(this.routes, window.colorsArray, window.gradesArray);
        this.drawChart(this.tableData);
      }, {
        deep: true,
        immediate: true
      });
-     //this.drawChart(this.chartData);
-     /* this.drawChart(this.tableData); */
    },
 
    methods: {
