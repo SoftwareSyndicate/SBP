@@ -50,7 +50,7 @@
      this.parseRoutes();
    },
    ready(){
-     this.notifications.notify('Navbar.setHeader', "MY PROGRESS");
+     this.notifications.notify('Navbar.setHeader', "My Progress");
      this.notifications.notify('NavTabs.setActiveTab', 'profile');
      this.hideLoadingAnimation();
    },
