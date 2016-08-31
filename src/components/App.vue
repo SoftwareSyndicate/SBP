@@ -58,10 +58,10 @@
    methods: {
      getResources(){
        if(!this.resourcesLoaded){
-         WallModel.watchAllWallsInGym(window.gymId);
+         WallModel.watchAllWalls();
          RouteModel.watchAllRoutes();
          SentRouteModel.watchAllRoutesByUserId(UserModel.currentUser.id);
-         NotificationModel.watchAllNotifications(window.gymId);
+         NotificationModel.watchAllNotifications();
          this.resourcesLoaded = true;
        }
      }

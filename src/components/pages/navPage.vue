@@ -57,7 +57,6 @@
    },
 
    beforeDestroy(){
-     this.showLoadingAnimation();
      this.notifications.notify('Navbar.setVisible', true);
      this.notifications.notify('NavTabs.setVisible', true);
      $("body").css("overflow", "auto");
