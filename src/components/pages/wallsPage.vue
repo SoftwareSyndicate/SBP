@@ -25,7 +25,7 @@
 
    },
    ready(){
-     this.notifications.notify('Navbar.setHeader', "seattle bouldering project");
+     this.notifications.notify('Navbar.setHeader', "Recently Updated");
      this.onWallsUpdated();
    },
    beforeDestroy(){

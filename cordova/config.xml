@@ -22,6 +22,12 @@
   <preference name="StatusBarOverlaysWebView" value="false" />
   <preference name="StatusBarBackgroundColor" value="#000000" />
   <preference name="StatusBarStyle" value="lightcontent" />
+
+  <preference name="AllowInlineMediaPlayback" value="true" />
+  <preference name="MediaPlaybackRequiresUserAction" value="false" />
+  <allow-navigation href="*youtube*" />
+  <allow-navigation href="*ytimg*" />
+
   <platform name="android">
     <splash density="land-hdpi" src="www/images/sbp_splash_screen.png" />
     <splash density="land-ldpi" src="www/images/sbp_splash_screen.png" />

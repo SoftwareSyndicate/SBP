@@ -95,7 +95,7 @@
    nav {
      background-color: $color-base-orange;
      border-bottom: 2px solid darken($color-base-orange, 6%);
-     background-image: url("../../../images/mountains.png");
+     /* background-image: url("../../../images/mountains.png"); */
      background-size: 50%;
      background-repeat: no-repeat;
      background-position: 50% 10px;
@@ -126,9 +126,8 @@
      .brand-logo {
        max-width: 65vw;
        font-weight: 300;
-       text-transform: uppercase;
-       font-size: .85em;
-       letter-spacing: .1em;
+       font-size: 1.1rem;
+       letter-spacing: .05rem;
      }
 
      @media (max-width: 990px){
