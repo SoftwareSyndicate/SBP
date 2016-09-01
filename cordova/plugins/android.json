@@ -7,19 +7,7 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-google-analytics": {
-            "PACKAGE_NAME": "software.syndicate.sbp"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "software.syndicate.sbp"
-        },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "software.syndicate.sbp"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "software.syndicate.sbp"
-        },
-        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "software.syndicate.sbp"
         }
     },

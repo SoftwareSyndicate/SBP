@@ -7,7 +7,6 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="icon" href="static/logo.png" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700,100,300' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
@@ -23,8 +22,159 @@
      };
      firebase.initializeApp(config);
     </script>
+    <style>
+     .overlay-container-cordova {
+       position: fixed;
+       z-index: 9998;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background-color: rgba(0, 0, 0, 0.5);
+       display: table;
+       transition: opacity .3s ease;
+     }
+     @-webkit-keyframes pulse {
+       0% {
+         opacity: 1;
+       }
+       16.666% {
+         opacity: 1;
+       }
+       100% {
+         opacity: 0;
+       }
+     }
+     @-moz-keyframes pulse {
+       0% {
+         opacity: 1;
+       }
+       16.666% {
+         opacity: 1;
+       }
+       100% {
+         opacity: 0;
+       }
+     }
+     @keyframes pulse {
+       0% {
+         opacity: 1;
+       }
+       16.666% {
+         opacity: 1;
+       }
+       100% {
+         opacity: 0;
+       }
+     }
+     .overlay-container-cordova .triangles {
+       zoom: 1.4;
+       -webkit-transform: translate(-50%, -50%);
+       -moz-transform: translate(-50%, -50%);
+       -ms-transform: translate(-50%, -50%);
+       -o-transform: translate(-50%, -50%);
+       transform: translate(-50%, -50%);
+       height: 54px;
+       width: 60px;
+       position: absolute;
+       left: 50%;
+       top: calc(50% - 2px);
+     }
+     .overlay-container-cordova .tri {
+       position: absolute;
+       -webkit-animation: pulse 750ms ease-in infinite;
+       -moz-animation: pulse 750ms ease-in infinite;
+       animation: pulse 750ms ease-in infinite;
+       border-top: 18px solid #CED3E4;
+       border-left: 10px solid transparent;
+       border-right: 10px solid transparent;
+       border-bottom: 0px;
+     }
+     .overlay-container-cordova .tri.invert {
+       border-top: 0px;
+       border-bottom: 18px solid #CED3E4;
+       border-left: 10px solid transparent;
+       border-right: 10px solid transparent;
+     }
+     .overlay-container-cordova .tri:nth-child(1) {
+       left: 20px;
+     }
+     .overlay-container-cordova .tri:nth-child(2) {
+       left: 10px;
+       top: 18px;
+       -webkit-animation-delay: -125ms;
+       -moz-animation-delay: -125ms;
+       animation-delay: -125ms;
+     }
+     .overlay-container-cordova .tri:nth-child(3) {
+       left: 20px;
+       top: 18px;
+     }
+     .overlay-container-cordova .tri:nth-child(4) {
+       left: 30px;
+       top: 18px;
+       -webkit-animation-delay: -625ms;
+       -moz-animation-delay: -625ms;
+       animation-delay: -625ms;
+     }
+     .overlay-container-cordova .tri:nth-child(5) {
+       top: 36px;
+       -webkit-animation-delay: -250ms;
+       -moz-animation-delay: -250ms;
+       animation-delay: -250ms;
+     }
+     .overlay-container-cordova .tri:nth-child(6) {
+       top: 36px;
+       left: 10px;
+       -webkit-animation-delay: -250ms;
+       -moz-animation-delay: -250ms;
+       animation-delay: -250ms;
+     }
+     .overlay-container-cordova .tri:nth-child(7) {
+       top: 36px;
+       left: 20px;
+       -webkit-animation-delay: -375ms;
+       -moz-animation-delay: -375ms;
+       animation-delay: -375ms;
+     }
+     .overlay-container-cordova .tri:nth-child(8) {
+       top: 36px;
+       left: 30px;
+       -webkit-animation-delay: -500ms;
+       -moz-animation-delay: -500ms;
+       animation-delay: -500ms;
+     }
+     .overlay-container-cordova .tri:nth-child(9) {
+       top: 36px;
+       left: 40px;
+       -webkit-animation-delay: -500ms;
+       -moz-animation-delay: -500ms;
+       animation-delay: -500ms;
+     }
+     .overlay-container-cordova.modal-enter, .overlay-container-cordova.modal-leave {
+       opacity: 0;
+     }
+     .overlay-container-cordova.modal-enter .overlay-container-cordova.modal-container, .overlay-container-cordova.modal-leave .overlay-container-cordova.modal-container {
+       -webkit-transform: scale(1.1);
+       transform: scale(1.1);
+     }
+    </style>
   </head>
   <body>
+    <div class="overlay-container-cordova" id="cordova-overlay">
+      <div class='triangles'>
+        <div class='tri invert'></div>
+        <div class='tri invert'></div>
+        <div class='tri'></div>
+        <div class='tri invert'></div>
+        <div class='tri invert'></div>
+        <div class='tri'></div>
+        <div class='tri invert'></div>
+        <div class='tri'></div>
+        <div class='tri invert'></div>
+      </div>
+    </div>
+
     <div id="app" class="app"></div>
     <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <script src="build.js"></script>

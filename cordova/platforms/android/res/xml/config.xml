@@ -1,39 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="software.syndicate.sbp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <preference name="loglevel" value="DEBUG" />
-    <feature name="UniversalAnalytics">
-        <param name="android-package" value="com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin" />
-    </feature>
-    <feature name="SplashScreen">
-        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-        <param name="onload" value="true" />
-    </feature>
+<widget id="software.syndicate.sbp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="Device">
-        <param name="android-package" value="org.apache.cordova.device.Device" />
-    </feature>
-    <feature name="StatusBar">
-        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
-        <param name="onload" value="true" />
-    </feature>
-    <splash density="land-hdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="land-ldpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="land-mdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="land-xhdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-hdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-ldpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-mdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-xhdpi" src="www/images/sbp_splash_screen.png" />
-    <icon density="ldpi" src="www/images/sbp_stamp.png" />
-    <icon density="mdpi" src="www/images/sbp_stamp.png" />
-    <icon density="hdpi" src="www/images/sbp_stamp.png" />
-    <icon density="xhdpi" src="www/images/sbp_stamp.png" />
-    <icon density="xxhdpi" src="www/images/sbp_stamp.png" />
-    <icon density="xxxhdpi" src="www/images/sbp_stamp.png" />
-    <allow-intent href="market:*" />
     <name>SBP</name>
     <description>
     Seattle Bouldering Project
@@ -49,6 +19,24 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="*youtube*" />
+    <allow-navigation href="*ytimg*" />
+    <splash density="land-hdpi" src="www/images/sbp_splash_screen.png" />
+    <splash density="land-ldpi" src="www/images/sbp_splash_screen.png" />
+    <splash density="land-mdpi" src="www/images/sbp_splash_screen.png" />
+    <splash density="land-xhdpi" src="www/images/sbp_splash_screen.png" />
+    <splash density="port-hdpi" src="www/images/sbp_splash_screen.png" />
+    <splash density="port-ldpi" src="www/images/sbp_splash_screen.png" />
+    <splash density="port-mdpi" src="www/images/sbp_splash_screen.png" />
+    <splash density="port-xhdpi" src="www/images/sbp_splash_screen.png" />
+    <icon density="ldpi" src="www/images/sbp_stamp.png" />
+    <icon density="mdpi" src="www/images/sbp_stamp.png" />
+    <icon density="hdpi" src="www/images/sbp_stamp.png" />
+    <icon density="xhdpi" src="www/images/sbp_stamp.png" />
+    <icon density="xxhdpi" src="www/images/sbp_stamp.png" />
+    <icon density="xxxhdpi" src="www/images/sbp_stamp.png" />
+    <allow-intent href="market:*" />
+    <preference name="loglevel" value="DEBUG" />
     <preference name="SplashScreenDelay" value="2700" />
     <preference name="orientation" value="portrait" />
     <preference name="StatusBarOverlaysWebView" value="false" />
@@ -57,6 +45,4 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="AllowInlineMediaPlayback" value="true" />
     <preference name="MediaPlaybackRequiresUserAction" value="false" />
-    <allow-navigation href="*youtube*" />
-    <allow-navigation href="*ytimg*" />
 </widget>

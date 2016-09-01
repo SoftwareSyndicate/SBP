@@ -193,6 +193,8 @@ router.redirect({
 let loaded = false;
 Notifications.listenFor("UserModel.userUpdated", () => {
   if(!loaded){
+    let el = document.getElementById("cordova-overlay");
+    el.parentNode.removeChild(el);
     router.start(App, '#app');
     loaded = true;
   }
