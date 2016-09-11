@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "software.syndicate.sbp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "software.syndicate.sbp"
         }
     },
     "dependent_plugins": {}

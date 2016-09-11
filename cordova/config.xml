@@ -16,7 +16,9 @@
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
   <allow-intent href="geo:*" />
-  <preference name="SplashScreenDelay" value="2700" />
+  <preference name="SplashScreenDelay" value="4000" />
+  <preference name="FadeSplashScreen" value="false"/>
+
   <preference name="orientation" value="portrait" />
   <preference name="StatusBarOverlaysWebView" value="false" />
   <preference name="StatusBarBackgroundColor" value="#000000" />
@@ -29,14 +31,14 @@
   <allow-navigation href="*ytimg*" />
 
   <platform name="android">
-    <splash density="land-hdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="land-ldpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="land-mdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="land-xhdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-hdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-ldpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-mdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-xhdpi" src="www/images/sbp_splash_screen.png" />
+    <splash density="land-hdpi" src="www/images/splash.png" />
+    <splash density="land-ldpi" src="www/images/splash.png" />
+    <splash density="land-mdpi" src="www/images/splash.png" />
+    <splash density="land-xhdpi" src="www/images/splash.png" />
+    <splash density="port-hdpi" src="www/images/splash.png" />
+    <splash density="port-ldpi" src="www/images/splash.png" />
+    <splash density="port-mdpi" src="www/images/splash.png" />
+    <splash density="port-xhdpi" src="www/images/splash.png" />
     <icon density="ldpi" src="www/images/sbp_stamp.png" />
     <icon density="mdpi" src="www/images/sbp_stamp.png" />
     <icon density="hdpi" src="www/images/sbp_stamp.png" />
@@ -64,6 +66,17 @@
     <icon height="58" src="www/images/ios_icons/icon-small@2x.png" width="58" />
     <icon height="50" src="www/images/ios_icons/icon-50.png" width="50" />
     <icon height="100" src="www/images/ios_icons/icon-50@2x.png" width="100" />
+
+    <splash src="www/images/splash.png" width="320" height="480"/>
+    <splash src="www/images/splash.png" width="640" height="960"/>
+    <splash src="www/images/splash.png" width="768" height="1024"/>
+    <splash src="www/images/splash.png" width="1536" height="2048"/>
+    <splash src="www/images/splash.png" width="1024" height="768"/>
+    <splash src="www/images/splash.png" width="2048" height="1536"/>
+    <splash src="www/images/splash.png" width="640" height="1136"/>
+    <splash src="www/images/splash.png" width="750" height="1334"/>
+    <splash src="www/images/splash.png" width="1242" height="2208"/>
+    <splash src="www/images/splash.png" width="2208" height="1242"/>
   </platform>
   <engine name="android" spec="~5.2.2" />
 </widget>

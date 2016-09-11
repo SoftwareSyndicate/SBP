@@ -4,6 +4,10 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
     <name>SBP</name>
     <description>
     Seattle Bouldering Project
@@ -21,14 +25,14 @@
     <allow-intent href="geo:*" />
     <allow-navigation href="*youtube*" />
     <allow-navigation href="*ytimg*" />
-    <splash density="land-hdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="land-ldpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="land-mdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="land-xhdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-hdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-ldpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-mdpi" src="www/images/sbp_splash_screen.png" />
-    <splash density="port-xhdpi" src="www/images/sbp_splash_screen.png" />
+    <splash density="land-hdpi" src="www/images/splash.png" />
+    <splash density="land-ldpi" src="www/images/splash.png" />
+    <splash density="land-mdpi" src="www/images/splash.png" />
+    <splash density="land-xhdpi" src="www/images/splash.png" />
+    <splash density="port-hdpi" src="www/images/splash.png" />
+    <splash density="port-ldpi" src="www/images/splash.png" />
+    <splash density="port-mdpi" src="www/images/splash.png" />
+    <splash density="port-xhdpi" src="www/images/splash.png" />
     <icon density="ldpi" src="www/images/sbp_stamp.png" />
     <icon density="mdpi" src="www/images/sbp_stamp.png" />
     <icon density="hdpi" src="www/images/sbp_stamp.png" />
@@ -37,7 +41,8 @@
     <icon density="xxxhdpi" src="www/images/sbp_stamp.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
-    <preference name="SplashScreenDelay" value="2700" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="FadeSplashScreen" value="false" />
     <preference name="orientation" value="portrait" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
