@@ -41,8 +41,9 @@
     <icon density="xxxhdpi" src="www/images/sbp_stamp.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
-    <preference name="SplashScreenDelay" value="3000" />
-    <preference name="FadeSplashScreen" value="false" />
+    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="FadeSplashScreenDuration" value="1000" />
     <preference name="orientation" value="portrait" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
