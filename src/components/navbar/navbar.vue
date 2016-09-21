@@ -105,8 +105,8 @@
 
 
      &.ios {
-       padding-top: 22px;
-       height: 76px;
+       padding-top: 16px;
+       height: 70px;
      }
 
      .menu-button {

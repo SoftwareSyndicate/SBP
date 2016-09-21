@@ -87,7 +87,7 @@
    margin: 0 auto;
 
    &.ios {
-     padding-top: 22px;
+     padding-top: 16px;
    }
  }
  .view {
