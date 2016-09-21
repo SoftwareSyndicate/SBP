@@ -1,7 +1,7 @@
 <template>
-  <div class="navbar-fixed" id="navbar" v-show="visible" :class="{'shadow': shadow}">
+  <div class="navbar-fixed" id="navbar" v-show="visible" :class="{'shadow': shadow, 'ios': ios}">
     <div class="nav-wrapper">
-      <nav>
+      <nav :class="{'ios': ios}">
         <a href="#!" class="brand-logo center">{{header}}</a>
         <a v-if="!navigateBack" class="button-collapse menu-button" v-link="{name: 'menu'}" @click.stop="onMenu = true;"><img src="~images/menu.svg" class="menu-image"/></a>
         <a v-if="navigateBack"  class="back-button" href="javascript:history.go(-1)" ><i class="material-icons side-nav-icon">keyboard_backspace</i></a>
@@ -23,7 +23,8 @@
        activeTab: "",
        visible: true,
        header: "Seattle Bouldering Project",
-       shadow: false
+       shadow: false,
+       ios: false
      }
    },
    ready(){
@@ -31,7 +32,7 @@
         menuWidth: 280,
         closeOnClick: true
         }); */
-
+     this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
      this.currentUser = UserModel.currentUser;
      this.notifications.listenFor('Navbar.setHeader', this.setHeader, this);
      this.notifications.listenFor('Navbar.setActiveTab', this.setActiveTab, this);
@@ -92,6 +93,7 @@
 <style lang="scss">
  @import '../../styles/main.scss';
  #navbar {
+
    nav {
      background-color: $color-base-orange;
      border-bottom: 2px solid darken($color-base-orange, 6%);
@@ -100,6 +102,12 @@
      background-repeat: no-repeat;
      background-position: 50% 10px;
      transition: all 300ms;
+
+
+     &.ios {
+       padding-top: 22px;
+       height: 76px;
+     }
 
      .menu-button {
        cursor: pointer;

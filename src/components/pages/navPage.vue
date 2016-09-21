@@ -47,6 +47,9 @@
    },
    ready(){
      $("body").css("overflow", "hidden");
+     if(window.ios){
+       $('#wrapper').css("background-color", "#f45b2d");
+     }
    },
    methods: {
      signOut(){
@@ -60,6 +63,7 @@
      this.notifications.notify('Navbar.setVisible', true);
      this.notifications.notify('NavTabs.setVisible', true);
      $("body").css("overflow", "auto");
+     $('#wrapper').css("background-color", "#FFFFFF");
    }
  });
 

@@ -48,6 +48,13 @@
      this.notifications.notify('Navbar.setHeader', "Seattle Bouldering Project");
      this.notifications.notify('Navbar.setVisible', false);
      $('.sign-in-page').css("height", document.body.clientHeight + "px");
+
+     if(window.ios){
+       $('#wrapper').css("background-color", "#f3501e");
+       $('.sign-up-page').css("height", document.body.clientHeight - 22 + "px");
+     } else {
+       $('.sign-up-page').css("height", document.body.clientHeight + "px");
+     }
    },
    events: {
      setNavHeaderVisible(visible){
@@ -68,6 +75,7 @@
 
    beforeDestroy(){
      window.scrollTo(0, 0);
+     $('#wrapper').css("background-color", "#FFFFFF");
    }
  });
 

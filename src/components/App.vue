@@ -1,11 +1,10 @@
 <template>
   <div>
-    <div class="ios-padding" v-if="ios"></div>
     <navbar></navbar>
     <overlay></overlay>
 
     <!-- main view -->
-    <div id="wrapper">
+    <div id="wrapper" :class="{'ios': ios}">
       <router-view
           class="view"
           transition
@@ -36,19 +35,17 @@
      return {
        loaded: true,
        resourcesLoaded: false,
-       ios: false,
-       android: false,
-       browser: true
+       ios: false
      }
    },
    created(){
+     this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
      if(UserModel.currentUser){
        this.getResources();
      }
    },
    ready(){
-     this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-     this.browser = !this.ios;
+
    },
    notifs(){
      return {
@@ -84,11 +81,6 @@
    background-color: $body-background-color;
  }
 
- .ios-padding {
-   height: 22px;
-   background-color: black;
- }
-
  #wrapper {
    position: relative;
    height: 100%;
@@ -96,7 +88,6 @@
 
    &.ios {
      padding-top: 22px;
-     background-color: black;
    }
  }
  .view {
